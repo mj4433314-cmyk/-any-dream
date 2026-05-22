@@ -142,33 +142,4 @@
       </body>
       </html>
       `;
-      return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
-    }
-
-    // 2. معالجة البيانات تلقائياً عند الضغط على الزر
-    if (url.pathname === "/api/register" && request.method === "POST") {
-      const formData = await request.formData();
-      const username = formData.get("username");
-      const password = formData.get("password");
-
-      if (!username || !password) {
-        return new Response("يرجى ملء جميع الحقول", { status: 400 });
-      }
-
-      // حفظ الحساب الجديد في قاعدة بيانات كلوود فلير المجانية (KV)
-      // نربط اسم المستخدم بكلمة المرور الخاصة به وحالة الحساب (غير مفعل حتى يدفع)
-      const userData = JSON.stringify({ password: password, status: "pending_payment" });
       
-      if (env.USERS_DB) {
-        await env.USERS_DB.put(username, userData);
-      }
-
-      // بعد حفظ الحساب بنجاح، نقوم بتحويله تلقائياً لصفحة الدفع باينانس التي طلبتموها سابقاً
-      // سنقوم هنا بتحويله إلى دالة الدفع التلقائي لباينانس مباشرة
-      return Response.redirect(url.origin + "/api/checkout", 307);
-    }
-
-    return new Response("الصفحة غير موجودة", { status: 404 });
-  }
-};
-        
