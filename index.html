@@ -100,8 +100,39 @@
         </p>
         
         <!-- الزر الأخضر التفاعلي الجديد -->
-        <a href="#" class="green-btn">WATCH AND EARN USD</a>
+        <a href="#" id="earnBtn" class="green-btn">WATCH AND EARN USD</a>
+</div>
+
+<!-- نافذة تسجيل الدخول المنبثقة -->
+<div id="loginOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 9999; justify-content: center; align-items: center; direction: rtl;">
+    <div style="background: #ffffff; color: #333; padding: 30px 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.3); font-family: sans-serif;">
+        <h3 style="margin-top: 0; margin-bottom: 20px; color: #5d25cd;">تسجيل الدخول للمتابعة</h3>
+        <input type="text" placeholder="اسم المستخدم أو البريد" style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 14px;">
+        <input type="password" placeholder="كلمة المرور" style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 14px;">
+        <button onclick="submitLogin()" style="background: #5d25cd; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; margin-top: 15px;">تسجيل الدخول</button>
     </div>
+</div>
+
+<script>
+    // فتح القائمة عند الضغط على الزر الأخضر
+    document.getElementById('earnBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('loginOverlay').style.display = 'flex';
+    });
+
+    // إغلاق القائمة عند الضغط في الخلفية السوداء الفارغة
+    document.getElementById('loginOverlay').addEventListener('click', function(e) {
+        if(e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+
+    // وظيفة زر تسجيل الدخول
+    function submitLogin() {
+        alert('تم تسجيل الدخول بنجاح!');
+        document.getElementById('loginOverlay').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>
