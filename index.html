@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KXTRM - الدفع والاشتراك</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: #0f0c1b; 
+            color: #ffffff; 
+            text-align: center; 
+            padding: 40px 20px; 
+            margin: 0; 
+        }
+        .card { 
+            background: linear-gradient(145deg, #1d1836, #130f24); 
+            padding: 35px 25px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            width: 100%; 
+            max-width: 380px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+            border: 1px solid #3d2f75; 
+        }
+        .brand { 
+            font-size: 32px; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+        }
+        .subtitle { 
+            color: #a29bfe; 
+            font-size: 16px; 
+            margin-bottom: 30px; 
+        }
+        .input-group { 
+            margin-bottom: 20px; 
+            text-align: right; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            color: #b2bec3; 
+            font-size: 14px; 
+        }
+        input[type="text"] { 
+            width: 100%; 
+            padding: 12px; 
+            border-radius: 10px; 
+            border: 1px solid #4a3f85; 
+            background-color: #141026; 
+            color: #fff; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+        }
+        .btn-payment { 
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            width: 100%; 
+            border-radius: 10px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        }
+        .footer-text { 
+            margin-top: 25px; 
+            font-size: 12px; 
+            color: #636e72; 
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="brand">KXTRM</div>
+        <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
+        <form id="paymentForm">
+            <div class="input-group">
+                <label for="username">الاسم أو البريد الإلكتروني</label>
+                <input type="text" id="username" placeholder="أدخل بريدك الإلكتروني هنا" required>
+            </div>
+            <button type="submit" class="btn-payment">💳 إنشاء الحساب والانتقال للدفع</button>
+        </form>
+        <div class="footer-text">WATCH AND EARN USD</div>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = document.querySelector('.btn-payment');
+            button.innerText = "جاري تحضير الدفع...";
+            button.disabled = true;
+
+            setTimeout(() => {
+                window.location.href = "https://binance.com";
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
