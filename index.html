@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
@@ -34,7 +31,17 @@
         .subtitle { 
             color: #a29bfe; 
             font-size: 16px; 
-            margin-bottom: 30px; 
+            margin-bottom: 20px; 
+        }
+        .amount-tag {
+            background-color: #1e1b4b;
+            border: 1px dashed #6c5ce7;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ffcc;
+            margin-bottom: 25px;
         }
         .input-group { 
             margin-bottom: 20px; 
@@ -79,12 +86,16 @@
     <div class="card">
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
+        
+        <!-- هنا يظهر خيار الـ 5 دولار بشكل واضح للزوار -->
+        <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
+
         <form id="paymentForm">
             <div class="input-group">
                 <label for="username">الاسم أو البريد الإلكتروني</label>
                 <input type="text" id="username" placeholder="أدخل بريدك الإلكتروني هنا" required>
             </div>
-            <button type="submit" class="btn-payment">💳 إنشاء الحساب والانتقال للدفع</button>
+            <button type="submit" class="btn-payment">💳 إيداع 5$ والانتقال للدفع</button>
         </form>
         <div class="footer-text">WATCH AND EARN USD</div>
     </div>
