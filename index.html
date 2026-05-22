@@ -90,7 +90,7 @@
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         
-        <form action="/pay" method="POST">
+        <form id="paymentForm">
             <div class="input-group">
                 <label for="username">الاسم أو البريد الإلكتروني</label>
                 <input type="text" id="username" name="username" placeholder="أدخل بريدك الإلكتروني هنا" required>
@@ -101,6 +101,43 @@
 
         <div class="footer-text">WATCH AND EARN USD</div>
     </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const button = document.querySelector('.btn-payment');
+            
+            button.innerText = "جاري تحضير الدفع...";
+            button.disabled = true;
+
+            try {
+                // إرسال البيانات إلى السيرفر الخاص بك لتوليد رابط دفع بينانس
+                const response = await fetch('/pay', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: username })
+                });
+
+                const data = await response.json();
+                
+                if (data.checkoutUrl) {
+                    // إذا أرجع السيرفر رابط دفع صحيح، سيتم تحويل المستخدم إليه فوراً
+                    window.location.href = data.checkoutUrl;
+                } else {
+                    alert("حدث خطأ في جلب رابط الدفع من السيرفر.");
+                    button.innerText = "💳 إنشاء الحساب والانتقال للدفع";
+                    button.disabled = false;
+                }
+            } catch (error) {
+                alert("فشل الاتصال بالسيرفر، تأكد من إعدادات الـ Worker الخاصة بك.");
+                button.innerText = "💳 إنشاء الحساب والانتقال للدفع";
+                button.disabled = false;
+            }
+        });
+    </script>
 
 </body>
 </html>
