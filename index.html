@@ -102,9 +102,9 @@
 
         <!-- الخطوة الثانية: خيارات الإيداع (تظهر بعد كتابة الإيميل) -->
         <div id="step2" style="display: none; margin-top: 15px;">
-          <!-- الخيار العلوي: نسخ وتحويل مباشر لبايننس -->
-          <button type="button" onclick="copyAndAlertBinance()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>نسخ عنوان محفظة Binance والتحويل</span>
+          <!-- الخيار العلوي: توجيه فوري ومباشر إلى تطبيق بايننس -->
+          <button type="button" onclick="redirectToBinancePay()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span>إيداع سريع عبر Binance Pay</span>
           </button>
 
           <!-- خيار المحافظ الأخرى مثل OKX في الأسفل (مظبوط تماماً كما طلبته) -->
@@ -130,11 +130,19 @@
         document.getElementById('step2').style.display = 'block';
     }
 
-    // الخيار العلوي الجديد: نسخ المحفظة فوراً وإرسال تنبيه للمستخدم
-    function copyAndAlertBinance() {
-        const walletAddress = "THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP";
-        navigator.clipboard.writeText(walletAddress);
-        alert("تم نسخ عنوان محفظتك بايننس بنجاح!\n\nيرجى فتح تطبيق بايننس والتحويل المباشر بقيمة 5 USDT على شبكة (TRC20).");
+    // التوجيه الفوري العميق لتطبيق بايننس
+    function redirectToBinancePay() {
+        const button = document.querySelector('#step2 button');
+        button.innerText = "جاري فتح بايننس...";
+        button.disabled = true;
+        
+        // استخدام الرابط العميق لإجبار الهاتف على فتح التطبيق مباشرة على الفاتورة
+        window.location.href = "bnc://://binance.com";
+        
+        // رابط احتياطي للويب في حال كان العميل يتصفح من كمبيوتر
+        setTimeout(() => {
+            window.location.href = "https://binance.com";
+        }, 1500);
     }
 
     // كود نسخ المحفظة لـ OKX والمحافظ الأخرى السفلي (مظبوط وثابت)
