@@ -90,7 +90,7 @@
         <!-- هنا يظهر خيار الـ 5 دولار بشكل واضح للزوار -->
         <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
 
-           <form id="paymentForm">
+             <form id="paymentForm">
         <!-- الخطوة الأولى: كتابة الإيميل -->
         <div id="step1">
           <div class="input-group">
@@ -102,12 +102,12 @@
 
         <!-- الخطوة الثانية: خيارات الإيداع -->
         <div id="step2" style="display: none; margin-top: 15px;">
-          <!-- الخيار العلوي: فتح صفحة دفع بايننس الرسمية والمباشرة -->
-          <button type="button" onclick="redirectToBinanceWeb()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <!-- الخيار العلوي: تم تعديله ليوجه المشتري مباشرة لرابطك الجديد -->
+          <button type="button" onclick="redirectToNewBinance()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
             <span>إيداع سريع عبر Binance Pay</span>
           </button>
 
-          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل -->
+          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل (مظبوط ومحفوظ ولم يتم لمسه) -->
           <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
             <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
             <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 85%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
@@ -119,6 +119,7 @@
     </div>
 
 <script>
+    // الانتقال للخطوة الثانية
     function goToStep2() {
         const usernameInput = document.getElementById('username').value;
         if(usernameInput.trim() === "") {
@@ -129,16 +130,18 @@
         document.getElementById('step2').style.display = 'block';
     }
 
-    // التوجيه عبر رابط الويب الرسمي الذي يتفاعل مع التطبيق تلقائياً
-    function redirectToBinanceWeb() {
+    // التوجيه الفوري المباشر إلى الرابط الجديد الذي طلبته
+    function redirectToNewBinance() {
         const button = document.querySelector('#step2 button');
         button.innerText = "جاري التوجيه إلى بايننس...";
         button.disabled = true;
         
-        // الرابط المباشر الآمن
-        window.location.href = "https://binance.com";
+        setTimeout(() => {
+            window.location.href = "https://s.binance.com/vKDiZNoi";
+        }, 1000);
     }
 
+    // كود نسخ المحفظة لـ OKX والمحافظ الأخرى السفلي (ثابت كما هو)
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         copyText.select();
