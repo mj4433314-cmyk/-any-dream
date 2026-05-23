@@ -90,27 +90,50 @@
         <!-- هنا يظهر خيار الـ 5 دولار بشكل واضح للزوار -->
         <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
 
-        <form id="paymentForm">
-            <div class="input-group">
-                <label for="username">الاسم أو البريد الإلكتروني</label>
-                <input type="text" id="username" placeholder="أدخل بريدك الإلكتروني هنا" required>
-            </div>
-            <button type="submit" class="btn-payment">💳 إيداع 5$ والانتقال للدفع</button>
-        </form>
-        <div class="footer-text">WATCH AND EARN USD</div>
+             <form id="paymentForm">
+        <!-- الخطوة الأولى: كتابة الإيميل -->
+        <div id="step1">
+          <div class="input-group">
+            <label for="username">الاسم أو البريد الإلكتروني</label>
+            <input type="text" id="username" required placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
+          </div>
+          <button type="button" onclick="goToStep2()" style="width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+        </div>
+
+        <!-- الخطوة الثانية: خيارات الإيداع (مخفية في البداية) -->
+        <div id="step2" style="display: none; margin-top: 15px;">
+          <!-- خيار بايننس السريع في الأعلى -->
+          <button type="submit" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span>إيداع سريع عبر Binance Pay</span>
+          </button>
+
+          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل -->
+          <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
+            <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
+            <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 85%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
+            <button onclick="copyWalletAddress()" type="button" style="padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 8px; width: 60%;">نسخ عنوان المحفظة</button>
+          </div>
+        </div>
+      </form>
+      <div class="footer-text">WATCH AND EARN USD</div>
     </div>
 
-    <div style="margin-top: 20px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
-    <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 80%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
-    <button onclick="copyWalletAddress()" type="button" style="padding: 8px 12px; background: #f3ba2f; color: #000; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 8px; width: 50%;">نسخ العنوان</button>
-</div>
-
 <script>
+    // الانتقال للخطوة الثانية عند كتابة الإيميل
+    function goToStep2() {
+        const usernameInput = document.getElementById('username').value;
+        if(usernameInput.trim() === "") {
+            alert("يرجى كتابة الاسم أو البريد الإلكتروني أولاً.");
+            return;
+        }
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    }
+
     // كود تشغيل دفع بايننس التلقائي
     document.getElementById('paymentForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const button = document.querySelector('button[type="submit"]');
+        const button = document.querySelector('#step2 button[type="submit"]');
         button.innerText = "تحضير الدفع...";
         button.disabled = true;
         setTimeout(() => {
