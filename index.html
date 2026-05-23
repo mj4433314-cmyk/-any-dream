@@ -90,7 +90,7 @@
         <!-- هنا يظهر خيار الـ 5 دولار بشكل واضح للزوار -->
         <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
 
-             <form id="paymentForm">
+           <form id="paymentForm">
         <!-- الخطوة الأولى: كتابة الإيميل -->
         <div id="step1">
           <div class="input-group">
@@ -100,14 +100,14 @@
           <button type="button" onclick="goToStep2()" style="width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
         </div>
 
-        <!-- الخطوة الثانية: خيارات الإيداع (مخفية في البداية) -->
+        <!-- الخطوة الثانية: خيارات الإيداع (تظهر بعد كتابة الإيميل) -->
         <div id="step2" style="display: none; margin-top: 15px;">
-          <!-- خيار بايننس السريع في الأعلى -->
-          <button type="submit" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>إيداع سريع عبر Binance Pay</span>
+          <!-- الخيار العلوي: نسخ وتحويل مباشر لبايننس -->
+          <button type="button" onclick="copyAndAlertBinance()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span>نسخ عنوان محفظة Binance والتحويل</span>
           </button>
 
-          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل -->
+          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل (مظبوط تماماً كما طلبته) -->
           <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
             <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
             <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 85%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
@@ -130,18 +130,14 @@
         document.getElementById('step2').style.display = 'block';
     }
 
-    // كود تشغيل دفع بايننس التلقائي
-    document.getElementById('paymentForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const button = document.querySelector('#step2 button[type="submit"]');
-        button.innerText = "تحضير الدفع...";
-        button.disabled = true;
-        setTimeout(() => {
-            window.location.href = "https://binance.com";
-        }, 1000);
-    });
+    // الخيار العلوي الجديد: نسخ المحفظة فوراً وإرسال تنبيه للمستخدم
+    function copyAndAlertBinance() {
+        const walletAddress = "THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP";
+        navigator.clipboard.writeText(walletAddress);
+        alert("تم نسخ عنوان محفظتك بايننس بنجاح!\n\nيرجى فتح تطبيق بايننس والتحويل المباشر بقيمة 5 USDT على شبكة (TRC20).");
+    }
 
-    // كود نسخ المحفظة لـ OKX والمحافظ الأخرى
+    // كود نسخ المحفظة لـ OKX والمحافظ الأخرى السفلي (مظبوط وثابت)
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         copyText.select();
