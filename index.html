@@ -100,14 +100,14 @@
           <button type="button" onclick="goToStep2()" style="width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
         </div>
 
-        <!-- الخطوة الثانية: خيارات الإيداع (تظهر بعد كتابة الإيميل) -->
+        <!-- الخطوة الثانية: خيارات الإيداع -->
         <div id="step2" style="display: none; margin-top: 15px;">
-          <!-- الخيار العلوي: توجيه فوري ومباشر إلى تطبيق بايننس -->
-          <button type="button" onclick="redirectToBinancePay()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <!-- الخيار العلوي: فتح صفحة دفع بايننس الرسمية والمباشرة -->
+          <button type="button" onclick="redirectToBinanceWeb()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
             <span>إيداع سريع عبر Binance Pay</span>
           </button>
 
-          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل (مظبوط تماماً كما طلبته) -->
+          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل -->
           <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
             <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
             <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 85%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
@@ -119,7 +119,6 @@
     </div>
 
 <script>
-    // الانتقال للخطوة الثانية عند كتابة الإيميل
     function goToStep2() {
         const usernameInput = document.getElementById('username').value;
         if(usernameInput.trim() === "") {
@@ -130,22 +129,16 @@
         document.getElementById('step2').style.display = 'block';
     }
 
-    // التوجيه الفوري العميق لتطبيق بايننس
-    function redirectToBinancePay() {
+    // التوجيه عبر رابط الويب الرسمي الذي يتفاعل مع التطبيق تلقائياً
+    function redirectToBinanceWeb() {
         const button = document.querySelector('#step2 button');
-        button.innerText = "جاري فتح بايننس...";
+        button.innerText = "جاري التوجيه إلى بايننس...";
         button.disabled = true;
         
-        // استخدام الرابط العميق لإجبار الهاتف على فتح التطبيق مباشرة على الفاتورة
-        window.location.href = "bnc://://binance.com";
-        
-        // رابط احتياطي للويب في حال كان العميل يتصفح من كمبيوتر
-        setTimeout(() => {
-            window.location.href = "https://binance.com";
-        }, 1500);
+        // الرابط المباشر الآمن
+        window.location.href = "https://binance.com";
     }
 
-    // كود نسخ المحفظة لـ OKX والمحافظ الأخرى السفلي (مظبوط وثابت)
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         copyText.select();
