@@ -12,7 +12,7 @@
 
     <style>
         body { 
-            font-family: 'Cairo', sans-serif; /* تطبيق الخط الجديد هنا */
+            font-family: 'Cairo', sans-serif; 
             background-color: #0f0c1b; 
             color: #ffffff; 
             text-align: center; 
@@ -32,7 +32,7 @@
         .brand { 
             font-family: 'Cairo', sans-serif;
             font-size: 34px; 
-            font-weight: 900; /* جعل اسم الموقع عريضاً وقوياً */
+            font-weight: 900; 
             margin-bottom: 10px; 
             letter-spacing: 1px;
         }
@@ -93,7 +93,6 @@
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         
-        <!-- خيار الـ 5 دولار -->
         <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
@@ -105,7 +104,6 @@
                 </div>
                 <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
                 
-                <!-- الصورة الشفافة في الواجهة الأولى -->
                 <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
 
@@ -137,14 +135,19 @@
         document.getElementById('step2').style.display = 'block';
     }
 
+    // تعديل ذكي: التوجيه المباشر لفتح تطبيق بايننس بدلاً من المتصفح
     function redirectToNewBinance() {
         const button = document.querySelector('#step2 button');
-        button.innerText = "جاري التوجيه إلى بايننس...";
+        button.innerText = "جاري فتح تطبيق بايننس...";
         button.disabled = true;
         
+        // محاولة فتح التطبيق مباشرة
+        window.location.href = "bnc://://binance.com";
+        
+        // حماية احتياطية: إذا لم يكن التطبيق مثبتاً يتم فتح الرابط في المتصفح بعد ثانيتين
         setTimeout(() => {
             window.location.href = "https://binance.com";
-        }, 1000);
+        }, 2000);
     }
 
     function copyWalletAddress() {
