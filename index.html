@@ -86,6 +86,14 @@
             display: block; 
             margin: 20px auto 0 auto;
         }
+        
+        /* تنسيق الأزرار الجديدة في الخطوة الثانية */
+        .binance-btn-primary {
+            width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: block; text-decoration: none; margin-bottom: 10px;
+        }
+        .binance-btn-secondary {
+            width: 100%; padding: 10px; background: transparent; color: #f3ba2f; border: 1px solid #f3ba2f; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; display: block; text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -107,11 +115,18 @@
                 <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
 
-            <!-- الخطوة الثانية: خيارات الإيداع -->
+            <!-- الخطوة الثانية: خيارات الإيداع المتطورة والموثوقة -->
             <div id="step2" style="display: none; margin-top: 15px;">
-                <button type="button" onclick="redirectToNewBinance()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <span>إيداع سريع عبر Binance Pay</span>
-                </button>
+                
+                <!-- زر يحاول فتح تطبيق بايننس مباشرة مجبراً الهاتف -->
+                <a href="bnc://://binance.com" class="binance-btn-primary">
+                    ⚡ فتح والدفع في تطبيق Binance مباشرة
+                </a>
+
+                <!-- رابط احتياطي رسمي يفتح في المتصفح فورا إذا لم يعمل الزر العلوي -->
+                <a href="https://binance.com" class="binance-btn-secondary" target="_blank">
+                    🌐 لم يفتح التطبيق؟ ادفع عبر المتصفح
+                </a>
 
                 <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
@@ -133,21 +148,6 @@
         }
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
-    }
-
-    // تعديل ذكي: التوجيه المباشر لفتح تطبيق بايننس بدلاً من المتصفح
-    function redirectToNewBinance() {
-        const button = document.querySelector('#step2 button');
-        button.innerText = "جاري فتح تطبيق بايننس...";
-        button.disabled = true;
-        
-        // محاولة فتح التطبيق مباشرة
-        window.location.href = "bnc://://binance.com";
-        
-        // حماية احتياطية: إذا لم يكن التطبيق مثبتاً يتم فتح الرابط في المتصفح بعد ثانيتين
-        setTimeout(() => {
-            window.location.href = "https://binance.com";
-        }, 2000);
     }
 
     function copyWalletAddress() {
