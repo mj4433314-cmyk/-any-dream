@@ -80,6 +80,12 @@
             font-size: 12px; 
             color: #636e72; 
         }
+        .bottom-logo {
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+            margin: 20px auto 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -87,53 +93,50 @@
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         
-        <!-- هنا يظهر خيار الـ 5 دولار بشكل واضح للزوار -->
+        <!-- خيار الـ 5 دولار -->
         <div class="amount-tag">💵 قيمة الإيداع: 5.00 USDT</div>
 
-             <form id="paymentForm">
-        <!-- الخطوة الأولى: كتابة الإيميل -->
-        <div id="step1">
-          <div class="input-group">
-            <label for="username">الاسم أو البريد الإلكتروني</label>
-            <input type="text" id="username" required placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
-          </div>
-          <button type="button" onclick="goToStep2()" style="width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
-        </div>
+        <form id="paymentForm">
+            <!-- الخطوة الأولى: كتابة الإيميل -->
+            <div id="step1">
+                <div class="input-group">
+                    <label for="username">البريد الإلكتروني</label>
+                    <input type="text" id="username" required placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
+                </div>
+                <button type="button" onclick="goToStep2()" style="width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+            </div>
 
-        <!-- الخطوة الثانية: خيارات الإيداع -->
-        <div id="step2" style="display: none; margin-top: 15px;">
-          <!-- الخيار العلوي: تم تعديله ليوجه المشتري مباشرة لرابطك الجديد -->
-          <button type="button" onclick="redirectToNewBinance()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>إيداع سريع عبر Binance Pay</span>
-          </button>
+            <!-- الخطوة الثانية: خيارات الإيداع -->
+            <div id="step2" style="display: none; margin-top: 15px;">
+                <button type="button" onclick="redirectToNewBinance()" style="width: 100%; padding: 14px; background: #f3ba2f; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <span>إيداع سريع عبر Binance Pay</span>
+                </button>
 
-          <!-- خيار المحافظ الأخرى مثل OKX في الأسفل (مظبوط ومحفوظ ولم يتم لمسه) -->
-          <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
-            <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-            <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 85%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
-            <button onclick="copyWalletAddress()" type="button" style="padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 8px; width: 60%;">نسخ عنوان المحفظة</button>
-          </div><div style="text-align: center; margin-top: 20px; padding-bottom: 10px;">
-    <img src="logo.png" alt="logo" style="max-width: 85%; height: auto; display: inline-block;">
-          </div>
-            
-        </div>
-      </form>
-      <div class="footer-text">WATCH AND EARN USD</div>
+                <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
+                    <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
+                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 85%; padding: 8px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 12px; direction: ltr;">
+                    <button onclick="copyWalletAddress()" type="button" style="padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 8px; width: 60%;">نسخ عنوان المحفظة</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- الصورة الشفافة تظهر هنا دائماً في الواجهة الأولى وأسفل الخطوات -->
+        <img src="logo.png" alt="logo" class="bottom-logo">
+
+        <div class="footer-text">WATCH AND EARN USD</div>
     </div>
 
 <script>
-    // الانتقال للخطوة الثانية
     function goToStep2() {
         const usernameInput = document.getElementById('username').value;
         if(usernameInput.trim() === "") {
-            alert("يرجى كتابة الاسم أو البريد الإلكتروني أولاً.");
+            alert("يرجى كتابة البريد الإلكتروني أولاً.");
             return;
         }
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
     }
 
-    // التوجيه الفوري المباشر إلى الرابط الجديد الذي طلبته
     function redirectToNewBinance() {
         const button = document.querySelector('#step2 button');
         button.innerText = "جاري التوجيه إلى بايننس...";
@@ -143,17 +146,14 @@
             window.location.href = "https://s.binance.com/vKDiZNoi";
         }, 1000);
     }
-</script>
-<script>
-    
-    // كود نسخ المحفظة لـ OKX والمحافظ الأخرى السفلي (ثابت كما هو)
+
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         copyText.select();
         copyText.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(copyText.value);
         alert("تم نسخ عنوان المحفظة! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
-    }</script>
+    }
+</script>
 </body>
-    
 </html>
