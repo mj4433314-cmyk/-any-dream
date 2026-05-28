@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
     
-    <!-- جلب خط Cairo بالوزن الثقيل 900 لتطبيقه كخط كوفي عريض شامل -->
+    <!-- جلب خط Cairo بالوزن الثقيل 900 لمحاكاة الخط الكوفي العريض للجميع -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
 
     <style>
-        /* تطبيق الخط الكوفي العريض والسميك على جميع عناصر الصفحة */
+        /* تطبيق الخط الكوفي العريض بشكل إجباري على كل عناصر الصفحة */
         * {
             font-family: 'Cairo', sans-serif !important;
             font-weight: 900 !important;
@@ -92,7 +92,7 @@
             100% { background-color: #0097e6; box-shadow: 0 0 10px rgba(0, 151, 230, 0.5); }
         }
 
-        /* تنسيق زر المتابعة باللون الأخضر والخط العريض */
+        /* تنسيق زر المتابعة باللون الأخضر */
         .submit-btn-pulse {
             width: 100%; 
             padding: 14px; 
@@ -108,7 +108,7 @@
         }
         .submit-btn-pulse:hover { transform: scale(1.02); }
 
-        /* تنسيق زر بايننس باللون الأخضر والخط العريض */
+        /* تنسيق زر بايننس باللون الأخضر */
         .binance-btn-final {
             width: 100%; 
             padding: 15px; 
@@ -126,20 +126,38 @@
         }
         .binance-btn-final:hover { transform: scale(1.02); }
 
-        /* حاوية الإيداع اليدوي باللون السماوي الداكن */
+        /* حاوية الإيداع اليدوي - تم تعديلها لتصبح باللون الأبيض الكامل وتنسيق نصوصها */
         .manual-deposit-box {
             margin-top: 25px; 
-            padding: 15px; 
-            border: 1px dashed #00d2ff88; 
-            border-radius: 8px; 
-            background: linear-gradient(145deg, #0f233a, #0b1726); 
+            padding: 18px 15px; 
+            border: 2px dashed #0097e6; 
+            border-radius: 12px; 
+            background-color: #ffffff; /* الخلفية البيضاء الكاملة للمربع */
             text-align: center;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
         }
 
-        /* زر نسخ عنوان المحفظة باللون السماوي النابض والخط العريض */
+        /* حقل نص المحفظة داخل المربع الأبيض */
+        .crypto-address-input {
+            width: 100%; 
+            padding: 11px; 
+            text-align: center; 
+            background: #f1f2f6; 
+            color: #2f3542; 
+            border: 1px solid #ced6e0; 
+            border-radius: 6px; 
+            font-size: 12px; 
+            direction: ltr; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            box-sizing: border-box;
+        }
+
+        /* زر نسخ عنوان المحفظة باللون السماوي النابض */
         .copy-btn-pulse {
             padding: 12px; 
-            color: #000000; 
+            color: #ffffff; 
             border: none; 
             border-radius: 6px; 
             cursor: pointer; 
@@ -152,7 +170,7 @@
         }
         .copy-btn-pulse:hover { transform: scale(1.02); }
 
-        /* زر التحقق من الحساب المسبق */
+        /* تنسيق زر التحقق من الحساب المسبق */
         .check-account-btn {
             width: 100%;
             padding: 12px;
@@ -174,14 +192,14 @@
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         
-        <div class="amount-tag">  الإيداع: 5.00 USDT</div>
+        <div class="amount-tag">الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
             <!-- الخطوة الأولى: بداية الدخول -->
             <div id="step1">
                 <div class="input-group">
                     <label for="username">إنشاء حساب جديد</label>
-                    <input type="text" id="username" required placeholder="example@gmail.com" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
+                    <input type="text" id="username" required placeholder="example@gmail.com" style="background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
                 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
@@ -193,10 +211,11 @@
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
 
+                <!-- المربع المحدث باللون الأبيض الكامل والخط المتناسق الداكن -->
                 <div class="manual-deposit-box">
-                    <p style="font-size: 14px; margin-bottom: 10px; color: #e0f7fa;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
+                    <p style="font-size: 14px; margin-bottom: 12px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="width: 100%; padding: 10px; text-align: center; background: #08101a; color: #fff; border: 1px solid #0097e6; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
+                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
                     
                     <button onclick="copyWalletAddress()" type="button" class="copy-btn-pulse">نسخ عنوان المحفظة</button>
                 </div>
