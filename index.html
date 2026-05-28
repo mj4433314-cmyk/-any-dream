@@ -87,7 +87,7 @@
             margin: 20px auto 0 auto;
         }
         
-        /* تأثير النبض والوميض الأخضر للزر */
+        /* تأثير النبض والوميض الأخضر المشترك للأزرار */
         @keyframes greenGlowPulse {
             0% {
                 background-color: #00b894;
@@ -103,7 +103,27 @@
             }
         }
 
-        /* تنسيق زر بايننس الجديد باللون الأخضر الوامض */
+        /* تنسيق زر المتابعة الجديد باللون الأخضر الوامض والنبضي */
+        .submit-btn-pulse {
+            font-family: 'Cairo', sans-serif; 
+            width: 100%; 
+            padding: 14px; 
+            color: #000000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 900; 
+            font-size: 16px; 
+            margin-top: 20px; 
+            cursor: pointer;
+            box-sizing: border-box;
+            animation: greenGlowPulse 2s infinite ease-in-out;
+            transition: 0.2s;
+        }
+        .submit-btn-pulse:hover {
+            transform: scale(1.02);
+        }
+
+        /* تنسيق زر بايننس باللون الأخضر الوامض والنبضي */
         .binance-btn-final {
             font-family: 'Cairo', sans-serif;
             width: 100%; 
@@ -162,7 +182,9 @@
                     <label for="username">إنشاء حساب جديد</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
-                <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+                
+                <!-- تم التعديل هنا ليصبح زر المتابعة باللون الأخضر الوامض والنابض -->
+                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
@@ -172,7 +194,7 @@
             <!-- الخطوة الثانية: خيارات الإيداع بعد التعديل والاصلاح -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 
-                <!-- زر بايننس بعد تعديل لونه للأخضر الوامض والنبضي -->
+                <!-- زر بايننس باللون الأخضر الوامض والنبضي -->
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
