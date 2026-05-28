@@ -143,7 +143,7 @@
             box-shadow: 0 5px 15px rgba(255,255,255,0.05);
         }
 
-        /* حقل نص المحفظة داخل المربع الأبيض */
+        /* حقل نص المحفظة المحدث ليظهر كاملاً على كافة الشاشات بدون أي قطع */
         .crypto-address-input {
             font-family: 'Cairo', sans-serif;
             width: 100%; 
@@ -153,11 +153,10 @@
             color: #2f3542; /* لون خط داكن متناسق مع الخلفية البيضاء */
             border: 1px solid #ced6e0; 
             border-radius: 4px; 
-            font-size: 11px; 
+            font-size: 13px; 
             direction: ltr; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
+            white-space: normal; /* تم التعديل ليلتف النص بدلاً من الاختفاء */
+            word-break: break-all; /* لضمان عدم قطع الحروف في الهواتف الصغيرة */
             box-sizing: border-box;
         }
 
