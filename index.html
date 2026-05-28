@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
     
-    <!-- جلب خط Cairo الاحترافي من جوجل -->
+    <!-- جلب خط Cairo بالوزن الثقيل 900 لمحاكاة الخط الكوفي العريض -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
         body { 
@@ -32,14 +32,14 @@
         .brand { 
             font-family: 'Cairo', sans-serif;
             font-size: 34px; 
-            font-weight: 900; 
+            font-weight: 900; /* خط كوفي عريض */
             margin-bottom: 10px; 
             letter-spacing: 1px;
         }
         .subtitle { 
             color: #a29bfe; 
             font-size: 15px; 
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 20px; 
         }
         .amount-tag {
@@ -48,7 +48,7 @@
             padding: 12px;
             border-radius: 10px;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 900; /* خط عريض */
             color: #00ffcc;
             margin-bottom: 25px;
         }
@@ -61,7 +61,7 @@
             margin-bottom: 8px; 
             color: #b2bec3; 
             font-size: 14px; 
-            font-weight: 600;
+            font-weight: 700;
         }
         input[type="text"] { 
             font-family: 'Cairo', sans-serif;
@@ -78,13 +78,7 @@
             margin-top: 25px; 
             font-size: 12px; 
             color: #636e72; 
-            font-weight: 600;
-        }
-        .bottom-logo {
-            max-width: 100%; 
-            height: auto; 
-            display: block; 
-            margin: 20px auto 0 auto;
+            font-weight: 700;
         }
         
         /* تأثير النبض والوميض الأخضر المشترك للأزرار */
@@ -103,7 +97,7 @@
             }
         }
 
-        /* تنسيق زر المتابعة الجديد باللون الأخضر الوامض والنبضي */
+        /* تنسيق زر المتابعة الجديد بالخط الكوفي العريض واللون الأخضر الوامض */
         .submit-btn-pulse {
             font-family: 'Cairo', sans-serif; 
             width: 100%; 
@@ -111,8 +105,8 @@
             color: #000000; 
             border: none; 
             border-radius: 8px; 
-            font-weight: 900; 
-            font-size: 16px; 
+            font-weight: 900; /* تطبيق نفس سماكة خط الصورة */
+            font-size: 17px; 
             margin-top: 20px; 
             cursor: pointer;
             box-sizing: border-box;
@@ -123,7 +117,7 @@
             transform: scale(1.02);
         }
 
-        /* تنسيق زر بايننس باللون الأخضر الوامض والنبضي */
+        /* تنسيق زر بايننس بالخط الكوفي العريض واللون الأخضر الوامض */
         .binance-btn-final {
             font-family: 'Cairo', sans-serif;
             width: 100%; 
@@ -131,8 +125,8 @@
             color: #000000; 
             border: none; 
             border-radius: 10px; 
-            font-weight: 900; 
-            font-size: 16px; 
+            font-weight: 900; /* تطبيق نفس سماكة خط الصورة */
+            font-size: 17px; 
             cursor: pointer; 
             display: block; 
             text-decoration: none; 
@@ -154,7 +148,7 @@
             color: #a29bfe;
             border: 1px dashed #4a3f85; 
             border-radius: 8px;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 14px;
             margin-top: 15px; 
             margin-bottom: 5px; 
@@ -183,18 +177,16 @@
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
                 
-                <!-- تم التعديل هنا ليصبح زر المتابعة باللون الأخضر الوامض والنابض -->
+                <!-- زر المتابعة بالخط الكوفي العريض واللون الأخضر النابض -->
                 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
-                
-                <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
 
-            <!-- الخطوة الثانية: خيارات الإيداع بعد التعديل والاصلاح -->
+            <!-- الخطوة الثانية: خيارات الإيداع -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 
-                <!-- زر بايننس باللون الأخضر الوامض والنبضي -->
+                <!-- زر بايننس بالخط الكوفي العريض واللون الأخضر النابض -->
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
@@ -204,7 +196,7 @@
                     
                     <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
                     
-                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
+                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 700; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
                 </div>
             </div>
         </form>
