@@ -87,23 +87,42 @@
             margin: 20px auto 0 auto;
         }
         
-        /* تنسيق زر بايننس الجديد والمضمون */
+        /* تأثير النبض والوميض الأخضر للزر */
+        @keyframes greenGlowPulse {
+            0% {
+                background-color: #00b894;
+                box-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+            }
+            50% {
+                background-color: #00ffa3;
+                box-shadow: 0 0 25px rgba(0, 255, 163, 0.9);
+            }
+            100% {
+                background-color: #00b894;
+                box-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+            }
+        }
+
+        /* تنسيق زر بايننس الجديد باللون الأخضر الوامض */
         .binance-btn-final {
+            font-family: 'Cairo', sans-serif;
             width: 100%; 
-            padding: 14px; 
-            background: #f3ba2f; 
-            color: #000; 
+            padding: 15px; 
+            color: #000000; 
             border: none; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 15px; 
+            border-radius: 10px; 
+            font-weight: 900; 
+            font-size: 16px; 
             cursor: pointer; 
             display: block; 
             text-decoration: none; 
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             box-sizing: border-box;
-            box-shadow: 0 4px 15px rgba(243, 186, 47, 0.3);
+            animation: greenGlowPulse 2s infinite ease-in-out;
             transition: 0.2s;
+        }
+        .binance-btn-final:hover {
+            transform: scale(1.02);
         }
 
         /* تنسيق زر التحقق من الحساب المسبق */
@@ -140,7 +159,7 @@
             <!-- الخطوة الأولى: بداية الدخول -->
             <div id="step1">
                 <div class="input-group">
-                    <label for="username">البريد الإلكتروني</label>
+                    <label for="username">إنشاء حساب جديد</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
                 <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
@@ -153,6 +172,7 @@
             <!-- الخطوة الثانية: خيارات الإيداع بعد التعديل والاصلاح -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 
+                <!-- زر بايننس بعد تعديل لونه للأخضر الوامض والنبضي -->
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
@@ -160,7 +180,6 @@
                 <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <!-- تم تصحيح حرف K ليصبح كابيتال هنا وضبط التصميم لمنع التقطيع -->
                     <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
                     
                     <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
@@ -175,7 +194,7 @@
     function goToStep2() {
         const usernameInput = document.getElementById('username').value;
         if(usernameInput.trim() === "") {
-            alert("يرجى كتابة البريد الإلكتروني أولاً.");
+            alert("يرجى ملء الحقل أولاً للمتابعة.");
             return;
         }
         document.getElementById('step1').style.display = 'none';
@@ -185,7 +204,6 @@
     function copyWalletAddress() {
         const copyText = document.getElementById("cryptoAddress");
         
-        // ميزة النسخ الذكي وحذف المسافات المضافة
         navigator.clipboard.writeText(copyText.value.trim()).then(() => {
             alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
         }).catch(err => {
@@ -197,7 +215,7 @@
     }
 
     function alertNoAccount() {
-        alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
+        alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة البيانات المطلوبة وإتمام الإيداع لتفعيل الخدمة.");
     }
 </script>
 </body>
