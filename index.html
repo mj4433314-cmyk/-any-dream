@@ -143,21 +143,23 @@
             box-shadow: 0 5px 15px rgba(255,255,255,0.05);
         }
 
-        /* حقل نص المحفظة المحدث ليظهر كاملاً على كافة الشاشات بدون أي قطع */
-        .crypto-address-input {
+        /* حاوية نص المحفظة الجديدة لضمان الالتفاف والظهور الكامل الفوري */
+        .crypto-address-container {
             font-family: 'Cairo', sans-serif;
             width: 100%; 
-            padding: 10px; 
+            padding: 12px 10px; 
             text-align: center; 
             background: #f1f2f6; 
             color: #2f3542; /* لون خط داكن متناسق مع الخلفية البيضاء */
             border: 1px solid #ced6e0; 
-            border-radius: 4px; 
-            font-size: 13px; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            font-weight: bold;
             direction: ltr; 
-            white-space: normal; /* تم التعديل ليلتف النص بدلاً من الاختفاء */
-            word-break: break-all; /* لضمان عدم قطع الحروف في الهواتف الصغيرة */
+            white-space: normal; /* السماح بالتفاف النص */
+            word-break: break-all; /* كسر النص عند نهاية السطر لكي لا يختفي */
             box-sizing: border-box;
+            margin-top: 5px;
         }
 
         /* تنسيق زر التحقق من الحساب المسبق */
@@ -217,9 +219,10 @@
                 <div class="manual-deposit-box">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <input type="text" value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
+                    <!-- تم استبدال حقل input بـ div ثابت يلتف تلقائياً لمنع الانزلاق والقطع -->
+                    <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
                     
-                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; margin-top: 10px; width: 100%;">نسخ عنوان المحفظة</button>
+                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 10px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
                 </div>
             </div>
         </form>
@@ -237,14 +240,19 @@
         }
 
         function copyWalletAddress() {
-            const copyText = document.getElementById("cryptoAddress");
+            // جلب النص المكتوب مباشرة من الـ div
+            const addressText = document.getElementById("cryptoAddress").innerText;
             
-            navigator.clipboard.writeText(copyText.value).then(() => {
+            navigator.clipboard.writeText(addressText).then(() => {
                 alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من محفظتك.");
             }).catch(err => {
-                copyText.select();
-                copyText.setSelectionRange(0, 99999);
+                // حل بديل في حال لم يدعم المتصفح الخاصية الحديثة
+                const tempInput = document.createElement("input");
+                tempInput.value = addressText;
+                document.body.appendChild(tempInput);
+                tempInput.select();
                 document.execCommand("copy");
+                document.body.removeChild(tempInput);
                 alert("تم نسخ عنوان المحفظة!");
             });
         }
