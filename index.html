@@ -50,36 +50,41 @@
             color: #00ffcc;
             margin-bottom: 25px;
         }
+        
+        /* تنسيق شريط الأرقام المتحركة فائق الوضوح */
         .countries-bar {
-            background-color: #141026;
-            border: 1px solid #4a3f85;
-            border-radius: 8px;
-            padding: 8px;
-            margin-bottom: 20px;
+            background-color: #06040a; /* خلفية داكنة جداً لزيادة التباين والوضوح */
+            border: 2px solid #00ffaa; /* إطار مضيء ملفت */
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 25px;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 255, 170, 0.2);
         }
         .countries-track {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee 15s linear infinite;
+            animation: marquee 18s linear infinite;
         }
         .country-item {
             display: inline-flex;
             align-items: center;
-            margin-left: 20px;
-            font-size: 13px;
-            color: #b2bec3;
+            margin-left: 35px;
+            font-size: 18px; /* حجم خط كبير وواضح جداً */
+            color: #00ffaa; /* لون أخضر فسفوري مضيء وواضح */
+            text-shadow: 0 0 8px rgba(0, 255, 170, 0.4); /* تأثير إضاءة خفيف لخلفية النص */
         }
         .country-item span {
-            margin-left: 5px;
-            font-size: 16px;
+            color: #ffffff; /* كلمة الحالة باللون الأبيض الناصع */
+            margin-left: 6px;
         }
         @keyframes marquee {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-50%, 0, 0); }
         }
+        
         .input-group { 
             margin-bottom: 20px; 
             text-align: right; 
@@ -208,22 +213,25 @@
 
         <form id="paymentForm">
             <div id="step1">
+                
+                <!-- شريط الحالات والأرقام المتحركة المحدث ليكون فائق الوضوح -->
                 <div class="countries-bar">
                     <div class="countries-track">
-                        <div class="country-item"><span>🇸🇦</span>السعودية</div>
-                        <div class="country-item"><span>🇪🇬</span>مصر</div>
-                        <div class="country-item"><span>🇮🇶</span>العراق</div>
-                        <div class="country-item"><span>🇦🇪</span>الإمارات</div>
-                        <div class="country-item"><span>🇩🇿</span>الجزائر</div>
-                        <div class="country-item"><span>🇲🇦</span>المغرب</div>
-                        <div class="country-item"><span>🇯🇴</span>الأردن</div>
-                        <div class="country-item"><span>🇸🇦</span>السعودية</div>
-                        <div class="country-item"><span>🇪🇬</span>مصر</div>
-                        <div class="country-item"><span>🇮🇶</span>العراق</div>
-                        <div class="country-item"><span>🇦🇪</span>الإمارات</div>
-                        <div class="country-item"><span>🇩🇿</span>الجزائر</div>
-                        <div class="country-item"><span>🇲🇦</span>المغرب</div>
-                        <div class="country-item"><span>🇯🇴</span>الأردن</div>
+                        <div class="country-item"><span>الحالة:</span> 33627ع.ل</div>
+                        <div class="country-item"><span>الحالة:</span> 14892م.س</div>
+                        <div class="country-item"><span>الحالة:</span> 99541ر.ك</div>
+                        <div class="country-item"><span>الحالة:</span> 44102ب.ن</div>
+                        <div class="country-item"><span>الحالة:</span> 78563ش.م</div>
+                        <div class="country-item"><span>الحالة:</span> 21459ط.ق</div>
+                        <div class="country-item"><span>الحالة:</span> 65478ن.ر</div>
+                        <!-- تكرار دائرى لضمان حركة مستمرة بدون انقطاع -->
+                        <div class="country-item"><span>الحالة:</span> 33627ع.ل</div>
+                        <div class="country-item"><span>الحالة:</span> 14892م.س</div>
+                        <div class="country-item"><span>الحالة:</span> 99541ر.ك</div>
+                        <div class="country-item"><span>الحالة:</span> 44102ب.ن</div>
+                        <div class="country-item"><span>الحالة:</span> 78563ش.م</div>
+                        <div class="country-item"><span>الحالة:</span> 21459ط.ق</div>
+                        <div class="country-item"><span>الحالة:</span> 65478ن.ر</div>
                     </div>
                 </div>
 
@@ -247,17 +255,4 @@
                 </a>
 
                 <div class="manual-deposit-box">
-                    <p style="font-size: 14px; margin-bottom: 12px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
-                    <button onclick="copyWalletAddress()" type="button" class="copy-btn-pulse">نسخ عنوان المحفظة</button>
-                </div>
-            </div>
-        </form>
-
-        <div class="footer-text">WATCH AND EARN USD</div>
-    </div>
-
-<script>
-    function goToStep2() {
-        const usernameInput = document.getElementById('username').value;
-    
+                    
