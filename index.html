@@ -9,10 +9,9 @@
 <link href="https://googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&family=Changa:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 body { font-family:'Changa',sans-serif !important; background-color:#000000 !important; color:#ffffff !important; text-align:center; padding:40px 20px; margin:0; }
-.card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display:inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
+.card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display: inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
 .brand { font-family:'Changa',sans-serif !important; font-size:36px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
 
-/* تنسيق النص المحدّد بالصورة باللون الأبيض وبخط هندسي واضح */
 .subtitle { 
     font-family:'Changa',sans-serif !important; 
     color: #ffffff !important; 
@@ -71,7 +70,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:purpleGlowPulse 2s infinite ease-in-out; transition:0.2s; }
 .binance-btn-final:hover { transform: scale(1.02); }
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
-.crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:14px; font-weight:700; direction:ltr; white-space:normal; word-break:break-all; box-sizing:border-box; margin-top:5px; }
+.crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:14px; font-weight:700; direction: ltr; white-space:normal; word-break:break-all; box-sizing:border-box; margin-top:5px; }
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#a29bfe; border:1px dashed #4a3f85; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
 .check-account-btn:hover { background:#1d1836; color:#fff; border-color:#6c5ce7; }
 .footer-info-box { margin-top:30px; font-family:'Changa',sans-serif !important; font-size:11px; color:#ffffff; line-height:1.6; font-weight:600; }
@@ -107,7 +106,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </div>
 </div>
 
-<!-- الصفحة الثانية المحدثة بالنص المطلوب والمكان الصحيح تماماً -->
+<!-- الصفحة الثانية -->
 <div id="step2" style="display: none; margin-top: 15px;">
 <div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
 <div class="amount-tag">Deposit: 5.00 USDT</div>
@@ -122,13 +121,20 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </div>
 
 <script>
+// تم تحديث الدالة لتظهر رسالة النجاح الخضراء أولاً ثم تفتح الصفحة التالية
 function goToStep2() {
-var emailVal = document.getElementById('username').value.trim();
-var nameVal = document.getElementById('displayname').value.trim();
-if (emailVal !== "" && nameVal !== "") {
-document.getElementById('step1').style.display = 'none';
-document.getElementById('step2').style.display = 'block';
-} else { alert('يرجى ملء حقل Username و Email Address أولاً.'); }
+    var emailVal = document.getElementById('username').value.trim();
+    var nameVal = document.getElementById('displayname').value.trim();
+    if (emailVal !== "" && nameVal !== "") {
+        // رسالة منبثقة تحمل علامة الصح الخضراء والعبارة المطلوبة بالضبط
+        alert('✔️ تم إنشاء الحساب بنجاح');
+        
+        // الانتقال الفوري للصفحة الثانية بعد ضغط موافق
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    } else { 
+        alert('يرجى ملء حقل Username و Email Address أولاً.'); 
+    }
 }
 
 function alertNoAccount() { alert('لا يوجد حساب مسجل مسبقاً بهذا البريد، يرجى إنشاء حساب جديد.'); }
