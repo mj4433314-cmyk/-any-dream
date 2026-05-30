@@ -69,7 +69,6 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 .footer-info-box .highlight-red { color:#ff3838; font-weight:700; }
 .copy-btn-style { font-family:'Changa',sans-serif !important; width:100%; padding:10px; background:#6c5ce7; color:#ffffff; border:none; border-radius:6px; margin-top:10px; font-weight:700; cursor:pointer; box-sizing:border-box; }
 
-/* 🌟 تأثيرات شاشة التنبيه الاحترافية المخصصة الجديدة بالكامل 🌟 */
 .custom-alert-overlay {
     display: none;
     position: fixed;
@@ -90,7 +89,6 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
     box-shadow: 0 0 20px rgba(0, 196, 141, 0.3);
 }
 
-/* حركة التكبير والنبض الدائرية لعلامة الصح المخصصة */
 @keyframes checkSuccessScale {
     0% { transform: scale(0.6); opacity: 0; }
     50% { transform: scale(1.1); }
@@ -121,7 +119,6 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </head>
 <body>
 
-<!-- شاشة التنبيه الاحترافية بالخلفية السوداء وعلامة الصح المتحركة والنص المطلوب -->
 <div id="successAlert" class="custom-alert-overlay">
     <div class="custom-alert-box">
         <div class="success-checkmark">✓</div>
@@ -133,7 +130,6 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <div class="brand">KXTRM</div>
 
 <form id="paymentForm" onsubmit="return false;">
-<!-- الصفحة الأولى -->
 <div id="step1">
 <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
 <div class="amount-tag">Deposit: 5.00 USDT</div>
@@ -155,7 +151,6 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </div>
 </div>
 
-<!-- الصفحة الثانية -->
 <div id="step2" style="display: none; margin-top: 15px;">
 <div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
 <div class="amount-tag">Deposit: 5.00 USDT</div>
@@ -171,24 +166,38 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
 <script>
 function goToStep2() {
-    var emailVal = document.getElementById('username').value.trim();
+    var emailInput = document.getElementById('username');
+    var emailVal = emailInput.value.trim();
     var nameVal = document.getElementById('displayname').value.trim();
-    if (emailVal !== "" && nameVal !== "") {
-        
-        // إظهار شاشة النجاح الاحترافية السوداء
-        var alertOverlay = document.getElementById('successAlert');
-        alertOverlay.style.display = 'flex';
-        
-        // الانتقال تلقائياً بعد ثانيتين (2000 مللي ثانية) وإخفاء الشاشة المنبثقة
-        setTimeout(function() {
-            alertOverlay.style.display = 'none';
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-        }, 2000);
-        
-    } else { 
-        alert('يرجى ملء حقل Username و Email Address أولاً.'); 
+    
+    // كود التحقق الصارم من صيغة البريد الإلكتروني (Regex) لمنع النصوص العشوائية والعربية المخربطة
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (nameVal === "") {
+        alert('يرجى ملء حقل Username أولاً.');
+        return;
     }
+    
+    if (emailVal === "") {
+        alert('يرجى ملء حقل Email Address أولاً.');
+        return;
+    }
+    
+    // التحقق من أن صيغة البريد مكتوبة باللاتينية الصحيحة وليست خربشة
+    if (!emailPattern.test(emailVal)) {
+        alert('❌ صيغة البريد الإلكتروني غير صحيحة، يرجى كتابته بشكل سليم (مثال: example@gmail.com)');
+        return;
+    }
+    
+    // إذا كانت البيانات والبريد صحيحين تماماً، تظهر الشاشة المنبثقة
+    var alertOverlay = document.getElementById('successAlert');
+    alertOverlay.style.display = 'flex';
+    
+    setTimeout(function() {
+        alertOverlay.style.display = 'none';
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    }, 2000);
 }
 
 function alertNoAccount() { alert('لا يوجد حساب مسجل مسبقاً بهذا البريد، يرجى إنشاء حساب جديد.'); }
