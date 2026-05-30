@@ -11,7 +11,17 @@
 body { font-family:'Changa',sans-serif !important; background-color:#000000 !important; color:#ffffff !important; text-align:center; padding:40px 20px; margin:0; }
 .card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display:inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
 .brand { font-family:'Changa',sans-serif !important; font-size:36px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
-.subtitle { font-family:'Changa',sans-serif !important; color: #ffffff !important; font-size: 15px; font-weight: 600; margin-bottom: 20px; }
+
+/* تنسيق النص المحدّد بالصورة باللون الأبيض وبخط هندسي واضح */
+.subtitle { 
+    font-family:'Changa',sans-serif !important; 
+    color: #ffffff !important; 
+    font-size: 15px; 
+    font-weight: 600; 
+    margin-bottom: 20px; 
+    display: block;
+}
+
 .amount-tag { font-family:'Changa',sans-serif !important; background-color:#140b24; border: 1px dashed #6c5ce7; padding: 12px; border-radius: 10px; font-size: 18px; font-weight: 700; color: #ffffff !important; margin-bottom: 25px; }
 .input-group { margin-bottom: 15px; text-align: right; }
 label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#ffffff; font-size:15px; font-weight:700; text-align:left; direction:ltr; }
@@ -73,11 +83,12 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <body>
 <div class="card">
 <div class="brand">KXTRM</div>
-<div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
-<div class="amount-tag">Deposit: 5.00 USDT</div>
 
 <form id="paymentForm" onsubmit="return false;">
+<!-- الصفحة الأولى -->
 <div id="step1">
+<div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
+<div class="amount-tag">Deposit: 5.00 USDT</div>
 <div class="input-group">
 <label for="displayname">Username</label>
 <input type="text" id="displayname" placeholder="Enter your username" required>
@@ -96,12 +107,13 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </div>
 </div>
 
-<!-- الصفحة الثانية المحدثة -->
+<!-- الصفحة الثانية المحدثة بالنص المطلوب والمكان الصحيح تماماً -->
 <div id="step2" style="display: none; margin-top: 15px;">
+<div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
+<div class="amount-tag">Deposit: 5.00 USDT</div>
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
-<!-- تم تحديث النص هنا للعبارة المطلوبة بالضبط بالخط الهندسي العريض -->
-<p style="font-size: 14px; margin-bottom: 10px; color: #2f3542; font-weight: 700;">عند الانتهاء من الايداع سيتم توجه الى الصفحه التاليه</p>
+<p style="font-size: 14px; margin-bottom: 10px; color: #2f3542; font-weight: 700;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
 <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
 <button onclick="copyWalletAddress()" type="button" class="copy-btn-style">نسخ عنوان المحفظة</button>
 </div>
