@@ -6,7 +6,7 @@
 <title>KXTRM - الدفع والاشتراك</title>
 <link rel="preconnect" href="https://googleapis.com">
 <link rel="preconnect" href="https://gstatic.com" crossorigin>
-<link href="https://googleapis.com/css2?family=Reem+Kufi+Ink:wght@700&family=Changa:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://googleapis.com" rel="stylesheet">
 <style>
 body { font-family:'Changa',sans-serif !important; background-color:#000000 !important; color:#ffffff !important; text-align:center; padding:40px 20px; margin:0; }
 .card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display: inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
@@ -60,8 +60,29 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:purpleGlowPulse 2s infinite ease-in-out; transition:0.2s; }
 .binance-btn-final:hover { transform: scale(1.02); }
-.manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; overflow-x: auto; }
-.crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:20px; font-weight:800; direction: ltr; white-space: nowrap; box-sizing:border-box; margin-top:5px; }
+.manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
+
+/* تعديل حجم المربع الرمادي وتكبير النص ليظهر بالكامل في سطر واحد */
+.crypto-address-container { 
+    font-family:'Changa',sans-serif !important; 
+    width: auto; 
+    max-width: 100%;
+    padding: 10px 6px; 
+    text-align: center; 
+    background: #f1f2f6; 
+    color: #2f3542; 
+    border: 1px solid #ced6e0; 
+    border-radius: 6px; 
+    font-size: 15px; 
+    font-weight: 800; 
+    direction: ltr; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: clip;
+    box-sizing: border-box; 
+    margin: 5px auto 0 auto; 
+}
+
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#a29bfe; border:1px dashed #4a3f85; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
 .check-account-btn:hover { background:#1d1836; color:#fff; border-color:#6c5ce7; }
 .footer-info-box { margin-top:30px; font-family:'Changa',sans-serif !important; font-size:11px; color:#ffffff; line-height:1.6; font-weight:600; }
@@ -184,7 +205,7 @@ function copyWalletAddress() {
     navigator.clipboard.writeText(copyText).then(function() {
         alert("تم نسخ العنوان بنجاح: " + copyText);
     }, function(err) {
-        alert("فشل النسخ التلقائي، يرجى نسخه يدوياً");
+        alert("فشل النسخ التلقائي، يرجى نسخ الكود يدوياً");
     });
 }
 
