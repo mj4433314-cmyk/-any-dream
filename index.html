@@ -12,7 +12,20 @@ body { font-family:'Changa',sans-serif !important; background-color:#000000 !imp
 .card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display:inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
 .brand { font-family:'Changa',sans-serif !important; font-size:36px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
 .subtitle { font-family:'Changa',sans-serif !important; color:#a29bfe; font-size:15px; font-weight:600; margin-bottom:20px; }
-.amount-tag { font-family:'Changa',sans-serif !important; background-color:#1e1b4b; border: 1px dashed #6c5ce7; padding:12px; border-radius:10px; font-size:18px; font-weight:700; color:#00ffcc; margin-bottom:25px; }
+
+/* تم تعديل مربع الإيداع هنا ليتناسب تماماً مع اللون البنفسجي للزر */
+.amount-tag { 
+    font-family:'Changa',sans-serif !important; 
+    background-color:#140b24; /* درجات داكنة متناسقة مع البنفسجي */
+    border: 1px dashed #6c5ce7; /* الحدود المتقطعة باللون البنفسجي */
+    padding: 12px; 
+    border-radius: 10px; 
+    font-size: 18px; 
+    font-weight: 700; 
+    color: #00ffcc; 
+    margin-bottom: 25px; 
+}
+
 .input-group { margin-bottom: 15px; text-align: right; }
 label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#ffffff; font-size:15px; font-weight:700; text-align:left; direction:ltr; }
 
@@ -32,14 +45,13 @@ input[type="text"] {
 }
 input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
-/* تأثير الوميض والنبض للون البنفسجي الجديد */
+/* تأثير الوميض والنبض للون البنفسجي للزر ومربع الإيداع في الصفحة الثانية */
 @keyframes purpleGlowPulse { 
     0% { background-color:#5f27cd; box-shadow:0 0 12px rgba(95, 39, 205, 0.6); } 
     50% { background-color:#6c5ce7; box-shadow:0 0 25px rgba(108, 92, 231, 0.9); } 
     100% { background-color:#5f27cd; box-shadow:0 0 12px rgba(95, 39, 205, 0.6); } 
 }
 
-/* زر CREATE ACCOUNT باللون البنفسجي المتناسق والمصغر */
 .submit-btn-pulse { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
@@ -52,7 +64,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
     letter-spacing: 0.5px; 
     cursor: pointer; 
     box-sizing: border-box; 
-    animation: purpleGlowPulse 2s infinite ease-in-out; /* تفعيل تأثير النبض البنفسجي */
+    animation: purpleGlowPulse 2s infinite ease-in-out; 
     transition: 0.2s; 
     margin-top: 15px; 
     display: block; 
@@ -76,7 +88,10 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <div class="card">
 <div class="brand">KXTRM</div>
 <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
-<div class="amount-tag">الإيداع: 5.00 USDT</div>
+
+<!-- تم تعديل النص هنا إلى الإنجليزية ومطابقته للون البنفسجي -->
+<div class="amount-tag">Deposit: 5.00 USDT</div>
+
 <form id="paymentForm" onsubmit="return false;">
 <div id="step1">
 <div class="input-group">
