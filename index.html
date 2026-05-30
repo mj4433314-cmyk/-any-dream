@@ -13,14 +13,14 @@
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: #0f0c1b; 
+            background-color: #000000 !important; /* تحويل الخلفية العامة للأسود */
             color: #ffffff; 
             text-align: center; 
             padding: 40px 20px; 
             margin: 0; 
         }
         .card { 
-            background: linear-gradient(145deg, #1d1836, #130f24); 
+            background: #000000 !important; /* تحويل خلفية الكرت للأسود */
             padding: 35px 25px; 
             border-radius: 20px; 
             display: inline-block; 
@@ -74,18 +74,6 @@
             box-sizing: border-box; 
             font-size: 15px; 
         }
-        .footer-text { 
-            margin-top: 25px; 
-            font-size: 12px; 
-            color: #636e72; 
-            font-weight: 600;
-        }
-        .bottom-logo {
-            max-width: 100%; 
-            height: auto; 
-            display: block; 
-            margin: 20px auto 0 auto;
-        }
         
         /* تأثير النبض والوميض الأخضر للأزرار */
         @keyframes greenGlowPulse {
@@ -94,7 +82,6 @@
             100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); }
         }
 
-        /* تنسيق زر المتابعة الجديد باللون الأخضر الوامض والنبضي */
         .submit-btn-pulse {
             font-family: 'Cairo', sans-serif; 
             width: 100%; 
@@ -112,7 +99,6 @@
         }
         .submit-btn-pulse:hover { transform: scale(1.02); }
         
-        /* تنسيق زر بايننس الجديد والمضمون باللون الأخضر الوامض */
         .binance-btn-final {
             font-family: 'Cairo', sans-serif;
             width: 100%; 
@@ -132,18 +118,16 @@
         }
         .binance-btn-final:hover { transform: scale(1.02); }
 
-        /* حاوية الإيداع اليدوي باللون الأبيض الكامل وتنسيق نصوصها */
         .manual-deposit-box {
             margin-top: 25px; 
             padding: 15px; 
             border: 2px dashed #6c5ce7; 
             border-radius: 8px; 
-            background-color: #ffffff; /* Murebba el abyad */
+            background-color: #ffffff; 
             text-align: center;
             box-shadow: 0 5px 15px rgba(255,255,255,0.05);
         }
 
-        /* حاوية نص المحفظة الجديدة لضمان الالتفاف والظهور الكامل الفوري */
         .crypto-address-container {
             font-family: 'Cairo', sans-serif;
             width: 100%; 
@@ -162,7 +146,6 @@
             margin-top: 5px;
         }
 
-        /* تنسيق زر التحقق من الحساب المسبق */
         .check-account-btn {
             font-family: 'Cairo', sans-serif;
             width: 100%;
@@ -183,6 +166,28 @@
             color: #fff;
             border-color: #6c5ce7;
         }
+
+        /* تنسيق قسم النصوص السفلية الاحترافي المكتشف من صورك */
+        .footer-info-box {
+            margin-top: 30px;
+            font-family: sans-serif;
+            font-size: 11px;
+            color: #ffffff;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+        .footer-info-box .brand-line {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .footer-info-box .highlight-red {
+            color: #ff3838;
+            font-weight: 900;
+        }
     </style>
 </head>
 <body>
@@ -193,7 +198,7 @@
         <div class="amount-tag">الإيداع: 5.00 USDT</div>
 
         <form id="paymentForm">
-            <!-- الخطوة الأولى: بداية الدخول -->
+            <!-- الصفحة الأولى: إدخال البريد الإلكتروني -->
             <div id="step1">
                 <div class="input-group">
                     <label for="username">البريد الإلكتروني</label>
@@ -203,10 +208,19 @@
                 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
-                <img src="logo.png" alt="logo" class="bottom-logo">
+                <!-- قسم النصوص والشعارات السفلية الظاهرة في صورتك الثانية وضمان عدم اختفائها -->
+                <div class="footer-info-box">
+                    <div class="brand-line">
+                        <span>🟢 KXTRM 🌐</span>
+                    </div>
+                    <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
+                    <p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
+                    <p class="highlight-red">PLEASE DEPOSIT $5. GO TO PAGE.</p>
+                    <p>WITHDRAWAL METHODS ARE AVAILABLE FOR ALL WALLETS.<br>MAKING MONEY ONLINE HAS BECOME VERY EASY</p>
+                </div>
             </div>
 
-            <!-- الخطوة الثانية: خيارات الإيداع -->
+            <!-- الصفحة الثانية: خيارات الإيداع والنسخ -->
             <div id="step2" style="display: none; margin-top: 15px;">
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
@@ -214,16 +228,14 @@
 
                 <div class="manual-deposit-box">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-                    
                     <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-                    
                     <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; background: #6c5ce7; color: #fff; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer;">نسخ عنوان المحفظة</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <!-- جافا سكريبت التفاعلي لعمل الأزرار والنسخ والخطوات -->
+    <!-- كود جافا سكريبت الكامل لتشغيل الأزرار والنسخ والانتقال السلس بين الصفحتين دون أي مشاكل -->
     <script>
         function goToStep2() {
             var emailInput = document.getElementById('username');
