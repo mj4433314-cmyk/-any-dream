@@ -11,16 +11,7 @@
 body { font-family:'Changa',sans-serif !important; background-color:#000000 !important; color:#ffffff !important; text-align:center; padding:40px 20px; margin:0; }
 .card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display: inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
 .brand { font-family:'Changa',sans-serif !important; font-size:36px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
-
-.subtitle { 
-    font-family:'Changa',sans-serif !important; 
-    color: #ffffff !important; 
-    font-size: 15px; 
-    font-weight: 600; 
-    margin-bottom: 20px; 
-    display: block;
-}
-
+.subtitle { font-family:'Changa',sans-serif !important; color: #ffffff !important; font-size: 15px; font-weight: 600; margin-bottom: 20px; display: block; }
 .amount-tag { font-family:'Changa',sans-serif !important; background-color:#140b24; border: 1px dashed #6c5ce7; padding: 12px; border-radius: 10px; font-size: 18px; font-weight: 700; color: #ffffff !important; margin-bottom: 25px; }
 .input-group { margin-bottom: 15px; text-align: right; }
 label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#ffffff; font-size:15px; font-weight:700; text-align:left; direction:ltr; }
@@ -77,9 +68,67 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 .footer-info-box .brand-line { font-size:20px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:8px; }
 .footer-info-box .highlight-red { color:#ff3838; font-weight:700; }
 .copy-btn-style { font-family:'Changa',sans-serif !important; width:100%; padding:10px; background:#6c5ce7; color:#ffffff; border:none; border-radius:6px; margin-top:10px; font-weight:700; cursor:pointer; box-sizing:border-box; }
+
+/* 🌟 تأثيرات شاشة التنبيه الاحترافية المخصصة الجديدة بالكامل 🌟 */
+.custom-alert-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+.custom-alert-box {
+    background-color: #0d1117;
+    border: 2px solid #00c48d;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 196, 141, 0.3);
+}
+
+/* حركة التكبير والنبض الدائرية لعلامة الصح المخصصة */
+@keyframes checkSuccessScale {
+    0% { transform: scale(0.6); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+.success-checkmark {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #00c48d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    color: #00c48d;
+    font-size: 32px;
+    font-weight: bold;
+    animation: checkSuccessScale 0.5s ease-out forwards;
+}
+.success-text {
+    font-family: 'Changa', sans-serif !important;
+    font-size: 18px;
+    font-weight: 700;
+    color: #00c48d;
+    margin: 0;
+}
 </style>
 </head>
 <body>
+
+<!-- شاشة التنبيه الاحترافية بالخلفية السوداء وعلامة الصح المتحركة والنص المطلوب -->
+<div id="successAlert" class="custom-alert-overlay">
+    <div class="custom-alert-box">
+        <div class="success-checkmark">✓</div>
+        <p class="success-text">اكتمل إنشاء الحساب</p>
+    </div>
+</div>
+
 <div class="card">
 <div class="brand">KXTRM</div>
 
@@ -121,17 +170,22 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </div>
 
 <script>
-// تم تحديث الدالة لتظهر رسالة النجاح الخضراء أولاً ثم تفتح الصفحة التالية
 function goToStep2() {
     var emailVal = document.getElementById('username').value.trim();
     var nameVal = document.getElementById('displayname').value.trim();
     if (emailVal !== "" && nameVal !== "") {
-        // رسالة منبثقة تحمل علامة الصح الخضراء والعبارة المطلوبة بالضبط
-        alert('✔️ تم إنشاء الحساب بنجاح');
         
-        // الانتقال الفوري للصفحة الثانية بعد ضغط موافق
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
+        // إظهار شاشة النجاح الاحترافية السوداء
+        var alertOverlay = document.getElementById('successAlert');
+        alertOverlay.style.display = 'flex';
+        
+        // الانتقال تلقائياً بعد ثانيتين (2000 مللي ثانية) وإخفاء الشاشة المنبثقة
+        setTimeout(function() {
+            alertOverlay.style.display = 'none';
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }, 2000);
+        
     } else { 
         alert('يرجى ملء حقل Username و Email Address أولاً.'); 
     }
