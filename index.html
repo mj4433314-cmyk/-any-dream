@@ -13,7 +13,7 @@
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: #0f0c1b; 
+            background-color: #000000; /* تم تغيير الخلفية هنا إلى اللون الأسود */
             color: #ffffff; 
             text-align: center; 
             padding: 40px 20px; 
@@ -222,44 +222,10 @@
                     <!-- تم استبدال حقل input بـ div ثابت يلتف تلقائياً لمنع الانزلاق والقطع -->
                     <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
                     
-                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; padding: 10px 12px; background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold; margin-top: 12px; width: 100%;">نسخ عنوان المحفظة</button>
+                    <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; background: #6c5ce7; color: #fff; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer;">نسخ عنوان المحفظة</button>
                 </div>
             </div>
         </form>
     </div>
-
-    <script>
-        function goToStep2() {
-            const emailInput = document.getElementById('username').value;
-            if(!emailInput || !emailInput.includes('@')) {
-                alert("يرجى كتابة البريد الإلكتروني أولاً بشكل صحيح!");
-                return;
-            }
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'block';
-        }
-
-        function copyWalletAddress() {
-            // جلب النص المكتوب مباشرة من الـ div
-            const addressText = document.getElementById("cryptoAddress").innerText;
-            
-            navigator.clipboard.writeText(addressText).then(() => {
-                alert("تم نسخ عنوان المحفظة بشكل سليم! قم بالتحويل من محفظتك.");
-            }).catch(err => {
-                // حل بديل في حال لم يدعم المتصفح الخاصية الحديثة
-                const tempInput = document.createElement("input");
-                tempInput.value = addressText;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand("copy");
-                document.body.removeChild(tempInput);
-                alert("تم نسخ عنوان المحفظة!");
-            });
-        }
-
-        function alertNoAccount() {
-            alert("يرجى كتابة بريدك الإلكتروني وإتمام الإيداع لتفعيل الخدمة.");
-        }
-    </script>
 </body>
 </html>
