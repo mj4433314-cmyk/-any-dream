@@ -40,17 +40,17 @@
             100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } 
         }
         
-        /* تعديل الزر: النص باللون الأبيض وبخط عريض جداً */
+        /* تحسين وتكبير خط زر إنشاء حساب وإجبار خط Cairo الفاخر والعريض */
         .submit-btn-pulse { 
-            font-family: 'Cairo', sans-serif; 
+            font-family: 'Cairo', sans-serif !important; 
             width: 100%; 
             padding: 14px; 
-            color: #ffffff !important; /* لون النص أبيض */
+            color: #ffffff !important; 
             border: none; 
             border-radius: 8px; 
-            font-weight: 900 !important; /* خط عريض جداً */
-            font-size: 18px; 
-            margin-top: 20px; 
+            font-weight: 900 !important; /* خط عريض جداً ومتناسق */
+            font-size: 20px !important; /* تكبير مقاس الخط ليكون ممتازاً */
+            letter-spacing: 0.5px;
             cursor: pointer; 
             box-sizing: border-box; 
             animation: greenGlowPulse 2s infinite ease-in-out; 
@@ -90,7 +90,7 @@
                     <input type="text" id="username" required placeholder="example@gmail.com">
                 </div>
                 
-                <!-- زر إنشاء حساب المحدث بالخط العريض واللون الأبيض -->
+                <!-- زر إنشاء حساب المعدّل بنوع خط احترافي -->
                 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">إنشاء حساب</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
