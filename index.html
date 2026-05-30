@@ -60,8 +60,8 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:purpleGlowPulse 2s infinite ease-in-out; transition:0.2s; }
 .binance-btn-final:hover { transform: scale(1.02); }
-.manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
-.crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:14px; font-weight:700; direction: ltr; white-space:normal; word-break:break-all; box-sizing:border-box; margin-top:5px; }
+.manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; overflow-x: auto; }
+.crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:20px; font-weight:800; direction: ltr; white-space: nowrap; box-sizing:border-box; margin-top:5px; }
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#a29bfe; border:1px dashed #4a3f85; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
 .check-account-btn:hover { background:#1d1836; color:#fff; border-color:#6c5ce7; }
 .footer-info-box { margin-top:30px; font-family:'Changa',sans-serif !important; font-size:11px; color:#ffffff; line-height:1.6; font-weight:600; }
@@ -157,7 +157,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542; font-weight: 700;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupen3kVEDFP</div>
 <button onclick="copyWalletAddress()" type="button" class="copy-btn-style">نسخ عنوان المحفظة</button>
 </div>
 </div>
@@ -170,49 +170,26 @@ function goToStep2() {
     var emailVal = emailInput.value.trim();
     var nameVal = document.getElementById('displayname').value.trim();
     
-    // كود التحقق الصارم من صيغة البريد الإلكتروني (Regex) لمنع النصوص العشوائية والعربية المخربطة
-    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    
-    if (nameVal === "") {
-        alert('يرجى ملء حقل Username أولاً.');
+    if(nameVal === "" || emailVal === "") {
+        alert("يرجى ملء جميع الحقول أولاً");
         return;
     }
     
-    if (emailVal === "") {
-        alert('يرجى ملء حقل Email Address أولاً.');
-        return;
-    }
-    
-    // التحقق من أن صيغة البريد مكتوبة باللاتينية الصحيحة وليست خربشة
-    if (!emailPattern.test(emailVal)) {
-        alert('❌ صيغة البريد الإلكتروني غير صحيحة، يرجى كتابته بشكل سليم (مثال: example@gmail.com)');
-        return;
-    }
-    
-    // إذا كانت البيانات والبريد صحيحين تماماً، تظهر الشاشة المنبثقة
-    var alertOverlay = document.getElementById('successAlert');
-    alertOverlay.style.display = 'flex';
-    
-    setTimeout(function() {
-        alertOverlay.style.display = 'none';
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-    }, 2000);
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
 }
-
-function alertNoAccount() { alert('لا يوجد حساب مسجل مسبقاً بهذا البريد، يرجى إنشاء حساب جديد.'); }
 
 function copyWalletAddress() {
-var addressText = document.getElementById('cryptoAddress').innerText.trim();
-var textarea = document.createElement("textarea");
-textarea.value = addressText; textarea.style.position = "fixed"; document.body.appendChild(textarea); textarea.select();
-try {
-var successful = document.execCommand('copy');
-if(successful) { alert('تم نسخ عنوان المحفظة بنجاح!'); } else { throw new Error(); }
-} catch (err) {
-navigator.clipboard.writeText(addressText).then(function() { alert('تم نسخ عنوان المحفظة بنجاح!'); }, function() { alert('فشل النسخ تلقائياً، يرجى نسخه يدوياً.'); });
+    var copyText = document.getElementById("cryptoAddress").innerText;
+    navigator.clipboard.writeText(copyText).then(function() {
+        alert("تم نسخ العنوان بنجاح: " + copyText);
+    }, function(err) {
+        alert("فشل النسخ التلقائي، يرجى نسخه يدوياً");
+    });
 }
-document.body.removeChild(textarea);
+
+function alertNoAccount() {
+    alert("الخدمة تتطلب تفعيل الحساب الجديد أولاً عبر خطوة الإيداع.");
 }
 </script>
 </body>
