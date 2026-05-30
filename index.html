@@ -16,43 +16,43 @@ body { font-family:'Changa',sans-serif !important; background-color:#000000 !imp
 .input-group { margin-bottom: 15px; text-align: right; }
 label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#ffffff; font-size:15px; font-weight:700; text-align:left; direction:ltr; }
 
-/* تم تصغير حجم البادينغ والخط هنا للمربعات البيضاء لتصبح أصغر وأرتب */
 input[type="text"] { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
-    padding: 10px 12px; /* تصغير الارتفاع الداخلي */
+    padding: 10px 12px; 
     border-radius: 8px; 
     border: 1px solid #ffffff; 
     background-color: #ffffff !important; 
     color: #000000 !important; 
     box-sizing: border-box; 
-    font-size: 14px; /* تصغير مقاس الخط */
+    font-size: 14px; 
     direction: ltr; 
     font-weight: 600; 
     outline: none; 
 }
 input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
-@keyframes greenGlowPulse { 
-    0% { background-color:#009473; box-shadow:0 0 12px rgba(0, 148, 115, 0.6); } 
-    50% { background-color:#00cc99; box-shadow:0 0 25px rgba(0, 204, 153, 0.9); } 
-    100% { background-color:#009473; box-shadow:0 0 12px rgba(0, 148, 115, 0.6); } 
+/* تأثير الوميض والنبض للون البنفسجي الجديد */
+@keyframes purpleGlowPulse { 
+    0% { background-color:#5f27cd; box-shadow:0 0 12px rgba(95, 39, 205, 0.6); } 
+    50% { background-color:#6c5ce7; box-shadow:0 0 25px rgba(108, 92, 231, 0.9); } 
+    100% { background-color:#5f27cd; box-shadow:0 0 12px rgba(95, 39, 205, 0.6); } 
 }
 
-/* تم تصغير حجم زر CREATE ACCOUNT ليصبح متناسقاً تماماً ومريحاً للعين */
+/* زر CREATE ACCOUNT باللون البنفسجي المتناسق والمصغر */
 .submit-btn-pulse { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
-    padding: 11px; /* تصغير الارتفاع الداخلي للزر */
+    padding: 11px; 
     color: #ffffff !important; 
     border: none; 
     border-radius: 8px; 
     font-weight: 800 !important; 
-    font-size: 19px !important; /* تصغير حجم النص البرمجي للزر */
+    font-size: 19px !important; 
     letter-spacing: 0.5px; 
     cursor: pointer; 
     box-sizing: border-box; 
-    animation: greenGlowPulse 2s infinite ease-in-out; 
+    animation: purpleGlowPulse 2s infinite ease-in-out; /* تفعيل تأثير النبض البنفسجي */
     transition: 0.2s; 
     margin-top: 15px; 
     display: block; 
@@ -60,7 +60,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 }
 .submit-btn-pulse:hover { transform: scale(1.02); }
 
-.binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor:pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:greenGlowPulse 2s infinite ease-in-out; transition:0.2s; }
+.binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor:pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:purpleGlowPulse 2s infinite ease-in-out; transition:0.2s; }
 .binance-btn-final:hover { transform: scale(1.02); }
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
 .crypto-address-container { font-family:'Changa',sans-serif !important; width:100%; padding:12px 10px; text-align:center; background:#f1f2f6; color:#2f3542; border:1px solid #ced6e0; border-radius:6px; font-size:14px; font-weight:700; direction:ltr; white-space:normal; word-break:break-all; box-sizing:border-box; margin-top:5px; }
