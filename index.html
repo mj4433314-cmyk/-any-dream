@@ -17,9 +17,18 @@ body { font-family:'Changa',sans-serif !important; background-color:#000000 !imp
 label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:10px; color:#ffffff; font-size:16px; font-weight:700; text-align:left; direction:ltr; }
 input[type="text"] { font-family:'Changa',sans-serif !important; width:100%; padding:12px; border-radius:10px; border:1px solid #ffffff; background-color:#ffffff !important; color:#000000 !important; box-sizing:border-box; font-size:15px; direction:ltr; font-weight:600; outline:none; }
 input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
-@keyframes greenGlowPulse { 0% { background-color:#00b894; box-shadow:0 0 10px rgba(0,184,148,0.5); } 50% { background-color:#00ffa3; box-shadow:0 0 25px rgba(0,255,163,0.9); } 100% { background-color:#00b894; box-shadow:0 0 10px rgba(0,184,148,0.5); } }
-.submit-btn-pulse { font-family:'Changa',sans-serif !important; width:100%; padding:12px; color:#ffffff !important; border:none; border-radius:8px; font-weight:800 !important; font-size:22px !important; cursor:pointer; box-sizing:border-box; animation:greenGlowPulse 2s infinite ease-in-out; transition:0.2s; margin-top:20px; display:block; }
+
+/* ضبط وتأمين درجات اللون الأخضر لتتناسب مع النص الأبيض */
+@keyframes greenGlowPulse { 
+    0% { background-color:#009473; box-shadow:0 0 12px rgba(0, 148, 115, 0.6); } 
+    50% { background-color:#00cc99; box-shadow:0 0 25px rgba(0, 204, 153, 0.9); } 
+    100% { background-color:#009473; box-shadow:0 0 12px rgba(0, 148, 115, 0.6); } 
+}
+
+/* تنسيق زر CREATE ACCOUNT العريض والواضح جداً باللون الأبيض */
+.submit-btn-pulse { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#ffffff !important; border:none; border-radius:8px; font-weight:800 !important; font-size:22px !important; letter-spacing:1px; cursor:pointer; box-sizing:border-box; animation:greenGlowPulse 2s infinite ease-in-out; transition:0.2s; margin-top:20px; display:block; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
 .submit-btn-pulse:hover { transform:scale(1.02); }
+
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor:pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:greenGlowPulse 2s infinite ease-in-out; transition:0.2s; }
 .binance-btn-final:hover { transform:scale(1.02); }
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
@@ -47,7 +56,8 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <label for="username">Email Address</label>
 <input type="text" id="username" placeholder="example@gmail.com" required>
 </div>
-<button type="button" onclick="goToStep2()" class="submit-btn-pulse">أنشاء الحساب</button>
+<!-- تم تحديث نص الزر هنا إلى الإنجليزية CREATE ACCOUNT -->
+<button type="button" onclick="goToStep2()" class="submit-btn-pulse">CREATE ACCOUNT</button>
 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
 <div class="footer-info-box">
 <div class="brand-line"><span>🌐 KXTRM 🟢</span></div>
