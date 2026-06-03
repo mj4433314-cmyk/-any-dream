@@ -10,8 +10,8 @@
 <style>
 body { 
     font-family:'Changa',sans-serif !important; 
-    /* دمج صورة الخلفية وجعلها ممتدة وثابتة عند التمرير */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('background.jpg'); 
+    /* تم تخفيف الشفافية السوداء هنا لتبدو الصورة أوضح وأزهى */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url('background.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-attachment: fixed; 
@@ -22,7 +22,7 @@ body {
     margin:0; 
 }
 .card { 
-    background-color: rgba(0, 0, 0, 0.85) !important; /* إضافة شفافية للمربع ليظهر ما خلفه بشكل أنيق */
+    background-color: rgba(0, 0, 0, 0.85) !important; 
     padding:35px 25px; 
     border-radius:20px; 
     display: inline-block; 
@@ -32,7 +32,7 @@ body {
     border: 1px solid #3d2f75; 
     box-sizing:border-box; 
     position: relative; 
-    backdrop-filter: blur(5px); /* تأثير ضبابي ناعم للمربع */
+    backdrop-filter: blur(5px); 
 }
 .brand { font-family:'Changa',sans-serif !important; font-size:36px; font-weight:800; margin-bottom:10px; letter-spacing:1px; }
 .subtitle { font-family:'Changa',sans-serif !important; color: #ffffff !important; font-size: 15px; font-weight: 600; margin-bottom: 20px; display: block; }
