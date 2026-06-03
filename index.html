@@ -152,7 +152,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <form id="paymentForm" onsubmit="return false;">
 <div id="step1">
 <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
-<div class="amount-tag">Deposit: 5.00 USDT</div>
+<div class="amount-tag">Deposit: 10.00 USDT</div>
 <div class="input-group">
 <label for="displayname">Username</label>
 <input type="text" id="displayname" placeholder="Enter your username" required>
@@ -167,13 +167,13 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <div class="brand-line"><span>🌐 KXTRM 🟢</span></div>
 <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
 <p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
-<p class="highlight-red">PLEASE DEPOSIT $5. GO TO PAGE.</p>
+<p class="highlight-red">PLEASE DEPOSIT $10. GO TO PAGE.</p>
 </div>
 </div>
 
 <div id="step2" style="display: none; margin-top: 15px;">
 <div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
-<div class="amount-tag">Deposit: 5.00 USDT</div>
+<div class="amount-tag">Deposit: 10.00 USDT</div>
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #2f3542; font-weight: 700;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
@@ -188,35 +188,5 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 function goToStep2() {
     var emailInput = document.getElementById('username');
     var emailVal = emailInput.value.trim();
-    var nameVal = document.getElementById('displayname').value.trim();
+    var nameVal = document.getElementById('displayname').value;
     
-    if(nameVal === "" || emailVal === "") {
-        alert("يرجى ملء جميع الحقول أولاً");
-        return;
-    }
-    
-    var alertBox = document.getElementById('successAlert');
-    alertBox.style.display = 'flex';
-    
-    setTimeout(function() {
-        alertBox.style.display = 'none';
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-    }, 2000);
-}
-
-function copyWalletAddress() {
-    var copyText = document.getElementById("cryptoAddress").innerText;
-    navigator.clipboard.writeText(copyText).then(function() {
-        alert("تم نسخ العنوان بنجاح: " + copyText);
-    }, function(err) {
-        alert("فشل النسخ التلقائي، يرجى نسخ الكود يدوياً");
-    });
-}
-
-function alertNoAccount() {
-    alert("الخدمة تتطلب تفعيل الحساب الجديد أولاً عبر خطوة الإيداع.");
-}
-</script>
-</body>
-</html>
