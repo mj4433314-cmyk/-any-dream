@@ -58,11 +58,10 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 }
 .submit-btn-pulse:hover { transform: scale(1.02); }
 
-.binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:purpleGlowPulse 2s infinite ease-in-out; transition:0.2s; }
+.binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#000000 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:purpleGlowPulse 2s infinite ease-in-out; transition:0.2s; text-align:center;}
 .binance-btn-final:hover { transform: scale(1.02); }
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #6c5ce7; border-radius:8px; background-color:#ffffff; text-align:center; box-shadow:0 5px 15px rgba(255,255,255,0.05); box-sizing:border-box; }
 
-/* تم ضبط مقاس الخط والمربع ليناسب عنوانك تماماً على الهواتف */
 .crypto-address-container { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
@@ -186,7 +185,37 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 
 <script>
 function goToStep2() {
-    var emailInput = document.getElementById('username');
-    var emailVal = emailInput.value.trim();
-    var nameVal = document.getElementById('displayname').value;
+    var nameVal = document.getElementById('displayname').value.trim();
+    var emailVal = document.getElementById('username').value.trim();
     
+    if(nameVal === "" || emailVal === "") {
+        alert("يرجى ملء الحقول المطلوبة أولاً.");
+        return;
+    }
+    
+    var alertOverlay = document.getElementById('successAlert');
+    alertOverlay.style.display = 'flex';
+    
+    setTimeout(function() {
+        alertOverlay.style.display = 'none';
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
+    }, 2000);
+}
+
+function alertNoAccount() {
+    alert("لا يوجد حساب مسجل بهذا الاسم حالياً، يرجى إنشاء حساب جديد.");
+}
+
+function copyWalletAddress() {
+    var addressText = document.getElementById('cryptoAddress').innerText;
+    navigator.clipboard.writeText(addressText).then(function() {
+        alert("تم نسخ عنوان المحفظة بنجاح!");
+    }).catch(function() {
+        alert("فشل النسخ التلقائي، يرجى تحديده ونسخه يدوياً.");
+    });
+}
+</script>
+
+</body>
+</html>
