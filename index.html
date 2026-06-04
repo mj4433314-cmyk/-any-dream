@@ -24,25 +24,26 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#1e2329 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:yellowGlowPulse 2s infinite ease-in-out; transition:0.2s; text-align:center;}
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #474d57; border-radius:8px; background-color: rgba(43, 49, 57, 0.6); text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); box-sizing:border-box; }
 
-/* تحديث التنسيق لضمان ثبات النص على سطر واحد برمجياً وبصرياً */
+/* هنا التعديل السحري: تم تصحيح حجم الخط ليتناسب مع الشاشات دفعة واحدة بدون حركة يمين ويسار */
 .crypto-address-container { 
     font-family: monospace !important; 
     width: 100%; 
-    padding: 14px 8px; 
+    padding: 14px 4px; 
     text-align: center; 
     background: #181a20; 
     color: #ffffff !important; 
     border: 1px solid #474d57; 
     border-radius: 6px; 
-    font-size: 13px; 
+    font-size: 11px !important; 
     font-weight: 700; 
     direction: ltr; 
     box-sizing: border-box; 
     margin-top: 5px; 
     margin-bottom: 15px; 
-    letter-spacing: 0.5px; 
+    letter-spacing: 0.4px; 
     white-space: nowrap !important; 
     overflow-x: auto !important; 
+    word-break: keep-all !important;
 }
 
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
@@ -83,7 +84,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<!-- تم تعديل وتصحيح المحفظة بالكامل لتطابق محفظتك الرسمية 100% -->
+<!-- المحفظة صحيحة ومطابقة ومثبتة بالكامل بدون بتر أو نقص -->
 <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3KVEDFP</div>
 <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ العنوان المعروض</button>
 </div>
@@ -107,7 +108,7 @@ function alertNoAccount() {
     alert("يرجى إنشاء حساب جديد لإتمام العملية.");
 }
 
-// دالة نسخ العنوان البرمجية وتنبيه المستخدم بالنجاح
+// دالة نسخ احترافية تعمل على كافة الهواتف والمتصفحات بكفاءة
 function copyCryptoAddress() {
     var addressText = document.getElementById("cryptoAddress").innerText;
     if (navigator.clipboard && navigator.clipboard.writeText) {
