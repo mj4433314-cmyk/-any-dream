@@ -105,18 +105,22 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .crypto-address-container { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
-    padding: 10px; 
+    padding: 12px 8px; 
     text-align: center; 
     background: #181a20; 
-    color: #ffffff; 
+    color: #ffffff !important; 
     border: 1px solid #474d57; 
     border-radius: 6px; 
-    font-size: 13px; 
-    font-weight: 800; 
+    font-size: 12px; 
+    font-weight: 700; 
     direction: ltr; 
     box-sizing: border-box; 
     margin-top: 5px; 
-    letter-spacing: 0.2px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    white-space: normal !important; 
+    word-break: break-all !important; 
+    overflow: visible !important;
 }
 
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
@@ -222,7 +226,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<input type="text" id="cryptoAddress" class="crypto-address-container" value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" readonly onclick="this.select()">
+<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
 <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ العنوان المعروض</button>
 </div>
 </div>
@@ -253,15 +257,49 @@ function alertNoAccount() {
 }
 
 function copyCryptoAddress() {
-    var copyText = document.getElementById("cryptoAddress");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
+    var text = document.getElementById("cryptoAddress").innerText;
     
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed"; 
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.width = "2em";
+    textArea.style.height = "2em";
+    textArea.style.padding = "0";
+    textArea.style.border = "none";
+    textArea.style.outline = "none";
+    textArea.style.boxShadow = "none";
+    textArea.style.background = "transparent";
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    textArea.setSelectionRange(0, 99999);
+
     try {
-        document.execCommand("copy");
-        alert("تم نسخ العنوان بنجاح!");
+        var successful = document.execCommand('copy');
+        if (successful) {
+            alert("تم نسخ العنوان بنجاح!");
+        } else {
+            fallbackModernCopy(text);
+        }
     } catch (err) {
-        alert("يرجى الضغط مطولاً على النص ونسخه يدوياً.");
+        fallbackModernCopy(text);
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+function fallbackModernCopy(text) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert("تم نسخ العنوان بنجاح!");
+        }, function() {
+            alert("فشل النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً.");
+        });
+    } else {
+        alert("فشل النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً.");
     }
 }
 </script>
