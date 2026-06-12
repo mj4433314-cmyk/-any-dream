@@ -23,7 +23,28 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .submit-btn-pulse { font-family: 'Changa', sans-serif !important; width: 100%; padding: 12px; color: #1e2329 !important; border: none; border-radius: 8px; font-weight: 700 !important; font-size: 18px !important; letter-spacing: 0.5px; cursor: pointer; box-sizing: border-box; animation: yellowGlowPulse 2s infinite ease-in-out; transition: 0.2s; margin-top: 15px; display: block; }
 .binance-btn-final { font-family:'Changa',sans-serif !important; width:100%; padding:14px; color:#1e2329 !important; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor: pointer; display:block; text-decoration:none; margin-bottom:12px; box-sizing:border-box; animation:yellowGlowPulse 2s infinite ease-in-out; transition:0.2s; text-align:center;}
 .manual-deposit-box { margin-top:25px; padding:15px; border:2px dashed #474d57; border-radius:8px; background-color: rgba(43, 49, 57, 0.6); text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); box-sizing:border-box; }
-.crypto-address-container { font-family: monospace !important; width: 100%; padding: 14px 2px; text-align: center; background: #181a20; color: #ffffff !important; border: 1px solid #474d57; border-radius: 6px; font-size: 11px !important; font-weight: 700; direction: ltr; box-sizing: border-box; margin-top: 5px; margin-bottom: 15px; letter-spacing: 0.3px; white-space: nowrap !important; overflow: hidden !important; text-overflow: clip; }
+
+/* تم تعديل هذا الجزء لمنع قطع الحرف الأخير P */
+.crypto-address-container { 
+    font-family: monospace !important; 
+    width: 100%; 
+    padding: 14px 10px; 
+    text-align: center; 
+    background: #181a20; 
+    color: #ffffff !important; 
+    border: 1px solid #474d57; 
+    border-radius: 6px; 
+    font-size: 12px !important; 
+    font-weight: 700; 
+    direction: ltr; 
+    box-sizing: border-box; 
+    margin-top: 5px; 
+    margin-bottom: 15px; 
+    letter-spacing: 0.3px; 
+    white-space: normal !important; 
+    word-break: break-all !important; 
+}
+
 .check-account-btn { font-family:'Changa',sans-serif !important; width:100%; padding:12px; background:transparent; color:#848e9c; border:1px dashed #474d57; border-radius:8px; font-weight:600; font-size:14px; margin-top:15px; margin-bottom:5px; cursor:pointer; transition:0.3s; box-sizing:border-box; display:block; }
 .footer-info-box { margin-top:30px; font-family:'Changa',sans-serif !important; font-size:11px; color:#848e9c; line-height:1.6; font-weight:600; }
 .footer-info-box .brand-line { font-size:20px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; gap:8px; color: #ffffff; }
@@ -36,8 +57,7 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .success-text { font-family: 'Changa', sans-serif !important; font-size: 16px; font-weight: 700; color: #02c076; margin: 0; }
 </style>
 </head>
-
-    <body>
+<body>
 <div id="successAlert" class="custom-alert-overlay">
     <div class="custom-alert-box">
         <div class="success-checkmark">✓</div>
