@@ -134,11 +134,12 @@ body{
         Invite your friends and receive referral rewards according to the platform rules.
     </div>
 
-    <!-- المربعات الثلاثة المطلوبة -->
+    <!-- المربعات الأربعة المطلوبة -->
     <div class="auth-container">
         <input type="text" id="userInput" placeholder="اسم المستخدم" required>
         <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
         <input type="password" id="passwordInput" placeholder="كلمة السر" required>
+        <input type="number" id="statusInput" placeholder="رقم الحالة" required>
     </div>
 
     <!-- الأزرار أسفل المربعات -->
@@ -158,9 +159,10 @@ function login(){
     var user = document.getElementById("userInput").value;
     var email = document.getElementById("emailInput").value;
     var password = document.getElementById("passwordInput").value;
+    var statusNum = document.getElementById("statusInput").value;
     
-    if(user === "" || email === "" || password === "") {
-        alert("الرجاء ملء جميع الحقول أولاً.");
+    if(user === "" || email === "" || password === "" || statusNum === "") {
+        alert("الرجاء ملء جميع الحقول أولاً بما فيها رقم الحالة.");
     } else {
         alert("عذراً، ليس لديك حساب مسبقاً.");
     }
@@ -170,11 +172,12 @@ function register(){
     var user = document.getElementById("userInput").value;
     var email = document.getElementById("emailInput").value;
     var password = document.getElementById("passwordInput").value;
+    var statusNum = document.getElementById("statusInput").value;
     
-    if(user === "" || email === "" || password === "") {
-        alert("الرجاء إدخال جميع البيانات لإنشاء الحساب.");
+    if(user === "" || email === "" || password === "" || statusNum === "") {
+        alert("الرجاء إدخال جميع البيانات ورقم الحالة لإنشاء الحساب.");
     } else {
-        alert("تم إنشاء الحساب بنجاح، مرحباً بك يا " + user + " في منصة NOVA.");
+        alert("تم إنشاء الحساب بنجاح برقم الحالة (" + statusNum + ")، مرحباً بك يا " + user + " في منصة NOVA.");
     }
 }
 </script>
