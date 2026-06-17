@@ -6,7 +6,7 @@
 <title>NOVA</title>
 
 <link href="https://googleapis.com" rel="stylesheet">
-<!-- إضافة مكتبة أيقونات Font Awesome لتشغيل شكل العين -->
+<!-- مكتبة أيقونات Font Awesome لتشغيل شكل العين -->
 <link rel="stylesheet" href="https://cloudflare.com">
 
 <style>
@@ -75,12 +75,11 @@ body{
     width: 100%;
 }
 
-/* تعديل مساحة الكتابة في حقل السر حتى لا تتداخل مع العين */
 .password-wrapper input {
     padding-left: 50px; 
 }
 
-/* تنسيق أيقونة العين لتظهر جهة اليسار بشكل متناسق */
+/* تنسيق أيقونة العين */
 .toggle-password {
     position: absolute;
     left: 15px;
@@ -96,12 +95,11 @@ body{
     color: #b8ff1a;
 }
 
-/* تأثير الإضاءة الفسفورية عند تحديد المربع */
 .auth-container input:focus {
     border-color: #b8ff1a;
 }
 
-/* مجموعة الأزرار أسفل المربعات مباشرة */
+/* مجموعة الأزرار الأساسية في الواجهة */
 .buttons-group {
     display: flex;
     gap: 12px;
@@ -120,13 +118,11 @@ body{
     transition: opacity .2s;
 }
 
-/* زر إنشاء حساب (فسفوري) */
 .btn-primary {
     background: #b8ff1a;
     color: #000;
 }
 
-/* زر تسجيل الدخول (داكن بحدود فسفورية) */
 .btn-secondary {
     background: transparent;
     color: #fff;
@@ -137,11 +133,61 @@ body{
     opacity: .9;
 }
 
-/* النصوص في الأسفل تماماً */
 .desc{
     font-size: 18px;
     line-height: 2;
     color: #ddd;
+}
+
+/* ---- تصميم الشاشة السوداء الكاملة المنبثقة ---- */
+.overlay-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000; /* خلفية سوداء بالكامل */
+    z-index: 9999;
+    display: none; /* مخفية برمجياً في البداية */
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    overflow-y: auto; /* شريط تمرير عند امتلاء النصوص على الشاشات الصغيرة */
+}
+
+/* زر Next الصغير بالإنجليزية فوق النصوص */
+.btn-next {
+    background: #b8ff1a;
+    color: #000;
+    border: none;
+    padding: 10px 35px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.btn-next:hover {
+    opacity: 0.9;
+}
+
+/* حاوية الشروط والنقاط الـ 10 باللغة العربية */
+.terms-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: right;
+    direction: rtl;
+    line-height: 1.8;
+}
+
+.terms-container p {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
 }
 </style>
 </head>
@@ -155,12 +201,11 @@ body{
         WELCOME TO NOVA PLATFORM
     </div>
 
-    <!-- المربعات الأربعة في الأعلى -->
+    <!-- مربعات الإدخال في الأعلى -->
     <div class="auth-container">
         <input type="text" id="userInput" placeholder="اسم المستخدم" required>
         <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
         
-        <!-- حقل كلمة السر المطور مع أيقونة العين -->
         <div class="password-wrapper">
             <input type="password" id="passwordInput" placeholder="كلمة السر" required>
             <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
@@ -169,7 +214,7 @@ body{
         <input type="number" id="statusInput" placeholder="رقم الحالة" required>
     </div>
 
-    <!-- الأزرار أسفل المربعات مباشرة -->
+    <!-- أزرار تسجيل الدخول وإنشاء الحساب أسفل الحقول مباشرة -->
     <div class="buttons-group">
         <button class="btn btn-primary" onclick="register()">
             إنشاء حساب
@@ -179,7 +224,7 @@ body{
         </button>
     </div>
 
-    <!-- النصوص الإنجليزية في الأسفل تماماً -->
+    <!-- النصوص الإنجليزية التوضيحية في الأسفل تماماً -->
     <div class="desc">
         Welcome to Nova Platform.<br>
         We provide comprehensive support for our users.<br><br>
@@ -191,17 +236,38 @@ body{
 
 </div>
 
+
+<!-- واجهة الشاشة السوداء مع زر Next والقائمة المخصصة -->
+<div id="termsOverlay" class="overlay-screen">
+    
+    <!-- زر التحكم بالتقدم نحو خطوة جديدة -->
+    <button class="btn-next" onclick="closeOverlay()">Next</button>
+    
+    <!-- قائمة البنود العشرة للمنصة -->
+    <div class="terms-container">
+        <p>1. مرحبًا بكم في منصة نوفا.</p>
+        <p>2. منصة نوفا هي وجهتكم لتحقيق الأرباح بعد إتمام المهام المطلوبة.</p>
+        <p>3. تعتمد المهام على مشاهدة مقاطع فيديو من يوتيوب.</p>
+        <p>4. لا تتجاوز مدة كل مقطع دقيقة واحدة.</p>
+        <p>5. بعد إكمال جميع المهام، تُصرف الأرباح وفق نظام المنصة.</p>
+        <p>6. توفر المنصة ثلاثة مستويات للاشتراك: العادي، والبرونز، والذهب.</p>
+        <p>7. يتميز كل مستوى بمزايا وأرباح تختلف عن المستوى الآخر.</p>
+        <p>8. يختلف عدد مقاطع الفيديو المطلوبة حسب مستوى الاشتراك.</p>
+        <p>9. عند دعوة عضو جديد وانضمامه إلى المنصة، ستحصل على عمولة إحالة بنسبة 5% من أرباحه، وفقًا لشروط المنصة.</p>
+        <p>10. انضم إلى منصة نوفا، وابدأ رحلتك نحو تحقيق دخل إضافي بسهولة وأمان.</p>
+    </div>
+    
+</div>
+
+
 <script>
-// كود تشغيل ميزة إظهار وإخفاء كلمة السر عند الضغط على العين
+// تفعيل آلية الإظهار والإخفاء اليدوي لحقل كلمة السر عبر النقر على الأيقونة
 const togglePassword = document.querySelector('#togglePassword');
 const passwordInput = document.querySelector('#passwordInput');
 
 togglePassword.addEventListener('click', function () {
-    // تبديل نوع الحقل بين password و text
     const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passwordInput.setAttribute('type', type);
-    
-    // تبديل شكل الأيقونة بين العين المفتوحة والمغلقة
     this.classList.toggle('fa-eye');
     this.classList.toggle('fa-eye-slash');
 });
@@ -215,10 +281,11 @@ function login(){
     if(user === "" || email === "" || password === "" || statusNum === "") {
         alert("الرجاء ملء جميع الحقول أولاً بما فيها رقم الحالة.");
     } else {
-        alert("عذراً، ليس لديك حساب مسبقاً.");
+        alert("تسجيل الدخول متاح للحسابات المفعلة فقط.");
     }
 }
 
+// دالة التحقق من المدخلات ثم كشف الشاشة السوداء للشروط
 function register(){
     var user = document.getElementById("userInput").value;
     var email = document.getElementById("emailInput").value;
@@ -226,10 +293,16 @@ function register(){
     var statusNum = document.getElementById("statusInput").value;
     
     if(user === "" || email === "" || password === "" || statusNum === "") {
-        alert("الرجاء إدخال جميع البيانات ورقم الحالة لإنشاء الحساب.");
+        alert("الرجاء إدخال جميع البيانات ورقم الحالة أولاً.");
     } else {
-        alert("تم إنشاء الحساب بنجاح برقم الحالة (" + statusNum + ")، مرحباً بك يا " + user + " في منصة NOVA.");
+        document.getElementById("termsOverlay").style.display = "flex";
     }
+}
+
+// دالة معالجة إغلاق الشاشة المنبثقة عند الضغط على زر التتبع
+function closeOverlay() {
+    document.getElementById("termsOverlay").style.display = "none";
+    alert("تم الانتقال للخطوة التالية بنجاح!");
 }
 </script>
 
