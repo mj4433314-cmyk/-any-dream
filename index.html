@@ -5,68 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://googleapis.com" rel="stylesheet">
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
 }
 
 body{
-background:#000;
-color:#fff;
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .container{
-max-width:500px;
-width:100%;
-text-align:center;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
 }
 
 .logo{
-font-size:42px;
-font-weight:900;
-color:#b8ff1a;
-margin-bottom:20px;
+    font-size: 42px;
+    font-weight: 900;
+    color: #b8ff1a;
+    margin-bottom: 20px;
 }
 
 .welcome{
-font-size:30px;
-font-weight:900;
-line-height:1.8;
-margin-bottom:25px;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
 .desc{
-font-size:18px;
-line-height:2;
-color:#ddd;
-margin-bottom:30px;
+    font-size: 18px;
+    line-height: 2;
+    color: #ddd;
+    margin-bottom: 30px;
 }
 
-.btn{
-width:100%;
-padding:16px;
-margin-top:12px;
-border:none;
-border-radius:15px;
-font-size:20px;
-font-weight:900;
-cursor:pointer;
-background:#b8ff1a;
-color:#000;
+/* حاوية مربعات الإدخال */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+    width: 100%;
 }
 
-.btn:hover{
-opacity:.9;
+.auth-container input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    background-color: #111;
+    color: #fff;
+    font-size: 16px;
+    text-align: right;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* تأثير الإضاءة الفسفورية عند تحديد المربع */
+.auth-container input:focus {
+    border-color: #b8ff1a;
+}
+
+/* مجموعة الأزرار */
+.buttons-group {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: opacity .2s;
+}
+
+/* زر إنشاء حساب (فسفوري) */
+.btn-primary {
+    background: #b8ff1a;
+    color: #000;
+}
+
+/* زر تسجيل الدخول (داكن بحدود فسفورية) */
+.btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #b8ff1a;
+}
+
+.btn:hover {
+    opacity: .9;
 }
 </style>
 </head>
@@ -74,38 +119,63 @@ opacity:.9;
 
 <div class="container">
 
-<div class="logo">NOVA</div>
+    <div class="logo">NOVA</div>
 
-<div class="welcome">
-WELCOME TO NOVA PLATFORM
-</div>
+    <div class="welcome">
+        WELCOME TO NOVA PLATFORM
+    </div>
 
-<div class="desc">
-Welcome to Nova Platform.<br>
-We provide comprehensive support for our users.<br><br>
+    <div class="desc">
+        Welcome to Nova Platform.<br>
+        We provide comprehensive support for our users.<br><br>
+        
+        Watch approved video content and complete available tasks through the platform.<br><br>
+        
+        Invite your friends and receive referral rewards according to the platform rules.
+    </div>
 
-Watch approved video content and complete available tasks through the platform.<br><br>
+    <!-- المربعات الثلاثة المطلوبة -->
+    <div class="auth-container">
+        <input type="text" id="userInput" placeholder="اسم المستخدم" required>
+        <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
+        <input type="password" id="passwordInput" placeholder="كلمة السر" required>
+    </div>
 
-Invite your friends and receive referral rewards according to the platform rules.
-</div>
-
-<button class="btn" onclick="register()">
-إنشاء حساب
-</button>
-
-<button class="btn" onclick="login()">
-تسجيل الدخول
-</button>
+    <!-- الأزرار أسفل المربعات -->
+    <div class="buttons-group">
+        <button class="btn btn-primary" onclick="register()">
+            إنشاء حساب
+        </button>
+        <button class="btn btn-secondary" onclick="login()">
+            تسجيل الدخول
+        </button>
+    </div>
 
 </div>
 
 <script>
 function login(){
-alert("عذراً، ليس لديك حساب مسبقاً.");
+    var user = document.getElementById("userInput").value;
+    var email = document.getElementById("emailInput").value;
+    var password = document.getElementById("passwordInput").value;
+    
+    if(user === "" || email === "" || password === "") {
+        alert("الرجاء ملء جميع الحقول أولاً.");
+    } else {
+        alert("عذراً، ليس لديك حساب مسبقاً.");
+    }
 }
 
 function register(){
-alert("تم إنشاء الحساب بنجاح، مرحباً بك في منصة NOVA.");
+    var user = document.getElementById("userInput").value;
+    var email = document.getElementById("emailInput").value;
+    var password = document.getElementById("passwordInput").value;
+    
+    if(user === "" || email === "" || password === "") {
+        alert("الرجاء إدخال جميع البيانات لإنشاء الحساب.");
+    } else {
+        alert("تم إنشاء الحساب بنجاح، مرحباً بك يا " + user + " في منصة NOVA.");
+    }
 }
 </script>
 
