@@ -45,13 +45,6 @@ body{
     margin-bottom: 25px;
 }
 
-.desc{
-    font-size: 18px;
-    line-height: 2;
-    color: #ddd;
-    margin-bottom: 30px;
-}
-
 /* حاوية مربعات الإدخال */
 .auth-container {
     display: flex;
@@ -77,6 +70,13 @@ body{
 /* تأثير الإضاءة الفسفورية عند تحديد المربع */
 .auth-container input:focus {
     border-color: #b8ff1a;
+}
+
+.desc{
+    font-size: 18px;
+    line-height: 2;
+    color: #ddd;
+    margin-bottom: 30px;
 }
 
 /* مجموعة الأزرار */
@@ -125,6 +125,15 @@ body{
         WELCOME TO NOVA PLATFORM
     </div>
 
+    <!-- 1. تم نقل المربعات الأربعة لتصبح في الأعلى هنا -->
+    <div class="auth-container">
+        <input type="text" id="userInput" placeholder="اسم المستخدم" required>
+        <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
+        <input type="password" id="passwordInput" placeholder="كلمة السر" required>
+        <input type="number" id="statusInput" placeholder="رقم الحالة" required>
+    </div>
+
+    <!-- 2. تم نقل النصوص لتصبح بالأسفل هنا -->
     <div class="desc">
         Welcome to Nova Platform.<br>
         We provide comprehensive support for our users.<br><br>
@@ -134,15 +143,7 @@ body{
         Invite your friends and receive referral rewards according to the platform rules.
     </div>
 
-    <!-- المربعات الأربعة المطلوبة -->
-    <div class="auth-container">
-        <input type="text" id="userInput" placeholder="اسم المستخدم" required>
-        <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
-        <input type="password" id="passwordInput" placeholder="كلمة السر" required>
-        <input type="number" id="statusInput" placeholder="رقم الحالة" required>
-    </div>
-
-    <!-- الأزرار أسفل المربعات -->
+    <!-- الأزرار في الأسفل تماماً -->
     <div class="buttons-group">
         <button class="btn btn-primary" onclick="register()">
             إنشاء حساب
