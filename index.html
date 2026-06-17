@@ -6,6 +6,8 @@
 <title>NOVA</title>
 
 <link href="https://googleapis.com" rel="stylesheet">
+<!-- إضافة مكتبة أيقونات Font Awesome لتشغيل شكل العين -->
+<link rel="stylesheet" href="https://cloudflare.com">
 
 <style>
 *{
@@ -50,7 +52,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -67,23 +69,44 @@ body{
     transition: border-color 0.3s;
 }
 
+/* حاوية مخصصة لمربع كلمة السر والعين */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* تعديل مساحة الكتابة في حقل السر حتى لا تتداخل مع العين */
+.password-wrapper input {
+    padding-left: 50px; 
+}
+
+/* تنسيق أيقونة العين لتظهر جهة اليسار بشكل متناسق */
+.toggle-password {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.toggle-password:hover {
+    color: #b8ff1a;
+}
+
 /* تأثير الإضاءة الفسفورية عند تحديد المربع */
 .auth-container input:focus {
     border-color: #b8ff1a;
 }
 
-.desc{
-    font-size: 18px;
-    line-height: 2;
-    color: #ddd;
-    margin-bottom: 30px;
-}
-
-/* مجموعة الأزرار */
+/* مجموعة الأزرار أسفل المربعات مباشرة */
 .buttons-group {
     display: flex;
     gap: 12px;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .btn {
@@ -113,6 +136,13 @@ body{
 .btn:hover {
     opacity: .9;
 }
+
+/* النصوص في الأسفل تماماً */
+.desc{
+    font-size: 18px;
+    line-height: 2;
+    color: #ddd;
+}
 </style>
 </head>
 <body>
@@ -125,25 +155,21 @@ body{
         WELCOME TO NOVA PLATFORM
     </div>
 
-    <!-- 1. تم نقل المربعات الأربعة لتصبح في الأعلى هنا -->
+    <!-- المربعات الأربعة في الأعلى -->
     <div class="auth-container">
         <input type="text" id="userInput" placeholder="اسم المستخدم" required>
         <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
-        <input type="password" id="passwordInput" placeholder="كلمة السر" required>
+        
+        <!-- حقل كلمة السر المطور مع أيقونة العين -->
+        <div class="password-wrapper">
+            <input type="password" id="passwordInput" placeholder="كلمة السر" required>
+            <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+        </div>
+        
         <input type="number" id="statusInput" placeholder="رقم الحالة" required>
     </div>
 
-    <!-- 2. تم نقل النصوص لتصبح بالأسفل هنا -->
-    <div class="desc">
-        Welcome to Nova Platform.<br>
-        We provide comprehensive support for our users.<br><br>
-        
-        Watch approved video content and complete available tasks through the platform.<br><br>
-        
-        Invite your friends and receive referral rewards according to the platform rules.
-    </div>
-
-    <!-- الأزرار في الأسفل تماماً -->
+    <!-- الأزرار أسفل المربعات مباشرة -->
     <div class="buttons-group">
         <button class="btn btn-primary" onclick="register()">
             إنشاء حساب
@@ -153,9 +179,33 @@ body{
         </button>
     </div>
 
+    <!-- النصوص الإنجليزية في الأسفل تماماً -->
+    <div class="desc">
+        Welcome to Nova Platform.<br>
+        We provide comprehensive support for our users.<br><br>
+        
+        Watch approved video content and complete available tasks through the platform.<br><br>
+        
+        Invite your friends and receive referral rewards according to the platform rules.
+    </div>
+
 </div>
 
 <script>
+// كود تشغيل ميزة إظهار وإخفاء كلمة السر عند الضغط على العين
+const togglePassword = document.querySelector('#togglePassword');
+const passwordInput = document.querySelector('#passwordInput');
+
+togglePassword.addEventListener('click', function () {
+    // تبديل نوع الحقل بين password و text
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    
+    // تبديل شكل الأيقونة بين العين المفتوحة والمغلقة
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
+
 function login(){
     var user = document.getElementById("userInput").value;
     var email = document.getElementById("emailInput").value;
