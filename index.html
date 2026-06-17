@@ -30,37 +30,17 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 
 /* واجهة شريط التنقل السفلي والـ Dashboard */
 .main-dashboard{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;display:none;flex-direction:column;justify-content:space-between;}
-.dashboard-content{flex:1;display:flex;justify-content:center;align-items:center;font-size:32px;font-weight:900;color:#b8ff1a;}
+.dashboard-content{flex:1;display:flex;justify-content:center;align-items:center;font-size:32px;font-weight:900;color:#b8ff1a;text-transform:uppercase;}
 .bottom-nav{width:100%;background:#111;display:flex;justify-content:space-around;align-items:center;padding:10px 0;border-top:1px solid #222;height:85px;}
-.nav-item{display:flex;flex-direction:column;align-items:center;color:#888;font-size:13px;cursor:pointer;flex:1;font-weight:bold;}
-.nav-icon{font-size:24px;margin-bottom:3px;display:block;}
+.nav-item{display:flex;flex-direction:column;align-items:center;color:#888;font-size:12px;cursor:pointer;flex:1;font-weight:bold;text-transform:uppercase;letter-spacing:0.5px;}
+.nav-icon{font-size:26px;margin-bottom:2px;display:block;}
 .nav-item.active{color:#fff;}
 
-/* تصميم شعار الكلوفر المتداخل المستوحى من صورتك ليكون أسود داخل الدائرة الفسفورية */
+/* تصميم مخصص وثابت للزر الأوسط المرتفع بنمط السداسي الفسفوري البارز */
 .nav-item.center-btn{position:relative;top:-15px;}
-.nav-item.center-btn .icon-circle{background:#b8ff1a;width:60px;height:60px;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 15px rgba(184,255,26,0.4);margin-bottom:5px;position:relative;}
-
-.nova-custom-logo {
-    width: 26px;
-    height: 26px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-/* رسم الحلقات الأربع المتداخلة للشعار بالخطوط العريضة */
-.nova-custom-logo::before, .nova-custom-logo::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 3.5px solid #000;
-    border-radius: 8px;
-}
-.nova-custom-logo::before { transform: rotate(45deg); }
-.nova-custom-logo::after { transform: rotate(90deg); }
-
-.nav-item.center-btn span{color:#b8ff1a;font-weight:900;font-size:15px;letter-spacing:1px;}
+.nav-item.center-btn .icon-circle{background:#b8ff1a;width:60px;height:60px;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 15px rgba(184,255,26,0.4);margin-bottom:5px;}
+.nav-item.center-btn .icon-circle .nav-icon{font-size:28px;margin-bottom:0;color:#000;}
+.nav-item.center-btn span{color:#b8ff1a;font-weight:900;font-size:13px;}
 </style>
 </head>
 <body>
@@ -104,24 +84,24 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 </div>
 
 <div id="mainDashboard" class="main-dashboard">
-    <div class="dashboard-content" id="dashboardContent">صفحة NOVA</div>
+    <div class="dashboard-content" id="dashboardContent">DEPOSIT PAGE</div>
     <div class="bottom-nav">
-        <!-- زر استكشف بشعار التدوير المطلوبة -->
-        <div class="nav-item" onclick="switchTab('explore', this)">
-            <span class="nav-icon">♻️</span>
-            <span>استكشف</span>
+        <!-- زر المهمات بالتنسيق الجديد -->
+        <div class="nav-item" onclick="switchTab('tasks', this)">
+            <span class="nav-icon">◫</span>
+            <span>Tasks</span>
         </div>
-        <!-- زر NOVA الأوسط المطور بالشعار الهندسي الفسفوري العريض -->
-        <div class="nav-item center-btn active" onclick="switchTab('trade', this)">
+        <!-- زر الإيداع الأوسط المرتفع بنمط السداسي الفسفوري والخط العريض -->
+        <div class="nav-item center-btn active" onclick="switchTab('deposit', this)">
             <div class="icon-circle">
-                <div class="nova-custom-logo"></div>
+                <span class="nav-icon">⬢</span>
             </div>
-            <span>NOVA</span>
+            <span>Deposit</span>
         </div>
-        <!-- زر Orbit المطور -->
-        <div class="nav-item" onclick="switchTab('orbit', this)">
-            <span class="nav-icon">🌐</span>
-            <span>Orbit</span>
+        <!-- زر المعلومات بالتنسيق الجديد -->
+        <div class="nav-item" onclick="switchTab('info', this)">
+            <span class="nav-icon">◈</span>
+            <span>Info</span>
         </div>
     </div>
 </div>
@@ -152,9 +132,9 @@ function switchTab(tabName, element) {
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     element.classList.add('active');
     const content = document.getElementById('dashboardContent');
-    if(tabName === 'explore') content.innerText = 'صفحة استكشف';
-    else if(tabName === 'trade') content.innerText = 'صفحة NOVA';
-    else if(tabName === 'orbit') content.innerText = 'صفحة Orbit';
+    if(tabName === 'tasks') content.innerText = 'TASKS PAGE';
+    else if(tabName === 'deposit') content.innerText = 'DEPOSIT PAGE';
+    else if(tabName === 'info') content.innerText = 'INFO PAGE';
 }
 </script>
 </body>
