@@ -28,7 +28,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 .terms-container{max-width:600px;width:100%;text-align:right;direction:rtl;line-height:1.8;}
 .terms-container p{font-size:16px;color:#e0e0e0;margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:10px;}
 
-/* واجهة شريط التنقل السفلي والـ Dashboard المضمونة */
+/* واجهة شريط التنقل السفلي والـ Dashboard */
 .main-dashboard{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;display:none;flex-direction:column;justify-content:space-between;}
 .dashboard-content{flex:1;display:flex;justify-content:center;align-items:center;font-size:32px;font-weight:900;color:#b8ff1a;}
 .bottom-nav{width:100%;background:#111;display:flex;justify-content:space-around;align-items:center;padding:10px 0;border-top:1px solid #222;height:85px;}
@@ -36,10 +36,30 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 .nav-icon{font-size:24px;margin-bottom:3px;display:block;}
 .nav-item.active{color:#fff;}
 
-/* تعديل الزر الأوسط الدائري ليصبح عريض وباسم NOVA الملون بالأخضر */
+/* تصميم شعار الكلوفر المتداخل المستوحى من صورتك ليكون أسود داخل الدائرة الفسفورية */
 .nav-item.center-btn{position:relative;top:-15px;}
-.nav-item.center-btn .icon-circle{background:#b8ff1a;width:60px;height:60px;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 15px rgba(184,255,26,0.4);margin-bottom:5px;}
-.nav-item.center-btn .icon-circle .nav-icon{font-size:24px;margin-bottom:0;}
+.nav-item.center-btn .icon-circle{background:#b8ff1a;width:60px;height:60px;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 15px rgba(184,255,26,0.4);margin-bottom:5px;position:relative;}
+
+.nova-custom-logo {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* رسم الحلقات الأربع المتداخلة للشعار بالخطوط العريضة */
+.nova-custom-logo::before, .nova-custom-logo::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3.5px solid #000;
+    border-radius: 8px;
+}
+.nova-custom-logo::before { transform: rotate(45deg); }
+.nova-custom-logo::after { transform: rotate(90deg); }
+
 .nav-item.center-btn span{color:#b8ff1a;font-weight:900;font-size:15px;letter-spacing:1px;}
 </style>
 </head>
@@ -86,15 +106,15 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content" id="dashboardContent">صفحة NOVA</div>
     <div class="bottom-nav">
-        <!-- زر استكشف بشعار التدوير المطلب -->
+        <!-- زر استكشف بشعار التدوير المطلوبة -->
         <div class="nav-item" onclick="switchTab('explore', this)">
             <span class="nav-icon">♻️</span>
             <span>استكشف</span>
         </div>
-        <!-- زر NOVA الأخضر الفسفوري العريض بالمنتصف -->
+        <!-- زر NOVA الأوسط المطور بالشعار الهندسي الفسفوري العريض -->
         <div class="nav-item center-btn active" onclick="switchTab('trade', this)">
             <div class="icon-circle">
-                <span class="nav-icon">⚡</span>
+                <div class="nova-custom-logo"></div>
             </div>
             <span>NOVA</span>
         </div>
