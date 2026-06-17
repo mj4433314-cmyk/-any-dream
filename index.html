@@ -1,7 +1,162 @@
-<div class="welcome">
-    <h1>مرحباً بك في Exness Tasks</h1>
-    <p>أنجز المهام اليومية واحصل على المكافآت</p>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة المهام</title>
 
-    <a href="login.html" class="btn">تسجيل الدخول</a>
-    <a href="register.html" class="btn btn2">إنشاء حساب</a>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:#f59e0b;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.hidden{
+display:none;
+}
+
+.plan{
+background:#334155;
+padding:15px;
+border-radius:12px;
+margin-top:15px;
+}
+
+.plan h3{
+color:#f59e0b;
+margin-bottom:10px;
+}
+
+.balance{
+font-size:24px;
+font-weight:bold;
+text-align:center;
+color:#22c55e;
+margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="auth">
+
+<div class="card">
+<h2>إنشاء حساب</h2>
+
+<input type="text" id="name" placeholder="اسم المستخدم">
+
+<input type="password" id="password" placeholder="كلمة المرور">
+
+<button onclick="register()">إنشاء حساب</button>
+
+<button onclick="login()">تسجيل الدخول</button>
+
 </div>
+
+</div>
+
+<div id="dashboard" class="hidden">
+
+<div class="card">
+
+<h2>مرحباً بك</h2>
+
+<div class="balance">
+الرصيد: 0 USDT
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>الباقات المتاحة</h2>
+
+<div class="plan">
+<h3>Starter</h3>
+<p>الاشتراك: 10 USDT</p>
+<p>العائد: 1 USDT</p>
+<button>اشترك الآن</button>
+</div>
+
+<div class="plan">
+<h3>Silver</h3>
+<p>الاشتراك: 100 USDT</p>
+<p>العائد: 10 USDT</p>
+<button>اشترك الآن</button>
+</div>
+
+<div class="plan">
+<h3>Gold</h3>
+<p>الاشتراك: 150 USDT</p>
+<p>العائد: 15 USDT</p>
+<button>اشترك الآن</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function register(){
+alert("تم إنشاء الحساب بنجاح");
+document.getElementById("auth").style.display="none";
+document.getElementById("dashboard").classList.remove("hidden");
+}
+
+function login(){
+document.getElementById("auth").style.display="none";
+document.getElementById("dashboard").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
