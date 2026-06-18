@@ -30,10 +30,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 .main-dashboard{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;display:none;flex-direction:column;justify-content:space-between;}
 .dashboard-content{flex:1;width:100%;padding:20px;overflow-y:auto;padding-bottom:100px;display:flex;flex-direction:column;align-items:center;}
 .page-title{font-size:32px;font-weight:900;color:#b8ff1a;margin-bottom:15px;text-transform:uppercase;}
-
-/* التنسيق الجديد: بدون إيموجي اليد، مع خط عريض وفخم جداً مثل الشركات الكبرى */
-.user-greeting{font-size:28px;font-weight:900;color:#ffffff;margin-bottom:25px;text-align:center;width:100%;letter-spacing:1px;text-shadow:0 2px 4px rgba(255,255,255,0.05);}
-
+.user-greeting{font-size:28px;font-weight:900;color:#ffffff;margin-bottom:25px;text-align:center;width:100%;letter-spacing:1px;}
 .info-section{width:100%;max-width:450px;text-align:right;direction:rtl;margin-bottom:20px;}
 .info-intro{font-size:15px;color:#ccc;line-height:1.6;margin-bottom:20px;background:#111;padding:15px;border-radius:15px;border:1px solid #222;}
 .tier-card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-bottom:15px;width:100%;}
@@ -42,6 +39,25 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 .tier-price{font-size:16px;font-weight:900;color:#fff;}
 .tier-details{font-size:14px;color:#ddd;line-height:1.8;}
 .tier-details strong{color:#b8ff1a;}
+
+.task-list-container {width:100%; max-width:450px; display:flex; flex-direction:column; gap:12px;}
+.task-bar-white {
+    width: 100%;
+    background: #ffffff;
+    color: #000000;
+    padding: 14px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+.task-bar-left {display: flex; align-items: center; gap: 10px;}
+.youtube-badge {font-size: 22px;}
+.lock-icon {font-size: 18px;}
+.task-text {font-size: 15px; font-weight: 900;}
+
 .bottom-nav{width:100%;background:#111;display:flex;justify-content:space-around;align-items:center;padding:10px 0;border-top:1px solid #222;height:85px;position:fixed;bottom:0;left:0;z-index:10001;}
 .nav-item{display:flex;flex-direction:column;align-items:center;color:#888;font-size:12px;cursor:pointer;flex:1;font-weight:bold;text-transform:uppercase;}
 .nav-icon{font-size:26px;margin-bottom:2px;display:block;}
@@ -93,7 +109,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content" id="dashboardContent">
-        <!-- يتم تحديث محتوى الترحيب الاحترافي هنا تلقائياً -->
+        <!-- يتم تحميل المحتوى النظيف هنا برمجياً -->
     </div>
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('info', this)"><span class="nav-icon">◈</span><span>Info</span></div>
@@ -117,20 +133,14 @@ function login(){
     var user = document.getElementById("userInput").value;
     if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
         alert("الرجاء ملء جميع الحقول أولاً بما فيها رقم الحالة.");
-    } else { 
-        savedUsername = user;
-        alert("تسجيل الدخول متاح للحسابات المفعلة فقط."); 
-    }
+    } else { savedUsername = user; alert("تسجيل الدخول متاح للحسابات المفعلة فقط."); }
 }
 
 function register(){
     var user = document.getElementById("userInput").value;
     if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
         alert("الرجاء إدخال جميع البيانات ورقم الحالة أولاً.");
-    } else { 
-        savedUsername = user;
-        document.getElementById("termsOverlay").style.display = "flex"; 
-    }
+    } else { savedUsername = user; document.getElementById("termsOverlay").style.display = "flex"; }
 }
 
 function closeOverlay() {
@@ -172,9 +182,26 @@ function switchTab(tabName, element) {
                 </div>
             </div>`;
     } else if(tabName === 'deposit') {
-        content.innerHTML = `<h2 class="page-title">DEPOSIT PAGE</h2><div class="user-greeting">مرحباً بك، ${savedUsername}</div><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة الإيداع...</div>`;
+        // تم مسح الجملة الترحيبية من هنا لتكون الواجهة نظيفة تماماً
+        content.innerHTML = `<h2 class="page-title">DEPOSIT PAGE</h2><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة الإيداع...</div>`;
     } else if(tabName === 'tasks') {
-        content.innerHTML = `<h2 class="page-title">TASKS PAGE</h2><div class="user-greeting">مرحباً بك، ${savedUsername}</div><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة المهام...</div>`;
+        // تم مسح الجملة الترحيبية من هنا لتظهر الأشرطة البيضاء مباشرة
+        let taskBars = '';
+        for(let i = 1; i <= 10; i++) {
+            taskBars += `
+                <div class="task-bar-white">
+                    <div class="task-bar-left">
+                        <span class="youtube-badge">🟥</span>
+                        <span class="task-text">TASK 0${i}</span>
+                    </div>
+                    <span class="lock-icon">🔒</span>
+                </div>`;
+        }
+        content.innerHTML = `
+            <h2 class="page-title">TASKS PAGE</h2>
+            <div class="task-list-container">
+                ${taskBars}
+            </div>`;
     }
 }
 </script>
