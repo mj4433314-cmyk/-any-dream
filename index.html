@@ -4,59 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA</title>
-<link href="https://googleapis.com" rel="stylesheet">
+<!-- ربط خط Cairo الاحترافي والجذاب من قوقل -->
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin>
+<link href="https://googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<!-- ربط مكتبة Font Awesome لأيقونة يوتيوب الاحترافية -->
+<link rel="stylesheet" href="https://cloudflare.com">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
 body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
 .container{max-width:500px;width:100%;text-align:center;}
-.logo{font-size:42px;font-weight:900;color:#b8ff1a;margin-bottom:20px;}
-.welcome{font-size:30px;font-weight:900;line-height:1.8;margin-bottom:25px;}
+.logo{font-size:42px;font-weight:900;color:#b8ff1a;margin-bottom:20px;letter-spacing:1px;}
+.welcome{font-size:26px;font-weight:900;line-height:1.6;margin-bottom:25px;}
 .auth-container{display:flex;flex-direction:column;gap:15px;margin-bottom:20px;width:100%;}
-.auth-container input{width:100%;padding:16px;border-radius:15px;border:1px solid #333;background:#111;color:#fff;font-size:16px;text-align:right;outline:none;transition:border-color .3s;}
+.auth-container input{width:100%;padding:16px;border-radius:15px;border:1px solid #333;background:#111;color:#fff;font-size:16px;text-align:right;outline:none;transition:border-color .3s;font-weight:700;}
 .password-wrapper{position:relative;width:100%;}
 .password-wrapper input{padding-left:50px;}
 .toggle-password{position:absolute;left:15px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:18px;z-index:10;user-select:none;}
 .auth-container input:focus{border-color:#b8ff1a;}
 .buttons-group{display:flex;gap:12px;width:100%;margin-bottom:30px;}
-.btn{flex:1;padding:16px;border:none;border-radius:15px;font-size:18px;font-weight:900;cursor:pointer;transition:opacity .2s;}
+.btn{flex:1;padding:16px;border:none;border-radius:15px;font-size:18px;font-weight:900;cursor:pointer;transition:all .3s ease;}
 .btn-primary{background:#b8ff1a;color:#000;}
 .btn-secondary{background:transparent;color:#fff;border:2px solid #b8ff1a;}
 .btn:hover{opacity:.9;}
-.desc{font-size:18px;line-height:2;color:#ddd;}
+.desc{font-size:16px;line-height:1.8;color:#ddd;font-weight:400;}
 .overlay-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:none;flex-direction:column;align-items:center;padding:40px 20px;overflow-y:auto;}
-.btn-next{background:#b8ff1a;color:#000;border:none;padding:10px 35px;font-size:16px;font-weight:bold;border-radius:20px;cursor:pointer;margin-bottom:30px;text-transform:uppercase;}
+.btn-next{background:#b8ff1a;color:#000;border:none;padding:10px 35px;font-size:16px;font-weight:900;border-radius:20px;cursor:pointer;margin-bottom:30px;text-transform:uppercase;}
 .terms-container{max-width:600px;width:100%;text-align:right;direction:rtl;line-height:1.8;}
-.terms-container p{font-size:16px;color:#e0e0e0;margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:10px;}
+.terms-container p{font-size:16px;color:#e0e0e0;margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:10px;font-weight:700;}
 .main-dashboard{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;display:none;flex-direction:column;justify-content:space-between;}
 .dashboard-content{flex:1;width:100%;padding:20px;overflow-y:auto;padding-bottom:100px;display:flex;flex-direction:column;align-items:center;}
-.page-title{font-size:32px;font-weight:900;color:#b8ff1a;margin-bottom:15px;text-transform:uppercase;}
-.user-greeting{font-size:28px;font-weight:900;color:#ffffff;margin-bottom:25px;text-align:center;width:100%;letter-spacing:1px;}
+.page-title{font-size:32px;font-weight:900;color:#b8ff1a;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;}
+
+/* كرت الرصيد الحالي الجذاب */
+.balance-card{width:100%;max-width:450px;background:#111;border:1px solid #222;padding:15px;border-radius:15px;text-align:center;margin-bottom:20px;}
+.balance-text{font-size:18px;font-weight:900;color:#fff;}
+
 .info-section{width:100%;max-width:450px;text-align:right;direction:rtl;margin-bottom:20px;}
-.info-intro{font-size:15px;color:#ccc;line-height:1.6;margin-bottom:20px;background:#111;padding:15px;border-radius:15px;border:1px solid #222;}
+.info-intro{font-size:14px;color:#ccc;line-height:1.6;margin-bottom:20px;background:#111;padding:15px;border-radius:15px;border:1px solid #222;font-weight:700;}
 .tier-card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-bottom:15px;width:100%;}
 .tier-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;padding-bottom:10px;margin-bottom:12px;}
 .tier-name{font-size:18px;font-weight:900;color:#b8ff1a;}
 .tier-price{font-size:16px;font-weight:900;color:#fff;}
-.tier-details{font-size:14px;color:#ddd;line-height:1.8;}
+.tier-details{font-size:14px;color:#ddd;line-height:1.8;font-weight:700;}
 .tier-details strong{color:#b8ff1a;}
 
-.task-list-container {width:100%; max-width:450px; display:flex; flex-direction:column; gap:12px;}
+/* قسم السحب الاحترافي */
+.withdraw-section{width:100%;max-width:450px;background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-top:10px;text-align:right;direction:rtl;}
+.withdraw-title{font-size:18px;font-weight:900;color:#b8ff1a;margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:8px;}
+.withdraw-field{margin-bottom:15px;}
+.withdraw-field label{display:block;font-size:14px;font-weight:700;color:#aaa;margin-bottom:6px;}
+.withdraw-field input, .withdraw-field select{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#050505;color:#fff;font-size:15px;outline:none;font-weight:700;text-align:right;}
+.withdraw-field select{direction:rtl;text-align:right;}
+.withdraw-field input:focus, .withdraw-field select:focus{border-color:#b8ff1a;}
+.withdraw-limit{font-size:13px;color:#ff4a4a;margin-bottom:15px;font-weight:700;text-align:center;}
+.btn-withdraw{width:100%;background:#b8ff1a;color:#000;border:none;padding:14px;font-size:16px;font-weight:900;border-radius:12px;cursor:pointer;transition:opacity .2s;}
+
+/* أشرطة المهام النحيفة والأنيقة */
+.task-list-container {width:100%; max-width:450px; display:flex; flex-direction:column; gap:8px;}
 .task-bar-white {
     width: 100%;
     background: #ffffff;
     color: #000000;
-    padding: 14px 20px;
-    border-radius: 12px;
+    padding: 10px 16px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     direction: ltr;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: transform 0.1s;
 }
-.task-bar-left {display: flex; align-items: center; gap: 10px;}
-.youtube-badge {font-size: 22px;}
-.lock-icon {font-size: 18px;}
-.task-text {font-size: 15px; font-weight: 900;}
+.task-bar-white:active{transform: scale(0.98);}
+.task-bar-left {display: flex; align-items: center; gap: 8px;}
+.youtube-badge {font-size: 18px; color: #ff0000; display: flex; align-items: center;}
+.lock-icon {font-size: 14px; color: #666;}
+.task-text {font-size: 14px; font-weight: 900;}
+
+/* واجهة الإيداع المستقلة */
+.deposit-container{width:100%;max-width:450px;text-align:center;direction:rtl;padding-top:10px;}
+.deposit-info-box{background:#111;border:1px solid #222;border-radius:15px;padding:20px;margin-bottom:15px;}
+.deposit-crypto-type{font-size:20px;font-weight:900;color:#b8ff1a;margin-bottom:10px;}
+.deposit-address-label{font-size:14px;color:#aaa;margin-bottom:8px;font-weight:700;}
+.deposit-address-box{background:#050505;border:1px solid #333;padding:12px;border-radius:10px;font-size:13px;color:#fff;word-break:break-all;font-family:monospace;font-weight:bold;margin-bottom:15px;}
+.deposit-note{font-size:13px;color:#ccc;line-height:1.6;font-weight:700;}
 
 .bottom-nav{width:100%;background:#111;display:flex;justify-content:space-around;align-items:center;padding:10px 0;border-top:1px solid #222;height:85px;position:fixed;bottom:0;left:0;z-index:10001;}
 .nav-item{display:flex;flex-direction:column;align-items:center;color:#888;font-size:12px;cursor:pointer;flex:1;font-weight:bold;text-transform:uppercase;}
@@ -82,8 +113,8 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
         <input type="number" id="statusInput" placeholder="رقم الحالة" required>
     </div>
     <div class="buttons-group">
-        <button class="btn btn-primary" onclick="register()">إنشاء حساب</button>
-        <button class="btn btn-secondary" onclick="login()">تسجيل الدخول</button>
+        <button class="btn btn-primary" id="regBtn" onclick="register()">إنشاء حساب</button>
+        <button class="btn btn-secondary" id="loginBtn" onclick="login()">تسجيل الدخول</button>
     </div>
     <div class="desc">
         Welcome to Nova Platform.<br>We provide comprehensive support for our users.<br><br>
@@ -109,7 +140,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content" id="dashboardContent">
-        <!-- يتم تحميل المحتوى برمجياً -->
+        <!-- يتم تحميل المحتوى برمجياً وبشكل ديناميكي ونظيف هنا -->
     </div>
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('info', this)"><span class="nav-icon">◈</span><span>Info</span></div>
@@ -129,24 +160,50 @@ togglePassword.addEventListener('click', function () {
     this.innerText = type === 'password' ? '👁️' : '🔒';
 });
 
-function handleAuth() {
+// دالة التحكم الحركية للأزرار (جاري التحقيق -> أكتمل الحساب)
+function handleAuth(buttonId) {
     var user = document.getElementById("userInput").value.trim();
     if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
         alert("يرجى ملء جميع الخانات أولاً");
-        return false;
+        return;
     }
+    
     savedUsername = user;
-    document.getElementById("welcomeMessage").innerHTML = `1. مرحبًا بك يا <span style="color:#b8ff1a; font-weight:bold;">${savedUsername}</span> في منصة نوفا.`;
-    document.getElementById("termsOverlay").style.display = "flex";
-    return true;
+    const targetBtn = document.getElementById(buttonId);
+    const originalText = targetBtn.innerText;
+    
+    // المرحلة 1: جاري التحقيق
+    targetBtn.disabled = true;
+    targetBtn.style.background = "#ffa500"; 
+    targetBtn.style.color = "#000";
+    targetBtn.innerText = "جاري التحقيق...";
+    
+    setTimeout(() => {
+        // المرحلة 2: أكتمل الحساب
+        targetBtn.style.background = "#28a745"; 
+        targetBtn.style.color = "#fff";
+        targetBtn.innerText = "أكتمل الحساب ✓";
+        
+        setTimeout(() => {
+            // الانتقال لصفحة الشروط والتعليمات
+            document.getElementById("welcomeMessage").innerHTML = `1. مرحبًا بك يا <span style="color:#b8ff1a; font-weight:bold;">${savedUsername}</span> في منصة نوفا.`;
+            document.getElementById("termsOverlay").style.display = "flex";
+            
+            // إعادة الأزرار لحالتها الطبيعية للمرات القادمة
+            targetBtn.disabled = false;
+            targetBtn.style.background = buttonId === "regBtn" ? "#b8ff1a" : "transparent";
+            targetBtn.style.color = buttonId === "regBtn" ? "#000" : "#fff";
+            targetBtn.innerText = originalText;
+        }, 1200);
+    }, 2000);
 }
 
 function register(){
-    handleAuth();
+    handleAuth("regBtn");
 }
 
 function login(){
-    handleAuth();
+    handleAuth("loginBtn");
 }
 
 function closeOverlay() {
@@ -155,35 +212,106 @@ function closeOverlay() {
     switchTab('info', document.querySelector('.bottom-nav .nav-item'));
 }
 
+function triggerTaskAlert() {
+    alert("حسابك غير فعال يرجى الاشتراك في الباقات في قسم الايداع");
+}
+
+function triggerWithdrawAlert() {
+    alert("رصيدك غير كافي");
+}
+
 function switchTab(tabName, element) {
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     element.classList.add('active');
     
     const content = document.getElementById("dashboardContent");
+    
     if(tabName === 'info') {
         content.innerHTML = `
             <div class="page-title">NOVA</div>
-            <div class="user-greeting">مرحباً بك، ${savedUsername}</div>
+            
+            <div class="balance-card">
+                <div class="balance-text">رصيدك هو غير متاح 0.00USDT</div>
+            </div>
+
             <div class="info-section">
                 <div class="info-intro">منصة نوفا تقدم لك أفضل الفرص لزيادة دخلك من خلال إتمام المهام اليومية البسيطة. تصفح تفاصيل الاشتراكات المتاحة أدناه.</div>
+                
                 <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">المستوى العادي</span><span class="tier-price">مجاني</span></div>
-                    <div class="tier-details">عدد المهام اليومية: <strong>3 مهام</strong><br>الربح المتوقع شهرياً: <strong>قيمة أساسية</strong></div>
+                    <div class="tier-header"><span class="tier-name">المستوى العادي</span><span class="tier-price">10 USDT</span></div>
+                    <div class="tier-details">عدد المهام اليومية: <strong>3 مهام</strong><br>الربح اليومي: <strong>1.50 USDT</strong></div>
                 </div>
+                
                 <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">المستوى البرونزي</span><span class="tier-price">$29 / شهر</span></div>
-                    <div class="tier-details">عدد المهام اليومية: <strong>7 مهام</strong><br>أرباح مضاعفة بنسبة <strong>1.5x</strong> عوائد أسرع.</div>
+                    <div class="tier-header"><span class="tier-name">المستوى البرونزي</span><span class="tier-price">35 USDT</span></div>
+                    <div class="tier-details">عدد المهام اليومية: <strong>7 مهام</strong><br>الربح اليومي: <strong>5.00 USDT</strong></div>
                 </div>
-            </div>`;
+
+                <div class="tier-card">
+                    <div class="tier-header"><span class="tier-name">مستوى الذهب</span><span class="tier-price">100 USDT</span></div>
+                    <div class="tier-details">عدد المهام اليومية: <strong>15 مهمة</strong><br>الربح اليومي: <strong>15.00 USDT</strong></div>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-header"><span class="tier-name">مستوى الملك</span><span class="tier-price">1000 USDT</span></div>
+                    <div class="tier-details">عدد المهام اليومية: <strong>30 مهمة</strong><br>الربح اليومي: <strong>160.00 USDT</strong></div>
+                </div>
+            </div>
+
+            <div class="withdraw-section">
+                <div class="withdraw-title">سحب الأرباح</div>
+                
+                <div class="withdraw-field">
+                    <label>عنوان المحفظة</label>
+                    <input type="text" placeholder="أدخل عنوان محفظتك الشخصية">
+                </div>
+
+                <div class="withdraw-field">
+                    <label>اختر الشبكة</label>
+                    <select>
+                        <option>TRC-20 (TRON)</option>
+                        <option>ERC-20 (Ethereum)</option>
+                        <option>BEP-20 (BNB Chain)</option>
+                        <option>Polygon</option>
+                    </select>
+                </div>
+
+                <div class="withdraw-field">
+                    <label>الكمية (USDT)</label>
+                    <input type="number" placeholder="0.00">
+                </div>
+
+                <div class="withdraw-limit">الحد الاقصى هو 5دولار للسحب</div>
+                
+                <button class="btn-withdraw" onclick="triggerWithdrawAlert()">سحب</button>
+            </div>
+        `;
     } else if(tabName === 'deposit') {
-        content.innerHTML = `<div class="page-title">Deposit</div><div class="user-greeting" style="font-size:18px; color:#aaa;">بوابة الإيداع وتفعيل المستويات ستكون متوفرة قريباً.</div>`;
-    } else if(tabName === 'tasks') {
         content.innerHTML = `
-            <div class="page-title">Tasks</div>
-            <div class="task-list-container">
-                <div class="task-bar-white"><div class="task-bar-left"><span class="lock-icon">🔒</span><span class="task-text">Task #1 - Watch Video</span></div><span class="youtube-badge">▶</span></div>
-                <div class="task-bar-white"><div class="task-bar-left"><span class="lock-icon">🔒</span><span class="task-text">Task #2 - Watch Video</span></div><span class="youtube-badge">▶</span></div>
-            </div>`;
+            <div class="page-title">DEPOSIT</div>
+            <div class="deposit-container">
+                <div class="deposit-info-box">
+                    <div class="deposit-crypto-type">USDT (TRC-20)</div>
+                    <div class="deposit-address-label">عنوان محفظة الشحن الموحدة للمنصة:</div>
+                    <div class="deposit-address-box">TY7rXmN9sWqE1pB5vK3zA8xG2jH6dQf4LnM</div>
+                    <div class="deposit-note">يرجى تحويل قيمة الباقة التي ترغب في تفعيلها (10, 35, 100, 1000 USDT) إلى العنوان أعلاه، ثم قم بإرسال لقطة شاشة لإثبات التحويل للدعم الفني لتنشيط حسابك فوراً.</div>
+                </div>
+            </div>
+        `;
+    } else if(tabName === 'tasks') {
+        let tasksHTML = `<div class="page-title">Tasks</div><div class="task-list-container">`;
+        for (let i = 1; i <= 40; i++) {
+            tasksHTML += `
+                <div class="task-bar-white" onclick="triggerTaskAlert()">
+                    <div class="task-bar-left">
+                        <span class="lock-icon">🔒</span>
+                        <span class="task-text">Watch YouTube Video #${i}</span>
+                    </div>
+                    <span class="youtube-badge"><i class="fa-brands fa-youtube"></i></span>
+                </div>`;
+        }
+        tasksHTML += `</div>`;
+        content.innerHTML = tasksHTML;
     }
 }
 </script>
