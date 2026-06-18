@@ -6,7 +6,7 @@
 <title>NOVA</title>
 <!-- استدعاء خط Cairo الاحترافي المحدث من قوقل بجميع الأوزان العريضة -->
 <link href="https://googleapis.com" rel="stylesheet">
-<!-- ربط مكتبة Font Awesome لأيقونة يوتيوب الاحترافية -->
+<!-- ربط مكتبة Font Awesome العالمية للأيقونات بشكل مباشر ومضمون -->
 <link rel="stylesheet" href="https://cloudflare.com">
 <style>
 /* تطبيق الخط العريض والاحترافي على الموقع بالكامل */
@@ -76,8 +76,8 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 }
 .task-bar-white:active{transform: scale(0.98);}
 .task-bar-left {display: flex; align-items: center; gap: 8px;}
-.youtube-badge {font-size: 18px; color: #ff0000; display: flex; align-items: center;}
-.lock-icon {font-size: 14px; color: #666;}
+.youtube-badge {font-size: 20px; color: #ff0000; display: flex; align-items: center;}
+.lock-icon {font-size: 14px; color: #e6a23c; margin-right: 4px;}
 .task-text {font-size: 14px; font-weight: 900;}
 
 /* واجهة الإيداع المستقلة */
@@ -306,7 +306,8 @@ function switchTab(tabName, element) {
                         <span class="lock-icon">🔒</span>
                         <span class="task-text">Watch YouTube Video #${i}</span>
                     </div>
-                    <span class="youtube-badge"><i class="fa-brands fa-youtube"></i></span>
+                    <!-- تم تعديل استدعاء أيقونة يوتيوب الحمراء لتعمل فوراً على المتصفح -->
+                    <span class="youtube-badge"><i class="fab fa-youtube"></i></span>
                 </div>`;
         }
         tasksHTML += `</div>`;
