@@ -29,8 +29,9 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 .terms-container p{font-size:16px;color:#e0e0e0;margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:10px;}
 .main-dashboard{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;display:none;flex-direction:column;justify-content:space-between;}
 .dashboard-content{flex:1;width:100%;padding:20px;overflow-y:auto;padding-bottom:100px;display:flex;flex-direction:column;align-items:center;}
-.page-title{font-size:32px;font-weight:900;color:#b8ff1a;margin-bottom:10px;text-transform:uppercase;}
-.user-greeting{font-size:20px;font-weight:700;color:#fff;margin-bottom:25px;background:linear-gradient(90deg, #111, #221);padding:10px 25px;border-radius:30px;border:1px dashed #b8ff1a;}
+.page-title{font-size:32px;font-weight:900;color:#b8ff1a;margin-bottom:15px;text-transform:uppercase;}
+/* التعديل الجديد للترحيب: بدون أي خلفيات أو حدود وبخط عريض فخم */
+.user-greeting{font-size:26px;font-weight:900;color:#fff;margin-bottom:25px;text-align:center;width:100%;letter-spacing:0.5px;}
 .info-section{width:100%;max-width:450px;text-align:right;direction:rtl;margin-bottom:20px;}
 .info-intro{font-size:15px;color:#ccc;line-height:1.6;margin-bottom:20px;background:#111;padding:15px;border-radius:15px;border:1px solid #222;}
 .tier-card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-bottom:15px;width:100%;}
@@ -73,7 +74,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
     </div>
 </div>
 
-<div id="termsOverlay" class="overlay-screen">
+    <div id="termsOverlay" class="overlay-screen">
     <button class="btn-next" onclick="closeOverlay()">Next</button>
     <div class="terms-container">
         <p>1. مرحبًا بكم في منصة نوفا.</p>
@@ -91,7 +92,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content" id="dashboardContent">
-        <!-- سيتم كتابة محتوى الترحيب بالاسم هنا تلقائياً بواسطة الجافاسكريبت -->
+        <!-- يتم جلب الترحيب وعرضه بالاسم المناسب برمجياً هنا -->
     </div>
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('info', this)"><span class="nav-icon">◈</span><span>Info</span></div>
@@ -101,7 +102,6 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 </div>
 
 <script>
-// متغير لحفظ اسم المستخدم المسجل للترحيب به
 var savedUsername = "المستخدم";
 
 const togglePassword = document.querySelector('#togglePassword');
@@ -117,7 +117,7 @@ function login(){
     if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
         alert("الرجاء ملء جميع الحقول أولاً بما فيها رقم الحالة.");
     } else { 
-        savedUsername = user; // حفظ الاسم عند تسجيل الدخول
+        savedUsername = user;
         alert("تسجيل الدخول متاح للحسابات المفعلة فقط."); 
     }
 }
@@ -127,7 +127,7 @@ function register(){
     if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
         alert("الرجاء إدخال جميع البيانات ورقم الحالة أولاً.");
     } else { 
-        savedUsername = user; // حفظ الاسم الذي كتبه المستخدم فوراً
+        savedUsername = user;
         document.getElementById("termsOverlay").style.display = "flex"; 
     }
 }
@@ -135,7 +135,6 @@ function register(){
 function closeOverlay() {
     document.getElementById("termsOverlay").style.display = "none";
     document.getElementById("mainDashboard").style.display = "flex";
-    // فتح صفحة المعلومات افتراضياً لكي تظهر رسالة الترحيب باسمه فور الدخول
     switchTab('info', document.querySelector('.bottom-nav .nav-item'));
 }
 
@@ -147,7 +146,7 @@ function switchTab(tabName, element) {
     if(tabName === 'info') {
         content.innerHTML = `
             <h2 class="page-title">INFO PAGE</h2>
-            <div class="user-greeting">مرحباً بك، ${savedUsername}! 👋</div>
+            <div class="user-greeting">مرحباً بك، ${savedUsername} 👋</div>
             <div class="info-section">
                 <div class="info-intro">
                     <strong>ABOUT NOVA PLATFORM / عن منصة نوفا:</strong><br>
@@ -172,9 +171,9 @@ function switchTab(tabName, element) {
                 </div>
             </div>`;
     } else if(tabName === 'deposit') {
-        content.innerHTML = `<h2 class="page-title">DEPOSIT PAGE</h2><div class="user-greeting">حساب: ${savedUsername}</div><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة الإيداع...</div>`;
+        content.innerHTML = `<h2 class="page-title">DEPOSIT PAGE</h2><div class="user-greeting">مرحباً بك، ${savedUsername} 👋</div><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة الإيداع...</div>`;
     } else if(tabName === 'tasks') {
-        content.innerHTML = `<h2 class="page-title">TASKS PAGE</h2><div class="user-greeting">المستكشف: ${savedUsername}</div><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة المهام...</div>`;
+        content.innerHTML = `<h2 class="page-title">TASKS PAGE</h2><div class="user-greeting">مرحباً بك، ${savedUsername} 👋</div><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة المهام...</div>`;
     }
 }
 </script>
