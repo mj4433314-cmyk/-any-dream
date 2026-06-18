@@ -94,7 +94,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 <div id="termsOverlay" class="overlay-screen">
     <button class="btn-next" onclick="closeOverlay()">Next</button>
     <div class="terms-container">
-        <p>1. مرحبًا بكم في منصة نوفا.</p>
+        <p id="welcomeMessage">1. مرحبًا بكم في منصة نوفا.</p>
         <p>2. منصة نوفا هي وجهتكم لتحقيق الأرباح بعد إتمام المهام المطلوبة.</p>
         <p>3. تعتمد المهام على مشاهدة مقاطع فيديو من يوتيوب.</p>
         <p>4. لا تتجاوز مدة كل مقطع دقيقة واحدة.</p>
@@ -109,7 +109,7 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content" id="dashboardContent">
-        <!-- يتم تحميل المحتوى النظيف هنا برمجياً -->
+        <!-- يتم تحميل المحتوى برمجياً -->
     </div>
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('info', this)"><span class="nav-icon">◈</span><span>Info</span></div>
@@ -129,18 +129,24 @@ togglePassword.addEventListener('click', function () {
     this.innerText = type === 'password' ? '👁️' : '🔒';
 });
 
-function login(){
-    var user = document.getElementById("userInput").value;
+function handleAuth() {
+    var user = document.getElementById("userInput").value.trim();
     if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
-        alert("الرجاء ملء جميع الحقول أولاً بما فيها رقم الحالة.");
-    } else { savedUsername = user; alert("تسجيل الدخول متاح للحسابات المفعلة فقط."); }
+        alert("يرجى ملء جميع الخانات أولاً");
+        return false;
+    }
+    savedUsername = user;
+    document.getElementById("welcomeMessage").innerHTML = `1. مرحبًا بك يا <span style="color:#b8ff1a; font-weight:bold;">${savedUsername}</span> في منصة نوفا.`;
+    document.getElementById("termsOverlay").style.display = "flex";
+    return true;
 }
 
 function register(){
-    var user = document.getElementById("userInput").value;
-    if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
-        alert("الرجاء إدخال جميع البيانات ورقم الحالة أولاً.");
-    } else { savedUsername = user; document.getElementById("termsOverlay").style.display = "flex"; }
+    handleAuth();
+}
+
+function login(){
+    handleAuth();
 }
 
 function closeOverlay() {
@@ -152,55 +158,31 @@ function closeOverlay() {
 function switchTab(tabName, element) {
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     element.classList.add('active');
-    const content = document.getElementById('dashboardContent');
     
+    const content = document.getElementById("dashboardContent");
     if(tabName === 'info') {
         content.innerHTML = `
-            <h2 class="page-title">INFO PAGE</h2>
+            <div class="page-title">NOVA</div>
             <div class="user-greeting">مرحباً بك، ${savedUsername}</div>
             <div class="info-section">
-                <div class="info-intro">
-                    <strong>ABOUT NOVA PLATFORM / عن منصة نوفا:</strong><br>
-                    Welcome to Nova Platform, your destination to earn income by completing daily tasks. Our system offers flexible subscription plans tailored to maximize your rewards.<br>
-                    مرحباً بكم في منصة نوفا، وجهتكم لتحقيق دخل إضافي من خلال إتمام مهام يومية بسيطة. يوفر نظامنا خطط اشتراك مرنة مصممة لزيادة مكافآتك اليومية.
+                <div class="info-intro">منصة نوفا تقدم لك أفضل الفرص لزيادة دخلك من خلال إتمام المهام اليومية البسيطة. تصفح تفاصيل الاشتراكات المتاحة أدناه.</div>
+                <div class="tier-card">
+                    <div class="tier-header"><span class="tier-name">المستوى العادي</span><span class="tier-price">مجاني</span></div>
+                    <div class="tier-details">عدد المهام اليومية: <strong>3 مهام</strong><br>الربح المتوقع شهرياً: <strong>قيمة أساسية</strong></div>
                 </div>
                 <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">1. BRONZE TIER / باقة البرونز</span><span class="tier-price">$10</span></div>
-                    <div class="tier-details">• <strong>Subscription:</strong> $10 (Valid for 30 Days)<br>• <strong>Daily Profit:</strong> $2 | <strong>Monthly:</strong> $60<br>• <strong>Required Videos:</strong> 5 Daily Videos</div>
-                </div>
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">2. SILVER TIER / باقة الفضة</span><span class="tier-price">$35</span></div>
-                    <div class="tier-details">• <strong>Subscription:</strong> $35 (Valid for 30 Days)<br>• <strong>Daily Profit:</strong> $7 | <strong>Monthly:</strong> $210<br>• <strong>Required Videos:</strong> 10 Daily Videos</div>
-                </div>
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">3. GOLD TIER / باقة الذهب</span><span class="tier-price">$100</span></div>
-                    <div class="tier-details">• <strong>Subscription:</strong> $100 (Valid for 30 Days)<br>• <strong>Daily Profit:</strong> $20 | <strong>Monthly:</strong> $600<br>• <strong>Required Videos:</strong> 15 Daily Videos</div>
-                </div>
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">4. VIP TIER / باقة كبار الشخصيات</span><span class="tier-price">$1000</span></div>
-                    <div class="tier-details">• <strong>Subscription:</strong> $1000 (Valid for 30 Days)<br>• <strong>Daily Profit:</strong> $200 | <strong>Monthly:</strong> $6000<br>• <strong>Required Videos:</strong> 25 Daily Videos</div>
+                    <div class="tier-header"><span class="tier-name">المستوى البرونزي</span><span class="tier-price">$29 / شهر</span></div>
+                    <div class="tier-details">عدد المهام اليومية: <strong>7 مهام</strong><br>أرباح مضاعفة بنسبة <strong>1.5x</strong> عوائد أسرع.</div>
                 </div>
             </div>`;
     } else if(tabName === 'deposit') {
-        // تم مسح الجملة الترحيبية من هنا لتكون الواجهة نظيفة تماماً
-        content.innerHTML = `<h2 class="page-title">DEPOSIT PAGE</h2><div style="font-size:18px; color:#aaa; text-align:center; margin-top:50px;">جاري تجهيز واجهة الإيداع...</div>`;
+        content.innerHTML = `<div class="page-title">Deposit</div><div class="user-greeting" style="font-size:18px; color:#aaa;">بوابة الإيداع وتفعيل المستويات ستكون متوفرة قريباً.</div>`;
     } else if(tabName === 'tasks') {
-        // تم مسح الجملة الترحيبية من هنا لتظهر الأشرطة البيضاء مباشرة
-        let taskBars = '';
-        for(let i = 1; i <= 10; i++) {
-            taskBars += `
-                <div class="task-bar-white">
-                    <div class="task-bar-left">
-                        <span class="youtube-badge">🟥</span>
-                        <span class="task-text">TASK 0${i}</span>
-                    </div>
-                    <span class="lock-icon">🔒</span>
-                </div>`;
-        }
         content.innerHTML = `
-            <h2 class="page-title">TASKS PAGE</h2>
+            <div class="page-title">Tasks</div>
             <div class="task-list-container">
-                ${taskBars}
+                <div class="task-bar-white"><div class="task-bar-left"><span class="lock-icon">🔒</span><span class="task-text">Task #1 - Watch Video</span></div><span class="youtube-badge">▶</span></div>
+                <div class="task-bar-white"><div class="task-bar-left"><span class="lock-icon">🔒</span><span class="task-text">Task #2 - Watch Video</span></div><span class="youtube-badge">▶</span></div>
             </div>`;
     }
 }
