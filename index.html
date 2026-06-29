@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNACK TOK - Register</title>
+<title>NOVA PLATFORM</title>
 <link rel="preconnect" href="https://googleapis.com">
 <link rel="preconnect" href="https://gstatic.com" crossorigin>
 <link href="https://googleapis.com" rel="stylesheet">
@@ -11,40 +11,27 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Almarai',sans-serif; font-weight:800; }
 body { background:#000; color:#fff; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:15px; }
 .container { max-width:440px; width:100%; text-align:center; background:#000; padding:20px 10px; }
-.logo { font-size:48px; font-weight:800; color:#b8ff1a; margin-bottom:8px; letter-spacing:1px; text-shadow:0 0 25px rgba(184,255,26,0.3); }
-.welcome { font-size:22px; color:#fff; margin-bottom:35px; font-weight:800; }
+.logo { font-size:56px; font-weight:800; color:#b8ff1a; margin-bottom:8px; letter-spacing:1px; text-shadow:0 0 25px rgba(184,255,26,0.3); }
+.welcome { font-size:20px; color:#ccc; margin-bottom:35px; line-height:1.5; letter-spacing:0.5px; }
 .auth-container { display:flex; flex-direction:column; gap:16px; margin-bottom:28px; width:100%; }
-
-/* تنسيق حقل رقم الهاتف مع مفتاح الدولة */
-.phone-wrapper { display: flex; width: 100%; gap: 10px; direction: ltr; }
-.country-select { width: 110px; padding: 18px 10px; border-radius: 16px; border: 1px solid #222; background: rgba(20,20,20,0.8); color: #fff; font-size: 16px; outline: none; text-align: center; cursor: pointer; font-weight: 700; }
-.phone-input { flex: 1; padding: 18px 20px; border-radius: 16px; border: 1px solid #222; background: rgba(20,20,20,0.8); color: #fff; font-size: 16px; text-align: left; outline: none; transition: all 0.25s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
-
-/* تنسيق حقول الإدخال العادية */
-.auth-container input:not(.phone-input) { width:100%; padding:18px 20px; border-radius:16px; border:1px solid #222; background:rgba(20,20,20,0.8); color:#fff; font-size:16px; text-align:right; outline:none; transition:all 0.25s ease; box-shadow:inset 0 2px 4px rgba(0,0,0,0.5); }
-.auth-container input:focus, .country-select:focus { border-color:#b8ff1a; background:rgba(30,35,20,0.6); box-shadow:0 0 12px rgba(184,255,26,0.15); }
-
-/* تنسيق حقل رمز التحقق */
-.captcha-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
-.btn-get-code { position: absolute; left: 12px; background: #b8ff1a; color: #000; border: none; padding: 10px 14px; border-radius: 12px; font-size: 13px; cursor: pointer; font-weight: 800; z-index: 5; }
-
+.auth-container input { width:100%; padding:18px 20px; border-radius:16px; border:1px solid #222; background:rgba(20,20,20,0.8); color:#fff; font-size:16px; text-align:left; outline:none; transition:all 0.25s ease; box-shadow:inset 0 2px 4px rgba(0,0,0,0.5); }
+.auth-container input:focus { border-color:#b8ff1a; background:rgba(30,35,20,0.6); box-shadow:0 0 12px rgba(184,255,26,0.15); }
 .buttons-group { display:flex; gap:14px; width:100%; margin-bottom:30px; }
 .btn { flex:1; padding:18px; border:none; border-radius:16px; font-size:17px; cursor:pointer; transition:all 0.25s ease; display:flex; justify-content:center; align-items:center; }
 .btn-primary { background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; box-shadow:0 5px 15px rgba(184,255,26,0.25); }
-
-/* بقية واجهات لوحة التحكم */
+.btn-secondary { background:transparent; color:#fff; border:2px solid #b8ff1a; }
 .main-dashboard { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:none; flex-direction:column; justify-content:space-between; }
 .dashboard-content { flex:1; width:100%; padding:20px 15px; overflow-y:auto; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
 .tab-content { display:none; width:100%; max-width:440px; }
 .tab-content.active { display:block; }
 .page-title { font-size:24px; color:#b8ff1a; text-align:center; margin-bottom:25px; font-weight:800; }
-.task-container-blocks { width:100%; display:flex; flex-direction:column; gap:16px; align-items:center; padding-top:10px; }
-.task-block-new { display: flex; width: 100%; max-width: 400px; height: 56px; background: #ffffff; border-radius: 12px; overflow: hidden; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 4px 15px rgba(255,255,255,0.05); transition: transform 0.2s ease; }
+.task-container-blocks { width:100%; display:flex; flex-direction:column; gap:10px; align-items:center; padding-top:5px; }
+.task-block-new { display: flex; width: 100%; max-width: 400px; height: 44px; background: #ffffff; border-radius: 10px; overflow: hidden; align-items: center; justify-content: space-between; cursor: pointer; box-shadow: 0 4px 12px rgba(255,255,255,0.03); transition: transform 0.2s ease; }
 .task-block-new:active { transform: scale(0.98); }
-.new-task-number { font-size: 24px; font-weight: 800; color: #000000; padding: 0 18px; }
-.new-task-center { font-size: 20px; font-weight: 800; color: #000000; letter-spacing: 0.5px; }
-.new-task-yt-icon { width: 64px; height: 100%; background: #ff0000; border-radius: 0 12px 12px 0; display: flex; justify-content: center; align-items: center; }
-.new-task-yt-icon svg { width: 26px; height: 26px; fill: #ffffff; }
+.new-task-number { font-size: 20px; font-weight: 800; color: #000000; padding: 0 15px; }
+.new-task-center { font-size: 18px; font-weight: 800; color: #000000; letter-spacing: 0.5px; }
+.new-task-yt-icon { width: 52px; height: 100%; background: #ff0000; border-radius: 0 10px 10px 0; display: flex; justify-content: center; align-items: center; }
+.new-task-yt-icon svg { width: 22px; height: 22px; fill: #ffffff; }
 .tier-card-new { background:#ffffff; color:#000; border-radius:28px; padding:25px 20px; margin-bottom:16px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; flex-direction: row-reverse; }
 .tier-header-new { display:flex; flex-direction:column; align-items:flex-start; text-align:right; gap:6px; flex:1; }
 .tier-name-new { font-size:26px; font-weight:800; }
@@ -61,7 +48,6 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 .stat-value { font-size:16px; font-weight:700; margin-top:3px; }
 .wallet-actions { display:flex; gap:10px; margin-bottom:20px; }
 .w-btn { flex:1; padding:14px; border-radius:14px; font-size:15px; border:none; cursor:pointer; text-align:center; font-weight: 800; }
-.w-btn-deposit { background:#000; color:#fff; }
 .w-btn-withdraw { background:#ffcc00; color:#000; }
 .withdraw-form { border-top:1px solid #eee; padding-top:20px; display:none; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px;}
 .withdraw-form.active { display:block; }
@@ -93,46 +79,26 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 <body>
     <div class="container" id="authScreen">
     <div class="logo">LOGO</div>
-    <div class="welcome">إنشاء حساب</div>
+    <div class="welcome">مرحباً بك</div>
     <div class="auth-container">
-        <!-- حقل رقم الهاتف مع قائمة مفاتيح الدول الأكثر استخداماً عربياً وعالمياً -->
-        <div class="phone-wrapper">
-            <input type="tel" class="phone-input" placeholder="رقم الهاتف" required>
-            <select class="country-select">
-                <option value="+20">🇪🇬 +20</option>
-                <option value="+966">🇸🇦 +966</option>
-                <option value="+964" selected>🇮🇶 +964</option>
-                <option value="+971">🇦🇪 +971</option>
-                <option value="+213">🇩🇿 +213</option>
-                <option value="+962">🇯🇴 +962</option>
-                <option value="+1">🇺🇸 +1</option>
-            </select>
-        </div>
-        
+        <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required>
         <input type="password" id="passwordInput" placeholder="كلمة المرور" required>
-        
-        <!-- حقل رمز التحقق المخصص والمطابق للموقع -->
-        <div class="captcha-wrapper">
-            <button class="btn-get-code" onclick="alert('تم إرسال رمز التحقق!')">احصل على الرمز</button>
-            <input type="text" placeholder="رمز التحقق" required style="padding-left: 120px !important;">
-        </div>
-        
-        <!-- حقل رمز الدعوة ممتلئ تلقائياً بالكود الخاص بك -->
-        <input type="text" value="900klxp623" placeholder="رمز الدعوة" required style="text-align: right; color:#b8ff1a;">
+        <input type="text" id="loginStatusID" placeholder="رمز الحالة (ID)" required style="text-align: right;">
     </div>
-    
-    <div class="buttons-group">
-        <button class="btn btn-primary" id="loginBtn">إنشاء حساب</button>
+    <div class="buttons-group" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+        <button class="btn btn-primary" id="loginBtn" style="width: 100%;">تسجيل الدخول</button>
+        <button class="btn btn-secondary" id="registerBtn" style="width: 100%; border: 2px solid #b8ff1a; background: transparent; color: #fff;">إنشاء حساب</button>
     </div>
 </div>
 
 <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
+        <!-- التبويب 1: صفحة المهام الـ 20 بدون العنوان العلوي -->
         <div class="tab-content active" id="tab-tasks">
-            <h2 class="page-title">المهام اليومية</h2>
             <div class="task-container-blocks" id="dynamicTasksContainer"></div>
         </div>
 
+        <!-- التبويب 2: صفحة مستويات الترقية (VIP) -->
         <div class="tab-content" id="tab-vip">
             <h2 class="page-title">مستويات الترقية</h2>
             <div class="tier-card-new">
@@ -161,6 +127,7 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
             </div>
         </div>
 
+        <!-- التبويب 3: المحفظة بدون زر إيداع وتصفير الأرباح -->
         <div class="tab-content" id="tab-wallet">
             <h2 class="page-title">المحفظة المالية</h2>
             <div class="wallet-container">
@@ -169,7 +136,7 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
                 <div class="wallet-stats">
                     <div class="stat-box">
                         <span class="stat-title">إجمالي الأرباح المستلمة</span>
-                        <span class="stat-value" style="color: #28a745;">USDT 1.00</span>
+                        <span class="stat-value" style="color: #28a745;">USDT 0.00</span>
                     </div>
                     <div class="stat-box">
                         <span class="stat-title">إجمالي السحوبات</span>
@@ -177,8 +144,7 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
                     </div>
                 </div>
                 <div class="wallet-actions">
-                    <button class="w-btn w-btn-deposit" id="depositToggle">إيداع</button>
-                    <button class="w-btn w-btn-withdraw" id="withdrawToggle">سحب</button>
+                    <button class="w-btn w-btn-withdraw" id="withdrawToggle" style="width: 100%;">سحب</button>
                 </div>
                 <div class="withdraw-form" id="withdrawFormBlock">
                     <div class="withdraw-field-group">
@@ -207,49 +173,70 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
             </div>
         </div>
 
+        <!-- التبويب 4: الملف الشخصي بدون عضو عادي -->
         <div class="tab-content" id="tab-profile">
-            <h2 class="page-title">الملف الشخصي</h2>
+            <h2 class="page-title" style="color: #b8ff1a; margin-bottom: 25px;">الملف الشخصي</h2>
             <div class="profile-section">
-                <div class="profile-item"><span id="prof-username">User_Nova</span><span>اسم المستخدم</span></div>
-                <div class="profile-item"><span id="prof-email">user@nova.com</span><span>الهاتف الموثق</span></div>
-                <div class="profile-item"><span style="color:#b8ff1a;">عضو عادي</span><span>المستوى الحالي</span></div>
+                <div class="profile-item"><span id="prof-username">مستخدم جديد</span><span>اسم المستخدم</span></div>
+                <div class="profile-item"><span id="prof-id" style="color: #fff; font-family: monospace; font-size: 16px;">NOVA-XXXXXX</span><span>رمز الحالة (ID)</span></div>
             </div>
-            <button class="btn btn-secondary" id="logoutBtn" style="width:100%; border-color:#ff4d4d; color:#ff4d4d; margin-top: 15px;">تسجيل الخروج</button>
+            <button class="btn btn-secondary" id="logoutBtn" style="width:100%; border-color:#ff4d4d; color:#ff4d4d; margin-top: 25px; background: transparent; height: 55px; border-radius: 16px;">تسجيل الخروج</button>
         </div>
     </div>
 
+    <!-- شريط التنقل السفلي باللغة الإنجليزية بالكامل -->
     <nav class="bottom-nav">
-        <div class="nav-item" data-tab="tab-profile"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div><span>حسابي</span></div>
-        <div class="nav-item" data-tab="tab-wallet"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span>المحفظة</span></div>
-        <div class="nav-item" data-tab="tab-vip"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4l6.3 11H5.7L12 6zm-1 8h2v2h-2v-2zm0-4h2v2h-2v-2z"/></svg></div><span>VIP</span></div>
-        <div class="nav-item active" data-tab="tab-tasks"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><span>المهام</span></div>
+        <div class="nav-item" data-tab="tab-profile"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div><span>INFO</span></div>
+        <div class="nav-item" data-tab="tab-wallet"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span>WITHDRAW</span></div>
+        <div class="nav-item" data-tab="tab-vip"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4l6.3 11H5.7L12 6zm-1 8h2v2h-2v-2zm0-4h2v2h-2v-2z"/></svg></div><span>TIERS</span></div>
+        <div class="nav-item active" data-tab="tab-tasks"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><span>TASKS</span></div>
     </nav>
 </div>
-
-<div id="tierModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:20000; justify-content:center; align-items:center; padding:15px;">
-    <div style="background:#111; border:2px solid #b8ff1a; border-radius:24px; max-width:400px; width:100%; padding:25px; text-align:center; box-shadow:0 0 30px rgba(184,255,26,0.2);">
-        <h3 id="modalTierName" style="color:#b8ff1a; font-size:24px; margin-bottom:10px; font-weight:800;">تفعيل الباقة</h3>
-        <p style="color:#ccc; font-size:15px; margin-bottom:20px; font-weight:400;">لتفعيل هذه الباقة، يرجى تحويل مبلغ <span id="modalTierPrice" style="color:#fff; font-weight:800;"></span> USDT إلى المحفظة التالية:</p>
-        <div style="background:#222; padding:12px; border-radius:14px; margin-bottom:20px; display:flex; align-items:center; gap:10px; justify-content:space-between; border:1px solid #333;">
-            <button onclick="copyWalletAddress()" style="background:#b8ff1a; color:#000; border:none; padding:8px 15px; border-radius:10px; font-size:13px; cursor:pointer; font-weight:800; white-space:nowrap;">نسخ</button>
-            <span id="walletAddressSpan" style="color:#fff; font-size:12px; word-break:break-all; text-align:left; direction:ltr; font-weight:700; flex:1;">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</span>
+<!-- النوافذ الاحترافية المعدلة والمضمونة لعرض المحفظة كاملة على سطر واحد -->
+<div id="passwordCheckModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:20000; justify-content:center; align-items:center; padding:16px;">
+    <div style="background:linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(10,10,10,0.98) 100%); border:1px solid rgba(255,204,0,0.3); border-radius:28px; max-width:390px; width:100%; padding:30px 24px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.5);">
+        <div style="width:60px; height:60px; background:rgba(255,204,0,0.1); border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 auto 16px;"><svg viewBox="0 0 24 24" style="width:28px; height:28px; fill:#ffcc00;"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+        <h3 style="color:#fff; font-size:22px; margin-bottom:8px;">مطلوب رمز التفعيل</h3>
+        <p style="color:#aaa; font-size:14px; margin-bottom:24px; line-height:1.5;">يرجى إدخال كلمة السر الخاصة بالتفعيل للمتابعة والوصول لمحفظة الدفع</p>
+        <input type="password" id="tierActivationPassword" placeholder="••••••••" style="width:100%; padding:16px; border-radius:16px; border:1px solid #222; background:rgba(30,30,30,0.6); color:#fff; font-size:22px; text-align:center; outline:none; margin-bottom:24px; font-weight:700; letter-spacing:4px; box-shadow:inset 0 2px 4px rgba(0,0,0,0.3);">
+        <div style="display:flex; gap:12px; width:100%;">
+            <button onclick="closePasswordModal()" style="flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:15px; border-radius:16px; font-size:15px; cursor:pointer;">إغلاق</button>
+            <button onclick="verifyTierPassword()" style="flex:1; background:linear-gradient(135deg, #ffcc00 0%, #e6b800 100%); color:#000; border:none; padding:15px; border-radius:16px; font-size:15px; cursor:pointer;">تأكيد الرمز</button>
         </div>
-        <p style="color:#ffcc00; font-size:12px; margin-bottom:25px; line-height:1.4; font-weight:400;">⚠️ تأكد من إرسال الشبكة الصحيحة USDT (TRC20) لضمان تفعيل اشتراكك بنجاح.</p>
-        <div style="display:flex; gap:10px;"><button onclick="closeTierPopup()" style="flex:1; background:transparent; border:2px solid #555; color:#fff; padding:14px; border-radius:14px; font-size:15px; cursor:pointer; font-weight:800;">إغلاق</button></div>
     </div>
 </div>
+
+<div id="tierModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:20001; justify-content:center; align-items:center; padding:12px;">
+    <div style="background:linear-gradient(135deg, #0f0f0f 0%, #050505 100%); border:1px solid rgba(184,255,26,0.3); border-radius:28px; max-width:420px; width:100%; padding:32px 16px 24px; text-align:center; box-shadow:0 25px 60px rgba(0,0,0,0.6);">
+        <h3 id="modalTierName" style="color:#b8ff1a; font-size:24px; margin-bottom:10px;">تفعيل الباقة</h3>
+        <p style="color:#aaa; font-size:14px; margin-bottom:24px; line-height:1.6;">لتفعيل اشتراكك بنجاح، يرجى إرسال مبلغ دقيق بقيمة <span id="modalTierPrice" style="color:#fff; font-weight:800; font-size:16px; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;"></span> USDT إلى عنوان محفظة المنصة الآمن التالي:</p>
+        
+        <div style="background:#141414; padding:14px 10px; border-radius:18px; margin-bottom:12px; border:1px solid #222; width:100%; box-sizing:border-box; text-align:left; overflow:hidden;">
+            <span id="walletAddressSpan" style="color:#fff; font-size:10px; direction:ltr; display:block; font-weight:700; white-space:nowrap; font-family:monospace; letter-spacing:0.3px; width:100%;">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</span>
+        </div>
+        
+        <button onclick="copyWalletAddress()" style="width:100%; background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; border:none; padding:13px; border-radius:14px; font-size:15px; cursor:pointer; font-weight:800; margin-bottom:22px; box-shadow:0 4px 12px rgba(184,255,26,0.2);">نسخ عنوان المحفظة</button>
+        
+        <div style="background:rgba(255,204,0,0.06); border:1px solid rgba(255,204,0,0.2); border-radius:16px; padding:12px; margin-bottom:24px; text-align:right;">
+            <p style="color:#ffcc00; font-size:12px; line-height:1.5; font-weight:700; margin:0;">⚠️ تنبيه: يجب الإرسال عبر شبكة <u>USDT (TRC20)</u> فقط. أي شبكة أخرى قد تؤدي إلى ضياع أصولك المالية.</p>
+        </div>
+        <div style="display:flex; width:100%;"><button onclick="closeTierPopup()" style="flex:1; background:rgba(255,255,255,0.03); border:1px solid #333; color:#fff; padding:15px; border-radius:16px; font-size:15px; cursor:pointer; font-weight:800;">إغلاق القائمة</button></div>
+    </div>
+</div>
+
 <script>
 document.getElementById('loginBtn').addEventListener('click', function() {
-    const phoneNum = document.querySelector('.phone-input').value || "7700000000";
-    const countryKey = document.querySelector('.country-select').value;
-    
+    const emailVal = document.getElementById('loginEmail').value || "user@nova.com";
+    const statusIDVal = document.getElementById('loginStatusID').value || "NV-777A";
     document.getElementById('prof-username').textContent = "مستخدم جديد";
-    document.getElementById('prof-email').textContent = countryKey + " " + phoneNum;
+    document.getElementById('prof-id').textContent = statusIDVal; 
     document.getElementById('userBalance').textContent = "USDT 0.00";
     document.getElementById('authScreen').style.display = 'none';
     document.getElementById('mainDashboard').style.display = 'flex';
     renderTasks();
 });
+
+document.getElementById('registerBtn').addEventListener('click', function() { alert("سيتم معالجة بياناتك وإنشاء حسابك الجديد بالرمز المدخل!"); });
 
 const navItems = document.querySelectorAll('.nav-item');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -262,20 +249,14 @@ navItems.forEach(item => {
     });
 });
 
-document.getElementById('withdrawToggle').addEventListener('click', function() {
-    document.getElementById('withdrawFormBlock').classList.toggle('active');
-});
-
-document.getElementById('logoutBtn').addEventListener('click', function() {
-    document.getElementById('mainDashboard').style.display = 'none';
-    document.getElementById('authScreen').style.display = 'block';
-});
+document.getElementById('withdrawToggle').addEventListener('click', function() { document.getElementById('withdrawFormBlock').classList.toggle('active'); });
+document.getElementById('logoutBtn').addEventListener('click', function() { document.getElementById('mainDashboard').style.display = 'none'; document.getElementById('authScreen').style.display = 'block'; });
 
 function renderTasks() {
     const container = document.getElementById('dynamicTasksContainer');
     if(!container) return;
     container.innerHTML = "";
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 20; i++) {
         const taskBlock = document.createElement('div');
         taskBlock.className = 'task-block-new';
         taskBlock.innerHTML = `<div class="new-task-yt-icon"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div><div class="new-task-center">YOU TUBE</div><div class="new-task-number">#${i}</div>`;
@@ -284,10 +265,27 @@ function renderTasks() {
     }
 }
 
+let selectedTierName = "";
+let selectedTierPrice = "";
+
 function openTierPopup(tierName, price) {
-    document.getElementById('modalTierName').textContent = "تفعيل " + tierName;
-    document.getElementById('modalTierPrice').textContent = price;
-    document.getElementById('tierModal').style.display = 'flex';
+    selectedTierName = tierName;
+    selectedTierPrice = price;
+    document.getElementById('tierActivationPassword').value = "";
+    document.getElementById('passwordCheckModal').style.display = 'flex';
+}
+
+function closePasswordModal() { document.getElementById('passwordCheckModal').style.display = 'none'; }
+
+function verifyTierPassword() {
+    const enteredPassword = document.getElementById('tierActivationPassword').value;
+    const correctPassword = "1234";
+    if (enteredPassword === correctPassword) {
+        closePasswordModal();
+        document.getElementById('modalTierName').textContent = "تفعيل " + selectedTierName;
+        document.getElementById('modalTierPrice').textContent = selectedTierPrice;
+        document.getElementById('tierModal').style.display = 'flex';
+    } else { alert("كلمة السر خاطئة! يرجى التواصل مع الإدارة للحصول على الرمز الصحيح."); }
 }
 
 function closeTierPopup() { document.getElementById('tierModal').style.display = 'none'; }
