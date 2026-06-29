@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACCE AUTOMATED PLATFORM</title>
+<title>NOVA AUTOMATED PLATFORM</title>
 <link rel="preconnect" href="https://googleapis.com"><link rel="preconnect" href="https://gstatic.com" crossorigin>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
@@ -26,14 +26,13 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .tab-content { display:none; width:100%; max-width:440px; }
 .tab-content.active { display:block; }
 .page-title { font-size:24px; color:#b8ff1a; text-align:center; margin-bottom:25px; font-weight:800; }
-
-.machine-container { width:100%; display:flex; flex-direction:column; gap:12px; align-items:center; }
+  .machine-container { width:100%; display:flex; flex-direction:column; gap:12px; align-items:center; }
 .machine-card { display:flex; width:100%; max-width:400px; height:80px; background:#141414; border:1px solid #1f1f1f; border-radius:16px; overflow:hidden; align-items:center; justify-content:space-between; padding:0 15px; cursor:pointer; transition:all 0.2s; position:relative; }
 .machine-info { display:flex; flex-direction:column; text-align:left; gap:4px; }
 .machine-title { font-size:15px; color:#fff; font-weight:800; }
 .machine-status { font-size:12px; color:#666; font-weight:700; }
 .machine-profit { font-size:14px; color:#b8ff1a; font-weight:800; }
-.machine-action-btn { background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; padding:10px 16px; border-radius:12px; font-size:13px; font-weight:800; border:none; }
+.machine-action-btn { background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; padding:10px 16px; border-radius:12px; font-size:13px; font-weight:800; border:none; z-index: 5; }
 .machine-progress-bar { position:absolute; bottom:0; left:0; height:3px; background:#b8ff1a; width:0%; transition:width linear; }
 .tier-card-new { background:#ffffff; color:#000; border-radius:24px; padding:22px 20px; margin-bottom:14px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; flex-direction:row-reverse; }
 .tier-header-new { display:flex; flex-direction:column; align-items:flex-start; text-align:right; gap:4px; flex:1; }
@@ -54,26 +53,29 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .withdraw-field-group label { display:block; font-size:13px; color:#222; margin-bottom:6px; }
 .withdraw-field-group input, .withdraw-field-group select { width:100%; padding:14px; border:1px solid #ddd; background:#f9f9f9; border-radius:12px; font-size:14px; outline:none; text-align:right; font-weight:700; }
 .btn-submit-withdraw { width:100%; background:#000; color:#fff; border:none; padding:15px; border-radius:12px; font-size:15px; cursor:pointer; font-weight:800; }
-.history-section { width:100%; max-width:400px; background:#111; border:1px solid #1f1f1f; border-radius:20px; padding:18px; text-align:right; }
+.history-section { width:100%; max-width:400px; background:#111; border:1px solid #1f1f1f; border-radius:20px; padding:18px; text-align:right; width: 100%; }
 .history-title { font-size:15px; color:#b8ff1a; margin-bottom:12px; border-bottom:1px solid #1f1f1f; padding-bottom:6px; }
 .history-list { display:flex; flex-direction:column; gap:12px; }
 .history-item { display:flex; justify-content:space-between; align-items:center; font-size:13px; padding-bottom:8px; border-bottom:1px solid #1f1f1f; }
 .history-item:last-child { border-bottom:none; }
 .h-amount { font-size:14px; font-weight:700; color:#28a745; }
-.profile-section { width:100%; max-width:400px; background:#111; border:1px solid #1f1f1f; border-radius:20px; padding:20px; text-align:right; margin-bottom:20px; }
+.profile-section { width:100%; max-width:400px; background:#111; border:1px solid #1f1f1f; border-radius:20px; padding:20px; text-align:right; margin-bottom:20px; width: 100%; }
 .profile-item { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid #1f1f1f; font-size:14px; }
 .profile-item:last-child { border-bottom:none; }
 .bottom-nav { width:100%; background:#0f0f0f; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:85px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
 .nav-item { display:flex; flex-direction:column; align-items:center; color:#444; font-size:11px; cursor:pointer; flex:1; gap:5px; text-decoration:none; }
 .nav-item.active { color:#fff; }
-.nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); }
-.nav-icon-yellow { background:#ffcc00; width:46px; height:46px; border-radius:12px; display:flex; justify-content:center; align-items:center; flex-shrink:0; }
-.nav-icon-yellow svg { width:22px; height:22px; fill:#000; }
+.nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); background:#ffcc00; }
+.nav-icon-yellow { background:#333; width:46px; height:46px; border-radius:12px; display:flex; justify-content:center; align-items:center; flex-shrink:0; transition: all 0.2s; }
+.nav-icon-yellow svg { width:22px; height:22px; fill:#fff; }
+.nav-item.active .nav-icon-yellow svg { fill:#000; }
 </style>
 </head>
 <body>
+  <!-- شاشة تسجيل الدخول المحدثة باسم NOVA -->
   <div class="container" id="authScreen">
-    <div class="logo">ACCE</div><div class="welcome">AUTOMATED PRODUCTION SYSTEM</div>
+    <div class="logo">NOVA</div>
+    <div class="welcome">AUTOMATED PRODUCTION SYSTEM</div>
     <div class="auth-container">
         <input type="email" id="loginEmail" placeholder="Email Address" required>
         <input type="password" id="passwordInput" placeholder="Password" required>
@@ -83,211 +85,195 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         <button class="btn btn-primary" id="loginBtn">SIGN IN</button>
         <button class="btn btn-secondary">CREATE ACCOUNT</button>
     </div>
-</div>
+  </div>
 
-<div class="main-dashboard" id="mainDashboard">
+  <!-- لوحة التحكم الرئيسية الكاملة للموقع -->
+  <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
-        <!-- التبويب 1: صفحة الآلات الاستثمارية المحدثة -->
-        <div class="tab-content active" id="tab-tasks">
+        
+        <!-- التبويب 1: صفحة الآلات الاستثمارية (شاشة الرئيسية) -->
+        <div class="tab-content active" id="tab-home">
             <h2 class="page-title">FACTORY MACHINES</h2>
-            <div class="machine-container" id="dynamicMachinesContainer"></div>
+            <div class="machine-container">
+                <div class="machine-card">
+                    <div class="machine-info">
+                        <div class="machine-title">NOVA Engine Alpha</div>
+                        <div class="machine-status">Status: Ready</div>
+                    </div>
+                    <div class="machine-profit">+ $5.00 / Day</div>
+                    <button class="machine-action-btn" onclick="runMachine(this)">RUN</button>
+                    <div class="machine-progress-bar"></div>
+                </div>
+                <div class="machine-card">
+                    <div class="machine-info">
+                        <div class="machine-title">NOVA Engine Beta</div>
+                        <div class="machine-status">Status: Ready</div>
+                    </div>
+                    <div class="machine-profit">+ $15.00 / Day</div>
+                    <button class="machine-action-btn" onclick="runMachine(this)">RUN</button>
+                    <div class="machine-progress-bar"></div>
+                </div>
+            </div>
+            
+            <h2 class="page-title" style="margin-top: 30px;">UPGRADE TIERS</h2>
+            <div class="tier-card-new">
+                <div class="tier-header-new">
+                    <div class="tier-name-new">Tier VIP 1</div>
+                    <div class="tier-price-new">Price: $100.00</div>
+                    <div class="tier-info-line-new">Earn up to 5% more profit daily</div>
+                </div>
+                <button class="btn-activate-new">Activate</button>
+            </div>
         </div>
 
-        <!-- التبويب 2: مستويات ترقية الباقات (TIERS) -->
-        <div class="tab-content" id="tab-vip">
-            <h2 class="page-title">VIP TIERS</h2>
-            <div class="tier-card-new">
-                <button class="btn-activate-new" onclick="openTierPopup('Level R1', '15')">Activate</button>
-                <div class="tier-header-new"><span class="tier-name-new">Level R1</span><span class="tier-price-new">USDT 15.00</span><span class="tier-info-line-new">Daily Yield: <span style="color:#000;">USDT 1.50</span></span></div>
-            </div>
-            <div class="tier-card-new">
-                <button class="btn-activate-new" onclick="openTierPopup('Level R2', '35')">Activate</button>
-                <div class="tier-header-new"><span class="tier-name-new">Level R2</span><span class="tier-price-new">USDT 35.00</span><span class="tier-info-line-new">Daily Yield: <span style="color:#000;">USDT 5.00</span></span></div>
-            </div>
-            <div class="tier-card-new">
-                <button class="btn-activate-new" onclick="openTierPopup('Level R3', '100')">Activate</button>
-                <div class="tier-header-new"><span class="tier-name-new">Level R3</span><span class="tier-price-new">USDT 100.00</span><span class="tier-info-line-new">Daily Yield: <span style="color:#000;">USDT 15.00</span></span></div>
-            </div>
-        </div>
-                <!-- التبويب 3: المحفظة المالية وسجل الأرباح -->
+        <!-- التبويب 2: صفحة المحفظة والسحوبات والسجلات -->
         <div class="tab-content" id="tab-wallet">
-            <h2 class="page-title">WALLET BALANCE</h2>
+            <h2 class="page-title">MY WALLET</h2>
             <div class="wallet-container">
-                <div style="font-size:13px; color:#666; margin-bottom:4px;">Available Total Balance</div><div class="wallet-main-balance" id="userBalance">USDT 0.00</div>
+                <div class="stat-title" style="text-align: center;">Total Balance</div>
+                <div class="wallet-main-balance">$250.75</div>
                 <div class="wallet-stats">
-                    <div class="stat-box"><span class="stat-title">Total Revenue</span><span class="stat-value" style="color:#28a745;" id="totalRevenueBox">USDT 0.00</span></div>
-                    <div class="stat-box"><span class="stat-title">Total Withdrawals</span><span class="stat-value" style="color:#ff4d4d;">USDT 0.00</span></div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Earned</div>
+                        <div class="stat-value">$1,240.00</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Withdrawn</div>
+                        <div class="stat-value">$989.25</div>
+                    </div>
                 </div>
-                <button class="w-btn-withdraw" id="withdrawToggle">WITHDRAW FUNDS</button>
-                <div class="withdraw-form" id="withdrawFormBlock">
-                    <div class="withdraw-field-group"><label>Withdrawal Network</label><select><option>USDT (TRC20)</option></select></div>
-                    <div class="withdraw-field-group"><label>Amount to Withdraw</label><input type="number" placeholder="0.00" style="text-align:left; padding-right:15px;"></div>
-                    <div class="withdraw-field-group"><label>USDT TRC20 Address</label><input type="text" placeholder="Enter wallet address"></div>
-                    <button class="btn-submit-withdraw">CONFIRM WITHDRAWAL</button>
+                <button class="w-btn-withdraw" id="toggleWithdrawForm">Withdraw Funds</button>
+                
+                <!-- نموذج السحب المخفي تفعيلياً -->
+                <div class="withdraw-form" id="withdrawForm">
+                    <div class="withdraw-field-group">
+                        <label>Amount to Withdraw</label>
+                        <input type="number" placeholder="0.00" min="10">
+                    </div>
+                    <div class="withdraw-field-group">
+                        <label>Withdrawal Method</label>
+                        <select>
+                            <option>USDT (TRC20)</option>
+                            <option>Bitcoin (BTC)</option>
+                        </select>
+                    </div>
+                    <button class="btn-submit-withdraw" onclick="alert('Withdrawal request submitted successfully!')">Confirm Withdrawal</button>
                 </div>
             </div>
+
             <div class="history-section">
-                <div class="history-title">Recent Factory Records</div>
-                <div class="history-list" id="historyListContainer">
-                    <div class="history-item" id="emptyHistoryPlaceholder"><span class="h-amount" style="color:#666;">+0.00</span><div class="h-details"><span style="color:#fff;">No production records found</span></div></div>
+                <div class="history-title">TRANSACTION HISTORY</div>
+                <div class="history-list">
+                    <div class="history-item">
+                        <span>Machine Alpha Reward</span>
+                        <span class="h-amount">+$5.00</span>
+                    </div>
+                    <div class="history-item">
+                        <span>Withdrawal Completed</span>
+                        <span class="h-amount" style="color: #dc3545;">-$50.00</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- التبويب 4: الملف الشخصي والبيانات المعروضة -->
+        <!-- التبويب 3: صفحة الملف الشخصي والمعلومات -->
         <div class="tab-content" id="tab-profile">
-            <h2 class="page-title">ACCOUNT INFO</h2>
+            <h2 class="page-title">ACCOUNT PROFILE</h2>
             <div class="profile-section">
-                <div class="profile-item"><span id="prof-username">user@nova.com</span><span>Account Email</span></div>
-                <div class="profile-item"><span id="prof-id" style="color:#fff; font-family:monospace; font-size:16px;">ACCE-777X</span><span>Account ID</span></div>
+                <div class="profile-item">
+                    <span style="color:#666;">07702801263aaaaa@gmail.com</span>
+                    <span>Email</span>
+                </div>
+                <div class="profile-item">
+                    <span style="color:#b8ff1a;">900klxp623</span>
+                    <span>Invitation Code</span>
+                </div>
+                <div class="profile-item">
+                    <span style="color:#22c55e;">VIP 1</span>
+                    <span>Account Status</span>
+                </div>
             </div>
-            <button class="btn btn-secondary" id="logoutBtn" style="width:100%; border-color:#ff4d4d; color:#ff4d4d; margin-top:25px; background:transparent; height:55px; border-radius:16px;">LOGOUT</button>
+            <button class="btn btn-secondary" onclick="location.reload()" style="color: #dc3545; border-color: #555;">LOGOUT</button>
         </div>
-    </div>
-    <nav class="bottom-nav">
-        <div class="nav-item" data-tab="tab-profile"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div><span>INFO</span></div>
-        <div class="nav-item" data-tab="tab-wallet"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span>WITHDRAW</span></div>
-        <div class="nav-item" data-tab="tab-vip"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4l6.3 11H5.7L12 6zm-1 8h2v2h-2v-2zm0-4h2v2h-2v-2z"/></svg></div><span>TIERS</span></div>
-        <div class="nav-item active" data-tab="tab-tasks"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div><span>MACHINES</span></div>
-    </nav>
-</div>
 
-<!-- تصميم النوافذ المنبثقة الممتدة والكاملة على سطر واحد -->
-<div id="passwordCheckModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); z-index:20000; justify-content:center; align-items:center; padding:16px;">
-    <div style="background:linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(10,10,10,0.98) 100%); border:1px solid rgba(255,204,0,0.3); border-radius:28px; max-width:390px; width:100%; padding:30px 24px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.5);">
-        <div style="width:60px; height:60px; background:rgba(255,204,0,0.1); border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 auto 16px;"><svg viewBox="0 0 24 24" style="width:28px; height:28px; fill:#ffcc00;"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
-        <h3 style="color:#fff; font-size:22px; margin-bottom:8px;">مطلوب رمز التفعيل</h3>
-        <p style="color:#aaa; font-size:14px; margin-bottom:24px; line-height:1.5;">يرجى إدخال كلمة السر الخاصة بالتفعيل للمتابعة والوصول لمحفظة الدفع</p>
-        <input type="password" id="tierActivationPassword" placeholder="••••••••" style="width:100%; padding:16px; border-radius:16px; border:1px solid #222; background:rgba(30,30,30,0.6); color:#fff; font-size:22px; text-align:center; outline:none; margin-bottom:24px; font-weight:700; letter-spacing:4px; box-shadow:inset 0 2px 4px rgba(0,0,0,0.3);">
-        <div style="display:flex; gap:12px; width:100%;">
-            <button onclick="closePasswordModal()" style="flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:15px; border-radius:16px; font-size:15px; cursor:pointer;">إغلاق</button>
-            <button onclick="verifyTierPassword()" style="flex:1; background:linear-gradient(135deg, #ffcc00 0%, #e6b800 100%); color:#000; border:none; padding:15px; border-radius:16px; font-size:15px; cursor:pointer;">تأكيد الرمز</button>
+    </div>
+        <!-- شريط التنقل السفلي الكامل للوحة التحكم الحقيقية -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('tab-home', this)">
+            <div class="nav-icon-yellow">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('tab-wallet', this)">
+            <div class="nav-icon-yellow">
+                <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 Pis-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg>
+            </div>
+            <span>Wallet</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('tab-profile', this)">
+            <div class="nav-icon-yellow">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg>
+            </div>
+            <span>Profile</span>
         </div>
     </div>
-</div>
+  </div>
 
-<div id="tierModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); z-index:20001; justify-content:center; align-items:center; padding:12px;">
-    <div style="background:linear-gradient(135deg, #0f0f0f 0%, #050505 100%); border:1px solid rgba(184,255,26,0.3); border-radius:28px; max-width:420px; width:100%; padding:32px 16px 24px; text-align:center; box-shadow:0 25px 60px rgba(0,0,0,0.6);">
-        <h3 id="modalTierName" style="color:#b8ff1a; font-size:24px; margin-bottom:10px;">تفعيل الباقة</h3>
-        <p style="color:#aaa; font-size:14px; margin-bottom:24px; line-height:1.6;">لتفعيل اشتراكك بنجاح، يرجى إرسال مبلغ دقيق بقيمة <span id="modalTierPrice" style="color:#fff; font-weight:800; font-size:16px; background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;"></span> USDT إلى عنوان محفظة المنصة الآمن التالي:</p>
-        <div style="background:#141414; padding:14px 10px; border-radius:18px; margin-bottom:12px; border:1px solid #222; width:100%; box-sizing:border-box; text-align:left; overflow:hidden;">
-            <span id="walletAddressSpan" style="color:#fff; font-size:10px; direction:ltr; display:block; font-weight:700; white-space:nowrap; font-family:monospace; letter-spacing:0.3px; width:100%;">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</span>
-        </div>
-        <button onclick="copyWalletAddress()" style="width:100%; background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; border:none; padding:13px; border-radius:14px; font-size:15px; cursor:pointer; font-weight:800; margin-bottom:22px; box-shadow:0 4px 12px rgba(184,255,26,0.2);">نسخ عنوان المحفظة</button>
-        <div style="background:rgba(255,204,0,0.06); border:1px solid rgba(255,204,0,0.2); border-radius:16px; padding:12px; margin-bottom:24px; text-align:right;">
-            <p style="color:#ffcc00; font-size:12px; line-height:1.5; font-weight:700; margin:0;">⚠️ تنبيه: يجب الإرسال عبر شبكة <u>USDT (TRC20)</u> فقط. أي شبكة أخرى قد تؤدي إلى ضياع أصولك المالية.</p>
-        </div>
-        <div style="display:flex; width:100%;"><button onclick="closeTierPopup()" style="flex:1; background:rgba(255,255,255,0.03); border:1px solid #333; color:#fff; padding:15px; border-radius:16px; font-size:15px; cursor:pointer; font-weight:800;">إغلاق القائمة</button></div>
-    </div>
-</div>
 <script>
-let currentBalance = 0.00;
-let currentRevenue = 0.00;
-let isVipActivated = false;
+  // 1. كود جافا سكريبت لتفعيل تشغيل زر تسجيل الدخول والانتقال للوحة التحكم
+  document.getElementById('loginBtn').addEventListener('click', function() {
+      document.getElementById('authScreen').style.display = 'none';
+      const dashboard = document.getElementById('mainDashboard');
+      dashboard.style.display = 'flex';
+  });
 
-// إصلاح تعارض الظهور الافتراضي عند فتح المتصفح فوراً
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('authScreen').style.display = 'block';
-    document.getElementById('mainDashboard').style.display = 'none';
-});
+  // 2. كود التنقل الحقيقي بين الصفحات الداخلية عبر الأزرار السفلية
+  function switchTab(tabId, element) {
+      // إخفاء جميع التبويبات الداخلية
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.style.display = 'none');
+      
+      // إظهار التبويب المطلوب
+      document.getElementById(tabId).style.display = 'block';
+      
+      // إزالة الحالة النشطة من كافة الأزرار وتعيينها للزر الحالي
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+      element.classList.add('active');
+  }
 
-document.getElementById('loginBtn').addEventListener('click', function() {
-    const emailVal = document.getElementById('loginEmail').value || "user@acce-platform.com";
-    const statusIDVal = document.getElementById('loginStatusID').value || "NV-777A";
-    
-    document.getElementById('prof-username').textContent = emailVal;
-    document.getElementById('prof-id').textContent = statusIDVal; 
-    document.getElementById('userBalance').textContent = "USDT 0.00";
-    
-    // التبديل الصحيح والآمن بين الشاشات
-    document.getElementById('authScreen').style.display = 'none';
-    document.getElementById('mainDashboard').style.display = 'flex';
-    renderMachines();
-});
+  // 3. تفعيل فتح وإغلاق نموذج طلب السحب داخل صفحة المحفظة
+  document.getElementById('toggleWithdrawForm').addEventListener('click', function() {
+      const form = document.getElementById('withdrawForm');
+      form.classList.toggle('active');
+  });
 
-const navItems = document.querySelectorAll('.nav-item');
-const tabContents = document.querySelectorAll('.tab-content');
-navItems.forEach(item => {
-    item.addEventListener('click', function() {
-        navItems.forEach(nav => nav.classList.remove('active'));
-        tabContents.forEach(tab => tab.classList.remove('active'));
-        this.classList.add('active');
-        document.getElementById(this.getAttribute('data-tab')).classList.add('active');
-    });
-});
-
-document.getElementById('withdrawToggle').addEventListener('click', function() { document.getElementById('withdrawFormBlock').classList.toggle('active'); });
-document.getElementById('logoutBtn').addEventListener('click', function() { 
-    document.getElementById('mainDashboard').style.display = 'none'; 
-    document.getElementById('authScreen').style.display = 'block'; 
-});
-
-function renderMachines() {
-    const container = document.getElementById('dynamicTasksContainer');
-    if(!container) return;
-    container.innerHTML = "";
-    const machineTypes = ["Material Processor", "Automated Packer", "Labeling System", "Sorting Matrix"];
-    for (let i = 1; i <= 20; i++) {
-        const typeIndex = (i - 1) % machineTypes.length;
-        const mCard = document.createElement('div');
-        mCard.className = 'machine-card';
-        mCard.innerHTML = `<div class="machine-info"><span class="machine-title">${machineTypes[typeIndex]} #${i}</span><span class="machine-status" id="m-status-${i}">Status: Idle</span></div><span class="machine-profit">+$0.50</span><button class="machine-action-btn" id="m-btn-${i}">Start</button><div class="machine-progress-bar" id="m-progress-${i}"></div>`;
-        mCard.querySelector('.machine-action-btn').addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (!isVipActivated) { alert("يرجى بتفعيل باقات الاشتراك لتفعيل المهمه وبدء إنتاج الآلة"); return; }
-            startMachineProduction(i);
-        });
-        container.appendChild(mCard);
-    }
-}
-
-function startMachineProduction(id) {
-    const btn = document.getElementById(`m-btn-${id}`);
-    const statusText = document.getElementById(`m-status-${id}`);
-    const progressBar = document.getElementById(`m-progress-${id}`);
-    if (btn.disabled) return;
-    btn.disabled = true; btn.style.background = "#333"; btn.textContent = "Running"; statusText.textContent = "Status: Producing...";
-    progressBar.style.width = "100%"; progressBar.style.transitionDuration = "3s";
-    setTimeout(() => {
-        currentBalance += 0.50; currentRevenue += 0.50;
-        document.getElementById('userBalance').textContent = `USDT ${currentBalance.toFixed(2)}`;
-        document.getElementById('totalRevenueBox').textContent = `USDT ${currentRevenue.toFixed(2)}`;
-        addProductionRecord(id);
-        btn.disabled = false; btn.style.background = "linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%)"; btn.textContent = "Start"; statusText.textContent = "Status: Idle (Completed)";
-        progressBar.style.transitionDuration = "0s"; progressBar.style.width = "0%";
-    }, 3000);
-}
-
-function addProductionRecord(machineId) {
-    const placeholder = document.getElementById('emptyHistoryPlaceholder');
-    if (placeholder) placeholder.remove();
-    const container = document.getElementById('historyListContainer');
-    const now = new Date(); const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const item = document.createElement('div');
-    item.className = 'history-item';
-    item.innerHTML = `<span class="h-amount">+USDT 0.50</span><div class="h-details"><span style="color:#fff;">Machine #${machineId} Yield</span><span style="color:#555; font-size:11px;">Today, ${timeStr}</span></div>`;
-    container.insertBefore(item, container.firstChild);
-}
-
-let selectedTierName = ""; let selectedTierPrice = "";
-function openTierPopup(tierName, price) { selectedTierName = tierName; selectedTierPrice = price; document.getElementById('tierActivationPassword').value = ""; document.getElementById('passwordCheckModal').style.display = 'flex'; }
-function closePasswordModal() { document.getElementById('passwordCheckModal').style.display = 'none'; }
-function verifyTierPassword() {
-    const enteredPassword = document.getElementById('tierActivationPassword').value;
-    if (enteredPassword === "1234") { closePasswordModal(); isVipActivated = true; document.getElementById('modalTierName').textContent = "Activate " + selectedTierName; document.getElementById('modalTierPrice').textContent = selectedTierPrice; document.getElementById('tierModal').style.display = 'flex'; } 
-    else { alert("كلمة السر خاطئة! يرجى التواصل مع الإدارة للحصول على الرمز الصحيح."); }
-}
-function closeTierPopup() { document.getElementById('tierModal').style.display = 'none'; }
-function copyWalletAddress() {
-    const addressText = document.getElementById('walletAddressSpan').textContent;
-    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(addressText).then(() => { alert("تم نسخ عنوان المحفظة بنجاح!"); }).catch(err => { fallbackCopyText(addressText); }); } 
-    else { fallbackCopyText(addressText); }
-}
-function fallbackCopyText(text) { 
-    const tempInput = document.createElement("input"); tempInput.value = text;
-    document.body.appendChild(tempInput); tempInput.select(); document.execCommand("copy");
-    document.body.removeChild(tempInput); alert("تم نسخ عنوان المحفظة بنجاح!"); 
-}
+  // 4. كود إضافي ممتع لتشغيل شريط تقدم الآلات عند الضغط على زر RUN
+  function runMachine(btn) {
+      if(btn.disabled) return;
+      btn.disabled = true;
+      btn.innerText = "RUNNING";
+      const card = btn.closest('.machine-card');
+      const bar = card.querySelector('.machine-progress-bar');
+      
+      let width = 0;
+      bar.style.width = '0%';
+      
+      const interval = setInterval(() => {
+          if (width >= 100) {
+              clearInterval(interval);
+              btn.disabled = false;
+              btn.innerText = "RUN";
+              bar.style.width = '0%';
+              alert("Machine cycle finished! Profits added to wallet.");
+          } else {
+              width += 2;
+              bar.style.width = width + '%';
+          }
+      }, 100);
+  }
 </script>
+
 </body>
 </html>
