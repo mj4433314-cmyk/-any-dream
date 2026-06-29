@@ -100,12 +100,12 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
     </div>
   </div>
 
-  <!-- 2. شاشة إنشاء الحساب الجديدة تماماً المخصصة للتنقل والبيانات ورمز الدعوة -->
+  <!-- 2. شاشة إنشاء الحساب المحدثة بحقل البريد الإلكتروني بدلاً من اسم المستخدم -->
   <div class="container" id="signUpScreen" style="display: none;">
     <div class="logo">NOVA</div>
     <div class="welcome">Create Your New Account</div>
     <div class="auth-container">
-      <input type="text" id="newUsernameInput" placeholder="اسم المستخدم الجديد">
+      <input type="email" id="newEmailInput" placeholder="البريد الإلكتروني">
       <input type="password" id="newPasswordInput" placeholder="كلمة المرور الجديدة">
       <input type="text" id="newInviteCodeInput" placeholder="رمز الدعوة (Invitation Code)">
     </div>
@@ -118,7 +118,8 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
   <!-- لوحة التحكم الرئيسية -->
   <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
-            <!-- قسم البيت / المستويات الحالية المصغرة وبصيغة USDT وبدون سطر الأرباح -->
+      
+      <!-- قسم البيت / المستويات المصغرة وبصيغة USDT وبدون سطر الأرباح -->
       <div id="homeTab" class="tab-content active">
         <div class="page-title">Home</div>
         
@@ -183,6 +184,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <button class="w-btn-withdraw" id="toggleWithdrawForm">Withdraw Funds</button>
           <button class="btn btn-secondary" onclick="openDepositModal()">Deposit / Add Funds</button>
           
+          <!-- استمارة السحب باللغة الإنجليزية وزر التأكيد الأخضر التفاعلي -->
           <div class="withdraw-form" id="withdrawForm">
             <div class="withdraw-field-group" style="text-align:left;">
               <label style="color:#777;">Amount to Withdraw</label>
@@ -205,6 +207,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 
         <div class="section-subtitle">Available Tasks</div>
         <div class="tasks-section">
+          <!-- المهمة 1 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #01')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #01</div>
@@ -214,6 +217,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
               <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 Bir 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
             </div>
           </div>
+          <!-- المهمة 2 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #02')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #02</div>
@@ -223,6 +227,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
               <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
             </div>
           </div>
+          <!-- المهمة 3 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #03')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #03</div>
@@ -232,6 +237,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
               <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
             </div>
           </div>
+          <!-- المهمة 4 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #04')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #04</div>
@@ -241,6 +247,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
               <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
             </div>
           </div>
+          <!-- المهمة 5 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #05')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #05</div>
@@ -253,7 +260,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         </div>
       </div>
 
-      <!-- قسم البروفايل -->
+      <!-- قسم البروفايل المطور بالكامل باللغة الإنجليزية مع رمز الدعوة -->
       <div id="profileTab" class="tab-content">
         <div class="page-title">Profile</div>
         <div class="profile-container" style="text-align:left;">
@@ -272,6 +279,9 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         </div>
       </div>
 
+    </div>
+
+    <!-- شريط القائمة السفلية -->
     <div class="bottom-nav">
       <div class="nav-item" onclick="switchTab('profileTab', this)">
         <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div>
@@ -295,11 +305,13 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
       <div class="wallet-address-box">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
       <button class="modal-close-btn" onclick="closeDepositModal()">إغلاق</button>
     </div>
-          </div>
-            <script>
+  </div>
+    <script>
     let userWalletBalance = parseFloat(localStorage.getItem('nova_balance')) || 0.00;
     let activatedTiers = JSON.parse(localStorage.getItem('nova_tiers')) || [];
-    const userPassword = "123"; 
+    
+    // جلب كلمة المرور التي أنشأها المستخدم بنفسه أثناء التسجيل
+    let userPassword = localStorage.getItem('nova_user_password') || ""; 
 
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('mainBalance').innerText = userWalletBalance.toFixed(2) + " USDT";
@@ -338,19 +350,26 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         document.getElementById('authScreen').style.display = 'block';
     }
 
-    // دالة معالجة وتأكيد إنشاء الحساب الجديد والاهتزاز
+    // دالة معالجة وتأكيد إنشاء الحساب الجديد وحفظ البريد الإلكتروني وكلمة المرور الجديدة
     function handleRegisterAction() {
-        const newUser = document.getElementById('newUsernameInput').value;
+        const newEmail = document.getElementById('newEmailInput').value;
         const newPass = document.getElementById('newPasswordInput').value;
         const invite = document.getElementById('newInviteCodeInput').value;
 
-        if (!newUser || !newPass || !invite) {
+        if (!newEmail || !newPass || !invite) {
             alert("يرجى ملء كافة الحقول ورمز الدعوة لإكمال التسجيل!");
             return;
         }
         if (navigator.vibrate) { navigator.vibrate(200); }
         
-        document.getElementById('profileUser').innerText = newUser;
+        // حفظ كلمة المرور الجديدة في جهاز المستخدم وتثبيتها برمجياً
+        localStorage.setItem('nova_user_password', newPass);
+        userPassword = newPass;
+        
+        // عرض الجزء الأول من البريد الإلكتروني كإسم مستخدم في البروفايل للجمالية
+        const mockUsername = newEmail.split('@')[0];
+        document.getElementById('profileUser').innerText = mockUsername;
+        
         document.getElementById('signUpScreen').style.display = 'none';
         document.getElementById('mainDashboard').style.display = 'flex';
         alert("تم إنشاء حسابك بنجاح ودخول المنصة آلياً!");
@@ -363,42 +382,12 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
       document.getElementById('mainDashboard').style.display = 'flex';
     }
 
+    // دالة فتح محفظة الشحن المباشرة بمجرد الضغط على زر التفعيل
     function handleTierActivation(tierName, price) {
-      const tierId = tierName === 'مستوى M1' ? 'M1' : tierName === 'مستوى M2' ? 'M2' : tierName === 'مستوى M3' ? 'M3' : 'M4';
+      if (navigator.vibrate) { navigator.vibrate(150); }
       
-      if (activatedTiers.includes(tierId)) {
-         alert("هذا المستوى مفعّل بالفعل!");
-         return;
-      }
-
-      const confirmPass = prompt("يرجى إدخال كلمة المرور لتأكيد تفعيل (" + tierName + "):");
-      if (confirmPass === null) return;
-
-      if (confirmPass === userPassword) {
-        if (userWalletBalance >= price) {
-          userWalletBalance -= price;
-          activatedTiers.push(tierId);
-          
-          localStorage.setItem('nova_balance', userWalletBalance);
-          localStorage.setItem('nova_tiers', JSON.stringify(activatedTiers));
-
-          document.getElementById('mainBalance').innerText = userWalletBalance.toFixed(2) + " USDT";
-          const btn = document.getElementById('btn-' + tierId);
-          if(btn) {
-              btn.innerText = "مفعّل";
-              btn.classList.add('activated');
-              btn.disabled = true;
-          }
-
-          if (navigator.vibrate) { navigator.vibrate(200); }
-          alert("تم تفعيل " + tierName + " بنجاح! تم خصم " + price + " USDT.");
-        } else {
-          alert("رصيد محفظتك الحالي غير كافٍ! يرجى شحن حسابك أولاً.");
-          openDepositModal();
-        }
-      } else {
-        alert("كلمة المرور غير صحيحة! لم يتم التفعيل.");
-      }
+      // فتح النافذة المنبثقة التي تحتوي على عنوان محفظتك (USDT TRC20) فوراً
+      openDepositModal();
     }
 
     function confirmWithdrawalAction() {
@@ -406,7 +395,6 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         alert("رصيدك غير متاح");
     }
 
-    // دالة التنبيه الجديدة المقفلة للمهمات مع الاهتزاز
     function runTask(taskName) {
         if (navigator.vibrate) { navigator.vibrate(120); }
         alert("لايمكنك اكمال المهمات يرجى الاشتراك لتفعيل");
