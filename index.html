@@ -48,13 +48,13 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .btn-confirm-withdraw-green { width:100%; padding:16px; border:none; border-radius:14px; font-size:16px; font-weight:800; cursor:pointer; background:linear-gradient(135deg, #22c55e 0%, #15803d 100%); color:#fff; margin-top:15px; box-shadow:0 4px 12px rgba(34,197,94,0.2); transition:all 0.2s; text-align:center;}
 .section-subtitle { font-size: 20px; color: #b8ff1a; text-align: center; margin: 25px 0 15px 0; font-weight: 800; text-transform: uppercase; }
 .tasks-section { width:100%; max-width:400px; display:flex; flex-direction:column; gap:12px; }
-.task-card-google { background:#141414; border:1px solid #1f1f1f; border-radius:16px; padding:15px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; transition: all 0.2s; text-align: right; width:100%;}
+.task-card-google { background:#141414; border:1px solid #1f1f1f; border-radius:16px; padding:15px; display:flex; align-items:center; justify-content:space-between; flex-direction: row-reverse; cursor:pointer; transition: all 0.2s; text-align: right; width:100%;}
 .task-card-google:hover { background: #1c1c1c; border-color: #333; }
-.task-google-info { display:flex; flex-direction:column; text-align:right; gap:4px; flex: 1; padding-right: 15px;}
+.task-google-info { display:flex; flex-direction:column; text-align:right; gap:4px; flex: 1; padding-left: 15px; padding-right: 0;}
 .task-google-title { font-size:14px; color:#fff; font-weight:800; text-align: right;}
 .task-google-desc { font-size:11px; color:#666; font-weight:700; text-align: right; }
 .google-play-icon { width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.profile-container { width:100%; max-width:400px; background:#141414; border:1px solid #1f1f1f; padding:25px 20px; border-radius:24px; text-align:right; }
+  .profile-container { width:100%; max-width:400px; background:#141414; border:1px solid #1f1f1f; padding:25px 20px; border-radius:24px; text-align:right; }
 .profile-info-item { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #222; font-size:14px; }
 .profile-info-item:last-child { border-bottom: none; }
 .profile-label { color:#666; }
@@ -72,7 +72,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
   <div class="container" id="authScreen">
     <div class="logo">NOVA</div>
     <div class="welcome">Welcome to NOVA Automated Platform</div>
@@ -173,24 +173,24 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         <div class="page-title" style="color: #b8ff1a; margin-top: 25px; font-size: 20px;">AVAILABLE TASKS</div>
         <div class="tasks-section" style="margin: 0 auto;">
           <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
             <div class="task-google-info"><div class="task-google-title">Google Play Task #01</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
-            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
           </div>
           <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
             <div class="task-google-info"><div class="task-google-title">Google Play Task #02</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
-            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
           </div>
           <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
             <div class="task-google-info"><div class="task-google-title">Google Play Task #03</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
-            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
           </div>
           <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
             <div class="task-google-info"><div class="task-google-title">Google Play Task #04</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
-            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
           </div>
           <div class="task-card-google" onclick="handleTaskClick()">
-            <div class="task-google-info"><div class="task-google-title">Google Play Task #05</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
             <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+            <div class="task-google-info"><div class="task-google-title">Google Play Task #05</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
           </div>
         </div>
             </div>
@@ -223,15 +223,15 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 function handleLoginAttempt(){document.getElementById('authScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
 function showSignUpScreen(){document.getElementById('authScreen').style.display='none';document.getElementById('signUpScreen').style.display='block';}
 function showLoginScreen(){document.getElementById('signUpScreen').style.display='none';document.getElementById('authScreen').style.display='block';}
-function handleRegisterAction(){document.getElementById('signUpScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
+function handleRegisterAction(){if(navigator.vibrate)navigator.vibrate([100,50,100]);document.getElementById('signUpScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
 function switchTab(t,e){document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));document.getElementById(t+'Tab').classList.add('active');e.classList.add('active');}
 function toggleWithdrawForm(){document.getElementById('withdrawForm').classList.toggle('active');}
 function openDepositModal(){document.getElementById('mMainTitle').innerText="USDT DEPOSIT";document.getElementById('mSubTitle').innerHTML='الشبكة المدعومة للتعبئة: <b style="color: #fff;">TRC20</b>';document.getElementById('depositModal').style.display='flex';}
-function openActivationModal(n,p){document.getElementById('mMainTitle').innerText="تفعيل "+n;document.getElementById('mSubTitle').innerHTML='الرجاء تحويل <b style="color: #b8ff1a;">'+p+'</b> عبر شبكة <b style="color: #fff;">TRC20</b>:';document.getElementById('depositModal').style.display='flex';}
+function openActivationModal(n,p){if(navigator.vibrate)navigator.vibrate(60);document.getElementById('mMainTitle').innerText="تفعيل "+n;document.getElementById('mSubTitle').innerHTML='تحويل <b style="color: #b8ff1a;">'+p+'</b> عبر شبكة <b style="color: #fff;">TRC20</b>:';document.getElementById('depositModal').style.display='flex';}
 function closeDepositModal(){document.getElementById('depositModal').style.display='none';}
 function copyWalletAddress(){var t=document.getElementById('walletAddressText').innerText;navigator.clipboard.writeText(t).then(function(){alert('تم نسخ عنوان المحفظة بنجاح!');},function(){alert('يرجى نسخ العنوان يدوياً.');});}
-function handleTaskClick(){alert('لم تقم في اشتراك الباقات');}
-function handleWithdrawClick(){var a=document.getElementById('wAmount').value;var d=document.getElementById('wAddress').value;var p=document.getElementById('wPassword').value;if(!a||!d||!p){alert('يرجى ملء جميع الحقول المطلوبة!');return;}alert('رصيدك غير متاح');}
+function handleTaskClick(){if(navigator.vibrate)navigator.vibrate(40);alert('لم تقم في اشتراك الباقات');}
+function handleWithdrawClick(){var a=document.getElementById('wAmount').value;var d=document.getElementById('wAddress').value;var p=document.getElementById('wPassword').value;if(!a||!d||!p){alert('يرجى ملء جميع الحقول المطلوبة!');return;}if(navigator.vibrate)navigator.vibrate(40);alert('رصيدك غير متاح');}
 </script>
 </body>
 </html>
