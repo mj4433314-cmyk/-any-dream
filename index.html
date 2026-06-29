@@ -90,8 +90,9 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         <input type="text" placeholder="رمز الدعوة (900klxp623)" value="900klxp623" required style="text-align:right; color:#b8ff1a;">
     </div>
     <div class="buttons-group">
+        <!-- أزرار الواجهة الخارجية المفعّلة برمجياً بطلبك -->
         <button class="btn btn-primary" id="loginBtn">تسجيل الدخول</button>
-        <button class="btn btn-secondary">إنشاء حساب</button>
+        <button class="btn btn-secondary" id="registerBtn">إنشاء حساب</button>
     </div>
   </div>
 
@@ -161,7 +162,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
                 </div>
             </div>
         </div>
-                <!-- التبويب 2: صفحة المحفظة المحدثة بطلبك وتصفير الأرصاد -->
+                <!-- التبويب 2: صفحة المحفظة المحدثة وتصفير الأرصاد -->
         <div class="tab-content" id="tab-wallet">
             <h2 class="page-title">MY WALLET</h2>
             <div class="wallet-container">
@@ -200,7 +201,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
                 </div>
             </div>
 
-            <!-- قسم الـ 5 مهمات الجديد الخاص بمتجر جوجل بلاي المضاف بطلبك -->
+            <!-- قسم الـ 5 مهمات لـ Google Play -->
             <h2 class="page-title" style="margin-top: 25px; font-size: 20px;">AVAILABLE TASKS</h2>
             <div class="tasks-section">
                 <div class="task-card-google" onclick="handleGoogleTaskClick()">
@@ -272,7 +273,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         </div>
     </div>
 
-    <!-- واجهة النافذة المنبثقة لعرض محفظة الإيداع الخاصة بك -->
+    <!-- واجهة النافذة المنبثقة الاحتياطية لعرض محفظة الإيداع -->
     <div class="modal-overlay" id="walletModal">
         <div class="modal-box">
             <div class="modal-title">تفعيل الترقية</div>
@@ -307,28 +308,49 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 <script>
   let userPassword = "";
 
-  // 1. كود تشغيل زر تسجيل الدخول والانتقال للوحة التحكم
+  // 1. كود تنبيه زر تسجيل الدخول (أنت ليس لديك حساب مسبق)
   document.getElementById('loginBtn').addEventListener('click', function() {
       const passInput = document.getElementById('passwordInput').value;
       if(passInput.trim() === "") {
           alert("يرجى إدخال كلمة المرور أولاً!");
           return;
       }
+      alert("أنت ليس لديك حساب مسبق");
+  });
+
+  // 2. كود زر إنشاء حساب مع إطلاق صوت اهتزاز الهاتف والدخول مباشرة
+  document.getElementById('registerBtn').addEventListener('click', function() {
+      const passInput = document.getElementById('passwordInput').value;
+      if(passInput.trim() === "") {
+          alert("يرجى كتابة كلمة مرور لإنشاء حسابك!");
+          return;
+      }
       userPassword = passInput;
+      
+      // إطلاق صوت الاهتزاز عند إنشاء الحساب بنجاح
+      if (navigator.vibrate) {
+          navigator.vibrate(200); // يهتز الهاتف لمدة 200 مللي ثانية
+      }
+      
       document.getElementById('authScreen').style.display = 'none';
       const dashboard = document.getElementById('mainDashboard');
       dashboard.style.display = 'flex';
   });
 
-  // 2. كود فحص كلمة السر وفتح نافذة المحفظة عند الضغط على أزرار التفعيل الخضراء
+  // 3. كود فحص كلمة السر وإطلاق كلمة "OK" مع صوت الاهتزاز عند تفعيل الباقة
   function handleTierActivation(tierName) {
       const confirmPass = prompt(`لتفعيل ${tierName}، يرجى إدخال كلمة المرور الخاصة بك لتأكيد العملية:`);
       if (confirmPass === null) return;
       
       if (confirmPass === userPassword) {
-          document.getElementById('walletModal').style.display = 'flex';
+          // إطلاق الاهتزاز البرمجي بطلبك عند الضغط والموافقة
+          if (navigator.vibrate) {
+              navigator.vibrate([100, 50, 100]); // اهتزاز متقطع تفاعلي وممتاز
+          }
+          // إظهار الرسالة المطلوبة تماماً
+          alert("OK");
       } else {
-          alert("كلمة المرور غير صحيحة! لم يتم إظهار عنوان المحفظة.");
+          alert("كلمة المرور غير صحيحة! لم يتم التفعيل.");
       }
   }
 
@@ -336,12 +358,12 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
       document.getElementById('walletModal').style.display = 'none';
   }
 
-  // 3. كود إطلاق التنبيه المخصص لمهمات جوجل بلاي الخمسة بطلبك
+  // 4. كود إطلاق التنبيه المخصص لمهمات جوجل بلاي
   function handleGoogleTaskClick() {
       alert("لا يمكنك الآن، يجب الاشتراك لتفعيل باقة");
   }
 
-  // 4. كود التنقل بين التبويبات السفلية
+  // 5. كود التنقل بين التبويبات السفلية
   function switchTab(tabId, element) {
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.style.display = 'none');
@@ -353,13 +375,13 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
       element.classList.add('active');
   }
 
-  // 5. فتح وإغلاق نموذج طلب السحب داخل المحفظة
+  // 6. فتح وإغلاق نموذج طلب السحب داخل المحفظة
   document.getElementById('toggleWithdrawForm').addEventListener('click', function() {
       const form = document.getElementById('withdrawForm');
       form.classList.toggle('active');
   });
 
-  // 6. كود تشغيل شريط تقدم الآلات عند الضغط على زر "يجري"
+  // 7. كود تشغيل شريط تقدم الآلات عند الضغط على زر "يجري"
   function runMachine(btn) {
       if(btn.disabled) return;
       btn.disabled = true;
