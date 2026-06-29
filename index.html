@@ -11,13 +11,15 @@
 body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:15px; overflow-x:hidden; }
 .container { max-width:440px; width:100%; text-align:center; background:#0a0a0a; padding:20px 10px; display:block; }
 .logo { font-size:52px; font-weight:800; color:#b8ff1a; margin-bottom:4px; letter-spacing:2px; text-shadow:0 0 25px rgba(184,255,26,0.35); }
-.welcome { font-size:15px; color:#666; margin-bottom:35px; font-weight:700; }
-.auth-container { display:flex; flex-direction:column; gap:16px; margin-bottom:28px; width:100%; }
+.welcome { font-size:15px; color:#666; margin-bottom:35px; font-weight:700; text-transform: capitalize; }
+.auth-container { display:flex; flex-direction:column; gap:16px; margin-bottom:20px; width:100%; }
 .auth-container input { width:100%; padding:18px 20px; border-radius:16px; border:1px solid #1c1c1c; background:#121212; color:#fff; font-size:16px; text-align:left; outline:none; transition:all 0.25s ease; box-shadow:inset 0 2px 4px rgba(0,0,0,0.6); }
 .auth-container input:focus { border-color:#b8ff1a; background:#161a0e; box-shadow:0 0 12px rgba(184,255,26,0.15); }
 .buttons-group { display:flex; flex-direction:column; gap:12px; width:100%; margin-bottom:30px; }
-.btn { width:100%; padding:18px; border:none; border-radius:16px; font-size:17px; cursor:pointer; transition:all 0.25s ease; display:flex; justify-content:center; align-items:center; }
+.btn { width:100%; padding:18px; border:none; border-radius:16px; font-size:17px; cursor:pointer; transition:all 0.25s ease; display:flex; justify-content:center; align-items:center; font-weight:800; }
 .btn-primary { background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; box-shadow:0 5px 15px rgba(184,255,26,0.25); }
+.btn-secondary-signup { background:transparent; color:#b8ff1a; border:1px solid #1c1c1c; margin-top: 5px; text-transform: uppercase;}
+.btn-secondary-signup:hover { background: #121212; border-color: #b8ff1a; }
 .btn-secondary { background:transparent; color:#666; border:1px solid #222; margin-top: 10px;}
   .main-dashboard { position:fixed; top:0; left:0; width:100%; height:100%; background:#0a0a0a; z-index:10000; display:none; flex-direction:column; justify-content:space-between; }
 .dashboard-content { flex:1; width:100%; padding:20px 15px; overflow-y:auto; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
@@ -84,16 +86,18 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 </style>
 </head>
 <body>
-    <!-- شاشة تسجيل الدخول -->
+    <!-- شاشة تسجيل الدخول المحدثة بالترحيب الإنجليزي وحقل رمز الدعوة وزر إنشاء الحساب -->
   <div class="container" id="authScreen">
     <div class="logo">NOVA</div>
-    <div class="welcome">مرحباً بك في منصة NOVA الآلية</div>
+    <div class="welcome">Welcome to NOVA Automated Platform</div>
     <div class="auth-container">
       <input type="text" id="usernameInput" placeholder="اسم المستخدم">
       <input type="password" id="passwordInput" placeholder="كلمة المرور">
+      <input type="text" id="inviteCodeInput" placeholder="رمز الدعوة (Invitation Code)">
     </div>
     <div class="buttons-group">
-      <button class="btn btn-primary" onclick="login()">تسجيل الدخول</button>
+      <button class="btn btn-primary" onclick="handleLoginAttempt()">تسجيل الدخول</button>
+      <button class="btn btn-secondary-signup" onclick="handleSignUpAttempt()">إنشاء حساب</button>
     </div>
   </div>
 
@@ -101,7 +105,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
   <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
       
-      <!-- قسم البيت / المستويات الحالية المصغرة وبصيغة USDT وبدون سطر الأرباح -->
+      <!-- قسم البيت / المستويات المصغرة وبصيغة USDT وبدون سطر الأرباح -->
       <div id="homeTab" class="tab-content active">
         <div class="page-title">Home</div>
         
@@ -166,7 +170,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <button class="w-btn-withdraw" id="toggleWithdrawForm">Withdraw Funds</button>
           <button class="btn btn-secondary" onclick="openDepositModal()">Deposit / Add Funds</button>
           
-          <!-- استمارة السحب باللغة الإنجليزية المتطابقة بالكامل وزر التأكيد الأخضر التفاعلي -->
+          <!-- استمارة السحب باللغة الإنجليزية وزر التأكيد الأخضر التفاعلي -->
           <div class="withdraw-form" id="withdrawForm">
             <div class="withdraw-field-group" style="text-align:left;">
               <label style="color:#777;">Amount to Withdraw</label>
@@ -242,7 +246,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         </div>
       </div>
 
-      <!-- قسم البروفايل المطور بالكامل باللغة الإنجليزية مع رمز الدعوة المميز للمستخدم -->
+      <!-- قسم البروفايل المطور بالكامل باللغة الإنجليزية مع رمز الدعوة -->
       <div id="profileTab" class="tab-content">
         <div class="page-title">Profile</div>
         <div class="profile-container" style="text-align:left;">
@@ -305,6 +309,23 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
         });
     });
 
+    // دالة تنبيه تسجيل الدخول
+    function handleLoginAttempt() {
+        const username = document.getElementById('usernameInput').value;
+        if (!username) {
+            alert("يرجى إدخال اسم المستخدم أولاً!");
+            return;
+        }
+        if (navigator.vibrate) { navigator.vibrate(100); }
+        alert("ليس لديك حساب مسبقاً");
+    }
+
+    // دالة اهتزاز وتنبيه زر إنشاء الحساب
+    function handleSignUpAttempt() {
+        if (navigator.vibrate) { navigator.vibrate(200); }
+        alert("عذراً، التسجيلات مغلقة حالياً من قبل الإدارة!");
+    }
+
     function login() {
       const username = document.getElementById('usernameInput').value || 'User';
       document.getElementById('profileUser').innerText = username;
@@ -350,15 +371,15 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
       }
     }
 
-    // دالة زر السحب الأخضر لتنبيه المستخدم والاهتزاز
     function confirmWithdrawalAction() {
         if (navigator.vibrate) { navigator.vibrate(150); }
         alert("رصيدك غير متاح");
     }
 
+    // دالة المهام المحدثة لتنبيه المستخدم بالاشتراك مع الاهتزاز التفاعلي
     function runTask(taskName) {
-        if (navigator.vibrate) { navigator.vibrate(100); }
-        alert("تم بدء المهمة: " + taskName + " \nسيتم فحص عملية التحميل لإضافة أرباحك للمحفظة.");
+        if (navigator.vibrate) { navigator.vibrate(120); } // اهتزاز عند الضغط على المهمة
+        alert("لايمكنك اكمال المهمات يرجى الاشتراك لتفعيل");
     }
 
     function switchTab(tabId, element) {
