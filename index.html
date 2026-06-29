@@ -37,18 +37,22 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 .deposit-title { font-size:22px; font-weight:900; color:#b8ff1a; margin-bottom:15px; }
 .wallet-address { background:#000; padding:15px; border-radius:12px; border:1px dashed #b8ff1a; color:#fff; font-family:monospace; font-size:14px; margin-bottom:20px; word-break:break-all; }
 .btn-copy { background:#b8ff1a; color:#000; border:none; padding:12px 25px; border-radius:10px; font-weight:900; cursor:pointer; }
-.task-item { background:#0d0d0d; border:1px solid #1a1a1a; padding:18px; border-radius:15px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
-.task-info { text-align:right; }
-.task-title { font-size:16px; font-weight:900; color:#fff; }
-.task-reward { font-size:13px; color:#b8ff1a; font-weight:700; }
-.btn-task { background:#222; color:#fff; border:1px solid #333; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
 
-/* تصميم الأزرار والمربعات الصفراء الجديدة في الشريط السفلي */
-.bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:90px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
+/* تصميم قائمة المهام الجديدة وأيقونة يوتيوب الحقيقية */
+.task-item { background:#ffffff; color:#000; padding:15px; border-radius:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 10px rgba(255,255,255,0.05); }
+.task-left { display:flex; align-items:center; gap:12px; }
+.youtube-svg-icon { width:24px; height:24px; fill:#ff0000; flex-shrink:0; }
+.task-title { font-size:15px; font-weight:900; }
+.task-reward { font-size:13px; color:#ff0000; font-weight:900; margin-right:5px; }
+.btn-task { background:#000; color:#fff; border:none; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:900; cursor:pointer; }
+
+/* شريط التنقل السفلي المحدث بالأيقونات الهندسية الحقيقية والمطابقة تماماً */
+.bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:95px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
 .nav-item { display:flex; flex-direction:column; align-items:center; color:#888; font-size:11px; cursor:pointer; flex:1; font-weight:900; gap:4px; }
 .nav-item.active { color:#fff; }
 .nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); }
-.nav-icon-yellow { background:#ffcc00; width:44px; height:44px; border-radius:12px; display:flex; justify-content:center; align-items:center; font-size:22px; color:#000; flex-shrink:0; transition:all 0.2s; }
+.nav-icon-yellow { background:#ffcc00; width:52px; height:52px; border-radius:14px; display:flex; justify-content:center; align-items:center; flex-shrink:0; transition:all 0.2s; }
+.nav-icon-yellow svg { width:26px; height:26px; fill:#000; }
 </style>
 </head>
 <body>
@@ -73,13 +77,22 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 </div>
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content">
-        <!-- صفحة المهام (TASKS) -->
+        <!-- صفحة المهام (TASKS) تحتوي على 10 مهام بأيقونة يوتيوب حقيقية هندسية -->
         <div id="tasksPage" class="tab-content">
-            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center;">المهام اليومية المتاحة</h3>
-            <div class="task-item"><div class="task-info"><div class="task-title">مشاهدة فيديو يوتيوب 1</div><div class="task-reward">المكافأة: 0.50 USDT</div></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ المهمة</button></div>
+            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center; font-weight:900;">المهام اليومية المتاحة</h3>
+            
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 1 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 2 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 3 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 4 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 5 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 6 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 7 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 8 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 9 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
+            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 10 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
         </div>
-
-        <!-- صفحة الإيداع (DEPOSIT) -->
+                <!-- صفحة الإيداع (DEPOSIT) -->
         <div id="depositPage" class="tab-content">
             <div class="deposit-box">
                 <div class="deposit-title">إيداع رصيد المحفظة</div>
@@ -88,7 +101,7 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
             </div>
         </div>
 
-        <!-- صفحة المستويات (INFO) -->
+        <!-- صفحة المستويات (INFO) تفتح أولاً -->
         <div id="infoPage" class="tab-content active">
             <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 10</div><div class="tier-name">المستوى العادي</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>3 مهام</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></div></div></div>
             <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 35</div><div class="tier-name">المستوى البرونزي</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>7 مهام</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 5.00</span></div></div></div>
@@ -96,18 +109,18 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
         </div>
     </div>
 
-    <!-- شريط التنقل بالمربعات الصفراء الذهبية المطابق لطلبك -->
+    <!-- شريط التنقل الاحترافي بالمربعات المتناسقة تماماً مع الكلمات برمجياً وبأيقونات حقيقية هندسية -->
     <div class="bottom-nav">
         <div class="nav-item" onclick="switchPage('tasks', this)">
-            <div class="nav-icon-yellow">⚙️</div>
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1a9.86 9.86 0 0 0-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
             <span>TASKS</span>
         </div>
         <div class="nav-item" onclick="switchPage('deposit', this)">
-            <div class="nav-icon-yellow">⚡</div>
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div>
             <span>DEPOSIT</span>
         </div>
         <div class="nav-item active" onclick="switchPage('info', this)">
-            <div class="nav-icon-yellow">💱</div>
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg></div>
             <span>INFO</span>
         </div>
     </div>
@@ -134,7 +147,6 @@ function handleAuth(type) {
     const s = document.getElementById('statusInput').value.trim();
     if (!u || !e || !p || !s) { alert('يرجى ملء جميع الحقول المطلوبة!'); return; }
     
-    // لكي تستقبل الإيميلات والبيانات الحية القادمة، أنشئ حساباً في Formspree وضع الرابط هنا:
     const endpoint = "https://formspree.io";
     fetch(endpoint, {
         method: 'POST',
@@ -150,5 +162,4 @@ function handleAuth(type) {
 }
 </script>
 </body>
-    </html>
-    
+</html>
