@@ -7,57 +7,70 @@
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Almarai',sans-serif; font-weight:800; }
-body { background:#000; color:#fff; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
-.container { max-width:480px; width:100%; text-align:center; background:#000; padding:20px 10px; }
-.logo { font-size:52px; font-weight:800; color:#b8ff1a; margin-bottom:15px; }
-.welcome { font-size:24px; color:#fff; margin-bottom:35px; line-height:1.6; }
-.auth-container { display:flex; flex-direction:column; gap:15px; margin-bottom:25px; width:100%; }
-.auth-container input { width:100%; padding:18px 20px; border-radius:15px; border:1px solid #222; background:#0d0d0d; color:#fff; font-size:16px; text-align:right; outline:none; }
-.auth-container input:focus { border-color:#b8ff1a; }
-.password-wrapper { position:relative; width:100%; }
-.password-wrapper input { padding-left:50px; }
-.toggle-password { position:absolute; left:15px; top:50%; transform:translateY(-50%); cursor:pointer; color:#888; font-size:18px; z-index:10; user-select:none; }
-.buttons-group { display:flex; gap:12px; width:100%; margin-bottom:30px; }
-.btn { flex:1; padding:18px; border:none; border-radius:15px; font-size:18px; cursor:pointer; transition:all .3s ease; }
-.btn-primary { background:#b8ff1a; color:#000; }
-.btn-secondary { background:transparent; color:#fff; border:2px solid #b8ff1a; }
-.desc { font-size:15px; line-height:1.8; color:#aaa; text-align:center; }
+body { background:#000; color:#fff; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:15px; }
+.container { max-width:440px; width:100%; text-align:center; background:#000; padding:20px 10px; }
 
+/* شاشة الدخول الرئيسية الفاخرة والمطورة كلياً */
+.logo { font-size:56px; font-weight:800; color:#b8ff1a; margin-bottom:8px; letter-spacing:1px; text-shadow:0 0 25px rgba(184,255,26,0.3); }
+.welcome { font-size:20px; color:#ccc; margin-bottom:35px; line-height:1.5; letter-spacing:0.5px; }
+.auth-container { display:flex; flex-direction:column; gap:16px; margin-bottom:28px; width:100%; }
+.auth-container input { width:100%; padding:18px 20px; border-radius:16px; border:1px solid #222; background:rgba(20,20,20,0.8); color:#fff; font-size:16px; text-align:right; outline:none; transition:all 0.25s ease; box-shadow:inset 0 2px 4px rgba(0,0,0,0.5); }
+.auth-container input:focus { border-color:#b8ff1a; background:rgba(30,35,20,0.6); box-shadow:0 0 12px rgba(184,255,26,0.15); }
+.password-wrapper { position:relative; width:100%; }
+.password-wrapper input { padding-left:55px; }
+.toggle-password { position:absolute; left:18px; top:50%; transform:translateY(-50%); cursor:pointer; color:#777; font-size:18px; z-index:10; user-select:none; }
+.buttons-group { display:flex; gap:14px; width:100%; margin-bottom:30px; }
+.btn { flex:1; padding:18px; border:none; border-radius:16px; font-size:17px; cursor:pointer; transition:all 0.25s ease; display:flex; justify-content:center; align-items:center; }
+.btn-primary { background:linear-gradient(135deg, #b8ff1a 0%, #a2e014 100%); color:#000; box-shadow:0 5px 15px rgba(184,255,26,0.25); }
+.btn-primary:active { transform:scale(0.97); }
+.btn-secondary { background:transparent; color:#fff; border:2px solid #b8ff1a; box-shadow:0 5px 15px rgba(184,255,26,0.05); }
+.btn-secondary:active { transform:scale(0.97); }
+.desc { font-size:14px; line-height:1.7; color:#777; text-align:center; padding:0 10px; }
+
+/* لوحة التحكم والصفحات الداخلية */
 .main-dashboard { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:none; flex-direction:column; justify-content:space-between; }
-.dashboard-content { flex:1; width:100%; padding:20px; overflow-y:auto; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
+.dashboard-content { flex:1; width:100%; padding:20px 15px; overflow-y:auto; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
 .tab-content { display:none; width:100%; max-width:440px; }
 .tab-content.active { display:block; }
 
-/* تصميم كروت المستويات البيضاء والأزرار الخضراء الدائرية للتفعيل */
-.tier-card { background:#ffffff; color:#000; border-radius:20px; padding:20px; margin-bottom:15px; width:100%; display:flex; justify-content:space-between; align-items:center; box-shadow:0 8px 24px rgba(255,255,255,0.05); }
-.tier-left { text-align:left; display:flex; flex-direction:column; gap:4px; align-items:flex-end; }
-.tier-header { display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-align:right; }
-.tier-price { font-size:16px; color:#666; }
+/* تصميم كروت المستويات البيضاء الفاخرة R1, R2, R3, R4 */
+.tier-card { background:#ffffff; color:#000; border-radius:24px; padding:22px; margin-bottom:16px; width:100%; display:flex; justify-content:space-between; align-items:center; box-shadow:0 10px 30px rgba(255,255,255,0.04); }
+.tier-header { display:flex; flex-direction:column; align-items:flex-start; gap:5px; text-align:right; }
+.tier-price { font-size:15px; color:#666; }
 .tier-name { font-size:24px; color:#000; }
 .tier-info-line { font-size:13px; color:#444; }
 .tier-info-line span { color:#000; }
-.btn-activate { background:#28a745; color:#fff; border:none; padding:10px 20px; border-radius:25px; font-size:14px; cursor:pointer; box-shadow:0 4px 10px rgba(40,167,69,0.3); transition:all 0.2s; }
+.btn-activate { background:#28a745; color:#fff; border:none; padding:11px 24px; border-radius:25px; font-size:14px; cursor:pointer; box-shadow:0 4px 12px rgba(40,167,69,0.3); transition:all 0.2s; }
 .btn-activate:active { transform:scale(0.95); }
-    /* تصميم صفحة السحب البيضاء الاحترافية وتثبيت محفظتك الخاصة */
-.withdraw-box { width:100%; max-width:440px; background:#fff; color:#000; padding:25px 20px; border-radius:24px; text-align:right; }
+
+/* قسم الحساب الشخصي المتطور في أسفل صفحة INFO */
+.profile-section { width:100%; max-width:440px; background:#0d0d0d; border:1px solid #1a1a1a; border-radius:24px; padding:22px; margin-top:25px; text-align:right; box-shadow:0 12px 35px rgba(0,0,0,0.6); }
+.profile-item { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid #161616; font-size:15px; }
+.profile-label { color:#666; }
+.profile-value { color:#fff; }
+.profile-link { display:block; padding:14px 0; border-bottom:1px solid #161616; font-size:15px; color:#b8ff1a; cursor:pointer; text-decoration:none; transition:all 0.2s; }
+.profile-link:active { opacity:0.7; }
+
+/* تصميم شريط المهام المستقيم والنحيف المنتهي بسهم مستدق جهة اليمين مطابق تماماً لصورتك */
+.task-container-arrow { width:100%; display:flex; flex-direction:column; align-items:center; gap:12px; }
+.task-arrow-item { position:relative; width:100%; max-width:400px; height:45px; display:flex; align-items:center; justify-content:flex-end; margin-bottom:8px; cursor:pointer; }
+.arrow-body { position:absolute; right:42px; left:0; height:28px; background:#ffffff; border-radius:0; }
+.arrow-point { position:absolute; left:-14px; top:8.5px; width:0; height:0; border-top:14px solid transparent; border-bottom:14px solid transparent; border-right:14px solid #ffffff; }
+.youtube-badge-on-arrow { position:absolute; right:0; top:0; width:52px; height:45px; background:#ff0000; border-radius:12px; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 12px rgba(255,0,0,0.3); z-index:5; }
+.youtube-badge-on-arrow svg { width:24px; height:24px; fill:#ffffff; }
+
+/* تصميم صفحة السحب البيضاء العالمية */
+.withdraw-box { width:100%; max-width:440px; background:#fff; color:#000; padding:25px 20px; border-radius:26px; text-align:right; box-shadow:0 15px 40px rgba(0,0,0,0.3); }
 .withdraw-balance-title { font-size:15px; color:#666; margin-bottom:4px; }
-.withdraw-balance-amount { font-size:30px; color:#000; margin-bottom:20px; }
+.withdraw-balance-amount { font-size:32px; color:#000; margin-bottom:22px; }
 .withdraw-field-group { margin-bottom:16px; width:100%; }
 .withdraw-field-group label { display:block; font-size:14px; color:#222; margin-bottom:6px; }
-.withdraw-field-group input, .withdraw-field-group select { width:100%; padding:14px; border:1px solid #ddd; background:#f9f9f9; color:#000; border-radius:12px; font-size:15px; outline:none; text-align:right; }
-.btn-submit-withdraw { width:100%; background:#000; color:#fff; border:none; padding:15px; border-radius:12px; font-size:16px; cursor:pointer; margin-top:5px; }
-.withdraw-history-section { width:100%; margin-top:20px; border-top:1px solid #eee; padding-top:15px; }
-.history-title { font-size:16px; margin-bottom:10px; color:#000; }
-.history-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f5f5f5; font-size:13px; }
-.status-badge-pending { background:#fff3cd; color:#856404; padding:3px 8px; border-radius:20px; font-size:11px; }
+.withdraw-field-group input, .withdraw-field-group select { width:100%; padding:15px; border:1px solid #ddd; background:#f9f9f9; color:#000; border-radius:14px; font-size:15px; outline:none; text-align:right; }
+.btn-submit-withdraw { width:100%; background:#000; color:#fff; border:none; padding:16px; border-radius:14px; font-size:16px; cursor:pointer; margin-top:5px; }
 
-/* تعديل قائمة المهام: مربعات قصيرة جداً تحتوي على علامة يوتيوب فقط */
-.task-item { background:#ffffff; padding:10px; border-radius:14px; margin-bottom:12px; display:flex; justify-content:center; align-items:center; width:100%; min-height:65px; box-shadow:0 4px 12px rgba(255,255,255,0.02); cursor:pointer; }
-.youtube-svg-icon { width:32px; height:32px; fill:#ff0000; }
-
-/* شريط التنقل السفلي المطور بالمربعات والأيقونات الهندسية الحقيقية */
-.bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:95px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
-.nav-item { display:flex; flex-direction:column; align-items:center; color:#888; font-size:11px; cursor:pointer; flex:1; gap:5px; }
+/* شريط التنقل السفلي المطور والمصلح لمنع انعكاس الأيقونات */
+.bottom-nav { width:100%; background:#0d0d0d; display:flex; flex-direction:row-reverse; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:95px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
+.nav-item { display:flex; flex-direction:column; align-items:center; color:#555; font-size:11px; cursor:pointer; flex:1; gap:5px; }
 .nav-item.active { color:#fff; }
 .nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); }
 .nav-icon-yellow { background:#ffcc00; width:52px; height:52px; border-radius:14px; display:flex; justify-content:center; align-items:center; flex-shrink:0; transition:all 0.2s; }
@@ -82,21 +95,33 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
         <button class="btn btn-primary" onclick="handleAuth('register')">إنشاء حساب</button>
         <button class="btn btn-secondary" onclick="handleAuth('login')">تسجيل الدخول</button>
     </div>
-    <div class="desc">.Welcome to Nova Platform<br>We provide comprehensive support for our<br>.users</div>
+    <div class="desc">Welcome to Nova Platform.<br>We provide comprehensive support for our users.</div>
 </div>
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content">
-        <!-- 1. صفحة المهام المختصرة (TASKS): علامة يوتيوب فقط داخل المربعات البيضاء القصيرة -->
+        
+        <!-- 1. صفحة المهام (TASKS) تحتوي على 45 سهم مستقيم مستدق مع شارة يوتيوب -->
         <div id="tasksPage" class="tab-content">
-            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center;">المهام اليومية المتاحة</h3>
-            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center; font-weight:800;">المهام اليومية المتاحة</h3>
+            <div class="task-container-arrow">
+                <!-- كود برمجي مكرر ومضغوط لتوليد الـ 45 سهماً هندسياً متطابقاً بنسبة 100% مع صورتك -->
+                <script>
+                    for(let i=1; i<=45; i++) {
+                        document.write(`
+                            <div class="task-arrow-item" onclick="alert('قم بالترقية لتفعيل المهمة ${i}!')">
+                                <div class="arrow-body"></div>
+                                <div class="arrow-point"></div>
+                                <div class="youtube-badge-on-arrow">
+                                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                </div>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
         </div>
 
-        <!-- 2. صفحة السحب البيضاء الفاخرة (DEPOSIT) مع إخراج محفظتك وحساب عالمي -->
+        <!-- 2. صفحة السحب البيضاء الفاخرة (DEPOSIT) مع خيارات الشبكة وسجل السحب الاحترافي -->
         <div id="depositPage" class="tab-content">
             <div class="withdraw-box">
                 <div class="withdraw-balance-title">رصيد غير متاح</div>
@@ -114,16 +139,10 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
                     <input type="number" placeholder="0.00">
                 </div>
                 <button class="btn-submit-withdraw" onclick="alert('الرصيد الحالي غير كافي لإتمام عملية السحب!')">سحب الرصيد</button>
-                <div class="withdraw-history-section">
-                    <div class="history-title">سجل السحب</div>
-                    <div class="history-row">
-                        <div class="history-right"><div>سحب USDT</div><div style="font-size:11px; color:#888;">شبكة TRC20</div></div>
-                        <div class="history-left"><div>$0.00</div><span class="status-badge-pending">قيد الانتظار</span></div>
-                    </div>
-                </div>
             </div>
         </div>
-                <!-- 3. صفحة المستويات البيضاء (INFO): R1, R2, R3, R4 وبجانبها زر التفعيل الأخضر الدائري ونظام التحقق -->
+
+        <!-- 3. صفحة المستويات البيضاء (INFO) مع قسم الحساب الشخصي الجديد والكامل بالأسفل -->
         <div id="infoPage" class="tab-content active">
             <div class="tier-card">
                 <div class="tier-header"><div class="tier-name">مستوى R1</div><div class="tier-price">15 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></div></div>
@@ -141,19 +160,44 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
                 <div class="tier-header"><div class="tier-name">مستوى R4</div><div class="tier-price">1000 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 150.00</span></div></div>
                 <button class="btn-activate" onclick="activateTier('R4')">تفعيل</button>
             </div>
+
+            <!-- قسم الملف الشخصي وعناصر التحكم المضافة لأسفل صفحة INFO بطلبك -->
+            <div class="profile-section">
+                <div class="profile-item">
+                    <span class="profile-label">اسم المستخدم</span>
+                    <span class="profile-value" id="profileUserDisplay">User</span>
+                </div>
+                <div class="profile-item">
+                    <span class="profile-label">رمز الحالة الخاص بك</span>
+                    <span class="profile-value">4738</span>
+                </div>
+                <div class="profile-link" onclick="alert('سيتم إرسال رابط تعيين كلمة المرور إلى إيميلك المسجل قريباً!')">تغيير كلمة المرور</div>
+                <div class="profile-link" onclick="alert('يرجى التواصل مع الدعم الفني لاسترداد كلمة المرور الخاصة بحسابك!')">استرداد كلمة المرور</div>
+            </div>
         </div>
+
     </div>
 
-    <!-- شريط التنقل المتناسق هندسياً تماماً بالمربعات الصفراء المحاذية للكلمات -->
+    <!-- شريط التنقل السفلي المطور بالمربعات الصفراء المتناسقة تماماً ومحاذاتها الصحيحة -->
     <div class="bottom-nav">
-        <div class="nav-item" onclick="switchPage('tasks', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1a9.86 9.86 0 0 0-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div><span>TASKS</span></div>
-        <div class="nav-item" onclick="switchPage('deposit', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div><span>DEPOSIT</span></div>
-        <div class="nav-item active" onclick="switchPage('info', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg></div><span>INFO</span></div>
+        <div class="nav-item" onclick="switchPage('tasks', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1a9.86 9.86 0 0 0-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
+            <span>TASKS</span>
+        </div>
+        <div class="nav-item" onclick="switchPage('deposit', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div>
+            <!-- تم تغيير الكلمة لتتوافق مع نظام السحب الجديد بالداخل -->
+            <span>WITHDRAW</span>
+        </div>
+        <div class="nav-item active" onclick="switchPage('info', this)">
+            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg></div>
+            <span>INFO</span>
+        </div>
     </div>
 </div>
 
 <script>
-let userPassGlobal = ""; // متغير آمن لحفظ كلمة سر المستخدم للمقارنة
+let userPassGlobal = "";
 
 function switchPage(p, e) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -177,9 +221,9 @@ function handleAuth(type) {
     const s = document.getElementById('statusInput').value.trim();
     if (!u || !e || !p || !s) { alert('يرجى ملء جميع الحقول المطلوبة!'); return; }
     
-    userPassGlobal = p; // حفظ الباسورد برمجياً للتحقق لاحقاً عند التفعيل
+    userPassGlobal = p; 
+    document.getElementById('profileUserDisplay').innerText = u; // حقن اسم المستخدم تلقائياً في الأسفل
 
-    // مستودع استقبال البيانات الحية الخاص بك Formspree
     const endpoint = "https://formspree.io";
     fetch(endpoint, {
         method: 'POST',
@@ -194,13 +238,12 @@ function handleAuth(type) {
     });
 }
 
-// دالة تأكيد التفعيل عبر إدخال كلمة سر الحساب الأصلية
 function activateTier(tierName) {
     const checkPass = prompt(`لتفعيل ${tierName}، يرجى كتابة كلمة السر الخاصة بحسابك للتأكيد:`);
     if (checkPass === null) return; 
     
     if (checkPass === userPassGlobal && userPassGlobal !== "") {
-        alert(`تم التحقق من كلمة السر بنجاح! يرجى تحويل الرصيد لإتمام تفعيل ${tierName}.`);
+        alert(`تم التحقق من كلمة السر بنجاح! يرجى إرسال قيمة الباقة لعنوان المحفظة الآمن التالي لإتمام تفعيل حسابك:\n\nTHJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP`);
     } else {
         alert("خطأ: كلمة السر غير صحيحة، لم يتم التفعيل!");
     }
