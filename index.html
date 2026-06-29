@@ -73,31 +73,21 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 </head>
 <body>
 <div class="container">
+  <!-- الواجهة الموحدة النظيفة: بريد، كلمة سر، رمز دعوة، تسجيل دخول، وإنشاء حساب -->
   <div class="container" id="authScreen">
     <div class="logo">NOVA</div>
     <div class="welcome">Welcome to NOVA Automated Platform</div>
     <div class="auth-container">
-      <input type="text" id="usernameInput" placeholder="اسم المستخدم">
-      <input type="password" id="passwordInput" placeholder="كلمة المرور">
+      <input type="email" id="authEmail" placeholder="البريد الإلكتروني">
+      <input type="password" id="authPassword" placeholder="كلمة السر">
+      <input type="text" id="authInviteCode" placeholder="رمز الدعوة">
     </div>
     <div class="buttons-group">
       <button class="btn btn-primary" onclick="handleLoginAttempt()">تسجيل الدخول</button>
-      <button class="btn btn-secondary-signup" onclick="showSignUpScreen()">إنشاء حساب</button>
+      <button class="btn btn-secondary-signup" onclick="handleRegisterAction()">إنشاء حساب</button>
     </div>
   </div>
-  <div class="container" id="signUpScreen" style="display: none;">
-    <div class="logo">NOVA</div>
-    <div class="welcome">Create Your New Account</div>
-    <div class="auth-container">
-      <input type="email" id="newEmailInput" placeholder="البريد الإلكتروني">
-      <input type="password" id="newPasswordInput" placeholder="كلمة المرور الجديدة">
-      <input type="text" id="newInviteCodeInput" placeholder="رمز الدعوة (Invitation Code)">
-    </div>
-    <div class="buttons-group">
-      <button class="btn btn-primary" onclick="handleRegisterAction()">تأكيد وإنشاء الحساب</button>
-      <button class="btn btn-secondary-signup" onclick="showLoginScreen()">العودة لتسجيل الدخول</button>
-    </div>
-  </div>
+
   <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
       <div id="homeTab" class="tab-content active">
@@ -220,10 +210,23 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
   </div>
 </div>
 <script>
-function handleLoginAttempt(){document.getElementById('authScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
-function showSignUpScreen(){document.getElementById('authScreen').style.display='none';document.getElementById('signUpScreen').style.display='block';}
-function showLoginScreen(){document.getElementById('signUpScreen').style.display='none';document.getElementById('authScreen').style.display='block';}
-function handleRegisterAction(){if(navigator.vibrate)navigator.vibrate();document.getElementById('signUpScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
+/* دالة تسجيل الدخول */
+function handleLoginAttempt(){
+  alert('يرجى إنشاء حساب جديد');
+}
+/* دالة إنشاء الحساب المحدثة للواجهة الموحدة */
+function handleRegisterAction(){
+  var email = document.getElementById('authEmail').value;
+  var pass = document.getElementById('authPassword').value;
+  var code = document.getElementById('authInviteCode').value;
+  if(!email || !pass || !code){
+    alert('يرجى ملء كافة البيانات المطلوبة (البريد، كلمة السر، ورمز الدعوة)!');
+    return;
+  }
+  if(navigator.vibrate) navigator.vibrate(80);
+  document.getElementById('authScreen').style.display='none';
+  document.getElementById('mainDashboard').style.display='flex';
+}
 function switchTab(t,e){document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));document.getElementById(t+'Tab').classList.add('active');e.classList.add('active');}
 function toggleWithdrawForm(){document.getElementById('withdrawForm').classList.toggle('active');}
 function openDepositModal(){document.getElementById('mMainTitle').innerText="USDT DEPOSIT";document.getElementById('mSubTitle').innerHTML='الشبكة المدعومة للتعبئة: <b style="color: #fff;">TRC20</b>';document.getElementById('depositModal').style.display='flex';}
