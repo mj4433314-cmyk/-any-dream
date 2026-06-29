@@ -26,15 +26,14 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .tab-content { display:none; width:100%; max-width:440px; }
 .tab-content.active { display:block; }
 .page-title { font-size:26px; color:#b8ff1a; text-align:center; margin-bottom:25px; font-weight:800; text-transform: uppercase;}
-  .tier-card-new { background:#ffffff; color:#000; border-radius:20px; padding:12px 15px; margin-bottom:12px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; flex-direction: row; text-align: right; gap: 8px; }
+.tier-card-new { background:#ffffff; color:#000; border-radius:20px; padding:12px 15px; margin-bottom:12px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; flex-direction: row; text-align: right; gap: 8px; }
 .tier-logo-badge { font-size: 14px; font-weight: 900; color: #000; background: #b8ff1a; padding: 6px 10px; border-radius: 10px; letter-spacing: 0.5px; box-shadow: 0 2px 6px rgba(184,255,26,0.2); flex-shrink: 0; }
 .tier-header-new { display:flex; flex-direction:column; align-items:flex-start; gap:2px; flex:1; padding-right: 5px; }
 .tier-name-new { font-size:18px; font-weight:800; color: #000; line-height: 1.2; }
 .tier-price-new { font-size:13px; color:#444; font-weight:800; }
 .btn-activate-new { background:#22c55e; color:#fff; border:none; padding:8px 16px; border-radius:10px; font-size:13px; cursor:pointer; font-weight:800; min-width: 65px; flex-shrink: 0; }
 .btn-activate-new.activated { background:#888; cursor:not-allowed; }
-
-.wallet-container { width:100%; max-width:400px; background:#ffffff; color:#000; padding:25px 20px; border-radius:24px; text-align:center; margin-bottom:20px; }
+  .wallet-container { width:100%; max-width:400px; background:#ffffff; color:#000; padding:25px 20px; border-radius:24px; text-align:center; margin-bottom:20px; }
 .wallet-main-balance { font-size:36px; color:#000; font-weight:800; margin-bottom:20px; text-align:center; }
 .wallet-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; border-top:1px solid #eee; padding-top:15px; margin-bottom:20px; }
 .stat-box { display:flex; flex-direction:column; text-align: center; }
@@ -47,14 +46,14 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .withdraw-field-group label { display:block; font-size:13px; color:#222; margin-bottom:6px; font-weight: 700; }
 .withdraw-field-group input, .withdraw-field-group select { width:100%; padding:14px; border:1px solid #ddd; background:#f9f9f9; border-radius:12px; font-size:14px; outline:none; text-align:right; font-weight:700; color: #000; }
 .btn-confirm-withdraw-green { width:100%; padding:16px; border:none; border-radius:14px; font-size:16px; font-weight:800; cursor:pointer; background:linear-gradient(135deg, #22c55e 0%, #15803d 100%); color:#fff; margin-top:15px; box-shadow:0 4px 12px rgba(34,197,94,0.2); transition:all 0.2s; text-align:center;}
-  .section-subtitle { font-size: 20px; color: #b8ff1a; text-align: center; margin: 25px 0 15px 0; font-weight: 800; text-transform: uppercase; }
+.section-subtitle { font-size: 20px; color: #b8ff1a; text-align: center; margin: 25px 0 15px 0; font-weight: 800; text-transform: uppercase; }
 .tasks-section { width:100%; max-width:400px; display:flex; flex-direction:column; gap:12px; }
-.task-card-google { background:#141414; border:1px solid #1f1f1f; border-radius:16px; padding:15px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; transition: all 0.2s; text-align: right;}
+.task-card-google { background:#141414; border:1px solid #1f1f1f; border-radius:16px; padding:15px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; transition: all 0.2s; text-align: right; width:100%;}
 .task-card-google:hover { background: #1c1c1c; border-color: #333; }
 .task-google-info { display:flex; flex-direction:column; text-align:right; gap:4px; flex: 1; padding-right: 15px;}
-.task-google-title { font-size:14px; color:#fff; font-weight:800; text-align: left;}
-.task-google-desc { font-size:11px; color:#666; font-weight:700; }
-.google-play-icon { width:30px; height:30px; display:flex; align-items:center; justify-content:center; }
+.task-google-title { font-size:14px; color:#fff; font-weight:800; text-align: right;}
+.task-google-desc { font-size:11px; color:#666; font-weight:700; text-align: right; }
+.google-play-icon { width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .profile-container { width:100%; max-width:400px; background:#141414; border:1px solid #1f1f1f; padding:25px 20px; border-radius:24px; text-align:right; }
 .profile-info-item { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #222; font-size:14px; }
 .profile-info-item:last-child { border-bottom: none; }
@@ -70,12 +69,10 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 20000; display: none; justify-content: center; align-items: center; padding: 20px; }
 .modal-box { background: #141414; border: 2px solid #b8ff1a; border-radius: 24px; max-width: 400px; width: 100%; padding: 25px; text-align: center; box-shadow: 0 0 30px rgba(184,255,26,0.2); }
 .modal-title { font-size: 20px; color: #b8ff1a; margin-bottom: 15px; }
-.modal-text { font-size: 14px; color: #fff; line-height: 1.5; margin-bottom: 20px; }
 </style>
 </head>
 <body>
-<div class="container">
-  <!-- شاشة الدخول والتسجيل الأساسية -->
+  <div class="container">
   <div class="container" id="authScreen">
     <div class="logo">NOVA</div>
     <div class="welcome">Welcome to NOVA Automated Platform</div>
@@ -101,47 +98,36 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
       <button class="btn btn-secondary-signup" onclick="showLoginScreen()">العودة لتسجيل الدخول</button>
     </div>
   </div>
-    <!-- بدء لوحة التحكم الرئيسية بعد تسجيل الدخول -->
   <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
-      
-      <!-- تبويب الصفحة الرئيسية HOME والكروت منسقة تماماً وبها الأرقام بجانب السعر وشعار NOVA -->
       <div id="homeTab" class="tab-content active">
         <div class="page-title">Home</div>
-        
-        <!-- مستوى M1 -->
         <div class="tier-card-new">
-          <button class="btn-activate-new" id="btn-M1" onclick="handleTierActivation('مستوى M1', 15.0)">فعل</button>
+          <button class="btn-activate-new" id="btn-M1" onclick="openActivationModal('مستوى M1', '15 USDT')">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M1</div>
             <div class="tier-price-new">السعر: 15USDT 1.50 USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
-
-        <!-- مستوى M2 -->
         <div class="tier-card-new">
-          <button class="btn-activate-new" id="btn-M2" onclick="handleTierActivation('مستوى M2', 35.0)">فعل</button>
+          <button class="btn-activate-new" id="btn-M2" onclick="openActivationModal('مستوى M2', '35 USDT')">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M2</div>
             <div class="tier-price-new">السعر: 35USDT 3.50 USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
-
-        <!-- مستوى M3 -->
         <div class="tier-card-new">
-          <button class="btn-activate-new" id="btn-M3" onclick="handleTierActivation('مستوى M3', 100.0)">فعل</button>
+          <button class="btn-activate-new" id="btn-M3" onclick="openActivationModal('مستوى M3', '100 USDT')">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M3</div>
             <div class="tier-price-new">السعر: 100USDT 10.00 USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
-
-        <!-- مستوى M4 -->
         <div class="tier-card-new">
-          <button class="btn-activate-new" id="btn-M4" onclick="handleTierActivation('مستوى M4', 600.0)">فعل</button>
+          <button class="btn-activate-new" id="btn-M4" onclick="openActivationModal('مستوى M4', '600 USDT')">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M4</div>
             <div class="tier-price-new">السعر: 600USDT 60.00 USDT</div>
@@ -149,19 +135,18 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <div class="tier-logo-badge">NOVA</div>
         </div>
       </div>
-            <!-- تبويب المحفظة المحدث بالإنجليزية مع محفظتك التلقائية وأزرار السحب والإيداع المدعومة -->
-      <div id="walletTab" class="tab-content">
+            <div id="walletTab" class="tab-content">
         <div class="page-title" style="color: #b8ff1a;">MY WALLET</div>
         <div class="wallet-container">
           <span style="font-size: 12px; color: #666; font-weight: 700; display: block; margin-bottom: 5px;">Total Balance</span>
           <div class="wallet-main-balance" style="font-size: 42px;">USDT 0.00</div>
           <div class="wallet-stats" style="border-top: 1px solid #eee; padding-top: 15px; margin-bottom: 20px;">
             <div class="stat-box">
-              <span class="stat-title" style="color: #666;">Total Earned</span>
+              <span class="stat-title" style="color: #666;">Total Withdrawn</span>
               <span class="stat-value">USDT 0.00</span>
             </div>
             <div class="stat-box">
-              <span class="stat-title" style="color: #666;">Total Withdrawn</span>
+              <span class="stat-title" style="color: #666;">Total Earned</span>
               <span class="stat-value">USDT 0.00</span>
             </div>
           </div>
@@ -171,100 +156,82 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <div class="withdraw-form" id="withdrawForm" style="margin-top: 15px;">
              <div class="withdraw-field-group">
                 <label>Amount to Withdraw</label>
-                <input type="number" placeholder="0.00" style="text-align: left;">
+                <input type="number" id="wAmount" placeholder="0.00" style="text-align: left;">
              </div>
-             <button class="btn-confirm-withdraw-green">Confirm Withdrawal</button>
+             <div class="withdraw-field-group">
+                <label>Wallet Address</label>
+                <input type="text" id="wAddress" placeholder="Enter your USDT TRC20 address" style="text-align: left;">
+             </div>
+             <div class="withdraw-field-group">
+                <label>Password</label>
+                <input type="password" id="wPassword" placeholder="Enter your password" style="text-align: left;">
+             </div>
+             <button class="btn-confirm-withdraw-green" onclick="handleWithdrawClick()">Confirm Withdrawal</button>
           </div>
         </div>
+        
         <div class="page-title" style="color: #b8ff1a; margin-top: 25px; font-size: 20px;">AVAILABLE TASKS</div>
-        <div class="tasks-section" style="margin: 0 auto;"></div>
-      </div>
-
-      <!-- تبويب الملف الشخصي PROFILE المستقل تماماً بدون أي تداخل أو لخبطة -->
-      <div id="profileTab" class="tab-content">
+        <div class="tasks-section" style="margin: 0 auto;">
+          <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="task-google-info"><div class="task-google-title">Google Play Task #01</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+          </div>
+          <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="task-google-info"><div class="task-google-title">Google Play Task #02</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+          </div>
+          <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="task-google-info"><div class="task-google-title">Google Play Task #03</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+          </div>
+          <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="task-google-info"><div class="task-google-title">Google Play Task #04</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+          </div>
+          <div class="task-card-google" onclick="handleTaskClick()">
+            <div class="task-google-info"><div class="task-google-title">Google Play Task #05</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+            <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+          </div>
+        </div>
+            </div>
+                  <div id="profileTab" class="tab-content">
         <div class="page-title" style="color: #b8ff1a;">PROFILE</div>
         <div class="profile-container">
           <div class="profile-info-item"><span class="profile-label">User Name</span><span class="profile-value">07702801263aaaaa</span></div>
           <div class="profile-info-item"><span class="profile-label">Status</span><span class="profile-value">Active</span></div>
+          <div class="profile-info-item"><span class="profile-label">Status Code</span><span class="profile-value">#NV-8892X</span></div>
         </div>
       </div>
-
     </div>
-
-    <!-- شريط التنقل السفلي الثابت للتبويبات الثلاثة -->
     <div class="bottom-nav">
-      <a href="#" class="nav-item active" onclick="switchTab('home', this)">
-        <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
-        <span>Home</span>
-      </a>
-      <a href="#" class="nav-item" onclick="switchTab('wallet', this)">
-        <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
-        <span>Wallet</span>
-      </a>
-      <a href="#" class="nav-item" onclick="switchTab('profile', this)">
-        <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div>
-        <span>Profile</span>
-      </a>
+      <a href="#" class="nav-item" onclick="switchTab('profile', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div><span>Profile</span></a>
+      <a href="#" class="nav-item active" onclick="switchTab('wallet', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span>Wallet</span></a>
+      <a href="#" class="nav-item" onclick="switchTab('home', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div><span>Home</span></a>
     </div>
   </div>
 </div>
-
-<!-- نافذة الدفع والإيداع المنبثقة المخصصة لعرض وعمل نسخ لعنوان محفظتك الذكي التلقائي -->
 <div class="modal-overlay" id="depositModal" style="display: none; align-items: center; justify-content: center;">
   <div class="modal-box">
-    <div class="modal-title">USDT DEPOSIT</div>
-    <p style="color: #aaa; font-size: 13px; margin-bottom: 15px;">الشبكة المدعومة للتعبئة: <b style="color: #fff;">TRC20</b></p>
+    <div class="modal-title" id="mMainTitle">USDT DEPOSIT</div>
+    <p style="color: #aaa; font-size: 13px; margin-bottom: 15px;" id="mSubTitle">الشبكة المدعومة للتعبئة: <b style="color: #fff;">TRC20</b></p>
     <div style="background: #0a0a0a; border: 1px solid #222; padding: 12px; border-radius: 12px; word-break: break-all; color: #fff; font-size: 13px; margin-bottom: 15px; font-family: monospace;" id="walletAddressText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
     <button onclick="copyWalletAddress()" style="background: #b8ff1a; color: #000; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; margin-bottom: 10px;">نسخ عنوان المحفظة</button>
     <button onclick="closeDepositModal()" style="background: transparent; color: #666; border: none; padding: 5px; cursor: pointer; font-size: 13px;">إغلاق النافذة</button>
   </div>
 </div>
-
 <script>
-function handleLoginAttempt() {
-  document.getElementById('authScreen').style.display = 'none';
-  document.getElementById('mainDashboard').style.display = 'flex';
-}
-function showSignUpScreen() {
-  document.getElementById('authScreen').style.display = 'none';
-  document.getElementById('signUpScreen').style.display = 'block';
-}
-function showLoginScreen() {
-  document.getElementById('signUpScreen').style.display = 'none';
-  document.getElementById('authScreen').style.display = 'block';
-}
-function handleRegisterAction() {
-  document.getElementById('signUpScreen').style.display = 'none';
-  document.getElementById('mainDashboard').style.display = 'flex';
-}
-function switchTab(tabId, element) {
-  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-  if(tabId === 'home') document.getElementById('homeTab').classList.add('active');
-  if(tabId === 'wallet') document.getElementById('walletTab').classList.add('active');
-  if(tabId === 'profile') document.getElementById('profileTab').classList.add('active');
-  element.classList.add('active');
-}
-function toggleWithdrawForm() {
-  document.getElementById('withdrawForm').classList.toggle('active');
-}
-function openDepositModal() {
-  document.getElementById('depositModal').style.display = 'flex';
-}
-function closeDepositModal() {
-  document.getElementById('depositModal').style.display = 'none';
-}
-function copyWalletAddress() {
-  var addressText = document.getElementById('walletAddressText').innerText;
-  navigator.clipboard.writeText(addressText).then(function() {
-    alert('تم نسخ عنوان المحفظة بنجاح!');
-  }, function() {
-    alert('فشل النسخ التلقائي، يرجى نسخ العنوان يدوياً.');
-  });
-}
-function handleTierActivation(tierName, price) {
-  alert('تم تفعيل ' + tierName + ' بنجاح بقيمة ' + price + ' USDT');
-}
+function handleLoginAttempt(){document.getElementById('authScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
+function showSignUpScreen(){document.getElementById('authScreen').style.display='none';document.getElementById('signUpScreen').style.display='block';}
+function showLoginScreen(){document.getElementById('signUpScreen').style.display='none';document.getElementById('authScreen').style.display='block';}
+function handleRegisterAction(){document.getElementById('signUpScreen').style.display='none';document.getElementById('mainDashboard').style.display='flex';}
+function switchTab(t,e){document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));document.getElementById(t+'Tab').classList.add('active');e.classList.add('active');}
+function toggleWithdrawForm(){document.getElementById('withdrawForm').classList.toggle('active');}
+function openDepositModal(){document.getElementById('mMainTitle').innerText="USDT DEPOSIT";document.getElementById('mSubTitle').innerHTML='الشبكة المدعومة للتعبئة: <b style="color: #fff;">TRC20</b>';document.getElementById('depositModal').style.display='flex';}
+function openActivationModal(n,p){document.getElementById('mMainTitle').innerText="تفعيل "+n;document.getElementById('mSubTitle').innerHTML='الرجاء تحويل <b style="color: #b8ff1a;">'+p+'</b> عبر شبكة <b style="color: #fff;">TRC20</b>:';document.getElementById('depositModal').style.display='flex';}
+function closeDepositModal(){document.getElementById('depositModal').style.display='none';}
+function copyWalletAddress(){var t=document.getElementById('walletAddressText').innerText;navigator.clipboard.writeText(t).then(function(){alert('تم نسخ عنوان المحفظة بنجاح!');},function(){alert('يرجى نسخ العنوان يدوياً.');});}
+function handleTaskClick(){alert('لم تقم في اشتراك الباقات');}
+function handleWithdrawClick(){var a=document.getElementById('wAmount').value;var d=document.getElementById('wAddress').value;var p=document.getElementById('wPassword').value;if(!a||!d||!p){alert('يرجى ملء جميع الحقول المطلوبة!');return;}alert('رصيدك غير متاح');}
 </script>
 </body>
 </html>
