@@ -25,13 +25,16 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
 .tab-content.active { display:block; }
 .page-title { font-size:26px; color:#b8ff1a; text-align:center; margin-bottom:25px; font-weight:800; text-transform: uppercase;}
 
-.tier-card-new { background:#ffffff; color:#000; border-radius:24px; padding:22px 20px; margin-bottom:14px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; flex-direction: row; text-align: right; }
-.tier-logo-badge { font-size: 20px; font-weight: 900; color: #000; background: #b8ff1a; padding: 10px 14px; border-radius: 14px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(184,255,26,0.2); margin-left: 5px; }
-.tier-header-new { display:flex; flex-direction:column; align-items:flex-start; gap:4px; flex:1; padding-right: 15px; }
-.tier-name-new { font-size:24px; font-weight:800; color: #000; }
-.tier-price-new { font-size:15px; color:#444; font-weight:800; margin-top: 2px; }
-.tier-info-line-new { font-size:13px; color:#777; font-weight:700; margin-top: 2px; }
-.btn-activate-new { background:#22c55e; color:#fff; border:none; padding:12px 24px; border-radius:14px; font-size:14px; cursor:pointer; font-weight:800; min-width: 80px; }
+/* تعديل كرت المستوى ليصبح مضغوطاً وقصير الارتفاع وبسيطاً */
+.tier-card-new { background:#ffffff; color:#000; border-radius:20px; padding:12px 15px; margin-bottom:12px; width:100%; max-width:400px; display:flex; justify-content:space-between; align-items:center; flex-direction: row; text-align: right; gap: 8px; }
+/* الشعار المصغر داخل الكرت */
+.tier-logo-badge { font-size: 14px; font-weight: 900; color: #000; background: #b8ff1a; padding: 6px 10px; border-radius: 10px; letter-spacing: 0.5px; box-shadow: 0 2px 6px rgba(184,255,26,0.2); flex-shrink: 0; }
+/* ترتيب النصوص بشكل مدمج لتقليل الارتفاع تماماً */
+.tier-header-new { display:flex; flex-direction:column; align-items:flex-start; gap:2px; flex:1; padding-right: 5px; }
+.tier-name-new { font-size:18px; font-weight:800; color: #000; line-height: 1.2; }
+.tier-price-new { font-size:13px; color:#444; font-weight:800; }
+/* أزرار التفعيل القصيرة والمتناسقة */
+.btn-activate-new { background:#22c55e; color:#fff; border:none; padding:8px 16px; border-radius:10px; font-size:13px; cursor:pointer; font-weight:800; min-width: 65px; flex-shrink: 0; }
 .btn-activate-new.activated { background:#888; cursor:not-allowed; }
 
 .wallet-container { width:100%; max-width:400px; background:#ffffff; color:#000; padding:25px 20px; border-radius:24px; text-align:center; margin-bottom:20px; }
@@ -98,7 +101,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
   <div class="main-dashboard" id="mainDashboard">
     <div class="dashboard-content">
       
-      <!-- قسم البيت / المستويات -->
+      <!-- قسم البيت / المستويات الحالية المصغرة وبصيغة USDT وبدون سطر الأرباح -->
       <div id="homeTab" class="tab-content active">
         <div class="page-title">Home</div>
         
@@ -107,8 +110,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <button class="btn-activate-new" id="btn-M1" onclick="handleTierActivation('مستوى M1', 15.00)">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M1</div>
-            <div class="tier-price-new">السعر: 15.00 دولار</div>
-            <div class="tier-info-line-new">اربح 1.50 دولار يومياً</div>
+            <div class="tier-price-new">السعر: 15USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
@@ -118,8 +120,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <button class="btn-activate-new" id="btn-M2" onclick="handleTierActivation('مستوى M2', 35.00)">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M2</div>
-            <div class="tier-price-new">السعر: 35.00 دولار</div>
-            <div class="tier-info-line-new">اربح 5.25 دولار يومياً</div>
+            <div class="tier-price-new">السعر: 35USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
@@ -129,8 +130,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <button class="btn-activate-new" id="btn-M3" onclick="handleTierActivation('مستوى M3', 100.00)">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M3</div>
-            <div class="tier-price-new">السعر: 100.00 دولار</div>
-            <div class="tier-info-line-new">اربح 15.00 دولار يومياً</div>
+            <div class="tier-price-new">السعر: 100USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
@@ -140,35 +140,33 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           <button class="btn-activate-new" id="btn-M4" onclick="handleTierActivation('مستوى M4', 600.00)">فعل</button>
           <div class="tier-header-new">
             <div class="tier-name-new">مستوى M4</div>
-            <div class="tier-price-new">السعر: 600.00 دولار</div>
-            <div class="tier-info-line-new">اربح 90.00 دولار يومياً</div>
+            <div class="tier-price-new">السعر: 600USDT</div>
           </div>
           <div class="tier-logo-badge">NOVA</div>
         </div>
       </div>
-
-      <!-- قسم المحفظة والمهام المحدث بالكامل -->
+            <!-- قسم المحفظة والمهام الـ 5 كاملة بنظام USDT -->
       <div id="walletTab" class="tab-content">
         <div class="page-title">My Wallet</div>
         <div class="wallet-container">
           <div style="font-size: 12px; color: #777; margin-bottom: 5px;">Total Balance</div>
-          <div class="wallet-main-balance" id="mainBalance">$0.00</div>
+          <div class="wallet-main-balance" id="mainBalance">0.00 USDT</div>
           
           <div class="wallet-stats">
             <div class="stat-box">
               <div class="stat-title">Total Withdrawn</div>
-              <div class="stat-value">$0.00</div>
+              <div class="stat-value">0.00 USDT</div>
             </div>
             <div class="stat-box">
               <div class="stat-title">Total Earned</div>
-              <div class="stat-value">$0.00</div>
+              <div class="stat-value">0.00 USDT</div>
             </div>
           </div>
           
           <button class="w-btn-withdraw" id="toggleWithdrawForm">Withdraw Funds</button>
           <button class="btn btn-secondary" onclick="openDepositModal()">Deposit / Add Funds</button>
           
-          <!-- استمارة السحب الإنجليزية المطابقة لصورتك -->
+          <!-- استمارة السحب باللغة الإنجليزية المتطابقة بالكامل وزر التأكيد الأخضر التفاعلي -->
           <div class="withdraw-form" id="withdrawForm">
             <div class="withdraw-field-group" style="text-align:left;">
               <label style="color:#777;">Amount to Withdraw</label>
@@ -185,22 +183,23 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
                 <option>بريد الجزائر</option>
               </select>
             </div>
-            <!-- زر التأكيد الأخضر المحدث بتنبيه الرصيد -->
             <button class="btn-confirm-withdraw-green" onclick="confirmWithdrawalAction()">Confirm Withdrawal</button>
           </div>
         </div>
 
         <div class="section-subtitle">Available Tasks</div>
         <div class="tasks-section">
+          <!-- المهمة 1 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #01')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #01</div>
               <div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div>
             </div>
             <div class="google-play-icon">
-              <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
+              <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 Bir 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
             </div>
           </div>
+          <!-- المهمة 2 -->
           <div class="task-card-google" onclick="runTask('Google Play Task #02')">
             <div class="task-google-info">
               <div class="task-google-title">Google Play Task #02</div>
@@ -210,20 +209,54 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
               <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
             </div>
           </div>
+          <!-- المهمة 3 -->
+          <div class="task-card-google" onclick="runTask('Google Play Task #03')">
+            <div class="task-google-info">
+              <div class="task-google-title">Google Play Task #03</div>
+              <div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div>
+            </div>
+            <div class="google-play-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
+            </div>
+          </div>
+          <!-- المهمة 4 -->
+          <div class="task-card-google" onclick="runTask('Google Play Task #04')">
+            <div class="task-google-info">
+              <div class="task-google-title">Google Play Task #04</div>
+              <div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div>
+            </div>
+            <div class="google-play-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
+            </div>
+          </div>
+          <!-- المهمة 5 -->
+          <div class="task-card-google" onclick="runTask('Google Play Task #05')">
+            <div class="task-google-info">
+              <div class="task-google-title">Google Play Task #05</div>
+              <div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div>
+            </div>
+            <div class="google-play-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30"><path fill="#EA4335" d="M3 3.5v17c0 .5.3.9.7 1.1l9.1-9.1z"/><path fill="#FBBC05" d="M18.2 10.4L4.3 2.4c-.4-.2-.8-.2-1.1.1l9.6 9.6z"/><path fill="#34A853" d="M3.2 21.5c.3.3.7.3 1.1.1l13.9-8-5.4-5.4z"/><path fill="#4285F4" d="M12.8 12.8l5.4 5.4 4.1-2.4c.6-.3.9-.9.9-1.6s-.3-1.3-.9-1.6l-4.1-2.4z"/></svg>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- قسم البروفايل -->
+      <!-- قسم البروفايل المطور بالكامل باللغة الإنجليزية مع رمز الدعوة المميز للمستخدم -->
       <div id="profileTab" class="tab-content">
         <div class="page-title">Profile</div>
-        <div class="profile-container">
+        <div class="profile-container" style="text-align:left;">
           <div class="profile-info-item">
-            <span class="profile-value" id="profileUser">اسم المستخدم</span>
-            <span class="profile-label">User Name</span>
+            <span class="profile-label" style="color:#777;">User Name</span>
+            <span class="profile-value" id="profileUser" style="color:#fff; font-weight:800;">اسم المستخدم</span>
           </div>
           <div class="profile-info-item">
-            <span class="profile-value">نشط</span>
-            <span class="profile-label">Status</span>
+            <span class="profile-label" style="color:#777;">Status</span>
+            <span class="profile-value" style="color:#fff; font-weight:800;">Active</span>
+          </div>
+          <div class="profile-info-item">
+            <span class="profile-label" style="color:#777;">Invitation Code</span>
+            <span class="profile-value" style="color:#b8ff1a; font-weight:800; letter-spacing:1px;">NV-81263</span>
           </div>
         </div>
       </div>
@@ -247,7 +280,6 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
     </div>
   </div>
 
-  <!-- النافذة المنبثقة لشحن المحفظة الرقمية المحفوظة -->
   <div class="modal-overlay" id="depositModal">
     <div class="modal-box">
       <div class="modal-title">شحن الرصيد (USDT TRC20)</div>
@@ -262,7 +294,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
     const userPassword = "123"; 
 
     document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById('mainBalance').innerText = "$" + userWalletBalance.toFixed(2);
+        document.getElementById('mainBalance').innerText = userWalletBalance.toFixed(2) + " USDT";
         activatedTiers.forEach(tierId => {
             const btn = document.getElementById('btn-' + tierId);
             if(btn) {
@@ -299,7 +331,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           localStorage.setItem('nova_balance', userWalletBalance);
           localStorage.setItem('nova_tiers', JSON.stringify(activatedTiers));
 
-          document.getElementById('mainBalance').innerText = "$" + userWalletBalance.toFixed(2);
+          document.getElementById('mainBalance').innerText = userWalletBalance.toFixed(2) + " USDT";
           const btn = document.getElementById('btn-' + tierId);
           if(btn) {
               btn.innerText = "مفعّل";
@@ -308,7 +340,7 @@ body { background:#0a0a0a; color:#fff; min-height:100vh; display:flex; justify-c
           }
 
           if (navigator.vibrate) { navigator.vibrate(200); }
-          alert("تم تفعيل " + tierName + " بنجاح! تم خصم " + price + " دولار.");
+          alert("تم تفعيل " + tierName + " بنجاح! تم خصم " + price + " USDT.");
         } else {
           alert("رصيد محفظتك الحالي غير كافٍ! يرجى شحن حسابك أولاً.");
           openDepositModal();
