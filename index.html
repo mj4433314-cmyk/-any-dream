@@ -13,7 +13,7 @@
     .tab-content.active { display: block; }
     .page-title { color: #b8ff1a; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 1px; margin-top: 15px; margin-bottom: 25px; }
     
-    /* تنسيقات واجهة التسجيل المضافة */
+    /* تنسيقات واجهة التسجيل */
     .auth-container { max-width: 440px; margin: 20px auto; padding: 20px; background: #111111; border-radius: 24px; border: 1px solid #222222; box-shadow: 0 8px 32px rgba(0,0,0,0.5); text-align: right; }
     .auth-title { color: #b8ff1a; text-align: center; font-size: 28px; font-weight: 900; margin-bottom: 25px; }
     .auth-field-group { margin-bottom: 15px; }
@@ -26,16 +26,20 @@
 </head>
 <body>
     <style>
-    /* مؤثرات حالة التحقق والتوثيق والرسائل المنبثقة الصغيرة */
+    /* مؤثرات حالة التحقق والتوثيق */
     .status-animation-box { display: none; text-align: center; margin-top: 15px; padding: 12px; border-radius: 12px; background: #161616; border: 1px solid #262626; }
     .checking-text { color: #ffffff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .checking-spinner { width: 18px; height: 18px; border: 2px solid #ffffff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
     .success-text { color: #2ecc71; font-weight: 900; font-size: 15px; display: none; align-items: center; justify-content: center; gap: 6px; font-family: sans-serif; }
     .success-badge-icon { background: #b8ff1a; color: #000000; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; box-shadow: 0 0 8px #b8ff1a; }
     
-    /* تصميم الرسالة الصغيرة العائمة المخصصة للمهمات */
-    .toast-alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(234, 67, 53, 0.95); color: #ffffff; padding: 12px 24px; border-radius: 50px; font-weight: bold; font-size: 14px; z-index: 3000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: none; opacity: 0; transition: all 0.3s ease; text-align: center; pointer-events: none; border: 1px solid #ff4d4d; }
-    .toast-alert.show { display: block; opacity: 1; transform: translateX(-50%) translateY(0); }
+    /* تصميم نافذة التنبيه الاحترافية العائمة للمهمات لتستبدل الرسالة القديمة */
+    .task-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); z-index: 4000; display: none; align-items: center; justify-content: center; }
+    .task-modal-box { background: #111111; border: 1px solid #222222; border-radius: 28px; width: 85%; max-width: 360px; padding: 30px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.7); animation: modalFadeIn 0.3s ease; }
+    .task-modal-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(234, 67, 53, 0.1); border: 2px solid #ea4335; color: #ea4335; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; margin: 0 auto 15px auto; }
+    .task-modal-text { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 20px; line-height: 1.5; }
+    .task-modal-btn { background: #ea4335; color: #ffffff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-size: 14px; cursor: pointer; transition: 0.2s; width: 100%; }
+    @keyframes modalFadeIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* تنسيقات واجهات المستويات (Home) والمحفظة */
@@ -48,8 +52,14 @@
     .level-tag-nova { background: #b8ff1a; color: #000000; padding: 8px 15px; border-radius: 12px; font-weight: bold; font-size: 14px; }
   </style>
 
-  <!-- الرسالة الصغيرة المخصصة للمهمات وتختفي تلقائياً -->
-  <div id="taskToast" class="toast-alert">عذراً انت لم تقم في الاشتراك</div>
+  <!-- نافذة التنبيه الاحترافية المنبثقة البديلة للمهمات -->
+  <div id="taskModal" class="task-modal-overlay">
+    <div class="task-modal-box">
+      <div class="task-modal-icon">!</div>
+      <div class="task-modal-text">عذراً انت لم تقم في الاشتراك</div>
+      <button class="task-modal-btn" onclick="closeTaskModal()">موافق</button>
+    </div>
+  </div>
 
   <!-- ==================== الواجهة الافتتاحية: بوابة التسجيل والتوثيق ==================== -->
   <div id="authSection" class="tab-content active" style="display: block;">
@@ -75,7 +85,7 @@
       </div>
     </div>
   </div>
-   <style>
+    <style>
     .wallet-container { background: #ffffff; border-radius: 24px; padding: 20px; color: #000000; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 25px; text-align: center; }
     .wallet-main-balance { font-size: 42px; font-weight: 900; margin: 10px 0 20px 0; }
     .wallet-stats { border-top: 1px solid #eeeeee; padding-top: 15px; margin-bottom: 20px; display: flex; justify-content: space-around; }
@@ -147,23 +157,24 @@
     
     <div class="page-title" style="color: #b8ff1a; margin-top: 25px; font-size: 20px;">AVAILABLE TASKS</div>
     <div class="tasks-section">
-      <div class="task-card-google" onclick="showTaskRestriction()">
+      <!-- تم ربط المهام بنافذة المنبثقة الاحترافية الجديدة بدلاً من الرسالة القديمة -->
+      <div class="task-card-google" onclick="openTaskModal()">
         <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">Google Play Task #01</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
       </div>
-      <div class="task-card-google" onclick="showTaskRestriction()">
+      <div class="task-card-google" onclick="openTaskModal()">
         <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">Google Play Task #02</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
       </div>
-      <div class="task-card-google" onclick="showTaskRestriction()">
+      <div class="task-card-google" onclick="openTaskModal()">
         <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">Google Play Task #03</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
       </div>
-      <div class="task-card-google" onclick="showTaskRestriction()">
+      <div class="task-card-google" onclick="openTaskModal()">
         <div class="google-play-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">YouTube Video Task #01</div><div class="task-google-desc">شاهد الفيديو لمدة 30 ثانية واكسب العملات</div></div>
       </div>
-      <div class="task-card-google" onclick="showTaskRestriction()">
+      <div class="task-card-google" onclick="openTaskModal()">
         <div class="google-play-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">YouTube Video Task #02</div><div class="task-google-desc">شاهد الفيديو لمدة 30 ثانية واكسب العملات</div></div>
       </div>
@@ -173,10 +184,8 @@
   <div id="profileTab" class="tab-content">
     <div class="page-title">PROFILE</div>
     <div class="profile-container">
-      <!-- تم ربط السطر بالأسفل برمجياً ليعرض الإيميل الحقيقي المخزن للمستخدم تلقائياً -->
       <div class="profile-info-item"><span class="profile-value" id="profileDisplayUser">07702801263aaaaa</span><span class="profile-label">User Name</span></div>
       <div class="profile-info-item"><span class="profile-value">Active</span><span class="profile-label">Status</span></div>
-      <!-- تم ربط السطر بالأسفل برمجياً ليعرض رمز الدعوة الذي كتبه المستخدم تلقائياً -->
       <div class="profile-info-item"><span class="profile-value" id="profileDisplayCode">NV-8892X#</span><span class="profile-label">Status Code</span></div>
     </div>
 
@@ -226,12 +235,10 @@
   </div>
     <!-- ==================== JAVASCRIPT CONTROLS ==================== -->
   <script>
-    // دالة فحص وتأكيد إذا كان المستخدم يمتلك حساباً مسجلاً مسبقاً بجهازه فور فتح الموقع
     window.addEventListener('DOMContentLoaded', function() {
       var savedUser = localStorage.getItem('nova_email');
       var savedCode = localStorage.getItem('nova_code');
       if (savedUser && savedCode) {
-        // إذا كان مسجلاً يتم توجيهه مباشرة للداخل وتخطي صفحة الـ Auth
         document.getElementById('profileDisplayUser').innerText = savedUser;
         document.getElementById('profileDisplayCode').innerText = savedCode + "#";
         document.getElementById('authSection').style.display = 'none';
@@ -258,13 +265,14 @@
       } catch(e) { console.log(e); }
     }
 
-    function showTaskRestriction() {
-      var toast = document.getElementById('taskToast');
-      toast.classList.add('show');
-      setTimeout(function() { toast.classList.remove('show'); }, 2000);
+    // دوال تشغيل وإغلاق نافذة التنبيه الاحترافية الجديدة للمهمات
+    function openTaskModal() {
+      document.getElementById('taskModal').style.display = 'flex';
+    }
+    function closeTaskModal() {
+      document.getElementById('taskModal').style.display = 'none';
     }
 
-    // دالة إنشاء الحساب وتخزين بيانات المدخلات سحابياً داخل جهاز المستخدم
     function startRegistrationProcess() {
       var email = document.getElementById('authEmail').value;
       var pass = document.getElementById('authPassword').value;
@@ -275,12 +283,10 @@
         return;
       }
       
-      // حفظ البيانات داخلياً بنجاح وسهولة تامة ليتذكرها الموقع دائماً
       localStorage.setItem('nova_email', email);
       localStorage.setItem('nova_pass', pass);
       localStorage.setItem('nova_code', code);
       
-      // تحديث واجهة الـ Profile بالبيانات الجديدة المكتوبة فوراً
       document.getElementById('profileDisplayUser').innerText = email;
       document.getElementById('profileDisplayCode').innerText = code + "#";
       
