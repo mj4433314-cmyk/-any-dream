@@ -13,7 +13,32 @@
     .tab-content.active { display: block; }
     .page-title { color: #b8ff1a; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 1px; margin-top: 15px; margin-bottom: 25px; }
     
-    /* تنسيقات واجهة المستويات (Home) */
+    /* تنسيقات واجهة التسجيل المضافة */
+    .auth-container { max-width: 440px; margin: 20px auto; padding: 20px; background: #111111; border-radius: 24px; border: 1px solid #222222; box-shadow: 0 8px 32px rgba(0,0,0,0.5); text-align: right; }
+    .auth-title { color: #b8ff1a; text-align: center; font-size: 28px; font-weight: 900; margin-bottom: 25px; }
+    .auth-field-group { margin-bottom: 15px; }
+    .auth-field-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #aaaaaa; }
+    .auth-field-group input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #333333; background: #0a0a0a; color: #ffffff; font-size: 14px; text-align: left; transition: 0.3s; }
+    .auth-field-group input:focus { border-color: #b8ff1a; outline: none; }
+    .btn-auth-main { width: 100%; background: #b8ff1a; color: #000000; border: none; padding: 14px; border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+    .btn-auth-secondary { width: 100%; background: transparent; color: #aaaaaa; border: 1px solid #333333; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 12px; transition: 0.2s; }
+  </style>
+</head>
+<body>
+    <style>
+    /* مؤثرات حالة التحقق والتوثيق والرسائل المنبثقة الصغيرة */
+    .status-animation-box { display: none; text-align: center; margin-top: 15px; padding: 12px; border-radius: 12px; background: #161616; border: 1px solid #262626; }
+    .checking-text { color: #ffffff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .checking-spinner { width: 18px; height: 18px; border: 2px solid #ffffff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .success-text { color: #2ecc71; font-weight: 900; font-size: 15px; display: none; align-items: center; justify-content: center; gap: 6px; }
+    .success-badge-icon { background: #b8ff1a; color: #000000; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; box-shadow: 0 0 8px #b8ff1a; }
+    
+    /* تصميم الرسالة الصغيرة العائمة المخصصة للمهمات */
+    .toast-alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(234, 67, 53, 0.95); color: #ffffff; padding: 12px 24px; border-radius: 50px; font-weight: bold; font-size: 14px; z-index: 3000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: none; opacity: 0; transition: all 0.3s ease; text-align: center; pointer-events: none; border: 1px solid #ff4d4d; }
+    .toast-alert.show { display: block; opacity: 1; transform: translateX(-50%) translateY(0); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* تنسيقات واجهات المستويات (Home) والمحفظة */
     .levels-container { width: 100%; }
     .level-card { background: #ffffff; border-radius: 20px; padding: 15px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
     .level-btn-ok { background: #2ecc71; color: #ffffff; border: none; padding: 8px 18px; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; }
@@ -22,15 +47,40 @@
     .level-info .price { font-size: 13px; color: #333333; font-weight: 700; }
     .level-tag-nova { background: #b8ff1a; color: #000000; padding: 8px 15px; border-radius: 12px; font-weight: bold; font-size: 14px; }
   </style>
-</head>
-<body>
+
+  <!-- الرسالة الصغيرة المخصصة للمهمات وتختفي تلقائياً -->
+  <div id="taskToast" class="toast-alert">عذراً انت لم تقم في الاشتراك</div>
+
+  <!-- ==================== الواجهة الافتتاحية: بوابة التسجيل والتوثيق ==================== -->
+  <div id="authSection" class="tab-content active" style="display: block;">
+    <div class="auth-container">
+      <div class="auth-title">NOVA PLATFORM</div>
+      <div class="auth-field-group">
+        <label>البريد الإلكتروني (Email)</label>
+        <input type="email" id="authEmail" placeholder="name@example.com">
+      </div>
+      <div class="auth-field-group">
+        <label>كلمة السر (Password)</label>
+        <input type="password" id="authPassword" placeholder="••••••••">
+      </div>
+      <div class="auth-field-group">
+        <label>رمز الدعوة (Invitation Code)</label>
+        <input type="text" id="authInviteCode" placeholder="أدخل رمز الدعوة هنا">
+      </div>
+      <button class="btn-auth-main" onclick="startRegistrationProcess()">إنشاء حساب</button>
+      <button class="btn-auth-secondary" onclick="triggerLoginError()">تسجيل دخول</button>
+      <div class="status-animation-box" id="statusBox">
+        <div class="checking-text" id="checkingState"><span class="checking-spinner"></span> جاري التحقيق...</div>
+        <div class="success-text" id="successState"><span class="success-badge-icon">✓</span> اكتمل عامة صح توثيق الحساب بنجاح!</div>
+      </div>
+    </div>
+  </div>
     <style>
-    /* تنسيقات واجهة المحفظة (Wallet) والحساب (Profile) */
     .wallet-container { background: #ffffff; border-radius: 24px; padding: 20px; color: #000000; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 25px; text-align: center; }
     .wallet-main-balance { font-size: 42px; font-weight: 900; margin: 10px 0 20px 0; }
     .wallet-stats { border-top: 1px solid #eeeeee; padding-top: 15px; margin-bottom: 20px; display: flex; justify-content: space-around; }
     .stat-box { text-align: center; }
-    .stat-title { font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px; }
+    .stat-title { font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px; color: #666666; }
     .stat-value { font-size: 16px; font-weight: 900; }
     .w-btn-withdraw { width: 100%; border-radius: 14px; padding: 14px; font-weight: bold; font-size: 15px; cursor: pointer; border: none; display: block; }
     .withdraw-form { display: none; margin-top: 20px; text-align: right; border-top: 1px solid #eee; padding-top: 15px; }
@@ -52,7 +102,7 @@
     .profile-value { font-weight: bold; color: #ffffff; font-size: 16px; }
     .profile-label { color: #555555; font-size: 15px; font-weight: bold; }
     
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #000000; border-top: 1px solid #111111; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; height: 75px; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #000000; border-top: 1px solid #111111; display: none; justify-content: space-around; padding: 10px 0; z-index: 1000; height: 75px; }
     .nav-item { text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #555555; font-size: 11px; font-weight: bold; flex: 1; }
     .nav-item.active { color: #ffffff; }
     .nav-icon-yellow svg { width: 24px; height: 24px; fill: #555555; transition: 0.2s; }
@@ -65,13 +115,13 @@
   </style>
 
   <!-- ==================== TAB: HOME ==================== -->
-  <div id="homeTab" class="tab-content active">
+  <div id="homeTab" class="tab-content">
     <div class="page-title">HOME</div>
     <div class="levels-container">
-      <div class="level-card"><button class="level-btn-ok">OK</button><div class="level-info"><div class="title">مستوى M1</div><div class="price">السعر: 1.50USDT &nbsp;&nbsp; 15USDT</div></div><div class="level-tag-nova">NOVA</div></div>
-      <div class="level-card"><button class="level-btn-ok">OK</button><div class="level-info"><div class="title">مستوى M2</div><div class="price">السعر: 3.50USDT &nbsp;&nbsp; 35USDT</div></div><div class="level-tag-nova">NOVA</div></div>
-      <div class="level-card"><button class="level-btn-ok">OK</button><div class="level-info"><div class="title">مستوى M3</div><div class="price">السعر: 10.00USDT &nbsp;&nbsp; 100USDT</div></div><div class="level-tag-nova">NOVA</div></div>
-      <div class="level-card"><button class="level-btn-ok">OK</button><div class="level-info"><div class="title">مستوى M4</div><div class="price">السعر: 60.00USDT &nbsp;&nbsp; 600USDT</div></div><div class="level-tag-nova">NOVA</div></div>
+      <div class="level-card"><button class="level-btn-ok" onclick="openDepositModal()">OK</button><div class="level-info"><div class="title">مستوى M1</div><div class="price">السعر: 1.50USDT &nbsp;&nbsp; 15USDT</div></div><div class="level-tag-nova">NOVA</div></div>
+      <div class="level-card"><button class="level-btn-ok" onclick="openDepositModal()">OK</button><div class="level-info"><div class="title">مستوى M2</div><div class="price">السعر: 3.50USDT &nbsp;&nbsp; 35USDT</div></div><div class="level-tag-nova">NOVA</div></div>
+      <div class="level-card"><button class="level-btn-ok" onclick="openDepositModal()">OK</button><div class="level-info"><div class="title">مستوى M3</div><div class="price">السعر: 10.00USDT &nbsp;&nbsp; 100USDT</div></div><div class="level-tag-nova">NOVA</div></div>
+      <div class="level-card"><button class="level-btn-ok" onclick="openDepositModal()">OK</button><div class="level-info"><div class="title">مستوى M4</div><div class="price">السعر: 60.00USDT &nbsp;&nbsp; 600USDT</div></div><div class="level-tag-nova">NOVA</div></div>
     </div>
   </div>
     <!-- ==================== TAB: WALLET ==================== -->
@@ -81,8 +131,8 @@
       <span style="font-size: 12px; color: #666666; font-weight: 700; display: block; margin-bottom: 5px;">Total Balance</span>
       <div class="wallet-main-balance">USDT 0.00</div>
       <div class="wallet-stats">
-        <div class="stat-box"><span class="stat-title" style="color: #666666;">Total Earned</span><span class="stat-value">USDT 0.00</span></div>
-        <div class="stat-box"><span class="stat-title" style="color: #666666;">Total Withdrawn</span><span class="stat-value">USDT 0.00</span></div>
+        <div class="stat-box"><span class="stat-title">Total Earned</span><span class="stat-value">USDT 0.00</span></div>
+        <div class="stat-box"><span class="stat-title">Total Withdrawn</span><span class="stat-value">USDT 0.00</span></div>
       </div>
       <button class="w-btn-withdraw" style="background: #000000; color: #ffffff; margin-bottom: 12px;" onclick="toggleWithdrawForm()">Withdraw Funds</button>
       <button class="w-btn-withdraw" style="background: #ffffff; color: #000000; border: 1px solid #000000;" onclick="openDepositModal()">Deposit / Add Funds</button>
@@ -97,13 +147,25 @@
     
     <div class="page-title" style="color: #b8ff1a; margin-top: 25px; font-size: 20px;">AVAILABLE TASKS</div>
     <div class="tasks-section">
-      <div class="task-card-google" onclick="handleTaskClick()">
+      <div class="task-card-google" onclick="showTaskRestriction()">
         <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">Google Play Task #01</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
       </div>
-      <div class="task-card-google" onclick="handleTaskClick()">
+      <div class="task-card-google" onclick="showTaskRestriction()">
         <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
         <div class="task-google-info"><div class="task-google-title">Google Play Task #02</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+      </div>
+      <div class="task-card-google" onclick="showTaskRestriction()">
+        <div class="google-play-icon"><svg viewBox="0 0 48 48" width="32" height="32"><path fill="#EA4335" d="M4 2.5v43l21.3-21.5z"/><path fill="#FBBC05" d="M37.3 14.3L4 2.5l21.3 21.8z"/><path fill="#4285F4" d="M4 45.5l33.3-11.8-12-12.2z"/><path fill="#34A853" d="M37.3 14.3L25.3 21.5l12 12.2 6.7-3.9c2.7-1.6 2.7-4.2 0-5.8z"/></svg></div>
+        <div class="task-google-info"><div class="task-google-title">Google Play Task #03</div><div class="task-google-desc">اضغط لبدء تحميل التطبيق وكسب الأرباح</div></div>
+      </div>
+      <div class="task-card-google" onclick="showTaskRestriction()">
+        <div class="google-play-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+        <div class="task-google-info"><div class="task-google-title">YouTube Video Task #01</div><div class="task-google-desc">شاهد الفيديو لمدة 30 ثانية واكسب العملات</div></div>
+      </div>
+      <div class="task-card-google" onclick="showTaskRestriction()">
+        <div class="google-play-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+        <div class="task-google-info"><div class="task-google-title">YouTube Video Task #02</div><div class="task-google-desc">شاهد الفيديو لمدة 30 ثانية واكسب العملات</div></div>
       </div>
     </div>
   </div>
@@ -116,7 +178,6 @@
       <div class="profile-info-item"><span class="profile-value">NV-8892X#</span><span class="profile-label">Status Code</span></div>
     </div>
 
-    <!-- النصوص والترتيب المتطابق مع ورقة الإعلانات أسفل البروفايل -->
     <div style="color: #ffffff; line-height: 1.8; font-size: 14px; padding: 10px; text-align: right; direction: rtl; margin-top: 25px;">
       <p style="margin-bottom: 18px; font-weight: bold;">
         شركه NOVA للاعلانات والتقيم يمكنك الحصول على الاموال من المهمات من خلال تقيم التطبيقات عبر متجر بلي أو أبل ستور <br>
@@ -144,27 +205,19 @@
       </ul>
     </div>
   </div>
-    <!-- ==================== BOTTOM NAVIGATION BAR ==================== -->
-  <div class="bottom-nav">
-    <a href="#" class="nav-item active" onclick="switchTab('home', this)">
-      <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
-      <span>Home</span>
-    </a>
-    <a href="#" class="nav-item" onclick="switchTab('wallet', this)">
-      <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
-      <span>Wallet</span>
-    </a>
-    <a href="#" class="nav-item" onclick="switchTab('profile', this)">
-      <div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div>
-      <span>Profile</span>
-    </a>
+
+  <!-- شريط التنقل السفلي والنافذة المنبثقة للإيداع مدمجة بمحفظتك الخاصة -->
+  <div class="bottom-nav" id="mainNavbar">
+    <a href="#" class="nav-item active" onclick="switchTab('home', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div><span>Home</span></a>
+    <a href="#" class="nav-item" onclick="switchTab('wallet', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div><span>Wallet</span></a>
+    <a href="#" class="nav-item" onclick="switchTab('profile', this)"><div class="nav-icon-yellow"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/></svg></div><span>Profile</span></a>
   </div>
 
-  <!-- ==================== DEPOSIT MODAL BOX ==================== -->
   <div class="modal-overlay" id="depositModal">
     <div class="modal-box">
-      <div class="modal-title" id="mMainTitle">USDT DEPOSIT</div>
-      <p style="color: #aaaaaa; font-size: 13px; margin-bottom: 15px;" id="mSubTitle">الشبكة المدعومة للتعبئة: <b style="color: #ffffff;">TRC20</b></p>
+      <div class="modal-title">USDT DEPOSIT</div>
+      <p style="color: #aaaaaa; font-size: 13px; margin-bottom: 15px;">الشبكة المدعومة للتعبئة: <b style="color: #ffffff;">TRC20</b></p>
+      <!-- تم تثبيت عنوان محفظتك هنا بنجاح تام وبدون أي أخطاء -->
       <div style="background: #0a0a0a; border: 1px solid #222222; padding: 12px; border-radius: 12px; word-break: break-all; color: #ffffff; font-size: 13px; margin-bottom: 15px; font-family: monospace;" id="walletAddressText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
       <button onclick="copyWalletAddress()" style="background: #b8ff1a; color: #000000; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; margin-bottom: 10px;">نسخ عنوان المحفظة</button>
       <button onclick="closeDepositModal()" style="background: transparent; color: #666666; border: none; padding: 5px; cursor: pointer; font-size: 13px;">إغلاق النافذة</button>
@@ -172,56 +225,110 @@
   </div>
     <!-- ==================== JAVASCRIPT CONTROLS ==================== -->
   <script>
-    // دالة التبديل السلسة والسليمة بين الصفحات الثلاث بدون أخطاء
+    // دالة توليد صوت نغمة نجاح التوثيق والآيفون برمجياً لمدة ثانية واحدة وتختفي فوراً
+    function playIphoneSuccessSound() {
+      try {
+        var AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        var ctx = new AudioContext();
+        
+        // النغمة الأولى المرتفعة
+        var osc1 = ctx.createOscillator();
+        var gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(880, ctx.currentTime); 
+        gain1.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start();
+        osc1.stop(ctx.currentTime + 0.4);
+        
+        // النغمة الثانية التكميلية المتناغمة معها
+        setTimeout(function() {
+          var osc2 = ctx.createOscillator();
+          var gain2 = ctx.createGain();
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(1320, ctx.currentTime); 
+          gain2.gain.setValueAtTime(0.3, ctx.currentTime);
+          gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+          osc2.connect(gain2);
+          gain2.connect(ctx.destination);
+          osc2.start();
+          osc2.stop(ctx.currentTime + 0.5);
+        }, 120);
+      } catch(e) { console.log(e); }
+    }
+
+    function showTaskRestriction() {
+      var toast = document.getElementById('taskToast');
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    function startRegistrationProcess() {
+      var email = document.getElementById('authEmail').value;
+      var pass = document.getElementById('authPassword').value;
+      var code = document.getElementById('authInviteCode').value;
+      
+      if (!email || !pass || !code) {
+        alert('يرجى ملء كافة المربعات والبيانات المطلوبة أولاً!');
+        return;
+      }
+      
+      var box = document.getElementById('statusBox');
+      var checking = document.getElementById('checkingState');
+      var success = document.getElementById('successState');
+      
+      box.style.display = 'block';
+      checking.style.display = 'flex';
+      success.style.display = 'none';
+      
+      setTimeout(function() {
+        checking.style.display = 'none';
+        success.style.display = 'flex';
+        
+        // تشغيل صوت التوثيق القصير فور ظهور علامة الصح وتختفي النغمة تلقائياً بعد ثانية واحدة
+        playIphoneSuccessSound();
+        
+        setTimeout(function() {
+          document.getElementById('authSection').style.display = 'none';
+          document.getElementById('homeTab').style.display = 'block';
+          document.getElementById('mainNavbar').style.display = 'flex';
+        }, 1500);
+      }, 2000);
+    }
+
+    function triggerLoginError() {
+      alert('انت لم تقم في تسجيل الدخول في NOVA');
+    }
+
     function switchTab(tabName, element) {
-      // إخفاء كل الصفحات أولاً
       document.getElementById('homeTab').style.display = 'none';
       document.getElementById('walletTab').style.display = 'none';
       document.getElementById('profileTab').style.display = 'none';
-      
-      // إظهار الصفحة المستهدفة المحددة
       document.getElementById(tabName + 'Tab').style.display = 'block';
-      
-      // مسح تنشيط الأزرار وتفعيله للزر الذي تم النقر عليه
       var navItems = document.querySelectorAll('.nav-item');
-      navItems.forEach(function(item) {
-        item.classList.remove('active');
-      });
+      navItems.forEach(function(item) { item.classList.remove('active'); });
       element.classList.add('active');
     }
-
-    // دوال تفعيل وعمل حقول السحب والإيداع بالموقع
+    
     function toggleWithdrawForm() {
       var form = document.getElementById('withdrawForm');
       form.style.display = (form.style.display === 'block') ? 'none' : 'block';
     }
-    function openDepositModal() {
-      document.getElementById('depositModal').style.display = 'flex';
-    }
-    function closeDepositModal() {
-      document.getElementById('depositModal').style.display = 'none';
-    }
+    function openDepositModal() { document.getElementById('depositModal').style.display = 'flex'; }
+    function closeDepositModal() { document.getElementById('depositModal').style.display = 'none'; }
     function copyWalletAddress() {
       var addressText = document.getElementById('walletAddressText').innerText;
-      navigator.clipboard.writeText(addressText).then(function() {
-        alert('تم نسخ عنوان المحفظة بنجاح!');
-      });
-    }
-
-    // دوال معالجة ضغطات المهام وعمليات السحب
-    function handleTaskClick() {
-      if(navigator.vibrate) { navigator.vibrate(40); }
-      alert('تم البدء في تنفيذ المهمة! يرجى الانتظار حتى اكتمال التحميل والتثبيت لكسب النقاط.');
+      navigator.clipboard.writeText(addressText).then(function() { alert('تم نسخ عنوان المحفظة بنجاح!'); });
     }
     function handleWithdrawClick() {
       var amt = document.getElementById('wAmount').value;
-      var addr = document.getElementById('wAddress').value;
-      var pwd = document.getElementById('wPassword').value;
-      if(!amt || !addr || !pwd) {
-        alert('يرجى ملء جميع حقول بيانات السحب المطلوبة أولاً!');
-        return;
-      }
-      alert('تم تقديم طلب السحب الخاص بك بنجاح وجاري مراجعته من قبل الإدارة.');
+      if(!amt) { alert('يرجى كتابة المبلغ!'); return; }
+      alert('تم تقديم طلب السحب الخاص بك بنجاح وجاري مراجعته.');
     }
   </script>
 </body>
