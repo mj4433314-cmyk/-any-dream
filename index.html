@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>HR</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,11 +19,7 @@ font-family:'Cairo',sans-serif;
 
 body{
 
-background:linear-gradient(135deg,#0d47a1,#1565ff,#42a5f5);
-
-background-size:400% 400%;
-
-animation:bg 12s ease infinite;
+height:100vh;
 
 display:flex;
 
@@ -37,15 +27,19 @@ justify-content:center;
 
 align-items:center;
 
-min-height:100vh;
-
-padding:20px;
-
 overflow:hidden;
+
+background:linear-gradient(-45deg,#0b3fa8,#1565ff,#42a5f5,#0d47a1);
+
+background-size:400% 400%;
+
+animation:bgmove 12s infinite;
+
+position:relative;
 
 }
 
-@keyframes bg{
+@keyframes bgmove{
 
 0%{background-position:0% 50%;}
 
@@ -55,27 +49,89 @@ overflow:hidden;
 
 }
 
+.circle{
+
+position:absolute;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+animation:float 12s linear infinite;
+
+}
+
+.c1{
+
+width:320px;
+
+height:320px;
+
+left:-120px;
+
+top:-80px;
+
+}
+
+.c2{
+
+width:240px;
+
+height:240px;
+
+right:-90px;
+
+bottom:-60px;
+
+}
+
+.c3{
+
+width:180px;
+
+height:180px;
+
+left:40px;
+
+bottom:40px;
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:translateY(-25px);
+
+}
+
+}
+
 .card{
 
-width:100%;
+width:95%;
 
 max-width:420px;
 
 background:white;
 
-border-radius:25px;
+border-radius:28px;
 
-padding:25px;
+padding:30px;
 
-box-shadow:0 20px 40px rgba(0,0,0,.25);
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+position:relative;
+
+z-index:5;
 
 }
 
 .logo{
 
-width:90px;
+width:95px;
 
-height:90px;
+height:95px;
 
 margin:auto;
 
@@ -91,38 +147,45 @@ align-items:center;
 
 font-size:42px;
 
-font-weight:900;
+font-weight:800;
 
-color:white;
+color:#fff;
+
+box-shadow:0 10px 25px rgba(21,101,255,.35);
 
 }
 
-h2{
+.title{
 
 text-align:center;
 
-margin-top:15px;
+font-size:30px;
+
+font-weight:800;
 
 color:#1565ff;
 
+margin-top:15px;
+
 }
 
-p{
+.sub{
 
 text-align:center;
 
 color:#777;
 
-margin-bottom:20px;
+margin:8px 0 20px;
 
 }
   .input{
 width:100%;
-padding:15px;
-margin-top:12px;
-border:1px solid #d9e2f2;
-border-radius:12px;
-font-size:16px;
+height:55px;
+border:2px solid #e7ecf7;
+border-radius:15px;
+padding:0 18px;
+font-size:17px;
+margin-top:14px;
 outline:none;
 transition:.3s;
 background:#fff;
@@ -130,81 +193,458 @@ background:#fff;
 
 .input:focus{
 border-color:#1565ff;
-box-shadow:0 0 10px rgba(21,101,255,.2);
+box-shadow:0 0 15px rgba(21,101,255,.15);
 }
 
-.country{
+select{
 width:100%;
-padding:15px;
-margin-top:15px;
-border-radius:12px;
-border:1px solid #d9e2f2;
-font-size:16px;
-background:white;
+height:55px;
+border-radius:15px;
+border:2px solid #e7ecf7;
+padding:0 15px;
+font-size:17px;
 outline:none;
+background:#fff;
+margin-top:15px;
 }
 
 .captcha-box{
+
 display:flex;
+
 gap:10px;
+
 margin-top:15px;
+
 }
 
-#captcha{
+.captcha{
+
 flex:1;
+
 height:60px;
+
+border-radius:15px;
+
 background:#eef5ff;
-border-radius:12px;
+
 display:flex;
-justify-content:center;
+
 align-items:center;
-font-size:28px;
-font-weight:bold;
-letter-spacing:4px;
+
+justify-content:center;
+
+font-size:30px;
+
+font-weight:800;
+
+letter-spacing:6px;
+
 color:#1565ff;
+
+user-select:none;
+
 }
 
-.refresh{
+.reload{
+
 width:60px;
+
 border:none;
-border-radius:12px;
+
+border-radius:15px;
+
 background:#1565ff;
+
 color:white;
-font-size:24px;
+
+font-size:26px;
+
 cursor:pointer;
+
 }
 
 .btn{
+
 width:100%;
-padding:15px;
-margin-top:15px;
+
+height:58px;
+
 border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
+
+border-radius:16px;
+
+margin-top:18px;
+
+background:linear-gradient(135deg,#1565ff,#2979ff);
+
+color:white;
+
+font-size:20px;
+
+font-weight:700;
+
 cursor:pointer;
+
 transition:.3s;
+
 }
 
-.login{
-background:#1565ff;
-color:white;
+.btn:active{
+
+transform:scale(.98);
+
 }
 
-.register{
-background:#14a44d;
-color:white;
-}
+.link{
 
-.btn:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
+margin-top:18px;
 
-.message{
 text-align:center;
+
+font-size:16px;
+
+}
+
+.link a{
+
+color:#1565ff;
+
+font-weight:bold;
+
+text-decoration:none;
+
+}
+
+.loading{
+
+position:fixed;
+
+inset:0;
+
+background:white;
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+z-index:9999;
+
+}
+
+.spinner{
+
+width:90px;
+
+height:90px;
+
+border:7px solid #dce8ff;
+
+border-top:7px solid #1565ff;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+  .success{
+
+width:90px;
+
+height:90px;
+
+border-radius:50%;
+
+background:#22c55e;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:50px;
+
+color:#fff;
+
+margin-top:20px;
+
+display:none;
+
+animation:pop .5s;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.2);
+
+opacity:0;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+.footer{
+
+margin-top:20px;
+
+text-align:center;
+
+color:#999;
+
+font-size:13px;
+
+}
+
+@media(max-width:480px){
+
+.card{
+
+padding:22px;
+
+border-radius:22px;
+
+}
+
+.logo{
+
+width:80px;
+
+height:80px;
+
+font-size:36px;
+
+}
+
+.title{
+
+font-size:26px;
+
+}
+
+.input,select{
+
+height:52px;
+
+font-size:16px;
+
+}
+
+.btn{
+
+height:54px;
+
+font-size:18px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="circle c1"></div>
+
+<div class="circle c2"></div>
+
+<div class="circle c3"></div>
+
+<div class="card">
+
+<div class="logo">HR</div>
+
+<div class="title">HR</div>
+
+<div class="sub">منصة رقمية حديثة</div>
+
+<select id="country">
+
+<option>🇮🇶 العراق +964</option>
+
+<option>🇸🇦 السعودية +966</option>
+
+<option>🇦🇪 الإمارات +971</option>
+
+<option>🇯🇴 الأردن +962</option>
+
+<option>🇪🇬 مصر +20</option>
+
+<option>🇹🇷 تركيا +90</option>
+
+<option>🇺🇸 United States +1</option>
+
+<option>🇬🇧 United Kingdom +44</option>
+
+</select>
+
+<input class="input" placeholder="رقم الهاتف">
+
+<input class="input" type="password" placeholder="كلمة المرور">
+
+<input class="input" placeholder="رمز الدعوة">
+<div class="captcha-box">
+
+<div class="captcha" id="cap">A7K9</div>
+
+<button class="reload" onclick="newCaptcha()">
+↻
+</button>
+
+</div>
+
+<input
+class="input"
+id="captchaInput"
+placeholder="اكتب رمز التحقق">
+
+<button
+class="btn"
+onclick="login()">
+تسجيل الدخول
+</button>
+
+<button
+class="btn"
+style="background:#14b85a;"
+onclick="register()">
+إنشاء حساب جديد
+</button>
+
+<div id="message"
+style="
 margin-top:15px;
-min-height:25px;
+text-align:center;
 font-weight:bold;
 color:#e53935;
+"></div>
+
+</div>
+
+<div id="loading" class="loading">
+
+<div class="spinner"></div>
+
+<p style="
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+color:#1565ff;">
+جاري إنشاء الحساب...
+</p>
+
+<div class="success" id="success">
+✓
+</div>
+
+</div>
+
+<script>
+
+let captcha="";
+
+function newCaptcha(){
+
+const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+captcha="";
+
+for(let i=0;i<4;i++){
+
+captcha+=chars[Math.floor(Math.random()*chars.length)];
+
 }
+
+document.getElementById("cap").innerHTML=captcha;
+
+}
+
+newCaptcha();
+  function login(){
+
+let msg=document.getElementById("message");
+
+msg.style.color="#e53935";
+
+msg.innerHTML="عذراً، ليس لديك حساب مسبق";
+
+setTimeout(function(){
+
+msg.innerHTML="";
+
+},3000);
+
+}
+
+function register(){
+
+let code=document.getElementById("captchaInput").value.trim().toUpperCase();
+
+if(code!=captcha){
+
+let msg=document.getElementById("message");
+
+msg.style.color="#e53935";
+
+msg.innerHTML="رمز التحقق غير صحيح";
+
+newCaptcha();
+
+return;
+
+}
+
+document.getElementById("loading").style.display="flex";
+
+if(navigator.vibrate){
+
+navigator.vibrate(150);
+
+}
+
+setTimeout(function(){
+
+document.querySelector(".spinner").style.display="none";
+
+document.getElementById("success").style.display="flex";
+
+let audio=new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+
+audio.play();
+
+},10000);
+
+}
+
+</script>
+
+</body>
+
+</html>
