@@ -9,6 +9,9 @@
 
 <title>HR</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
@@ -22,7 +25,11 @@ font-family:'Cairo',sans-serif;
 
 body{
 
-height:100vh;
+background:linear-gradient(135deg,#0d47a1,#1565ff,#42a5f5);
+
+background-size:400% 400%;
+
+animation:bg 12s ease infinite;
 
 display:flex;
 
@@ -30,93 +37,37 @@ justify-content:center;
 
 align-items:center;
 
-background:linear-gradient(135deg,#0047ff,#00a6ff);
+min-height:100vh;
+
+padding:20px;
 
 overflow:hidden;
 
-position:relative;
+}
+
+@keyframes bg{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
 
 }
 
-/* الخلفية */
+.card{
 
-body::before{
-
-content:"";
-
-position:absolute;
-
-width:700px;
-
-height:700px;
-
-background:rgba(255,255,255,.08);
-
-border-radius:50%;
-
-left:-250px;
-
-top:-250px;
-
-animation:move1 18s linear infinite;
-
-}
-
-body::after{
-
-content:"";
-
-position:absolute;
-
-width:600px;
-
-height:600px;
-
-background:rgba(255,255,255,.05);
-
-border-radius:50%;
-
-right:-200px;
-
-bottom:-250px;
-
-animation:move2 20s linear infinite;
-
-}
-
-@keyframes move1{
-
-0%{transform:translateY(0) rotate(0deg);}
-
-100%{transform:translateY(100px) rotate(360deg);}
-
-}
-
-@keyframes move2{
-
-0%{transform:translateY(0) rotate(0deg);}
-
-100%{transform:translateY(-120px) rotate(-360deg);}
-
-}
-
-.login{
-
-width:95%;
+width:100%;
 
 max-width:420px;
 
-background:#fff;
-
-padding:25px;
+background:white;
 
 border-radius:25px;
 
-box-shadow:0 20px 45px rgba(0,0,0,.25);
+padding:25px;
 
-position:relative;
-
-z-index:10;
+box-shadow:0 20px 40px rgba(0,0,0,.25);
 
 }
 
@@ -138,23 +89,17 @@ justify-content:center;
 
 align-items:center;
 
-font-size:40px;
+font-size:42px;
 
 font-weight:900;
 
 color:white;
 
-box-shadow:0 0 30px rgba(21,101,255,.45);
-
 }
 
-.title{
+h2{
 
 text-align:center;
-
-font-size:28px;
-
-font-weight:bold;
 
 margin-top:15px;
 
@@ -162,7 +107,7 @@ color:#1565ff;
 
 }
 
-.desc{
+p{
 
 text-align:center;
 
@@ -170,58 +115,96 @@ color:#777;
 
 margin-bottom:20px;
 
-}<select class="input">
+}
+  .input{
+width:100%;
+padding:15px;
+margin-top:12px;
+border:1px solid #d9e2f2;
+border-radius:12px;
+font-size:16px;
+outline:none;
+transition:.3s;
+background:#fff;
+}
 
-<option>🇮🇶 العراق +964</option>
+.input:focus{
+border-color:#1565ff;
+box-shadow:0 0 10px rgba(21,101,255,.2);
+}
 
-<option>🇸🇦 السعودية +966</option>
+.country{
+width:100%;
+padding:15px;
+margin-top:15px;
+border-radius:12px;
+border:1px solid #d9e2f2;
+font-size:16px;
+background:white;
+outline:none;
+}
 
-<option>🇦🇪 الإمارات +971</option>
+.captcha-box{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
 
-<option>🇰🇼 الكويت +965</option>
+#captcha{
+flex:1;
+height:60px;
+background:#eef5ff;
+border-radius:12px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+font-weight:bold;
+letter-spacing:4px;
+color:#1565ff;
+}
 
-<option>🇶🇦 قطر +974</option>
+.refresh{
+width:60px;
+border:none;
+border-radius:12px;
+background:#1565ff;
+color:white;
+font-size:24px;
+cursor:pointer;
+}
 
-<option>🇧🇭 البحرين +973</option>
+.btn{
+width:100%;
+padding:15px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
 
-<option>🇴🇲 عمان +968</option>
+.login{
+background:#1565ff;
+color:white;
+}
 
-<option>🇪🇬 مصر +20</option>
+.register{
+background:#14a44d;
+color:white;
+}
 
-<option>🇯🇴 الأردن +962</option>
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
 
-<option>🇹🇷 تركيا +90</option>
-
-<option>🇺🇸 United States +1</option>
-
-</select>
-
-<input class="input" type="tel" placeholder="رقم الهاتف">
-
-<input class="input" type="password" placeholder="كلمة المرور">
-
-<input class="input" type="text" placeholder="رمز الدعوة">
-
-<div class="captcha">
-
-<canvas id="captcha" width="220" height="60"></canvas>
-
-<button id="refresh">↻</button>
-
-</div>
-
-<input class="input" id="code" placeholder="اكتب رمز التحقق">
-
-<button class="loginBtn">
-
-تسجيل الدخول
-
-</button>
-
-<button class="registerBtn">
-
-إنشاء حساب جديد
-
-</button>
-
-<div id="message"></div>
+.message{
+text-align:center;
+margin-top:15px;
+min-height:25px;
+font-weight:bold;
+color:#e53935;
+}
