@@ -1,142 +1,417 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HR - تسجيل الدخول</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>HR</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Cairo,sans-serif;
+}
+
 body{
-background:linear-gradient(135deg,#0a1f44,#123b8a);
+overflow:hidden;
+background:#0a3d91;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
-padding:20px;
+height:100vh;
 }
+
+/* الخلفية المتحركة */
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:-1;
+}
+
+.bg span{
+position:absolute;
+display:block;
+border-radius:50%;
+background:rgba(255,255,255,.12);
+animation:move 20s linear infinite;
+}
+
+.bg span:nth-child(1){
+width:240px;
+height:240px;
+left:-50px;
+top:40%;
+}
+
+.bg span:nth-child(2){
+width:320px;
+height:320px;
+right:-100px;
+top:5%;
+}
+
+.bg span:nth-child(3){
+width:180px;
+height:180px;
+bottom:-50px;
+left:35%;
+}
+
+@keyframes move{
+
+0%{
+transform:translateY(0) rotate(0);
+}
+
+100%{
+transform:translateY(-900px) rotate(360deg);
+}
+
+}
+
 .box{
-width:380px;
-background:#fff;
-border-radius:18px;
+
+width:95%;
+max-width:420px;
+background:white;
 padding:25px;
-box-shadow:0 15px 40px rgba(0,0,0,.25);
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,.3);
+
 }
+
 .logo{
-text-align:center;
+
 font-size:48px;
-font-weight:700;
-color:#1d4ed8;
-margin-bottom:8px;
-}
-.title{
+font-weight:900;
+color:#1565ff;
 text-align:center;
-font-size:22px;
-font-weight:bold;
+
+}
+
+.sub{
+
+text-align:center;
+color:#666;
 margin-bottom:20px;
+
 }
-input{
+
+select,input{
+
 width:100%;
-padding:14px;
-margin-bottom:12px;
+padding:15px;
+border-radius:12px;
 border:1px solid #ddd;
-border-radius:10px;
+margin-top:12px;
 font-size:16px;
+
 }
-.captcha{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:12px;
-}
-.code{
-padding:10px 18px;
-background:#eef4ff;
-border-radius:8px;
-font-weight:bold;
-font-size:22px;
-letter-spacing:3px;
-}
+
 button{
+
 width:100%;
-padding:14px;
+padding:15px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 font-size:18px;
+margin-top:15px;
 cursor:pointer;
-margin-top:8px;
+
 }
+
 .login{
-background:#2563eb;
-color:#fff;
+
+background:#1565ff;
+color:white;
+
 }
+
 .register{
-background:#10b981;
-color:#fff;
+
+background:#0bb36d;
+color:white;
+
 }
-#msg{
-display:none;
-background:#ef4444;
-color:#fff;
-padding:12px;
-border-radius:10px;
+
+#captcha{
+
+margin-top:12px;
+background:#eef4ff;
+padding:15px;
+font-size:28px;
+font-weight:bold;
+letter-spacing:6px;
 text-align:center;
-margin-bottom:12px;
+border-radius:12px;
+
 }
+
 </style>
+
 </head>
 
 <body>
 
+<div class="bg">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
 <div class="box">
 
-<div class="logo">HR</div>
-<div class="title">تسجيل الدخول</div>
+<div class="logo">
 
-<div id="msg">عذراً، ليس لديك حساب مسبق.</div>
+HR
 
-<input type="text" placeholder="رقم الهاتف">
+</div>
+
+<div class="sub">
+
+منصة استثمار رقمية
+
+</div>
+
+<select>
+
+<option>🇮🇶 +964 العراق</option>
+
+<option>🇸🇦 +966 السعودية</option>
+
+<option>🇦🇪 +971 الإمارات</option>
+
+<option>🇰🇼 +965 الكويت</option>
+
+<option>🇶🇦 +974 قطر</option>
+
+<option>🇧🇭 +973 البحرين</option>
+
+<option>🇴🇲 +968 عمان</option>
+
+<option>🇪🇬 +20 مصر</option>
+
+<option>🇹🇷 +90 تركيا</option>
+
+<option>🇺🇸 +1 USA</option>
+
+</select>
+
+<input placeholder="رقم الهاتف">
+
 <input type="password" placeholder="كلمة المرور">
-<input type="text" placeholder="رمز الدعوة">
 
-<div class="captcha">
-<div class="code" id="cap"></div>
-<button type="button" onclick="newCode()" style="width:auto;padding:10px 15px;">تغيير</button>
-</div>
+<input placeholder="رمز الدعوة">
 
-<input type="text" placeholder="أدخل رمز التحقق">
+<div id="captcha">
 
-<button class="login" onclick="login()">تسجيل الدخول</button>
-<button class="register">إنشاء حساب جديد</button>
+A7K9
 
 </div>
 
-<script>
-function randomCode(){
-const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-let c="";
-for(let i=0;i<4;i++){
-c+=chars[Math.floor(Math.random()*chars.length)];
-}
-return c;
-}
+<input placeholder="اكتب رمز التحقق">
 
-function newCode(){
-document.getElementById("cap").innerHTML=randomCode();
-}
+<button class="login">
 
-newCode();
+تسجيل الدخول
 
-function login(){
-let msg=document.getElementById("msg");
-msg.style.display="block";
-setTimeout(()=>{
-msg.style.display="none";
-},2500);
-}
-</script>
+</button>
+
+<button class="register">
+
+إنشاء حساب جديد
+
+</button>
+
+</div>
 
 </body>
+
 </html>
+<!-- شاشة التحميل -->
+
+<div id="loading" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(8,20,60,.96);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;">
+
+<div style="
+font-size:60px;
+font-weight:900;
+color:white;
+margin-bottom:25px;">
+HR
+</div>
+
+<div class="loader"></div>
+
+<p style="
+color:white;
+margin-top:20px;
+font-size:18px;">
+جاري إنشاء الحساب...
+</p>
+
+</div>
+
+<!-- نجاح -->
+
+<div id="success" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(8,20,60,.96);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;">
+
+<div class="check">
+
+✓
+
+</div>
+
+<h2 style="color:white;margin-top:20px;">
+تم إنشاء الحساب بنجاح
+</h2>
+
+</div>
+
+<style>
+
+.loader{
+
+width:90px;
+height:90px;
+border:8px solid rgba(255,255,255,.2);
+border-top:8px solid #1d8cff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+.check{
+
+width:110px;
+height:110px;
+border-radius:50%;
+background:#00c853;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:60px;
+color:white;
+animation:pop .4s;
+
+}
+
+@keyframes pop{
+
+0%{
+transform:scale(.2);
+opacity:0;
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+</style>
+
+<script>
+
+document.querySelector(".register").onclick=function(){
+
+document.getElementById("loading").style.display="flex";
+
+setTimeout(function(){
+
+document.getElementById("loading").style.display="none";
+
+document.getElementById("success").style.display="flex";
+
+if(navigator.vibrate){
+
+navigator.vibrate([150,80,150]);
+
+}
+
+const audio=new Audio("success.mp3");
+audio.play().catch(()=>{});
+
+setTimeout(function(){
+
+document.getElementById("success").style.display="none";
+
+},2500);
+
+},10000);
+
+};
+
+</script>
+<div style="display:flex;gap:10px;margin-top:12px;">
+
+<div id="captcha" style="
+flex:1;
+background:#eef4ff;
+padding:15px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+letter-spacing:5px;
+border-radius:12px;
+user-select:none;">
+</div>
+
+<button type="button"
+onclick="newCaptcha()"
+style="
+width:70px;
+background:#1565ff;
+color:white;
+border:none;
+border-radius:12px;
+font-size:24px;">
+↻
+</button>
+
+</div>
+
+<input id="captchaInput" placeholder="أدخل رمز التحقق">
