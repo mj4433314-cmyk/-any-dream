@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>HR</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,403 +17,211 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Cairo,sans-serif;
+font-family:'Cairo',sans-serif;
 }
 
 body{
-overflow:hidden;
-background:#0a3d91;
-display:flex;
-justify-content:center;
-align-items:center;
+
 height:100vh;
-}
 
-/* الخلفية المتحركة */
+display:flex;
 
-.bg{
-position:fixed;
-width:100%;
-height:100%;
+justify-content:center;
+
+align-items:center;
+
+background:linear-gradient(135deg,#0047ff,#00a6ff);
+
 overflow:hidden;
-z-index:-1;
+
+position:relative;
+
 }
 
-.bg span{
+/* الخلفية */
+
+body::before{
+
+content:"";
+
 position:absolute;
-display:block;
+
+width:700px;
+
+height:700px;
+
+background:rgba(255,255,255,.08);
+
 border-radius:50%;
-background:rgba(255,255,255,.12);
-animation:move 20s linear infinite;
-}
 
-.bg span:nth-child(1){
-width:240px;
-height:240px;
-left:-50px;
-top:40%;
-}
+left:-250px;
 
-.bg span:nth-child(2){
-width:320px;
-height:320px;
-right:-100px;
-top:5%;
-}
+top:-250px;
 
-.bg span:nth-child(3){
-width:180px;
-height:180px;
-bottom:-50px;
-left:35%;
-}
-
-@keyframes move{
-
-0%{
-transform:translateY(0) rotate(0);
-}
-
-100%{
-transform:translateY(-900px) rotate(360deg);
-}
+animation:move1 18s linear infinite;
 
 }
 
-.box{
+body::after{
 
-width:95%;
-max-width:420px;
-background:white;
-padding:25px;
-border-radius:25px;
-box-shadow:0 10px 40px rgba(0,0,0,.3);
+content:"";
 
-}
+position:absolute;
 
-.logo{
+width:600px;
 
-font-size:48px;
-font-weight:900;
-color:#1565ff;
-text-align:center;
+height:600px;
 
-}
+background:rgba(255,255,255,.05);
 
-.sub{
+border-radius:50%;
 
-text-align:center;
-color:#666;
-margin-bottom:20px;
+right:-200px;
+
+bottom:-250px;
+
+animation:move2 20s linear infinite;
 
 }
 
-select,input{
+@keyframes move1{
 
-width:100%;
-padding:15px;
-border-radius:12px;
-border:1px solid #ddd;
-margin-top:12px;
-font-size:16px;
+0%{transform:translateY(0) rotate(0deg);}
+
+100%{transform:translateY(100px) rotate(360deg);}
 
 }
 
-button{
+@keyframes move2{
 
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-font-size:18px;
-margin-top:15px;
-cursor:pointer;
+0%{transform:translateY(0) rotate(0deg);}
+
+100%{transform:translateY(-120px) rotate(-360deg);}
 
 }
 
 .login{
 
-background:#1565ff;
-color:white;
+width:95%;
+
+max-width:420px;
+
+background:#fff;
+
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+position:relative;
+
+z-index:10;
 
 }
 
-.register{
+.logo{
 
-background:#0bb36d;
+width:90px;
+
+height:90px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#1565ff,#00c6ff);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:40px;
+
+font-weight:900;
+
 color:white;
+
+box-shadow:0 0 30px rgba(21,101,255,.45);
 
 }
 
-#captcha{
+.title{
 
-margin-top:12px;
-background:#eef4ff;
-padding:15px;
-font-size:28px;
-font-weight:bold;
-letter-spacing:6px;
 text-align:center;
-border-radius:12px;
+
+font-size:28px;
+
+font-weight:bold;
+
+margin-top:15px;
+
+color:#1565ff;
 
 }
 
-</style>
+.desc{
 
-</head>
+text-align:center;
 
-<body>
+color:#777;
 
-<div class="bg">
+margin-bottom:20px;
 
-<span></span>
+}<select class="input">
 
-<span></span>
+<option>🇮🇶 العراق +964</option>
 
-<span></span>
+<option>🇸🇦 السعودية +966</option>
 
-</div>
+<option>🇦🇪 الإمارات +971</option>
 
-<div class="box">
+<option>🇰🇼 الكويت +965</option>
 
-<div class="logo">
+<option>🇶🇦 قطر +974</option>
 
-HR
+<option>🇧🇭 البحرين +973</option>
 
-</div>
+<option>🇴🇲 عمان +968</option>
 
-<div class="sub">
+<option>🇪🇬 مصر +20</option>
 
-منصة استثمار رقمية
+<option>🇯🇴 الأردن +962</option>
 
-</div>
+<option>🇹🇷 تركيا +90</option>
 
-<select>
-
-<option>🇮🇶 +964 العراق</option>
-
-<option>🇸🇦 +966 السعودية</option>
-
-<option>🇦🇪 +971 الإمارات</option>
-
-<option>🇰🇼 +965 الكويت</option>
-
-<option>🇶🇦 +974 قطر</option>
-
-<option>🇧🇭 +973 البحرين</option>
-
-<option>🇴🇲 +968 عمان</option>
-
-<option>🇪🇬 +20 مصر</option>
-
-<option>🇹🇷 +90 تركيا</option>
-
-<option>🇺🇸 +1 USA</option>
+<option>🇺🇸 United States +1</option>
 
 </select>
 
-<input placeholder="رقم الهاتف">
+<input class="input" type="tel" placeholder="رقم الهاتف">
 
-<input type="password" placeholder="كلمة المرور">
+<input class="input" type="password" placeholder="كلمة المرور">
 
-<input placeholder="رمز الدعوة">
+<input class="input" type="text" placeholder="رمز الدعوة">
 
-<div id="captcha">
+<div class="captcha">
 
-A7K9
+<canvas id="captcha" width="220" height="60"></canvas>
+
+<button id="refresh">↻</button>
 
 </div>
 
-<input placeholder="اكتب رمز التحقق">
+<input class="input" id="code" placeholder="اكتب رمز التحقق">
 
-<button class="login">
+<button class="loginBtn">
 
 تسجيل الدخول
 
 </button>
 
-<button class="register">
+<button class="registerBtn">
 
 إنشاء حساب جديد
 
 </button>
 
-</div>
-
-</body>
-
-</html>
-<!-- شاشة التحميل -->
-
-<div id="loading" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(8,20,60,.96);
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:9999;">
-
-<div style="
-font-size:60px;
-font-weight:900;
-color:white;
-margin-bottom:25px;">
-HR
-</div>
-
-<div class="loader"></div>
-
-<p style="
-color:white;
-margin-top:20px;
-font-size:18px;">
-جاري إنشاء الحساب...
-</p>
-
-</div>
-
-<!-- نجاح -->
-
-<div id="success" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(8,20,60,.96);
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:9999;">
-
-<div class="check">
-
-✓
-
-</div>
-
-<h2 style="color:white;margin-top:20px;">
-تم إنشاء الحساب بنجاح
-</h2>
-
-</div>
-
-<style>
-
-.loader{
-
-width:90px;
-height:90px;
-border:8px solid rgba(255,255,255,.2);
-border-top:8px solid #1d8cff;
-border-radius:50%;
-animation:spin 1s linear infinite;
-
-}
-
-@keyframes spin{
-
-100%{
-transform:rotate(360deg);
-}
-
-}
-
-.check{
-
-width:110px;
-height:110px;
-border-radius:50%;
-background:#00c853;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:60px;
-color:white;
-animation:pop .4s;
-
-}
-
-@keyframes pop{
-
-0%{
-transform:scale(.2);
-opacity:0;
-}
-
-100%{
-transform:scale(1);
-opacity:1;
-}
-
-}
-
-</style>
-
-<script>
-
-document.querySelector(".register").onclick=function(){
-
-document.getElementById("loading").style.display="flex";
-
-setTimeout(function(){
-
-document.getElementById("loading").style.display="none";
-
-document.getElementById("success").style.display="flex";
-
-if(navigator.vibrate){
-
-navigator.vibrate([150,80,150]);
-
-}
-
-const audio=new Audio("success.mp3");
-audio.play().catch(()=>{});
-
-setTimeout(function(){
-
-document.getElementById("success").style.display="none";
-
-},2500);
-
-},10000);
-
-};
-
-</script>
-<div style="display:flex;gap:10px;margin-top:12px;">
-
-<div id="captcha" style="
-flex:1;
-background:#eef4ff;
-padding:15px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
-letter-spacing:5px;
-border-radius:12px;
-user-select:none;">
-</div>
-
-<button type="button"
-onclick="newCaptcha()"
-style="
-width:70px;
-background:#1565ff;
-color:white;
-border:none;
-border-radius:12px;
-font-size:24px;">
-↻
-</button>
-
-</div>
-
-<input id="captchaInput" placeholder="أدخل رمز التحقق">
+<div id="message"></div>
