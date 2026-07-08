@@ -1,116 +1,23 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تسجيل الدخول</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-background:#f5f7ff;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-padding:20px;
-}
-
-.container{
-background:white;
-width:100%;
-max-width:400px;
-padding:25px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
-
-.logo{
+<div id="msg" style="
+display:none;
+background:#ff4d4f;
+color:white;
+padding:12px;
+border-radius:10px;
 text-align:center;
-font-size:30px;
-font-weight:bold;
-color:#2563eb;
-margin-bottom:20px;
-}
-
-input{
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:1px solid #ddd;
-border-radius:10px;
-font-size:16px;
-}
-
-.captcha{
-background:#2563eb;
-color:white;
-padding:10px;
-text-align:center;
-border-radius:10px;
-font-weight:bold;
-margin-bottom:12px;
-}
-
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
-}
-
-.login{
-background:#2563eb;
-color:white;
-margin-bottom:10px;
-}
-
-.register{
-background:#10b981;
-color:white;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="logo">
-Dream Invest
+margin-bottom:15px;">
+عذراً، ليس لديك حساب مسبق.
 </div>
 
-<input type="text" placeholder="رقم الهاتف">
+<button onclick="login()">تسجيل الدخول</button>
 
-<input type="password" placeholder="كلمة المرور">
+<script>
+function login(){
+    let msg=document.getElementById("msg");
+    msg.style.display="block";
 
-<input type="text" placeholder="رمز الدعوة">
-
-<div class="captcha">
-رمز التحقق: 5839
-</div>
-
-<input type="text" placeholder="أدخل رمز التحقق">
-
-<button class="login">
-تسجيل الدخول
-</button>
-
-<button class="register">
-إنشاء حساب جديد
-</button>
-
-</div>
-
-</body>
-</html>
+    setTimeout(function(){
+        msg.style.display="none";
+    },2500);
+}
+</script>
