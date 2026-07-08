@@ -1,175 +1,256 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOVA AUTOMATED PLATFORM</title>
-  <link rel="preconnect" href="https://googleapis.com">
-  <link href="https://googleapis.com" rel="stylesheet">
-   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-    body { background: #0a0a0a; color: #ffffff; padding-bottom: 90px; overflow-x: hidden; }
-    .tab-content { display: none; padding: 20px; max-width: 440px; margin: 0 auto; }
-    .tab-content.active { display: block; }
-    .page-title { color: #b8ff1a; text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 1px; margin-top: 15px; margin-bottom: 25px; }
-    
-    .auth-container { max-width: 440px; margin: 20px auto; padding: 20px; background: #111111; border-radius: 24px; border: 1px solid #222222; box-shadow: 0 8px 32px rgba(0,0,0,0.5); text-align: right; }
-    .auth-title { color: #b8ff1a; text-align: center; font-size: 28px; font-weight: 900; margin-bottom: 25px; }
-    .auth-field-group { margin-bottom: 15px; }
-    .auth-field-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #aaaaaa; }
-    .auth-field-group input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #333333; background: #0a0a0a; color: #ffffff; font-size: 14px; text-align: left; transition: 0.3s; }
-    .auth-field-group input:focus { border-color: #b8ff1a; outline: none; }
-    .btn-auth-main { width: 100%; background: #b8ff1a; color: #000000; border: none; padding: 14px; border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; margin-top: 10px; transition: 0.2s; }
-    .btn-auth-secondary { width: 100%; background: transparent; color: #aaaaaa; border: 1px solid #333333; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 12px; transition: 0.2s; }
-         .status-animation-box { display: none; text-align: center; margin-top: 15px; padding: 12px; border-radius: 12px; background: #161616; border: 1px solid #262626; }
-    .checking-text { color: #ffffff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .checking-spinner { width: 18px; height: 18px; border: 2px solid #ffffff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
-    .success-text { color: #2ecc71; font-weight: 900; font-size: 15px; display: none; align-items: center; justify-content: center; gap: 6px; }
-    .success-badge-icon { background: #b8ff1a; color: #000000; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; box-shadow: 0 0 8px #b8ff1a; }
-    .task-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); z-index: 4000; display: none; align-items: center; justify-content: center; }
-    .task-modal-box { background: #111111; border: 1px solid #222222; border-radius: 28px; width: 85%; max-width: 360px; padding: 30px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.7); animation: modalFadeIn 0.3s ease; }
-    .task-modal-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(234, 67, 53, 0.1); border: 2px solid #ea4335; color: #ea4335; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; margin: 0 auto 15px auto; }
-    .task-modal-text { color: #ffffff; font-size: 16px; font-weight: bold; margin-bottom: 20px; line-height: 1.5; }
-    .task-modal-btn { background: #ea4335; color: #ffffff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; }
-    
-    .wallet-container { background: #ffffff; border-radius: 24px; padding: 20px; color: #000000; box-shadow: 0 8px 20px rgba(0,0,0,0.4); margin-bottom: 25px; text-align: center; }
-    .wallet-main-balance { font-size: 42px; font-weight: 900; margin: 10px 0 20px 0; }
-    .wallet-stats { border-top: 1px solid #eeeeee; padding-top: 15px; margin-bottom: 20px; display: flex; justify-content: space-around; }
-    .stat-box { text-align: center; }
-    .stat-title { font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px; color: #666666; }
-    .stat-value { font-size: 16px; font-weight: 900; }
-    .w-btn-withdraw { width: 100%; border-radius: 14px; padding: 14px; font-weight: bold; font-size: 15px; cursor: pointer; border: none; display: block; }
-    .withdraw-form { display: none; margin-top: 20px; text-align: right; border-top: 1px solid #eee; padding-top: 15px; }
-    .withdraw-field-group { margin-bottom: 12px; }
-    .withdraw-field-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #333; }
-    .withdraw-field-group input { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 14px; text-align: left; }
-    .btn-confirm-withdraw-green { width: 100%; background: #2ecc71; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: bold; font-size: 15px; cursor: pointer; margin-top: 10px; }
-
-    @keyframes modalFadeIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل المستخدم</title>
+    <script src="https://gstatic.com"></script>
+    <script src="https://gstatic.com"></script>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { background: #fff; width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px; box-sizing: border-box; }
+        h2 { text-align: center; color: #333; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; position: relative; }
+        label { display: block; margin-bottom: 5px; color: #666; font-size: 14px; }
+        input[type="text"], input[type="password"], select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
+        .phone-group { display: flex; gap: 10px; }
+        .phone-group select { width: 30%; }
+        .phone-group input { width: 70%; }
+        .captcha-group { display: flex; gap: 10px; align-items: center; }
+        .captcha-box { background: #e0e0e0; padding: 10px; border-radius: 5px; font-weight: bold; letter-spacing: 2px; color: #555; }
+        .btn-submit { width: 100%; padding: 14px; background-color: #2196F3; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        .agreement { display: flex; align-items: center; gap: 5px; font-size: 13px; color: #777; margin-top: 10px; }
+    </style>
 </head>
 <body>
-
-  <div id="taskModal" class="task-modal-overlay">
-    <div class="task-modal-box">
-      <div class="task-modal-icon">!</div>
-      <div class="task-modal-text" id="modalText">عذراً انت لم تقم في الاشتراك</div>
-      <button class="task-modal-btn" onclick="closeTaskModal()">موافق</button>
+    <div class="container">
+        <h2>تسجيل المستخدم</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label>رقم التليفون</label>
+                <div class="phone-group">
+                    <select id="countryCode"><option value="+964">+964</option><option value="+966">+966</option></select>
+                    <input type="text" id="phoneNumber" placeholder="رقم الهاتف بدون (0)" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="password" placeholder="أدخل كلمة السر" required>
+            </div>
+            <div class="form-group">
+                <label>تأكيد كلمة المرور</label>
+                <input type="password" id="confirmPassword" placeholder="الرجاء تأكيد كلمة المرور" required>
+            </div>
+            <div class="form-group">
+                <label>الكابتشا الرسومية</label>
+                <div class="captcha-group">
+                    <input type="text" id="captchaInput" placeholder="لـ رمز التحقق من الرسم" required>
+                    <div class="captcha-box">pveo</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>رمز الدعوة</label>
+                <input type="text" id="inviteCode" placeholder="أدخل رمز الدعوة">
+            </div>
+            <div class="agreement">
+                <input type="checkbox" id="agree" checked required>
+                <label for="agree">لقد قرأت وأوافق على اتفاقية المستخدم</label>
+            </div>
+            <button type="submit" class="btn-submit">تسجيل</button>
+        </form>
     </div>
-  </div>
 
-  <div id="authSection" class="tab-content active">
-    <div class="auth-container">
-      <div class="auth-title">NOVA PLATFORM</div>
-      <div class="auth-field-group">
-        <label>البريد الإلكتروني (Email)</label>
-        <input type="email" id="authEmail" placeholder="name@example.com">
-      </div>
-      <div class="auth-field-group">
-        <label>رمز الدعوة (Invitation Code) - اختياري</label>
-        <input type="text" id="authInviteCode" placeholder="أدخل رمز الدعوة هنا">
-      </div>
-      <button class="btn-auth-main" id="sendBtn">إرسال رابط التحقق</button>
-      
-      <div class="status-animation-box" id="statusBox">
-        <div class="checking-text" id="checkingState"><span class="checking-spinner"></span> جاري إرسال الرابط...</div>
-        <div class="success-text" id="successState">تم إرسال رابط التفعيل! تفقد بريدك الإلكتروني <span class="success-badge-icon">✓</span></div>
-      </div>
-    </div>
-  </div>
-    <div id="mainSection" class="tab-content">
-    <h2 class="page-title">لوحة تحكم المحفظة</h2>
-    <div class="wallet-container">
-      <div class="stat-title">الرصيد الإجمالي</div>
-      <div class="wallet-main-balance">0.00 د.ع</div>
-      <div class="wallet-stats">
-        <div class="stat-box">
-          <span class="stat-title">أرباح اليوم</span>
-          <span class="stat-value" style="color: #2ecc71;">0.00</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-title">الفريق</span>
-          <span class="stat-value">0</span>
-        </div>
-      </div>
-      <button class="w-btn-withdraw" style="background: #b8ff1a; color: #000;" onclick="toggleWithdrawForm()">سحب الأرباح</button>
-      
-      <div class="withdraw-form" id="withdrawForm">
-        <div class="withdraw-field-group">
-          <label>مبلغ السحب</label>
-          <input type="number" placeholder="أدخل المبلغ بالدينار">
-        </div>
-        <div class="withdraw-field-group">
-          <label>رقم محفظة زين كاش / آسيا حوالة</label>
-          <input type="text" placeholder="077xxxxxxx">
-        </div>
-        <button class="btn-confirm-withdraw-green" onclick="submitWithdraw()">تأكيد السحب</button>
-      </div>
-    </div>
-  </div>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8Bb6zxv8gxjUVb2kyKMpq7Wf_O6oDEX0",
+            databaseURL: "https://firebaseio.com",
+            projectId: "nova-17247"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-  <script>
-    function closeTaskModal() { document.getElementById('taskModal').style.display = 'none'; }
-    function openTaskModal(text) { document.getElementById('modalText').innerText = text; document.getElementById('taskModal').style.display = 'flex'; }
-    function toggleWithdrawForm() { const form = document.getElementById('withdrawForm'); form.style.display = form.style.display === 'block' ? 'none' : 'block'; }
-    function submitWithdraw() { openTaskModal("جاري معالجة طلب السحب الخاص بك بنجاح."); }
-  </script>
-    <script type="module">
-    import { initializeApp } from "https://gstatic.com";
-    import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "https://gstatic.com";
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fullPhone = document.getElementById('countryCode').value + document.getElementById('phoneNumber').value;
+            const pass = document.getElementById('password').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+            const captcha = document.getElementById('captchaInput').value;
+            const invite = document.getElementById('inviteCode').value;
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCB8b5zsvBgsjbVb2WyK0pqpIosGICIBqs",
-      authDomain: "://firebaseapp.com",
-      projectId: "nova-17247",
-      storageBucket: "nova-17247.firebasestorage.app",
-      messagingSenderId: "569316305954",
-      appId: "1:569316305954:web:02f39277eeb2a69a17ee7b",
-      measurementId: "G-VPDS33WWBG"
-    };
+            if (pass !== confirmPass) { alert("كلمات المرور غير متطابقة!"); return; }
+            if (captcha !== "pveo") { alert("رمز الكابتشا غير صحيح!"); return; }
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    if (isSignInWithEmailLink(auth, window.location.href)) {
-      let email = window.localStorage.getItem('emailForSignIn');
-      if (!email) { email = window.prompt('الرجاء كتابة بريدك الإلكتروني مرة أخرى للتأكيد:'); }
-      signInWithEmailLink(auth, email, window.location.href)
-        .then((result) => {
-          window.localStorage.removeItem('emailForSignIn');
-          document.getElementById('authSection').style.display = 'none';
-          document.getElementById('mainSection').style.display = 'block';
-          alert("أهلاً بك! تم تفعيل حسابك بنجاح والدخول للمنصة.");
-        })
-        .catch((error) => { alert("انتهت صلاحية الرابط أو حدث خطأ: " + error.message); });
-    }
-
-    document.getElementById("sendBtn").addEventListener("click", () => {
-      const email = document.getElementById("authEmail").value;
-      if(!email) { alert("الرجاء كتابة البريد الإلكتروني أولاً!"); return; }
-
-      const statusBox = document.getElementById("statusBox");
-      const checkingState = document.getElementById("checkingState");
-      const successState = document.getElementById("successState");
-
-      statusBox.style.display = "block";
-      checkingState.style.display = "flex";
-      successState.style.display = "none";
-
-      const actionCodeSettings = { url: window.location.href, handleCodeInApp: true };
-
-      sendSignInLinkToEmail(auth, email, actionCodeSettings)
-        .then(() => {
-          window.localStorage.setItem('emailForSignIn', email);
-          checkingState.style.display = "none";
-          successState.style.display = "flex";
-        })
-        .catch((error) => {
-          statusBox.style.display = "none";
-          alert("خطأ أثناء الإرسال: " + error.message);
+            database.ref('users/' + document.getElementById('phoneNumber').value).set({
+                phone: fullPhone, password: pass, referral_code: invite
+            }, function(error) {
+                if (error) { alert("حدث خطأ: " + error.message); } 
+                else { alert("تم التسجيل بنجاح!"); window.location.href = 'profile.html'; }
+            });
         });
-    });
-  </script>
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المركز الشخصي</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f5f8fa; margin: 0; padding-bottom: 80px; }
+        .header { background-color: #3b66c4; color: white; padding: 20px 15px 40px 15px; text-align: center; border-radius: 0 0 15px 15px; }
+        .user-row { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 18px; font-weight: bold; }
+        .avatar { width: 45px; height: 45px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        .badge { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 10px; font-size: 13px; }
+        .stats-card { background: white; margin: -25px 15px 15px 15px; border-radius: 15px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .balance-section { border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; position: relative; }
+        .balance-label { font-size: 14px; color: #3b66c4; font-weight: bold; }
+        .balance-value { font-size: 28px; font-weight: bold; color: #1e3d8f; margin-top: 5px; }
+        .balance-id { position: absolute; left: 0; top: 0; color: #888; font-size: 14px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin-top: 15px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; text-align: center; margin-top: 15px; border-top: 1px solid #f5f5f5; padding-top: 15px; }
+        .stat-label { font-size: 12px; color: #666; margin-bottom: 5px; }
+        .stat-val { font-size: 16px; font-weight: bold; color: #1e3d8f; }
+        .menu-list { background: white; margin: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #f9f9f9; cursor: pointer; }
+        .item-right { display: flex; align-items: center; gap: 12px; color: #3b66c4; font-weight: 500; font-size: 15px; }
+        .item-icon { font-size: 18px; }
+        .item-left { color: #aaa; font-size: 14px; }
+        .count-badge { background: #3b66c4; color: white; padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; }
+        .nav-item { text-align: center; color: #888; font-size: 12px; text-decoration: none; cursor: pointer; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+        .nav-item.active { color: #3b66c4; font-weight: bold; }
+        .nav-icon { font-size: 20px; }
+        .center-icon { background: #cbd8f5; color: #3b66c4; width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-top: -22px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="user-row"><div class="avatar">👩‍💻</div><span>****00000</span><span class="badge">C 0</span></div>
+    </div>
+    <div class="stats-card">
+        <div class="balance-section"><div class="balance-label">الارباح</div><div class="balance-value">0.0</div><div class="balance-id">0</div></div>
+        <div class="grid-3">
+            <div><div class="stat-label">مكافأة الإحالة الداخلية</div><div class="stat-val">0</div></div>
+            <div><div class="stat-label">إجمالي دخل المهمة</div><div class="stat-val">0</div></div>
+            <div><div class="stat-label">دخل مهمة اليوم</div><div class="stat-val">0</div></div>
+        </div>
+        <div class="grid-2">
+            <div><div class="stat-label">إجمالي الإيرادات</div><div class="stat-val">0</div></div>
+            <div><div class="stat-label">يوم العمل الفعال</div><div class="stat-val">0</div></div>
+        </div>
+    </div>
+    <div class="menu-list">
+        <div class="menu-item" onclick="location.href='packages.html'"><div class="item-right"><span class="item-icon">💰</span><span>شحن الحساب</span></div><div class="item-left">&gt;</div></div>
+        <div class="menu-item" onclick="location.href='packages.html'"><div class="item-right"><span class="item-icon">💸</span><span>سحب</span></div><div class="item-left">&gt;</div></div>
+        <div class="menu-item"><div class="item-right"><span class="item-icon">💼</span><span>توظيف الموظفين</span></div><div class="item-left">&gt;</div></div>
+        <div class="menu-item"><div class="item-right"><span class="item-icon">📊</span><span>حجم القبيلة</span></div><div class="count-badge">0</div></div>
+    </div>
+    <div class="nav-bar">
+        <div class="nav-item"><span class="nav-icon">🏠</span><span>الرئيسية</span></div>
+        <div class="nav-item" onclick="location.href='tasks.html'"><span class="nav-icon">📋</span><span>التوظيف</span></div>
+        <div class="nav-item" onclick="location.href='packages.html'"><div class="center-icon">⚡</div><span>المنصب</span></div>
+        <div class="nav-item"><span class="nav-icon">📝</span><span>السجل</span></div>
+        <div class="nav-item active"><span class="nav-icon">👤</span><span>المركز الشخصي</span></div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستويات العضوية</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f4f8; margin: 0; padding: 15px; padding-bottom: 80px; }
+        .header { background-color: #3b66c4; color: white; padding: 15px; text-align: center; font-size: 18px; font-weight: bold; border-radius: 0 0 10px 10px; }
+        .cards-container { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
+        .package-card { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; gap: 10px; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; }
+        .level-title { font-size: 20px; font-weight: bold; color: #0d47a1; }
+        .level-badge { background: white; padding: 5px 15px; border-radius: 8px; font-weight: bold; color: #ffb300; border: 1px solid #ffe082; font-size: 16px; }
+        .level-details { font-size: 13px; color: #555; line-height: 1.6; }
+        .btn-action { background-color: #3b66c4; color: white; border: none; padding: 12px; border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; width: 100%; margin-top: 5px; }
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+        .nav-item { text-align: center; color: #888; font-size: 12px; text-decoration: none; cursor: pointer; }
+        .nav-item.active { color: #3b66c4; font-weight: bold; }
+        .center-btn { background: #3b66c4; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-top: -20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="header">المنصب</div>
+    <div class="cards-container">
+        <div class="package-card">
+            <div class="card-header"><div class="level-title">المستوى الأول</div><div class="level-badge">C 1</div></div>
+            <div class="level-details"><div>عدد المهام اليومية: 5 مهام</div><div>فترة الصلاحية: 365 يوم</div></div>
+            <button class="btn-action" onclick="location.href='tasks.html'">تفعيل العضوية</button>
+        </div>
+        <div class="package-card">
+            <div class="card-header"><div class="level-title">المستوى الثاني</div><div class="level-badge">C 2</div></div>
+            <div class="level-details"><div>عدد المهام اليومية: 10 مهام</div><div>فترة الصلاحية: 365 يوم</div></div>
+            <button class="btn-action" onclick="location.href='tasks.html'">تفعيل العضوية</button>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <div class="nav-item" onclick="location.href='profile.html'">الرئيسية</div>
+        <div class="nav-item" onclick="location.href='tasks.html'">التوظيف</div>
+        <div class="nav-item active"><div class="center-btn">⚡</div>المنصب</div>
+        <div class="nav-item">السجل</div>
+        <div class="nav-item" onclick="location.href='profile.html'">المركز الشخصي</div>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهام الفيديو</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f4f8; margin: 0; padding: 15px; padding-bottom: 80px; }
+        h2 { text-align: center; color: #3b66c4; margin-bottom: 5px; }
+        .safety-note { text-align: center; color: #666; font-size: 13px; margin-bottom: 20px; }
+        .tasks-container { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .task-card { background: white; border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .task-info { display: flex; flex-direction: column; gap: 4px; }
+        .task-title { font-weight: bold; color: #333; font-size: 15px; }
+        .task-desc { color: #888; font-size: 12px; }
+        .btn-watch { background-color: #3b66c4; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: white; padding: 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; }
+        .modal-icon { font-size: 40px; color: #ff9800; margin-bottom: 10px; }
+        .modal-title { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .modal-text { font-size: 14px; color: #666; margin-bottom: 20px; line-height: 1.5; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3b66c4; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <h2>قائمة مهام اليوتيوب</h2>
+    <div class="safety-note">تم تفعيل نظام الحماية الذكي لمكافحة برمجيات الروبوت التلقائية</div>
+    <div class="tasks-container" id="tasksBox"></div>
+    <div class="modal-overlay" id="securityModal">
+        <div class="modal-box">
+            <div class="modal-icon">🛡️</div>
+            <div class="modal-title">فحص الأمان الرقمي</div>
+            <div class="modal-text">يرجى الانتظار لحين التحقق من السلوك البشري ومكافحة برمجيات الروبوت التلقائية...</div>
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <script>
+        const container = document.getElementById('tasksBox');
+        for (let i = 1; i <= 40; i++) {
+            container.innerHTML += `
+                <div class="task-card">
+                    <div class="task-info"><span class="task-title">مهمة مشاهدة رقم #${i}</span><span class="task-desc">اضغط للتحقق وفتح الرابط</span></div>
+                    <button class="btn-watch" onclick="verifyUser(${i})">ابدأ المهمة</button>
+                </div>`;
+        }
+        function verifyUser(taskId) {
+            const modal = document.getElementById('securityModal');
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.style.display = 'none'; window.open('https://youtube.com', '_blank'); }, 3000); 
+        }
+    </script>
 </body>
 </html>
