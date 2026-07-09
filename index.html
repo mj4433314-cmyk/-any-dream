@@ -2,12 +2,10 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Professional Trading Platform</title>
-    <!-- استدعاء الخطوط الرسمية لمنصة OKX لتطبيقها على الواجهات والمدخلات الإنجليزية -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- استدعاء الخطوط الأجنبية الفخمة لكبرى الشركات العالمية -->
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <style>
     * {
@@ -15,22 +13,19 @@
         margin: 0;
         padding: 0;
         font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-        -webkit-tap-highlight-color: transparent;
     }
 
     body {
-        background-color: #000000;
+        background-color: #040608;
         color: #ffffff;
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        width: 100vw;
         overflow: hidden;
         position: relative;
     }
 
-    /* لوحة رسم خلفية جزيئات OKX المتوهجة */
     #okxParticleCanvas {
         position: fixed;
         top: 0; left: 0;
@@ -41,58 +36,57 @@
 </style>
 <style>
     .auth-container {
-        width: 92%;
-        max-width: 385px;
-        padding: 40px 24px;
+        width: 100%;
+        max-width: 390px;
+        padding: 40px 30px;
         background: rgba(16, 19, 23, 0.85);
-        border: 1px solid rgba(0, 211, 149, 0.25);
+        border: 1px solid rgba(0, 211, 149, 0.2);
         border-radius: 24px;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 211, 149, 0.05);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 211, 149, 0.05);
         text-align: center;
         z-index: 10;
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(15px);
         transition: all 0.5s ease;
     }
 
     .auth-container h2 {
         margin-bottom: 35px;
         font-size: 38px;
-        font-weight: 800;
+        font-weight: 900;
         color: #00d395;
-        letter-spacing: 4px;
-        text-shadow: 0 0 20px rgba(0, 211, 149, 0.4);
+        letter-spacing: 3px;
+        text-shadow: 0 0 15px rgba(0, 211, 149, 0.4);
     }
 </style>
 <style>
     .input-group {
-        margin-bottom: 18px;
-        text-align: left; /* محاذاة يسارية احترافية للغة الإنجليزية */
+        margin-bottom: 20px;
+        text-align: left;
     }
 
     .input-group input {
         width: 100%;
         padding: 16px;
-        background: #15191e;
-        border: 1px solid #252c34;
-        border-radius: 14px;
-        color: #ffffff;
+        background: #1c2127;
+        border: 1px solid #2d343c;
+        border-radius: 12px;
+        color: white;
         font-size: 15px;
-        font-weight: 500;
         outline: none;
         transition: all 0.3s ease;
     }
 
     .input-group input:focus {
         border-color: #00d395;
-        background: #182027;
-        box-shadow: 0 0 15px rgba(0, 211, 149, 0.25);
+        background: #1f262e;
+        box-shadow: 0 0 12px rgba(0, 211, 149, 0.2);
     }
 
     .btn {
         width: 100%;
         padding: 16px;
         border: none;
-        border-radius: 14px;
+        border-radius: 12px;
         font-size: 16px;
         font-weight: 700;
         cursor: pointer;
@@ -115,33 +109,34 @@
     .btn-login {
         background-color: transparent;
         color: #9ca3af;
-        border: 1px solid #2d343c;
+        border: 1px solid #374151;
         margin-top: 14px;
     }
 
     .btn-login:hover {
-        color: #ffffff;
+        color: white;
         border-color: #ffffff;
-        background: rgba(255, 255, 255, 0.02);
+        background: rgba(255, 255, 255, 0.03);
     }
 </style>
 <style>
     .alert-msg {
-        color: #f87171;
+        color: #ef4444;
         font-size: 14px;
         margin-top: 15px;
         display: none;
         font-weight: 600;
         padding: 12px;
-        background: rgba(239, 68, 68, 0.08);
-        border-radius: 10px;
+        background: rgba(239, 68, 68, 0.1);
+        border-radius: 8px;
         border: 1px solid rgba(239, 68, 68, 0.15);
+        text-align: center;
     }
 
     .overlay-screen {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: #000000;
+        background: #040608;
         display: flex; justify-content: center; align-items: center;
         flex-direction: column; z-index: 999;
         opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
@@ -150,7 +145,7 @@
 
     .loader {
         width: 60px; height: 60px;
-        border: 5px solid #15191e;
+        border: 5px solid #1c2127;
         border-top: 5px solid #00d395;
         border-radius: 50%;
         animation: spin 1s linear infinite;
@@ -162,7 +157,7 @@
     .success-checkmark .check-icon::after { content: ""; position: absolute; top: 18px; left: 32px; width: 15px; height: 30px; border: solid #00d395; border-width: 0 5px 5px 0; transform: rotate(45deg); }
 
     .vibrate { animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
-    @keyframes shake { 10%, 90% { transform: translate3d(-3px, 0, 0); } 20%, 80% { transform: translate3d(5px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
+    @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
 </style>
 <style>
     .main-app-interface {
@@ -176,122 +171,104 @@
     }
     .main-app-interface.show { transform: translateY(0); }
 
-    /* تأطير الصفحات لمنع أي ميلان وبقاء المحتوى متناسقاً عمودياً بالكامل */
     .app-page-view {
         width: 100%;
         max-width: 420px;
         height: calc(100% - 85px);
         overflow-y: auto;
-        overflow-x: hidden; /* يمنع الميلان والتمدد الجانبي بشكل نهائي */
-        padding: 24px 16px;
+        padding: 25px 15px;
         display: none;
         flex-direction: column;
-        gap: 20px;
+        gap: 22px;
         padding-bottom: 50px;
     }
-    .app-page-view.active-page {
-        display: flex;
-    }
+    .app-page-view.active-page { display: flex; }
 </style>
 <style>
     .crypto-package-card {
         width: 100%;
         background: #ffffff;
         border-radius: 20px;
-        padding: 18px 20px;
+        padding: 18px 22px;
         display: flex;
-        direction: ltr; /* ترتيب متطابق مع رسمتك وصورك الفنية بالملي */
+        direction: ltr;
         align-items: center;
         justify-content: space-between;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* تصميم شعار ديسكورد الأرجواني الميتاليك ثلاثي الأبعاد لصورتك الأخيرة */
     .card-left-section { display: flex; align-items: center; justify-content: center; }
-    .discord-metallic-icon { 
-        width: 65px; height: 65px; 
-        fill: #3b1d54; /* خلفية أرجوانية عميقة ميتاليك */
-        filter: drop-shadow(0 4px 12px rgba(84, 33, 114, 0.45)); 
-    }
+    .discord-badge-icon { width: 65px; height: 65px; fill: #2c2541; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); }
     
     .card-center-section { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; margin: 0 15px; }
-    .usdt-main-balance { font-size: 30px; font-weight: 800; color: #31a2dc; line-height: 1.1; margin-bottom: 6px; text-align: center; }
-    .usdt-sub-rate-box { background: #000000; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-size: 16px; font-weight: 700; text-align: center; }
+    .usdt-main-balance { font-size: 32px; font-weight: 900; color: #31a2dc; line-height: 1.1; margin-bottom: 8px; text-align: center; }
+    .usdt-sub-rate-box { background: #000000; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-size: 18px; font-weight: 700; text-align: center; }
     
-    /* حذف الأيقونات القديمة وإضافة شعار كتل التيثر الفيروزية الميتاليك جهة اليمين */
-    .card-right-section { display: flex; align-items: center; justify-content: center; min-width: 55px; }
-    .tether-turquoise-stack { width: 52px; height: auto; filter: drop-shadow(0 2px 8px rgba(0,211,149,0.2)); }
+    .card-right-section { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-width: 55px; }
+    .tether-coins-stack { width: 52px; height: auto; }
 
-    .activate-package-btn {
-        width: 100%; padding: 14px; background: #00d395; color: #000000; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: -12px; margin-bottom: 8px; box-shadow: 0 4px 12px rgba(0, 211, 149, 0.2); transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
+    /* غرف دردشة صفحة Earn المقفلة */
+    .chat-room-card {
+        width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 16px; padding: 18px;
+        display: flex; direction: ltr; align-items: center; justify-content: space-between; cursor: pointer; transition: 0.3s;
     }
-    .activate-package-btn.sent { background: #1c2127 !important; color: #6b7280 !important; box-shadow: none !important; cursor: not-allowed; }
+    .chat-room-card:hover { border-color: #ef4444; background: rgba(239,68,68,0.02); }
+    .chat-info { display: flex; flex-direction: column; align-items: flex-start; }
+    .chat-title { font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+    .chat-desc { font-size: 12px; color: #6b7280; }
+    .lock-badge-icon { width: 26px; height: 26px; fill: #d97706; filter: drop-shadow(0 0 8px rgba(217,119,6,0.4)); }
 </style>
 <style>
-    /* تصميم بطاقة الأصول الفخمة المطابقة لصورة لوحتك الميتاليكية بالظبط */
-    .portfolio-assets-card {
-        width: 100%; background: #0f141c; border-radius: 24px; padding: 24px;
-        border: 1px solid #1f2937; position: relative; overflow: hidden;
-    }
-    .portfolio-title-row { display: flex; justify-content: space-between; align-items: center; color: #9ca3af; font-size: 14px; margin-bottom: 12px; }
-    .portfolio-main-amount { font-size: 34px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; margin-bottom: 8px; }
-    
-    /* تأثير السهم الأخضر المتحرك النبضي والصاعد باستمرار كطلبك بالظبط */
-    .portfolio-pnl-status { font-size: 14px; font-weight: 700; color: #00d395; display: flex; align-items: center; gap: 4px; animation: pnlPulse 2s infinite ease-in-out; }
-    @keyframes pnlPulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.03) translateY(-1px); opacity: 1; filter: drop-shadow(0 0 4px #00d395); } }
-
-    /* كود الرسم البياني المنحني والمنقط المقتبس من صورتك بدقة هائلة */
-    .portfolio-svg-graph { width: 100%; height: 110px; margin-top: 15px; stroke-dasharray: 2,2; }
-
-    /* تفصيل كرت المهام البيضاوي النظيف الحاوي على الصندوق الأرجواني الشفاف وقفل الذهب المتوهج */
     .youtube-task-card {
-        width: 100%; background: #ffffff; border-radius: 50px; padding: 10px 24px;
+        width: 100%; background: #ffffff; border-radius: 50px; padding: 12px 24px;
         display: flex; direction: ltr; align-items: center; justify-content: space-between;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); cursor: pointer; transition: transform 0.2s ease;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); cursor: pointer; transition: 0.2s ease;
     }
     .youtube-task-card:hover { transform: scale(1.02); }
-    
-    /* مجسم الصندوق الأرجواني الشفاف ثلاثي الأبعاد ذو الحواف الذهبية المدمج يساراً */
-    .task-left-purple-box { width: 52px; height: 52px; filter: drop-shadow(0 4px 10px rgba(168,85,247,0.35)); }
-    .task-right-youtube-badge { width: 48px; height: 48px; fill: #000000; }
+    .task-left-coins { display: flex; align-items: center; width: 52px; height: auto; }
+    .task-right-youtube { display: flex; align-items: center; width: 54px; height: 54px; fill: #000000; }
 
-    /* صندوق الدفع المنبثق المعدل بالكامل لتطبيق عداد الـ 50 دقيقة بالثواني */
-    .payment-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .payment-modal-overlay.open { opacity: 1; pointer-events: auto; }
-    .payment-modal-box { width: 90%; max-width: 380px; background: #0f141c; border: 1px solid #1f2937; border-radius: 24px; padding: 25px; text-align: center; }
+    /* تصميم قسم المحفظة الفخمة والرسم البياني ومؤشر النبض لـ Square */
+    .square-portfolio-card {
+        width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 24px; padding: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4); margin-bottom: 5px; position: relative;
+    }
+    .square-card-header { font-size: 15px; color: #9ca3af; display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .square-main-amount { font-size: 34px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; margin-bottom: 6px; }
+    .square-pulse-pnl { color: #00d395; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 4px; animation: floatPulse 2.5s ease-in-out infinite; }
+    @keyframes floatPulse { 0%, 100% { transform: translateY(0); opacity: 0.9; } 50% { transform: translateY(-4px); opacity: 1; } }
     
-    /* تصميم العداد التنازلي التنازلي التفاعلي المطور أسفل الشاشة */
-    .countdown-timer-display { font-size: 24px; font-weight: 800; color: #f87171; letter-spacing: 1px; margin-top: 15px; background: rgba(248,113,113,0.06); padding: 8px; border-radius: 8px; border: 1px solid rgba(248,113,113,0.12); display: inline-block; }
+    .square-graph-svg { width: 100%; height: 110px; margin-top: 15px; stroke-dasharray: 4; }
+    .square-timeline-tabs { display: flex; justify-content: space-between; margin-top: 15px; border-top: 1px solid #1c2127; padding-top: 12px; }
+    .timeline-tab { font-size: 12px; color: #6b7280; font-weight: 600; cursor: pointer; }
+    .timeline-tab.active-tab { color: #ffffff; background: #1c2127; padding: 2px 8px; border-radius: 4px; }
+
+    /* خيارات ومربعات السحب والشحن لـ Square */
+    .square-action-box { width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 20px; padding: 22px; margin-top: 5px; }
+    .square-action-box h4 { font-size: 16px; color: #00d395; margin-bottom: 15px; font-weight: 700; text-align: left; }
+    .square-select-field { width: 100%; padding: 14px; background: #1c2127; border: 1px solid #2d343c; border-radius: 10px; color: white; font-size: 14px; outline: none; margin-bottom: 14px; -webkit-appearance: none; }
 </style>
 <style>
-    /* تصميم غرف الدردشة الـ 10 المقفلة لصفحة Earn */
-    .premium-chat-card { width: 100%; background: #11151d; border: 1px solid #202731; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
-    .chat-info-block { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-    .chat-room-title { font-size: 16px; font-weight: 700; color: #ffffff; }
-    .chat-room-status { font-size: 12px; color: #9ca3af; }
-    .chat-lock-gold-icon { width: 24px; height: 24px; fill: #fbbf24; filter: drop-shadow(0 0 8px rgba(251,191,36,0.4)); }
+    .activate-package-btn { width: 100%; padding: 12px; background: #00d395; color: #000000; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: -12px; margin-bottom: 8px; box-shadow: 0 4px 12px rgba(0, 211, 149, 0.25); }
+    .activate-package-btn.sent { background: #1c2127 !important; color: #6b7280 !important; box-shadow: none !important; cursor: not-allowed; }
 
-    /* تصميم كتل الشحن والسحب لصفحة Square وعنصر الـ Elementx */
-    .square-action-block { width: 100%; background: #0f141c; border: 1px solid #1f2937; border-radius: 20px; padding: 20px; margin-bottom: 5px; }
-    .square-block-title { font-size: 15px; font-weight: 700; color: #9ca3af; margin-bottom: 12px; text-align: left; text-transform: uppercase; }
-    
-    .select-network-dropdown { width: 100%; padding: 15px; background: #15191e; border: 1px solid #252c34; border-radius: 12px; color: white; font-size: 15px; font-weight: bold; outline: none; margin-bottom: 15px; -webkit-appearance: none; }
-    
-    /* زر التواصل الفخم الحاوي على شعار تطبيق Elementx لصفحة Portfolio */
-    .elementx-support-btn {
-        width: 100%; padding: 15px; background: #1a1b23; border: 1px solid #2e303f; border-radius: 16px;
-        display: flex; align-items: center; justify-content: center; gap: 12px;
-        color: #ffffff; font-weight: 700; font-size: 16px; cursor: pointer; text-decoration: none; margin-top: 10px; transition: 0.3s;
-    }
-    .elementx-support-btn:hover { background: #242632; border-color: #00d395; }
-    .elementx-logo-svg { width: 28px; height: 28px; fill: #00d395; filter: drop-shadow(0 0 6px #00d395); }
+    .payment-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .payment-modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .payment-modal-box { width: 90%; max-width: 380px; background: #101317; border: 1px solid #2d343c; border-radius: 20px; padding: 25px; text-align: center; }
+    .wallet-address-container { background: #1c2127; border: 1px solid #2d343c; padding: 14px; border-radius: 10px; font-size: 14px; color: #ffffff; word-break: break-all; margin-bottom: 15px; font-weight: bold; }
+    .modal-action-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-weight: bold; font-size: 16px; cursor: pointer; }
+    .btn-copy-address { background: #00d395; color: #000000; margin-bottom: 12px; }
+    .btn-close-modal { background: transparent; color: #9ca3af; border: 1px solid #374151; }
+    .modal-timer-ticker { font-size: 14px; color: #ef4444; font-weight: 700; margin-top: 15px; letter-spacing: 0.5px; }
 
-    /* شريط التنقل السفلي الثابت والمنظم لـ OKX */
-    .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; height: 75px; background-color: #101317; border-top: 1px solid #1c2127; display: flex; direction: ltr; justify-content: space-around; align-items: center; padding-bottom: 10px; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; color: #9ca3af; font-size: 11px; cursor: pointer; text-decoration: none; width: 20%; }
+    /* دعم صفحة الدعم الفني لـ Portfolio */
+    .support-btn-link { width: 100%; background: #5865F2; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px; border-radius: 14px; font-weight: bold; text-decoration: none; font-size: 16px; box-shadow: 0 4px 15px rgba(88,101,242,0.3); margin-top: 40px; }
+    .support-logo-img { width: 26px; height: 26px; }
+
+    .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; height: 75px; background-color: #101317; border-top: 1px solid #1c2127; display: flex; direction: ltr; justify-content: space-around; align-items: center; padding-bottom: 10px; z-index: 1001; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; color: #9ca3af; font-size: 11px; cursor: pointer; text-decoration: none; width: 20%; transition: all 0.2s ease; }
     .nav-item.active-menu { color: #ffffff !important; }
     .nav-item.active-menu svg { fill: #00d395; }
-    
     .nav-item.trade-center { position: relative; bottom: 12px; background: #101317; width: 54px; height: 54px; border-radius: 50%; justify-content: center; border: 1px solid #1c2127; }
     .nav-item.trade-center svg { stroke: #9ca3af; width: 24px; height: 24px; }
     .nav-item.trade-center span { position: absolute; bottom: -22px; color: #9ca3af; font-weight: bold; }
@@ -299,210 +276,160 @@
     .nav-item.trade-center.active-white svg { stroke: #000000 !important; }
     .nav-item.trade-center.active-white span { color: #ffffff !important; }
     .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
-</style>
-</style>
+                         </style>
+
+    </style>
+</head>
 <body>
-    <!-- لوحة تحريك خلفية OKX الفوسفورية الذكية -->
     <canvas id="okxParticleCanvas"></canvas>
 
-    <!-- واجهة تسجيل الحساب باللغة الإنجليزية بالكامل كطلبك وبخطوط الأجانب المحترفة -->
+    <!-- واجهة تسجيل الحساب المحدثة بالكامل والمصلحة للعمل فوراً عند الضغط -->
     <div class="auth-container" id="authBox">
         <h2>HR</h2>
-        <div class="input-group"><input type="text" id="username" placeholder="Username" autocomplete="off"></div>
-        <div class="input-group"><input type="email" id="email" placeholder="Email Address" autocomplete="off"></div>
+        <!-- إضافة معرّفات الـ id الصحيحة والمطابقة لجافا سكريبت لمنع أي توقف -->
+        <div class="input-group"><input type="text" id="username" placeholder="Username"></div>
+        <div class="input-group"><input type="email" id="email" placeholder="Email Address"></div>
         <div class="input-group"><input type="password" id="password" placeholder="Password"></div>
-        <div class="input-group"><input type="text" id="inviteCode" placeholder="Invitation Code (Optional)" autocomplete="off"></div>
+        <div class="input-group"><input type="text" id="inviteCode" placeholder="Invitation Code (Optional)"></div>
         <button class="btn btn-register" onclick="triggerRegistration()">CREATE ACCOUNT</button>
         <button class="btn btn-login" onclick="showLoginError()">LOG IN</button>
-        <div class="alert-msg" id="loginAlert">Sorry, you do not have an account previously.</div>
+        <div class="alert-msg" id="loginAlert">عذراً ليس لديك حساب مسبقاً</div>
     </div>
 
-    <!-- شاشة اللودينج وعلامة النجاح والاهتزاز -->
+    <!-- شاشة اللودينج وعلامة النجاح -->
     <div class="overlay-screen" id="overlayScreen">
         <div class="loader" id="mainLoader"></div>
         <div class="success-checkmark" id="successCheck"><div class="check-icon"></div></div>
     </div>
-        <!-- واجهة التطبيق والمنصة الداخلية الكبرى -->
+        <!-- واجهة المنصة الداخلية الكبرى -->
     <div class="main-app-interface" id="mainApp">
         
-        <!-- صفحة المهام الرئيسية الفخمة (Home Page View) -->
-        <div class="app-page-view active-page" id="page-home">
-            <!-- سيتم إنشاء وتوليد الـ 50 مهمة يوتيوب النظيفة برمجياً هنا تلقائياً لتعمل فوراً -->
-        </div>
-                <!-- صفحة باقات الاستثمار والتداول (Trade Page View) -->
+        <!-- صفحة باقات التداول (Trade Page) -->
         <div class="app-page-view" id="page-trade">
-            
             <!-- باقة 30 USDT -->
             <div class="crypto-package-card">
-                <div class="card-left-section">
-                    <!-- كود ديسكورد الأرجواني الميتاليك ثلاثي الأبعاد الخاص بصورتك الأخيرة بالظبط -->
-                    <svg class="discord-metallic-icon" viewBox="0 0 127.14 96.36">
-                        <polygon points="100,10 165,47.5 165,122.5 100,160 35,122.5 35,47.5" fill="#170624" stroke="#542172" stroke-width="4" />
-                        <path d="M107.7,28A105.15,105.15,0,0,0,77.26,20a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,26.83,77.19,77.19,0,0,0,49.88,20,105.15,105.15,0,0,0,19.44,28C3.66,51.58-1.86,74.65,1,97.53A105.73,105.73,0,0,0,32,116.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,70.15,123.83,47.28,107.7,28ZM42.45,85.69C36.18,85.69,31,80,31,73S36.18,60.36,42.45,60.36,53.88,66,53.88,73,48.72,85.69,42.45,85.69Zm42.24,0C78.41,85.69,73.24,80,73.24,73S78.41,60.36,84.69,60.36,96.12,66,96.12,73,91,85.69,84.27,85.69Z" fill="#a855f7"/>
-                    </svg>
-                </div>
+                <div class="card-left-section"><svg class="discord-badge-icon" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,50.15,123.83,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.27,65.69Z"/></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">30USDT</div><div class="usdt-sub-rate-box">3.50USDT</div></div>
-                <div class="card-right-section">
-                    <!-- كود كتل عملات التيثر الفيروزية المتراصة الميتاليكية المحدثة -->
-                    <svg class="tether-turquoise-stack" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="22" r="16" fill="#11151d" stroke="#00d395" stroke-width="3"/><path d="M27 12v20M20 17h14M18 22h18" stroke="#00d395" stroke-width="3"/><circle cx="27" cy="32" r="14" fill="#0c0f16" stroke="#00b07c" stroke-width="2"/><path d="M27 24v16M21 28h12M19 32h16" stroke="#00b07c" stroke-width="2"/></svg>
-                </div>
+                <div class="card-right-section"><svg class="tether-coins-stack" viewBox="0 0 24 24" fill="#02c076"><circle cx="12" cy="12" r="10" stroke="#02c076" stroke-width="2" fill="none"/><path d="M12 6v12M9 9h6M8 12h8" stroke="#02c076" stroke-width="2"/></svg></div>
             </div>
-            <button class="activate-package-btn" id="pkg-btn-1" onclick="openPaymentModal('VIP Pack 1', '30', 1)">Activate Package</button>
+            <button class="activate-package-btn" id="pkg-btn-1" onclick="openPaymentModal('1', '30', 1)">Activate Package</button>
 
             <!-- باقة 60 USDT -->
             <div class="crypto-package-card">
-                <div class="card-left-section">
-                    <svg class="discord-metallic-icon" viewBox="0 0 127.14 96.36"><polygon points="100,10 165,47.5 165,122.5 100,160 35,122.5 35,47.5" fill="#170624" stroke="#542172" stroke-width="4" /><path d="M107.7,28A105.15,105.15,0,0,0,77.26,20a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,26.83,77.19,77.19,0,0,0,49.88,20,105.15,105.15,0,0,0,19.44,28C3.66,51.58-1.86,74.65,1,97.53A105.73,105.73,0,0,0,32,116.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,70.15,123.83,47.28,107.7,28ZM42.45,85.69C36.18,85.69,31,80,31,73S36.18,60.36,42.45,60.36,53.88,66,53.88,73,48.72,85.69,42.45,85.69Zm42.24,0C78.41,85.69,73.24,80,73.24,73S78.41,60.36,84.69,60.36,96.12,66,96.12,73,91,85.69,84.27,85.69Z" fill="#a855f7"/></svg>
-                </div>
+                <div class="card-left-section"><svg class="discord-badge-icon" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,50.15,123.83,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.27,65.69Z"/></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">60USDT</div><div class="usdt-sub-rate-box">7USDT</div></div>
-                <div class="card-right-section">
-                    <svg class="tether-turquoise-stack" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="22" r="16" fill="#11151d" stroke="#00d395" stroke-width="3"/><path d="M27 12v20M20 17h14M18 22h18" stroke="#00d395" stroke-width="3"/><circle cx="27" cy="32" r="14" fill="#0c0f16" stroke="#00b07c" stroke-width="2"/><path d="M27 24v16M21 28h12M19 32h16" stroke="#00b07c" stroke-width="2"/></svg>
-                </div>
+                <div class="card-right-section"><svg class="tether-coins-stack" viewBox="0 0 24 24" fill="#02c076"><circle cx="12" cy="12" r="10" stroke="#02c076" stroke-width="2" fill="none"/><path d="M12 6v12M9 9h6M8 12h8" stroke="#02c076" stroke-width="2"/></svg></div>
             </div>
-            <button class="activate-package-btn" id="pkg-btn-2" onclick="openPaymentModal('VIP Pack 2', '60', 2)">Activate Package</button>
+            <button class="activate-package-btn" id="pkg-btn-2" onclick="openPaymentModal('2', '60', 2)">Activate Package</button>
 
             <!-- باقة 90 USDT -->
             <div class="crypto-package-card">
-                <div class="card-left-section">
-                    <svg class="discord-metallic-icon" viewBox="0 0 127.14 96.36"><polygon points="100,10 165,47.5 165,122.5 100,160 35,122.5 35,47.5" fill="#170624" stroke="#542172" stroke-width="4" /><path d="M107.7,28A105.15,105.15,0,0,0,77.26,20a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,26.83,77.19,77.19,0,0,0,49.88,20,105.15,105.15,0,0,0,19.44,28C3.66,51.58-1.86,74.65,1,97.53A105.73,105.73,0,0,0,32,116.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,70.15,123.83,47.28,107.7,28ZM42.45,85.69C36.18,85.69,31,80,31,73S36.18,60.36,42.45,60.36,53.88,66,53.88,73,48.72,85.69,42.45,85.69Zm42.24,0C78.41,85.69,73.24,80,73.24,73S78.41,60.36,84.69,60.36,96.12,66,96.12,73,91,85.69,84.27,85.69Z" fill="#a855f7"/></svg>
-                </div>
+                <div class="card-left-section"><svg class="discord-badge-icon" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,50.15,123.83,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.27,65.69Z"/></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">90USDT</div><div class="usdt-sub-rate-box">10USDT</div></div>
-                <div class="card-right-section">
-                    <svg class="tether-turquoise-stack" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="22" r="16" fill="#11151d" stroke="#00d395" stroke-width="3"/><path d="M27 12v20M20 17h14M18 22h18" stroke="#00d395" stroke-width="3"/><circle cx="27" cy="32" r="14" fill="#0c0f16" stroke="#00b07c" stroke-width="2"/><path d="M27 24v16M21 28h12M19 32h16" stroke="#00b07c" stroke-width="2"/></svg>
-                </div>
+                <div class="card-right-section"><svg class="tether-coins-stack" viewBox="0 0 24 24" fill="#02c076"><circle cx="12" cy="12" r="10" stroke="#02c076" stroke-width="2" fill="none"/><path d="M12 6v12M9 9h6M8 12h8" stroke="#02c076" stroke-width="2"/></svg></div>
             </div>
-            <button class="activate-package-btn" id="pkg-btn-3" onclick="openPaymentModal('VIP Pack 3', '90', 3)">Activate Package</button>
+            <button class="activate-package-btn" id="pkg-btn-3" onclick="openPaymentModal('3', '90', 3)">Activate Package</button>
+                        <!-- باقة 150 USDT -->
+            <div class="crypto-package-card">
+                <div class="card-left-section"><svg class="discord-badge-icon" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,50.15,123.83,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.27,65.69Z"/></svg></div>
+                <div class="card-center-section"><div class="usdt-main-balance">150USDT</div><div class="usdt-sub-rate-box">18USDT</div></div>
+                <div class="card-right-section"><svg class="tether-coins-stack" viewBox="0 0 24 24" fill="#02c076"><circle cx="12" cy="12" r="10" stroke="#02c076" stroke-width="2" fill="none"/><path d="M12 6v12M9 9h6M8 12h8" stroke="#02c076" stroke-width="2"/></svg></div>
+            </div>
+            <button class="activate-package-btn" id="pkg-btn-4" onclick="openPaymentModal('4', '150', 4)">Activate Package</button>
 
-            <!-- باقة 150 USDT -->
+            <!-- باقة 300 USDT -->
+            <div class="crypto-package-card">
+                <div class="card-left-section"><svg class="discord-badge-icon" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,50.15,123.83,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.27,65.69Z"/></svg></div>
+                <div class="card-center-section"><div class="usdt-main-balance">300USDT</div><div class="usdt-sub-rate-box">40USDT</div></div>
+                <div class="card-right-section"><svg class="tether-coins-stack" viewBox="0 0 24 24" fill="#02c076"><circle cx="12" cy="12" r="10" stroke="#02c076" stroke-width="2" fill="none"/><path d="M12 6v12M9 9h6M8 12h8" stroke="#02c076" stroke-width="2"/></svg></div>
+            </div>
+            <button class="activate-package-btn" id="pkg-btn-5" onclick="openPaymentModal('5', '300', 5)">Activate Package</button>
+        </div>
+
+        <!-- إطار صندوق الدفع المنبثق المعدل بالكامل وبدون أي عنوان علوي كطلبك -->
+        <div class="payment-modal-overlay" id="paymentModal">
+            <div class="payment-modal-box">
+                <p style="margin-top:10px;">Please transfer the required amount via <br><strong>USDT-TRC20</strong> network to the address below:</p>
+                <div class="wallet-address-container" id="walletAddr">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+                <button class="modal-action-btn btn-copy-address" onclick="copyWalletAddressAndConfirm()">OK</button>
+                <button class="modal-action-btn btn-close-modal" onclick="closePaymentModal()">Cancel</button>
+                <!-- العداد التنازلي الاحترافي لمدة 50 دقيقة في أسفل النافذة -->
+                <div class="modal-timer-ticker" id="modalCountdown">50:00</div>
+            </div>
+        </div>
+                    <!-- باقة 150 USDT -->
             <div class="crypto-package-card">
                 <div class="card-left-section">
-                    <svg class="discord-metallic-icon" viewBox="0 0 127.14 96.36"><polygon points="100,10 165,47.5 165,122.5 100,160 35,122.5 35,47.5" fill="#170624" stroke="#542172" stroke-width="4" /><path d="M107.7,28A105.15,105.15,0,0,0,77.26,20a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,26.83,77.19,77.19,0,0,0,49.88,20,105.15,105.15,0,0,0,19.44,28C3.66,51.58-1.86,74.65,1,97.53A105.73,105.73,0,0,0,32,116.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,70.15,123.83,47.28,107.7,28ZM42.45,65.69C36.18,65.69,31,60,31,73S36.18,60.36,42.45,60.36,53.88,66,53.88,73,48.72,85.69,42.45,85.69Zm42.24,0C78.41,85.69,73.24,80,73.24,73S78.41,60.36,84.69,60.36,96.12,66,96.12,73,91,85.69,84.27,85.69Z" fill="#a855f7"/></svg>
+                    <svg class="discord-badge-icon" viewBox="0 0 100 100" class="discord-metallic-svg">
+                        <g filter="drop-shadow(0px 5px 12px rgba(139,92,246,0.3))">
+                            <polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#1b122b" stroke="url(#metallicGrad)" stroke-width="4" stroke-linejoin="round"/>
+                            <path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="url(#purpleGlowGrad)"/>
+                        </g>
+                    </svg>
                 </div>
-                <div class="card-center-section"><div class="usdt-main-balance">150USDT</div><div class="usdt-sub-rate-box">18USDT</div></div>
+                <div class="card-center-section">
+                    <div class="usdt-main-balance">150USDT</div>
+                    <div class="usdt-sub-rate-box">18USDT</div>
+                </div>
                 <div class="card-right-section">
-                    <svg class="tether-turquoise-stack" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="22" r="16" fill="#11151d" stroke="#00d395" stroke-width="3"/><path d="M27 12v20M20 17h14M18 22h18" stroke="#00d395" stroke-width="3"/><circle cx="27" cy="32" r="14" fill="#0c0f16" stroke="#00b07c" stroke-width="2"/><path d="M27 24v16M21 28h12M19 32h16" stroke="#00b07c" stroke-width="2"/></svg>
+                    <svg viewBox="0 0 100 100" class="tether-stack-svg" style="width: 52px; height: auto;">
+                        <g filter="drop-shadow(0px 4px 8px rgba(0,211,149,0.35))">
+                            <ellipse cx="45" cy="65" rx="30" ry="14" fill="#007d53" />
+                            <ellipse cx="45" cy="61" rx="30" ry="14" fill="#009664" />
+                            <ellipse cx="45" cy="57" rx="30" ry="14" fill="#00b378" />
+                            <ellipse cx="45" cy="53" rx="30" ry="14" fill="#00d395" stroke="#ffffff" stroke-width="1.5" />
+                            <circle cx="45" cy="53" r="16" fill="#009664" />
+                            <path d="M45 42v22M35 48h20M32 54h26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                        </g>
+                    </svg>
                 </div>
             </div>
-            <button class="activate-package-btn" id="pkg-btn-4" onclick="openPaymentModal('VIP Pack 4', '150', 4)">Activate Package</button>
+            <button class="activate-package-btn" id="pkg-btn-4" onclick="openPaymentModal('Fourth', '150', 4)">Activate Package</button>
 
             <!-- باقة 300 USDT -->
             <div class="crypto-package-card">
                 <div class="card-left-section">
-                    <svg class="discord-metallic-icon" viewBox="0 0 127.14 96.36"><polygon points="100,10 165,47.5 165,122.5 100,160 35,122.5 35,47.5" fill="#170624" stroke="#542172" stroke-width="4" /><path d="M107.7,28A105.15,105.15,0,0,0,77.26,20a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,26.83,77.19,77.19,0,0,0,49.88,20,105.15,105.15,0,0,0,19.44,28C3.66,51.58-1.86,74.65,1,97.53A105.73,105.73,0,0,0,32,116.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.43-5c.87-.64,1.71-1.32,2.51-2a75.43,75.43,0,0,0,72.77,0c.8.71,1.64,1.39,2.51,2a68.43,68.43,0,0,1-10.43,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31.07-18.83C129.74,70.15,123.83,47.28,107.7,28ZM42.45,85.69C36.18,85.69,31,80,31,73S36.18,60.36,42.45,60.36,53.88,66,53.88,73,48.72,85.69,42.45,85.69Zm42.24,0C78.41,85.69,73.24,80,73.24,73S78.41,60.36,84.69,60.36,96.12,66,96.12,73,91,85.69,84.27,85.69Z" fill="#a855f7"/></svg>
-                </div>
-                <div class="card-center-section"><div class="usdt-main-balance">300USDT</div><div class="usdt-sub-rate-box">40USDT</div></div>
-                <div class="card-right-section">
-                    <svg class="tether-turquoise-stack" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="22" r="16" fill="#11151d" stroke="#00d395" stroke-width="3"/><path d="M27 12v20M20 17h14M18 22h18" stroke="#00d395" stroke-width="3"/><circle cx="27" cy="32" r="14" fill="#0c0f16" stroke="#00b07c" stroke-width="2"/><path d="M27 24v16M21 28h12M19 32h16" stroke="#00b07c" stroke-width="2"/></svg>
-                </div>
-            </div>
-            <button class="activate-package-btn" id="pkg-btn-5" onclick="openPaymentModal('VIP Pack 5', '300', 5)">Activate Package</button>
-        </div>
-                <!-- صفحة غرف الدردشة المقفلة (Earn Page View) -->
-        <div class="app-page-view" id="page-earn">
-            <!-- سيتم توليد الـ 10 غرف دردشة المشفرة والمغلقة برمجياً هنا تلقائياً لتعمل فوراً -->
-        </div>
-
-        <!-- صفحة الحساب وإدارة المحافظ المحدثة بالكامل كصورتك (Square Page View) -->
-        <div class="app-page-view" id="page-square">
-            
-            <!-- لوحة الأصول الفخمة مع الرسم المنقط المتعرج والسهم النبضي الصاعد كالصورة الأصلية تماماً -->
-            <div class="portfolio-assets-card">
-                <div class="portfolio-title-row">
-                    <span>Total Assets</span>
-                    <!-- أيقونة العين الجذابة لحجب رصيد المحفظة -->
-                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                </div>
-                <div class="portfolio-main-amount">1,829.23 <span style="font-size:16px; color:#9ca3af; font-weight:600;">USD ▾</span></div>
-                <div class="portfolio-pnl-status">
-                    <!-- سهم صعود الأرباح الأخضر النبضي -->
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
-                    <span>PNL + $982.22 (1D)</span>
-                </div>
-                
-                <!-- رسم بياني متعرج ومنقط بالأخضر النيون النقي يطابق لوحة صورتك بالظبط -->
-                <svg class="portfolio-svg-graph" viewBox="0 0 300 100">
-                    <path d="M 0,85 Q 30,70 50,75 T 100,50 T 150,65 T 200,30 T 250,20 T 300,45" fill="none" stroke="#00d395" stroke-width="3.5" filter="url(#glow)"/>
-                    <path d="M 0,85 Q 30,70 50,75 T 100,50 T 150,65 T 200,30 T 250,20 T 300,45" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
-                    <defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-                </svg>
-            </div>
-
-            <!-- كتلة شحن الحساب لعنوان محفظتك الثابتة لشبكة TRC20 -->
-            <div class="square-action-block">
-                <div class="square-block-title">Deposit Account (TRC20)</div>
-                <div class="wallet-address-container" id="squareWalletAddr">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-                <button class="activate-package-btn" onclick="copySquareWalletAddress()">OK</button>
-                <center><div class="countdown-timer-display" id="squareCountdown">50:00</div></center>
-            </div>
-
-            <!-- كتلة سحب الأرباح المعدلة لتشمل الشبكات ومربعات السحب والمبلغ وكلمة السر الآمنة -->
-            <div class="square-action-block">
-                <div class="square-block-title">Secure Crypto Withdrawal</div>
-                <!-- قائمة اختيار الشبكات الرقمية الجديدة المفتوحة -->
-                <select class="select-network-dropdown">
-                    <option>TRC20 Network</option>
-                    <option>ERC20 Network</option>
-                    <option>BEP20 Network</option>
-                </select>
-                <!-- مربع لوضع عنوان محفظة سحب المشترك -->
-                <div class="input-group" style="margin-bottom:12px;"><input type="text" placeholder="Enter your withdrawal wallet destination" id="wAddrInput"></div>
-                <!-- مربع رقمي مخصص لكتابة كمية رصيد السحب -->
-                <div class="input-group" style="margin-bottom:12px;"><input type="number" placeholder="Enter amount to withdraw (USD)" id="wAmountInput"></div>
-                <!-- مربع لكلمة السر الآمنة للسحب -->
-                <div class="input-group" style="margin-bottom:15px;"><input type="password" placeholder="Secure Withdrawal Password" id="wPassInput"></div>
-                <button class="btn btn-register" style="margin-top:0;" onclick="triggerWithdrawAlert()">WITHDRAW ASSETS</button>
-            </div>
-        </div>
-
-        <!-- صفحة الملف الشخصي والدعم الفني (Portfolio View) الحاوية لزر Elementx -->
-        <div class="app-page-view" id="page-portfolio">
-            <div style="text-align:center; padding: 20px 0;">
-                <h3 style="font-size:22px; margin-bottom:10px; color:#00d395;">Secure Member Profile</h3>
-                <p style="color:#9ca3af; font-size:14px; margin-bottom:30px;">Manage your premium global account preferences.</p>
-                
-                <!-- زر التواصل المباشر المحدث مدمجاً فيه شعار واسم تطبيق Elementx كطلبك بالظبط -->
-                <a href="https://matrix.to" target="_blank" class="elementx-support-btn">
-                    <svg class="elementx-logo-svg" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    <svg class="discord-badge-icon" viewBox="0 0 100 100" class="discord-metallic-svg">
+                        <g filter="drop-shadow(0px 5px 12px rgba(139,92,246,0.3))">
+                            <polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#1b122b" stroke="url(#metallicGrad)" stroke-width="4" stroke-linejoin="round"/>
+                            <path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="url(#purpleGlowGrad)"/>
+                        </g>
                     </svg>
-                    <span>Contact Support via Elementx</span>
-                </a>
+                </div>
+                <div class="card-center-section">
+                    <div class="usdt-main-balance">300USDT</div>
+                    <div class="usdt-sub-rate-box">40USDT</div>
+                </div>
+                <div class="card-right-section">
+                    <svg viewBox="0 0 100 100" class="tether-stack-svg" style="width: 52px; height: auto;">
+                        <g filter="drop-shadow(0px 4px 8px rgba(0,211,149,0.35))">
+                            <ellipse cx="45" cy="65" rx="30" ry="14" fill="#007d53" />
+                            <ellipse cx="45" cy="61" rx="30" ry="14" fill="#009664" />
+                            <ellipse cx="45" cy="57" rx="30" ry="14" fill="#00b378" />
+                            <ellipse cx="45" cy="53" rx="30" ry="14" fill="#00d395" stroke="#ffffff" stroke-width="1.5" />
+                            <circle cx="45" cy="53" r="16" fill="#009664" />
+                            <path d="M45 42v22M35 48h20M32 54h26" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+                        </g>
+                    </svg>
+                </div>
             </div>
+            <button class="activate-package-btn" id="pkg-btn-5" onclick="openPaymentModal('Fifth', '300', 5)">Activate Package</button>
         </div>
-                <!-- إطار صندوق الدفع المنبثق المعدل بالكامل لـ OK والعداد -->
+
+        <!-- 🛡️ نافذة الدفع المعدلة بالكامل وبدون أي عنوان علوي كطلبك -->
         <div class="payment-modal-overlay" id="paymentModal">
             <div class="payment-modal-box">
-                <h3 style="color:#00d395; font-size:20px; margin-bottom:10px;">PROCEED TO PAYMENT</h3>
-                <p>To activate, please send the exact USDT amount over <br><strong>USDT-TRC20 Network</strong> to the destination below:</p>
+                <p style="margin-top:10px; color: #9ca3af; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                    Please transfer the exact amount via <br><strong>USDT-TRC20 Network</strong> to the destination address below:
+                </p>
                 <div class="wallet-address-container" id="walletAddr">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-                <button class="modal-action-btn btn-copy-address" style="background:#00d395; color:#000000; font-weight:bold;" onclick="copyWalletAddressAndConfirm()">OK</button>
-                <button class="modal-action-btn btn-close-modal" style="background:transparent; color:#9ca3af; border:1px solid #374151; margin-top:10px;" onclick="closePaymentModal()">Cancel</button>
-                <center><div class="countdown-timer-display" id="modalCountdown">50:00</div></center>
+                <button class="modal-action-btn btn-copy-address" onclick="copyWalletAddressAndConfirm()">OK</button>
+                <button class="modal-action-btn btn-close-modal" onclick="closePaymentModal()">Cancel</button>
+                
+                <!-- العداد التنازلي لمدة 50 دقيقة في أسفل النافذة -->
+                <div class="modal-timer-ticker" id="modalCountdownTicker" style="margin-top: 18px; color: #ff453a; font-weight: bold; font-size: 14px; letter-spacing: 0.5px;">
+                    Remaining Time: 50:00
+                </div>
             </div>
         </div>
-
-        <!-- شريط القوائم والتنقل السفلي الداكن لمنصة OKX المترابط بالصفحات الأربع -->
-        <div class="bottom-nav">
-            <div class="nav-item" id="nav-portfolio-btn" onclick="switchPage('portfolio')">
-                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
-                <span>Portfolio</span>
-            </div>
-            <div class="nav-item" id="nav-earn-btn" onclick="switchPage('earn')">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
-                <span>Earn</span>
-            </div>
-            <div class="nav-item trade-center" id="targetTradeBtn" onclick="switchPage('trade')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
-                <span>Trade</span>
-            </div>
-            <div class="nav-item" id="nav-square-btn" onclick="switchPage('square')">
-                <svg viewBox="0 0 24 24"><path d="M20 18.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM17 12v1a4 4 0 0 0 4 4h1v-2h-1a2 2 0 0 1-2-2v-1h-2zM5 21a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5z"/></svg>
-                <span>Square</span>
-            </div>
-            <div class="nav-item active-menu" id="nav-home-btn" onclick="switchPage('home')">
-                <svg viewBox="0 0 24 24"><path d="M4 20h3V10H4v10zm6 0h3V4h-3v16zm6 0h3v-7h-3v7z"/></svg>
-                <span>Home</span>
-            </div>
-        </div>
-    </div>
-    
+        
