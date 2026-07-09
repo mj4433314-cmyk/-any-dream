@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>منصة التداول والمكافآت العالمية الموحدة</title>
-    <!-- استدعاء سيرفرات أحدث الخطوط والرابط المطور للأيقونات العالمية والأسهم -->
+    <!-- استدعاء خوادم الخطوط السريعة والرابط العالمي المفتوح للأيقونات المضمونة -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fontawesome.com">
     
     <style>
@@ -21,8 +21,7 @@
             background-color: #fafbfe; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
-
-        /* الحاوية الذكية المقاومة للمتصفحات */
+                /* الحاوية الذكية المقاومة للمتصفحات وثقل الشاشات */
         .app-container {
             width: 100%; max-width: 420px; height: 100%;
             background: #ffffff; display: flex; flex-direction: column;
@@ -34,30 +33,28 @@
         .no-padding-dash {
             padding: 0 !important; background-color: #0d0f12 !important; overflow: hidden !important;
         }
-                /* ترويسة وعناوين واجهة التسجيل الأولى */
+
+        /* ترويسة وعناوين واجهة التسجيل المضيئة الأولى */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; width: 100%; }
         .login-link { color: #4c8bf5; text-decoration: none; font-size: 15px; font-weight: 700; cursor: pointer; }
-        .logo-icon { font-size: 32px; color: #0066ff; transform: rotate(-45deg); }
-        .main-title { font-family: 'Reem Kufi', serif !important; font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; text-align: right; width: 100%; }
+        .main-title { font-size: 32px; font-weight: 800; color: #1a1a1a; margin-bottom: 25px; text-align: right; width: 100%; }
 
         .input-wrapper { margin-bottom: 18px; width: 100%; text-align: right; }
         .input-label { display: block; font-size: 14px; color: #4a4a4a; margin-bottom: 8px; font-weight: 700; }
         .arrow-down { font-size: 10px; color: #666; margin-right: 4px; }
-
-        .field-container {
+                .field-container {
             display: flex; align-items: center; border: 1px solid #e2e8f0;
             border-radius: 12px; background-color: #ffffff; overflow: hidden; transition: border-color 0.2s;
         }
         .field-container:focus-within { border-color: #a3bffa; }
         .field-container input { width: 100%; padding: 16px; border: none; outline: none; font-size: 15px; color: #1a1a1a; background: transparent; font-weight: 600; text-align: right; }
 
-        /* منسدل رموز الدول المتجاوب الفوري */
+        /* منسدل رموز الدول المتجاوب الفوري وحركات زر الدخول */
         .country-dropdown {
             display: none; border: none; outline: none; background: #f7fafc; padding: 0 10px; height: 52px; font-size: 14px; color: #333; border-left: 1px solid #e2e8f0; cursor: pointer; font-weight: 700;
         }
         .country-dropdown.show { display: block; }
 
-        /* زر التالي الإنجليزي الاحترافي */
         .next-btn {
             position: relative; width: 100%; background-color: #adc6ff; color: #ffffff;
             border: none; padding: 16px; border-radius: 30px; font-size: 18px; font-weight: 700;
@@ -66,27 +63,17 @@
             transition: background-color 0.2s ease;
         }
         
-        /* شعار اللودينج الاحترافي المضيء والمتحرك */
         .spinner { 
             display: none; width: 26px; height: 26px; border: 3px solid rgba(255, 255, 255, 0.2); 
-            border-radius: 50%; border-top-color: #ffffff; border-right-color: #ffffff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); animation: spin 0.8s linear infinite; 
+            border-radius: 50%; border-top-color: #ffffff; animation: spin 0.8s linear infinite; 
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* أيقونة الصح الاحترافية والمضيئة باللون الأخضر */
-        .success-checkmark {
-            display: none; font-size: 24px; color: #22c55e;
-            text-shadow: 0 0 10px rgba(34, 197, 94, 0.6); animation: popCheck 0.3s ease-in-out forwards;
-        }
-        @keyframes popCheck { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .success-checkmark { display: none; font-size: 24px; color: #22c55e; }
 
-        .divider-text { text-align: center; color: #888888; font-size: 13px; margin-bottom: 16px; font-weight: 600; width: 100%; }
+        .divider-text { text-align: center; color: #888888; font-size: 13px; margin: 16px 0; font-weight: 600; width: 100%; }
         .social-buttons { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
         .social-btn { width: 100%; background-color: #f5f5f5; border: none; padding: 14px 24px; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; color: #1a1a1a; }
-        .social-btn i { font-size: 20px; }
-        .social-icon-g { color: #ea4335; }
-        .social-icon-t { color: #0088cc; }
         .footer-lang { display: flex; justify-content: center; align-items: center; gap: 8px; color: #333333; font-size: 14px; font-weight: 700; margin-bottom: 25px; width: 100%; }
 
         /* شريط أسعار أسفل شاشة التسجيل الأولى */
@@ -94,12 +81,9 @@
         .trading-title { font-size: 12px; color: #9ca3af; font-weight: 700; margin-bottom: 8px; text-align: right; }
         .ticker-container { display: flex; flex-direction: column; gap: 8px; }
         .crypto-item { display: flex; justify-content: space-between; align-items: center; background: #1f2937; padding: 10px 12px; border-radius: 10px; }
-        .crypto-name { font-size: 13px; font-weight: 700; }
-        .crypto-price { font-size: 14px; font-weight: 700; font-family: monospace; }
 
         .hidden-step { display: none !important; }
-
-        /* ================================================= */
+                /* ================================================= */
         /* تصميم لوحة التحكم الفخمة (الواجهة الرئيسية الحية) */
         /* ================================================= */
         .dark-dashboard {
@@ -125,12 +109,12 @@
         .ticker-sym { font-size: 15px; font-weight: 700; color: #ffffff; }
         .ticker-price { font-size: 16px; font-weight: 700; font-family: monospace; color: #ffffff; }
         .ticker-change { font-size: 13px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #22c55e; background: rgba(34, 197, 94, 0.1); }
-                /* ================================================= */
+
+        /* ================================================= */
         /*   التصميم الداكن المطور لكروت الباقات الفاخرة    */
         /* ================================================= */
         .subscription-container { display: flex; flex-direction: column; gap: 18px; margin-bottom: 20px; width: 100%; padding: 5px 0; }
         
-        /* كارت باقة انسيابي داكن بديل للمربع الأبيض الفاشل القديم */
         .vip-card { 
             background: linear-gradient(135deg, #141822 0%, #0f121a 100%); 
             border: 1px solid #1e2538; border-radius: 20px; padding: 18px; 
@@ -143,7 +127,6 @@
         .discord-side { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 32%; gap: 10px; z-index: 5; }
         .discord-logo { font-size: 52px; color: #5865F2; filter: drop-shadow(0px 4px 12px rgba(88,101,242,0.4)); }
         
-        /* زر تفعيل فخم بانحناء دائري وتوهج بنفسجي */
         .activate-btn { 
             width: 100%; background: linear-gradient(135deg, #7F00FF 0%, #E100FF 100%); 
             color: #ffffff; border: none; padding: 6px 10px; border-radius: 25px; 
@@ -156,12 +139,10 @@
         .details-side { width: 68%; display: flex; flex-direction: column; align-items: flex-start; padding-left: 15px; position: relative; height: 100%; justify-content: center; z-index: 5; }
         .main-value-row { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 8px; }
         
-        /* قيمة الباقة باللون الأزرق الناصع المضيء */
         .usdt-value { font-size: 32px; font-weight: 900; color: #38bdf8; font-family: 'Arial Black', sans-serif; line-height: 1; text-shadow: 0 0 15px rgba(56,189,248,0.25); }
         .fire-icon { font-size: 30px; color: #ef4444; filter: drop-shadow(0px 4px 10px rgba(239,68,68,0.5)); }
         .sub-value-row { display: flex; align-items: center; gap: 10px; width: 100%; }
         
-        /* صندوق زجاجي فخم مطور ذو حواف فضية مضيئة للأرباح اليومية */
         .black-box { 
             background: rgba(255, 255, 255, 0.05); color: #ffffff; 
             border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);
@@ -172,12 +153,30 @@
         .coins-icon-wrapper { display: flex; align-items: flex-end; position: relative; height: 32px; width: 42px; }
         .coin-stack { font-size: 24px; color: #0ea5e9; position: absolute; bottom: 0; left: 0; z-index: 2; filter: drop-shadow(0 2px 4px rgba(14,165,233,0.3)); }
         .coin-offset { font-size: 16px; color: #06b6d4; position: absolute; bottom: -2px; left: 16px; z-index: 1; transform: rotate(-15deg); }
+                /* =================================================== */
+        /*  تنسيق كروت مهمات اليوتيوب الـ 5 الصافية كلياً      */
+        /* =================================================== */
+        .sub-tab-view { width: 100%; height: 100%; display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 20px; }
+        .sub-tab-view::-webkit-scrollbar { display: none; }
 
-        /* ================================================= */
-        /* تصميم واجهة المكافآت والحقول داخل كارت الأسيتس */
-        /* ================================================= */
+        .section-task-title { font-size: 16px; font-weight: 800; color: #ef4444; margin: 15px 0 12px 0; text-align: right; display: flex; align-items: center; gap: 8px; padding: 0 5px; }
+        
+        .task-card-fut { 
+            background: linear-gradient(135deg, #141822 0%, #0f121a 100%); 
+            border: 1px solid #1e2538; border-radius: 16px; padding: 16px 20px; 
+            display: flex; align-items: center; justify-content: space-between; 
+            margin-bottom: 15px; width: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* علامة يوتيوب الحمراء المضيئة باحترافية عالية */
+        .task-fut-logo { font-size: 36px; color: #ff0000; filter: drop-shadow(0px 2px 8px rgba(255,0,0,0.4)); }
+        
+        /* زر تقديم وتفعيل المهمة الأزرق الجذاب */
+        .task-fut-btn { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; padding: 8px 24px; border-radius: 20px; font-size: 13px; font-weight: 800; cursor: pointer; box-shadow: 0 3px 8px rgba(2,132,199,0.3); }
+
+        /* حقول واجهة Assets والعداد التنازلي والمحفظة */
         .bonus-banner { background-color: #0d0f12; padding: 25px 15px; text-align: center; border-radius: 16px; border: 1px solid #1e222b; margin-bottom: 20px; width: 100%; position: relative; }
-        .bonus-text-green { color: #22c55e; font-size: 26px; font-weight: 800; margin-bottom: 6px; text-align: center; font-family: Arial, sans-serif; text-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
+        .bonus-text-green { color: #22c55e; font-size: 26px; font-weight: 800; margin-bottom: 6px; text-align: center; text-shadow: 0 0 10px rgba(34, 197, 94, 0.2); }
         .bonus-text-white { color: #ffffff; font-size: 19px; font-weight: 700; margin-bottom: 6px; text-align: center; }
         .bonus-text-sub { color: #565e6c; font-size: 12px; margin-bottom: 18px; font-weight: 600; text-align: center; }
         
@@ -189,38 +188,30 @@
         .assets-balance-row { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 15px 0; background: #1a1e25; padding: 14px 16px; border-radius: 12px; border: 1px solid #232932; }
         .assets-bal-lbl { font-size: 14px; color: #727885; font-weight: 700; }
         .assets-bal-val { font-size: 17px; color: #ffffff; font-weight: 800; font-family: monospace; }
+        
+        .w-fields-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; margin-bottom: 25px; }
+        .w-field-box { display: flex; flex-direction: column; width: 100%; text-align: right; }
+        .w-label { font-size: 13.5px; color: #94a3b8; font-weight: 700; margin-bottom: 6px; }
+        .w-input-container { background: #141822; border: 1px solid #1e2538; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; }
+        .w-input-container input { width: 100%; background: transparent; border: none; outline: none; color: #ffffff; font-size: 14.5px; font-weight: 600; text-align: right; }
+        .w-btn-main { width: 100%; background: #ffffff; color: #000000; border: none; padding: 15px; border-radius: 30px; font-size: 16px; font-weight: 800; cursor: pointer; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; transition: opacity 0.2s; margin-top: 5px; box-shadow: 0 4px 15px rgba(255,255,255,0.1); }
+        .w-btn-main:hover { opacity: 0.9; }
 
-        /* ترويسة نافذة الإيداع المنبثقة الاحترافية الفاخرة المحدثة بالكامل */
+        /* تصميم واجهة الدفع المنبثقة العريضة والاحترافية جداً (بدون باركود) */
         .payment-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 10000; padding: 20px; }
         .payment-modal-overlay.active { opacity: 1; pointer-events: auto; }
-        
-        /* صندوق نافذة الدفع الداكنة الانسيابية الفاخرة */
-        .payment-modal-box { 
-            background: #11141a; border: 1px solid #222a3a; padding: 28px 22px; 
-            border-radius: 24px; width: 100%; max-width: 370px; text-align: center; 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); transform: scale(0.85); transition: transform 0.3s ease; color: #ffffff; 
-        }
+        .payment-modal-box { background: #11141a; border: 1px solid #222a3a; padding: 30px 20px; border-radius: 24px; width: 95%; max-width: 420px; text-align: center; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); transform: scale(0.85); transition: transform 0.3s ease; color: #ffffff; }
         .payment-modal-overlay.active .payment-modal-box { transform: scale(1); }
-        .p-modal-title { font-size: 17px; font-weight: 800; margin-bottom: 18px; color: #ffffff; letter-spacing: 0.3px; }
+        .p-modal-title { font-size: 18px; font-weight: 800; margin-bottom: 25px; color: #ffffff; text-align: center; }
         
-        /* الصندوق الفضي المضيء المحدث والبديل للمربع الفاشل القديم - يجعل محفظتك ناصعة ومثالية */
-        .address-container { 
-            background-color: #1a1f29; border: 1px solid #3b4861; border-radius: 14px; 
-            padding: 16px 14px; display: flex; align-items: center; justify-content: space-between; 
-            margin-bottom: 22px; gap: 12px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        /* عنوان محفظتك الأبيض الناصع والواضح جداً للمستخدمين للقراءة والنسخ */
-        .address-text { font-family: monospace; font-size: 13.5px; color: #ffffff; word-break: break-all; text-align: left; user-select: all; font-weight: 700; letter-spacing: 0.5px; }
-        .copy-btn { background: #0066ff; color: white; border: none; padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: background 0.2s; box-shadow: 0 4px 10px rgba(0,102,255,0.3); }
-        .copy-btn:hover { background: #0052cc; }
-        .p-timer-wrapper { margin-bottom: 22px; }
-        .p-timer-label { font-size: 12.5px; color: #94a3b8; margin-bottom: 8px; font-weight: 600; }
-        .p-timer-display { font-family: monospace; font-size: 32px; font-weight: 900; color: #ef4444; text-shadow: 0 0 15px rgba(239,68,68,0.4); letter-spacing: 1.5px; }
+        .address-container { background-color: #1a1f29; border: 1px solid #3b4861; border-radius: 14px; padding: 14px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; box-shadow: inset 0 2px 8px rgba(0,0,0,0.3); direction: ltr; margin-bottom: 25px; }
+        .address-text { font-family: monospace; font-size: 11.5px; color: #ffffff; word-break: keep-all; white-space: nowrap; font-weight: 700; text-align: left; flex-grow: 1; user-select: all; overflow-x: auto; padding-left: 6px; }
+        .copy-btn { background: #0066ff; color: white; border: none; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,102,255,0.3); }
+        .p-timer-wrapper { margin-top: 15px; margin-bottom: 25px; }
+        .p-timer-label { font-size: 13px; color: #94a3b8; margin-bottom: 10px; font-weight: 600; text-align: center; }
+        .p-timer-display { font-family: monospace; font-size: 36px; font-weight: 900; color: #ef4444; text-shadow: 0 0 15px rgba(239,68,68,0.5); letter-spacing: 1.5px; text-align: center; }
         .p-close-btn { background: #222936; color: #94a3b8; border: 1px solid #2e394d; padding: 12px 25px; border-radius: 30px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; transition: all 0.2s; }
-        .p-close-btn:hover { background: #2e394d; color: white; }
-
-        /* =================================================== */
+                /* =================================================== */
         /* شريط الأزرار الثلاثي الجديد المحدث لشركات التداول العالمية */
         /* =================================================== */
         .bottom-nav { 
@@ -230,49 +221,11 @@
             padding-bottom: max(6px, env(safe-area-inset-bottom)); z-index: 999; direction: ltr; 
         }
         .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #4e5d78; cursor: pointer; flex: 1; height: 100%; transition: all 0.2s ease; }
-        .nav-item i { font-size: 22px; margin-bottom: 4px; transition: transform 0.2s; }
-        .nav-item span { font-size: 12px; font-weight: 700; margin-top: 1px; }
-        
-        /* ميزة التوهج والتحول للون الأبيض الناصع بالملي للأزرار الثلاثة عند تحديدها كالصورة الحقيقية */
+        .nav-item i { font-size: 22px; margin-bottom: 4px; }
+        .nav-item span { font-size: 12px; font-weight: 700; }
         .nav-item.active { color: #ffffff !important; }
-        .nav-item.active i { transform: scale(1.1); }
-                /* ================================================= */
-        /* تنسيق بطاقات مهمات اليوتيوب الـ 10 لتبويب Futures */
-        /* ================================================= */
-        .sub-tab-view { width: 100%; height: 100%; display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 20px; }
-        .sub-tab-view::-webkit-scrollbar { display: none; }
 
-        .section-task-title { font-size: 16px; font-weight: 800; color: #ef4444; margin: 15px 0 12px 0; text-align: right; display: flex; align-items: center; gap: 8px; padding: 0 5px; }
-        
-        /* بطاقات مهمات اليوتيوب الاحترافية الفاخرة */
-        .task-card-fut { 
-            background: linear-gradient(135deg, #141822 0%, #0f121a 100%); 
-            border: 1px solid #1e2538; border-radius: 16px; padding: 14px 16px; 
-            display: flex; align-items: center; justify-content: space-between; 
-            margin-bottom: 12px; width: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .task-fut-left { display: flex; align-items: center; gap: 14px; }
-        
-        /* أيقونة اليوتيوب الحمراء المضيئة باحترافية عالية */
-        .task-fut-logo { font-size: 32px; color: #ff0000; filter: drop-shadow(0px 2px 8px rgba(255,0,0,0.5)); }
-        .task-fut-info { display: flex; flex-direction: column; align-items: flex-start; }
-        .task-fut-name { font-size: 14.5px; font-weight: 700; color: #ffffff; text-align: left; }
-        .task-fut-sub { font-size: 11px; color: #64748b; font-weight: 600; text-align: left; margin-top: 2px; }
-        
-        /* زر تقديم وتفعيل المهمة الأزرق الجذاب */
-        .task-fut-btn { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; border: none; padding: 7px 18px; border-radius: 20px; font-size: 12.5px; font-weight: 800; cursor: pointer; box-shadow: 0 3px 8px rgba(2,132,199,0.3); }
-
-        /* حقول السحب المستقلة داخل تبويب Assets */
-        .w-fields-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; margin-bottom: 25px; }
-        .w-field-box { display: flex; flex-direction: column; width: 100%; text-align: right; }
-        .w-label { font-size: 13.5px; color: #94a3b8; font-weight: 700; margin-bottom: 6px; }
-        .w-input-container { background: #141822; border: 1px solid #1e2538; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; }
-        .w-input-container input { width: 100%; background: transparent; border: none; outline: none; color: #ffffff; font-size: 14.5px; font-weight: 600; text-align: right; }
-        .w-btn-main { width: 100%; background: #ffffff; color: #000000; border: none; padding: 15px; border-radius: 30px; font-size: 16px; font-weight: 800; cursor: pointer; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; transition: opacity 0.2s; margin-top: 5px; box-shadow: 0 4px 15px rgba(255,255,255,0.1); }
-        .w-btn-main:hover { opacity: 0.9; }
-
-        /* تصميم نوافذ التنبيه المنبثقة الاحترافية للمستخدم */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease-in-out; z-index: 9999; padding: 20px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 9999; padding: 20px; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-box { background: #ffffff; padding: 32px 24px; border-radius: 24px; width: 90%; max-width: 360px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.4); transform: scale(0.85); transition: transform 0.2s ease-in-out; }
         .modal-overlay.active .modal-box { transform: scale(1); }
@@ -281,7 +234,7 @@
         .modal-icon.blue { color: #2563eb; }
         .modal-icon.orange { color: #f97316; }
         .modal-text { font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 25px; line-height: 1.6; }
-        .modal-btn { background: #2563eb; color: white; border: none; padding: 11px 38px; border-radius: 25px; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(37,99,235,0.2); }
+        .modal-btn { background: #2563eb; color: white; border: none; padding: 11px 38px; border-radius: 25px; font-size: 15px; font-weight: 800; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -291,7 +244,7 @@
         <div id="signup-step" style="display: flex; flex-direction: column; height: 100%; width: 100%;">
             <div class="header">
                 <span class="login-link" id="loginBtn">تسجيل الدخول</span>
-                <div class="logo"><div class="logo-icon"><i class="fa-solid fa-circle-notch"></i></div></div>
+                <div class="logo"><i class="fa-solid fa-circle-notch" style="font-size:32px; color:#0066ff; transform:rotate(-45deg);"></i></div>
             </div>
 
             <h1 class="main-title">إنْشَـــاء حِـــسَاب</h1>
@@ -302,7 +255,6 @@
                     <select id="country-code" class="country-dropdown">
                         <option value="+964">🇮🇶 +964</option>
                         <option value="+966">🇸🇦 +966</option>
-                        <option value="+971">🇦🇪 +971</option>
                     </select>
                     <input type="text" id="identifier-input" placeholder="البريد الإلكتروني/رقم الهاتف">
                 </div>
@@ -330,9 +282,8 @@
             <div class="divider-text">أو المتابعة باستخدام</div>
 
             <div class="social-buttons">
-                <div class="social-btn"><span>Google</span><i class="fa-brands fa-google social-icon-g"></i></div>
+                <div class="social-btn"><span>Google</span><i class="fa-brands fa-google" style="color:#ea4335;"></i></div>
                 <div class="social-btn"><span>Apple</span><i class="fa-brands fa-apple"></i></div>
-                <div class="social-btn"><span>Telegram</span><i class="fa-brands fa-telegram social-icon-t"></i></div>
             </div>
 
             <div class="footer-lang"><span>بالعربية</span><i class="fa-solid fa-globe"></i></div>
@@ -340,7 +291,7 @@
             <div class="trading-footer">
                 <div class="trading-title">الأسواق الحية</div>
                 <div class="ticker-container">
-                    <div class="crypto-item"><span class="crypto-name">BTC/USDT</span><span class="crypto-price">$92,450.50</span></div>
+                    <div class="crypto-item"><span class="crypto-name">BTC/USDT</span><span style="font-family:monospace; font-weight:700;">$92,450.50</span></div>
                 </div>
             </div>
         </div>
@@ -352,7 +303,7 @@
                 <div class="dash-actions"><i class="fa-solid fa-bell"></i><i class="fa-solid fa-qrcode"></i></div>
             </div>
 
-            <!-- 1. محتوى تبويب باقات اشتراك ديسكورد الرقمية الفاخرة المحدثة (Trade) -->
+            <!-- 1. محتوى تبويب باقات اشتراك ديسكورد الرقمية الفاخرة (Trade) -->
             <div id="sub-trade-content" class="sub-tab-view">
                 <div class="subscription-container">
                     
@@ -377,8 +328,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- باقة 60 USDT (H2) -->
+                                        <!-- باقة 60 USDT (H2) -->
                     <div class="vip-card">
                         <div class="discord-side">
                             <i class="fa-brands fa-discord discord-logo"></i>
@@ -443,8 +393,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- باقة 300 USDT (H5) -->
+                                        <!-- باقة 300 USDT (H5) -->
                     <div class="vip-card">
                         <div class="discord-side">
                             <i class="fa-brands fa-discord discord-logo"></i>
@@ -468,29 +417,47 @@
 
                 </div>
             </div>
-                        <!-- 2. محتوى تبويب مهمات اليوتيوب الـ 10 الاحترافية (Futures) -->
-            <div id="sub-futures-content" class="sub-tab-view hidden-step">
-                <div class="section-task-title"><i class="fa-brands fa-youtube" style="font-size: 22px;"></i><span>YouTube Premium Tasks</span></div>
-                <!-- كود تكرار الـ 10 مهمات يوتيوب بأسماء متباينة برمجياً مضغوطة -->
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Subscribe & Like Video #1</span><span class="task-fut-sub">Reward: +0.35 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Watch Trending Video 5 Min</span><span class="task-fut-sub">Reward: +0.50 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Comment & Share Video #3</span><span class="task-fut-sub">Reward: +0.40 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Subscribe to Crypto Channel</span><span class="task-fut-sub">Reward: +0.60 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Watch & Like Shorts Pack</span><span class="task-fut-sub">Reward: +0.30 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Subscribe & Watch Video #6</span><span class="task-fut-sub">Reward: +0.45 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Like & Share Trading Tutorial</span><span class="task-fut-sub">Reward: +0.55 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Watch Live Stream 3 Min</span><span class="task-fut-sub">Reward: +0.70 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Comment on Analysis Video</span><span class="task-fut-sub">Reward: +0.35 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-                <div class="task-card-fut"><div class="task-fut-left"><i class="fa-brands fa-youtube task-fut-logo"></i><div class="task-fut-info"><span class="task-fut-name">Complete YouTube Task Pack</span><span class="task-fut-sub">Reward: +1.20 USDT | Limit: 1</span></div></div><button class="task-fut-btn">Claim</button></div>
-            </div>
 
-            <!-- 3. محتوى تبويب الحساب وسحب الأرباح المستقل (Assets) -->
+            <!-- 2. محتوى تبويب مهمات اليوتيوب الـ 5 الصافية كلياً وبدون نصوص (Futures) -->
+            <div id="sub-futures-content" class="sub-tab-view hidden-step">
+                <div class="section-task-title" style="color:#ef4444;"><i class="fa-brands fa-youtube" style="font-size:24px;"></i> <span>YouTube Premium Tasks</span></div>
+                
+                <!-- مهمة يوتيوب صافية 1 -->
+                <div class="task-card-fut">
+                    <i class="fa-brands fa-youtube task-fut-logo"></i>
+                    <button class="task-fut-btn">Claim</button>
+                </div>
+                
+                <!-- مهمة يوتيوب صافية 2 -->
+                <div class="task-card-fut">
+                    <i class="fa-brands fa-youtube task-fut-logo"></i>
+                    <button class="task-fut-btn">Claim</button>
+                </div>
+                
+                <!-- مهمة يوتيوب صافية 3 -->
+                <div class="task-card-fut">
+                    <i class="fa-brands fa-youtube task-fut-logo"></i>
+                    <button class="task-fut-btn">Claim</button>
+                </div>
+                
+                <!-- مهمة يوتيوب صافية 4 -->
+                <div class="task-card-fut">
+                    <i class="fa-brands fa-youtube task-fut-logo"></i>
+                    <button class="task-fut-btn">Claim</button>
+                </div>
+                
+                <!-- مهمة يوتيوب صافية 5 -->
+                <div class="task-card-fut">
+                    <i class="fa-brands fa-youtube task-fut-logo"></i>
+                    <button class="task-fut-btn">Claim</button>
+                </div>
+            </div>
+                        <!-- 3. محتوى تبويب الحساب وسحب الأرباح المستقل (Assets) -->
             <div id="sub-assets-content" class="sub-tab-view hidden-step">
                 <div class="bonus-banner">
-                    <div class="bonus-coins"><i class="fa-solid fa-coins" style="font-size:55px;color:#727885;"></i><i class="fa-solid fa-coins green" style="font-size:55px;color:#22c55e;margin:0 -15px;"></i><i class="fa-solid fa-shield" style="font-size:55px;color:#727885;"></i></div>
-                    <h2 class="bonus-text-green">Up to 3.50 USDT</h2><h3 class="bonus-text-white">Bonus for New Users</h3><p class="bonus-text-sub">Sign up now for limited-time rewards</p>
+                    <div class="bonus-coins"><i class="fa-solid fa-coins" style="font-size:55px; color:#727885;"></i><i class="fa-solid fa-coins green" style="font-size:55px; color:#22c55e; margin:0 -15px;"></i><i class="fa-solid fa-shield" style="font-size:55px; color:#727885;"></i></div>
+                    <h2 class="bonus-text-green">Up to 3.50 USDT</h2><h3 class="bonus-text-white">Bonus for New Users</h3>
                     <div class="countdown-boxes"><div class="time-box" id="c-days">13</div><span class="time-label">d</span><div class="time-box" id="c-hours">23</div><span class="time-label">h</span><div class="time-box" id="c-mins">59</div><span class="time-label">m</span><div class="time-box" id="c-secs">53</div><span class="time-label">s</span></div>
-                    <span class="rewards-hub-link">Rewards Hub <i class="fa-solid fa-arrow-right" style="font-size:11px;"></i></span>
                 </div>
                 <div class="assets-balance-row"><span class="assets-bal-lbl">Available Balance</span><span class="assets-bal-val">0.00 USDT</span></div>
                 <div class="w-fields-wrapper">
@@ -510,21 +477,36 @@
         </div>
     </div>
 
-    <!-- نوافذ التنبيه المنبثقة الملونة -->
+    <!-- الإشعارات المنبثقة للواجهات -->
     <div class="modal-overlay" id="alertModal"><div class="modal-box"><div class="modal-icon blue"><i class="fa-solid fa-circle-exclamation"></i></div><div class="modal-text">عذراً ليس لديك حساب مسبقاً</div><button class="modal-btn" id="closeModal">حسناً</button></div></div>
     <div class="modal-overlay" id="packageModal"><div class="modal-box"><div class="modal-icon red"><i class="fa-solid fa-circle-xmark"></i></div><div class="modal-text">عذراً رصيدك غير كافٍ</div><button class="modal-btn" id="closePackageModal" style="background:#ef4444;">حسناً</button></div></div>
-    <div class="modal-overlay" id="taskLockModal"><div class="modal-box"><div class="modal-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="modal-text">عذراً غير مشترك في الباقات يرجى التفعيل لإكمال المهام</div><button class="modal-btn" id="closeTaskModal" style="background:#f97316;">حسناً</button></div></div>
-
-    <!-- نافذة الدفع الزجاجية الاحترافية والعريضة المزودة بالـ QR Code والمحفظة المستقيمة بالكامل -->
-    <div class="payment-modal-overlay" id="pModal">
-        <div class="payment-modal-box" style="max-width:390px;width:95%;padding:22px 18px;background:#11141a;border:1px solid #222a3a;border-radius:24px;">
-            <h3 class="p-modal-title" style="font-size:16.5px;font-weight:800;margin-bottom:15px;color:#ffffff;text-align:center;">إيداع تفعيل الباقة (USDT-TRC20)</h3>
-            <div style="width:100%;display:flex;justify-content:center;margin-bottom:15px;"><div style="background:#ffffff;padding:10px;border-radius:14px;display:flex;justify-content:center;align-items:center;max-width:160px;width:100%;"><img src="https://qrserver.com" alt="QR" style="width:100%;height:auto;display:block;"></div></div>
-            <div class="address-container" style="direction:ltr;margin-bottom:15px;background-color:#1a1f29;border:1px solid #3b4861;border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;"><button class="copy-btn" id="cBtn">Copy</button><span class="address-text" id="wAddress" style="white-space:nowrap;overflow-x:auto;color:#ffffff;font-family:monospace;font-size:11.5px;font-weight:700;flex-grow:1;text-align:right;">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</span></div>
-            <div class="p-timer-wrapper"><p class="p-timer-label">تنتهي صلاحية هذا العنوان خلال:</p><div class="p-timer-display" id="pCountdown">55:00</div></div>
-            <button class="p-close-btn" id="pClose" style="margin-top:10px;">إغلاق</button>
+        <!-- نافذة قفل المهمات بالرسالة الإنجليزية الاحترافية المطلوبة باللون البرتقالي -->
+    <div class="modal-overlay" id="taskLockModal">
+        <div class="modal-box">
+            <div class="modal-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="modal-text" style="font-size:15px; font-weight:700; direction:ltr; text-align:center;">Sorry, you are not subscribed to any package.<br>Please activate a package to complete tasks.</div>
+            <button class="modal-btn" id="closeTaskModal" style="background:#f97316;">OK</button>
         </div>
-             <script>
+    </div>
+
+    <!-- نافذة الدفع الفاخرة والعريضة جداً لعرض المحفظة كاملة في سطر واحد صافي ومستقيم دون باركود -->
+    <div class="payment-modal-overlay" id="pModal">
+        <div class="payment-modal-box">
+            <h3 class="p-modal-title">إيداع تفعيل الباقة (USDT-TRC20)</h3>
+            <div class="address-container">
+                <button class="copy-btn" id="cBtn">Copy</button>
+                <span class="address-text" id="wAddress">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</span>
+            </div>
+            <div class="p-timer-wrapper">
+                <p class="p-timer-label">تنتهي صلاحية هذا العنوان خلال:</p>
+                <div class="p-timer-display" id="pCountdown">55:00</div>
+            </div>
+            <button class="p-close-btn" id="pClose">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        // فحص وإظهار منسدل كود الدول تلقائياً عند الكتابة في الحقل الأول
         const inputField = document.getElementById('identifier-input');
         const countryDropdown = document.getElementById('country-code');
         if (inputField && countryDropdown) {
@@ -533,10 +515,11 @@
                 else countryDropdown.classList.remove('show');
             });
         }
-
+                // تفعيل نافذة تنبيه تسجيل الدخول للمستخدمين
         document.getElementById('loginBtn').addEventListener('click', () => document.getElementById('alertModal').classList.add('active'));
         document.getElementById('closeModal').addEventListener('click', () => document.getElementById('alertModal').classList.remove('active'));
 
+        // لودينج زر Next الـ 10 ثوانٍ مع علامة الصح وتحول الواجهة الفوري بعد إكمال الحقول
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) {
             submitBtn.addEventListener('click', () => {
@@ -555,52 +538,65 @@
                 }, 10000);
             });
         }
-
+                // منطق التنقل الداخلي الفوري والذكي بين الأزرار الثلاثة مع ميزة تفعيل اللون الأبيض المضيء
         const navItems = document.querySelectorAll('.nav-item');
         const subViews = document.querySelectorAll('.sub-tab-view');
+        
         function switchTab(btnId, viewId) {
             navItems.forEach(item => item.classList.remove('active'));
             subViews.forEach(view => view.classList.add('hidden-step'));
-            document.getElementById(btnId).classList.add('active');
-            document.getElementById(viewId).classList.remove('hidden-step');
+            const targetBtn = document.getElementById(btnId);
+            const targetView = document.getElementById(viewId);
+            if (targetBtn) targetBtn.classList.add('active');
+            if (targetView) targetView.classList.remove('hidden-step');
         }
+        
         document.getElementById('btn-trade').addEventListener('click', () => switchTab('btn-trade', 'sub-trade-content'));
         document.getElementById('btn-futures').addEventListener('click', () => switchTab('btn-futures', 'sub-futures-content'));
         document.getElementById('btn-assets').addEventListener('click', () => switchTab('btn-assets', 'sub-assets-content'));
 
+        // فحص حقول السحب الثلاثة بالكامل وتفعيل إشعار "عذراً رصيدك غير كافٍ"
         document.getElementById('withdrawActionBtn').addEventListener('click', () => {
-            if (document.getElementById('w-addr-input').value.trim() !== "" && document.getElementById('w-amount-input').value.trim() !== "" && document.getElementById('w-pass-input').value.trim() !== "") {
+            const addrInput = document.getElementById('w-addr-input').value.trim();
+            const amInput = document.getElementById('w-amount-input').value.trim();
+            const passInput = document.getElementById('w-pass-input').value.trim();
+            if (addrInput !== "" && amInput !== "" && passInput !== "") {
                 document.getElementById('packageModal').classList.add('active');
             }
         });
         document.getElementById('closePackageModal').addEventListener('click', () => document.getElementById('packageModal').classList.remove('active'));
 
+        // قفل أزرار مهمات يوتيوب الـ 5 وعرض رسالة التحذير الإنجليزية الاحترافية فوراً بالضغط
         document.querySelectorAll('.task-fut-btn').forEach(btn => {
             btn.addEventListener('click', () => document.getElementById('taskLockModal').classList.add('active'));
         });
         document.getElementById('closeTaskModal').addEventListener('click', () => document.getElementById('taskLockModal').classList.remove('active'));
 
+        // تشغيل نافذة إيداع الباقات وتفعيل العداد التنازلي التلقائي لـ 55 دقيقة الحية
         let pInterval;
         document.querySelectorAll('.activate-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.getElementById('pModal').classList.add('active');
-                clearInterval(pInterval); let sec = 55 * 60;
+                clearInterval(pInterval); 
+                let sec = 55 * 60;
                 pInterval = setInterval(() => {
                     let m = Math.floor(sec / 60), s = sec % 60;
                     document.getElementById('pCountdown').innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
-                    if (sec <= 0) clearInterval(pInterval); sec--;
+                    if (sec <= 0) clearInterval(pInterval); 
+                    sec--;
                 }, 1000);
             });
         });
         document.getElementById('pClose').addEventListener('click', () => document.getElementById('pModal').classList.remove('active'));
 
+        // ميزة نسخ عنوان محفظتك الـ TRC20 بلمسة واحدة ومن دون أي أخطاء
         document.getElementById('cBtn').addEventListener('click', () => {
             navigator.clipboard.writeText(document.getElementById('wAddress').innerText).then(() => {
                 document.getElementById('cBtn').innerText = 'Copied!';
                 setTimeout(() => document.getElementById('cBtn').innerText = 'Copy', 2000);
             });
         });
-
+                // محرك العداد التنازلي التفاعلي المباشر لكارت الأرباح بتبويب Assets بقيمة 3.50 USDT
         let d = 13, h = 23, m = 59, s = 53;
         setInterval(() => {
             s--; if(s < 0) { s = 59; m--; if(m < 0) { m = 59; h--; if(h < 0) { h = 23; d--; } } }
@@ -610,5 +606,3 @@
     </script>
 </body>
 </html>
-</div>
-                                                                                                                                
