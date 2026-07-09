@@ -1,333 +1,210 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>HR Platform</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Cairo',sans-serif;
-}
-
-body{
-
-background:#eef5ff;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-min-height:100vh;
-
-}
-
-.container{
-
-width:100%;
-
-max-width:420px;
-
-padding:25px;
-
-}
-
-.logo{
-
-text-align:center;
-
-margin-bottom:30px;
-
-}
-
-.logo h1{
-
-color:#1565ff;
-
-font-size:40px;
-
-font-weight:800;
-
-}
-
-.logo p{
-
-color:#666;
-
-margin-top:8px;
-
-}
-
-.card{
-
-background:#fff;
-
-padding:25px;
-
-border-radius:18px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-}
-
-.tabs{
-
-display:flex;
-
-margin-bottom:25px;
-
-border-radius:12px;
-
-overflow:hidden;
-
-background:#edf4ff;
-
-}
-
-.tabs button{
-
-flex:1;
-
-padding:14px;
-
-border:none;
-
-background:none;
-
-font-size:16px;
-
-cursor:pointer;
-
-font-weight:700;
-
-}
-
-.tabs button.active{
-
-background:#1565ff;
-
-color:#fff;
-
-}
-
-.input{
-
-margin-bottom:16px;
-
-}
-
-.input label{
-
-display:block;
-
-margin-bottom:8px;
-
-font-weight:700;
-
-color:#444;
-
-}
-
-.input input{
-
-width:100%;
-
-padding:14px;
-
-border:1px solid #dbe7ff;
-
-border-radius:12px;
-
-outline:none;
-
-font-size:15px;
-
-}
-
-.input input:focus{
-
-border-color:#1565ff;
-
-}
-
-.btn{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-background:#1565ff;
-
-color:#fff;
-
-font-size:17px;
-
-font-weight:bold;
-
-border-radius:12px;
-
-cursor:pointer;
-
-transition:.25s;
-
-}
-
-.btn:hover{
-
-background:#0e4fd8;
-
-}
-
-.small{
-
-text-align:center;
-
-margin-top:18px;
-
-color:#777;
-
-font-size:14px;
-
-}
-
-.hidden{
-
-display:none;
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد</title>
+    <!-- استدعاء خط Cairo الاحترافي من جوجل -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            /* تدرج الألوان المطابق تماماً للصورة المرسلة */
+            background: linear-gradient(135deg, #10041d 0%, #24093b 40%, #c41c8c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            /* تصميم زجاجي عصري يتناسب مع الخلفية */
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        /* تنسيق اللوجو ثلاثي الأبعاد المرفق */
+        .logo-container {
+            margin-bottom: 25px;
+        }
+        .logo-container img {
+            width: 90px;
+            height: auto;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            color: #b3a0c2;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            color: #e2d5ed;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-right: 4px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(15, 5, 25, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: right;
+        }
+
+        .input-group input:focus {
+            border-color: #c41c8c;
+            box-shadow: 0 0 12px rgba(196, 28, 140, 0.3);
+            background: rgba(15, 5, 25, 0.8);
+        }
+
+        /* تنسيق خانة رمز التحقق والصورة */
+        .captcha-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .captcha-wrapper input {
+            flex: 1;
+        }
+
+        .captcha-image-box {
+            background: #ffffff;
+            height: 48px;
+            width: 120px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+        }
+
+        .captcha-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #c41c8c 0%, #851263 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 8px 20px rgba(196, 28, 140, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(196, 28, 140, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-  <div class="logo">
-<h1>HR</h1>
-<p>منصة المهام والاستثمار</p>
-</div>
+    <div class="register-container">
+        <!-- قسم الشعار المرفق بالصورة -->
+        <div class="logo-container">
+            <!-- ملاحظة: يمكنك رفع صورة الديسكورد وتسميتها logo.png بجانب هذا الملف ليظهر التصميم كاملاً -->
+            <img src="logo.png" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
+        </div>
 
-<div class="card">
+        <h2>إنشاء حساب جديد</h2>
+        <p class="subtitle">أدخل بياناتك للانضمام إلينا</p>
 
-<div class="tabs">
-<button class="active" onclick="showLogin()">تسجيل الدخول</button>
-<button onclick="showRegister()">إنشاء حساب</button>
-</div>
+        <form onsubmit="event.preventDefault(); alert('تم الضغط على التسجيل بنجاح!');">
+            <!-- اسم المستخدم -->
+            <div class="input-group">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم المفضل" required>
+            </div>
 
-<!-- تسجيل الدخول -->
+            <!-- البريد الإلكتروني -->
+            <div class="input-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" placeholder="example@domain.com" required>
+            </div>
 
-<div id="login">
+            <!-- كلمة السر -->
+            <div class="input-group">
+                <label for="password">كلمة السر</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
 
-<div class="input">
-<label>اسم المستخدم</label>
-<input type="text" placeholder="أدخل اسم المستخدم">
-</div>
+            <!-- رمز الدعوة -->
+            <div class="input-group">
+                <label for="invite-code">رمز الدعوة (اختياري)</label>
+                <input type="text" id="invite-code" placeholder="أدخل رمز الدعوة إذا وجد">
+            </div>
 
-<div class="input">
-<label>كلمة المرور</label>
-<input type="password" placeholder="********">
-</div>
+            <!-- رمز التحقق المرئي -->
+            <div class="input-group">
+                <label for="captcha">رمز التحقق</label>
+                <div class="captcha-wrapper">
+                    <input type="text" id="captcha" placeholder="أدخل الرمز الموضح" required>
+                    <div class="captcha-image-box">
+                        <!-- هنا تضع رابط صورة الكابتشا الخاصة بسيرفرك، وضعت صورة تجريبية مؤقتاً -->
+                        <img src="https://rawpixel.com" alt="Captcha">
+                    </div>
+                </div>
+            </div>
 
-<button class="btn" onclick="goHome()">
-تسجيل الدخول
-</button>
-
-<div class="small">
-ليس لديك حساب؟ اضغط على إنشاء حساب
-</div>
-
-</div>
-
-<!-- إنشاء حساب -->
-
-<div id="register" class="hidden">
-
-<div class="input">
-<label>اسم المستخدم</label>
-<input type="text" placeholder="اسم المستخدم">
-</div>
-
-<div class="input">
-<label>رقم الهاتف</label>
-<input type="text" placeholder="07xxxxxxxxx">
-</div>
-
-<div class="input">
-<label>كلمة المرور</label>
-<input type="password" placeholder="********">
-</div>
-
-<div class="input">
-<label>تأكيد كلمة المرور</label>
-<input type="password" placeholder="********">
-</div>
-
-<div class="input">
-<label>رمز الدعوة (اختياري)</label>
-<input type="text" placeholder="HR2026">
-</div>
-
-<button class="btn" onclick="goHome()">
-إنشاء الحساب
-</button>
-
-</div>
-
-</div>
-<script>
-
-const login=document.getElementById("login");
-const register=document.getElementById("register");
-
-const tabs=document.querySelectorAll(".tabs button");
-
-function showLogin(){
-
-login.classList.remove("hidden");
-register.classList.add("hidden");
-
-tabs[0].classList.add("active");
-tabs[1].classList.remove("active");
-
-}
-
-function showRegister(){
-
-register.classList.remove("hidden");
-login.classList.add("hidden");
-
-tabs[1].classList.add("active");
-tabs[0].classList.remove("active");
-
-}
-
-function goHome(){
-
-window.location.href="home.html";
-
-}
-
-</script>
-
-</div>
+            <!-- زر التسجيل -->
+            <button type="submit" class="submit-btn">تسجيل الحساب</button>
+        </form>
+    </div>
 
 </body>
 </html>
