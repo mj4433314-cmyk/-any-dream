@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>منصة التداول الاحترافية</title>
+    <!-- الروابط الخارجية للخطوط والأيقونات -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <!-- استدعاء ملفات الـ CSS (الأجزاء البرمجية للتصميم) -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="app-container" id="appCard">
+        
+        <!-- الواجهة الأولى: إنشاء حساب وتداول -->
+        <div id="signup-step" style="display: flex; flex-direction: column; height: 100%;">
+            <div class="header">
+                <span class="login-link" id="loginBtn">تسجيل الدخول</span>
+                <div class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-circle-notch"></i></div>
+                </div>
+            </div>
+
+            <h1 class="main-title">إنْشَـــاء حِـــسَاب</h1>
+
+            <div class="input-wrapper">
+                <label class="input-label">بريدك الإلكتروني/الهاتف</label>
+                <div class="field-container">
+                    <select id="country-code" class="country-dropdown">
+                        <option value="+964">🇮🇶 +964</option>
+                        <option value="+966">🇸🇦 +966</option>
+                        <option value="+971">🇦🇪 +971</option>
+                    </select>
+                    <input type="text" id="identifier-input" placeholder="البريد الإلكتروني/رقم الهاتف">
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <label class="input-label">رمز الإحالة <span class="arrow-down">▲</span></label>
+                <div class="field-container">
+                    <input type="text" placeholder="أدخل رمز الإحالة">
+                </div>
+            </div>
+
+            <button class="next-btn" id="submitBtn">
+                <span id="btnText">التالي</span>
+                <div class="spinner" id="btnSpinner"></div>
+            </button>
+
+            <div class="divider-text">أو المتابعة باستخدام</div>
+
+            <div class="social-buttons">
+                <div class="social-btn"><span>Google</span><i class="fa-brands fa-google social-icon-g"></i></div>
+                <div class="social-btn"><span>Apple</span><i class="fa-brands fa-apple"></i></div>
+                <div class="social-btn"><span>Telegram</span><i class="fa-brands fa-telegram social-icon-t"></i></div>
+            </div>
+
+            <div class="footer-lang"><span>بالعربية</span><i class="fa-solid fa-globe"></i></div>
+
+            <div class="trading-footer">
+                <div class="trading-title">الأسواق الحية</div>
+                <div class="ticker-container">
+                    <div class="crypto-item"><span class="crypto-name">BTC/USDT</span><span class="crypto-price">$92,450.50</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- الواجهة الثانية: تأكيد الحساب OTP -->
+        <div id="success-step" class="hidden-step" style="width: 100%;">
+            <div class="success-header"><div class="success-icon"><i class="fa-solid fa-circle-check"></i></div></div>
+            <h1 class="main-title text-center">تَأْكِـــيد الحِـــسَاب</h1>
+            <p class="success-desc">لقد أرسلنا رمز التحقق، يرجى إدخاله للمتابعة.</p>
+            <div class="otp-container">
+                <input type="text" class="otp-input" maxlength="1" placeholder="•">
+                <input type="text" class="otp-input" maxlength="1" placeholder="•">
+                <input type="text" class="otp-input" maxlength="1" placeholder="•">
+                <input type="text" class="otp-input" maxlength="1" placeholder="•">
+            </div>
+            <button class="next-btn active-btn" id="finishBtn">تأكيد ومتابعة</button>
+        </div>
+
+        <!-- الواجهة الثالثة: لوحة التحكم الداكنة بالكامل والأزرار الهيكلية بدون أسماء -->
+        <div id="dashboard-step" class="hidden-step dark-dashboard">
+            <div class="dash-header">
+                <div class="dash-user"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="dash-actions"><i class="fa-solid fa-bell"></i><i class="fa-solid fa-qrcode"></i></div>
+            </div>
+            <div class="balance-card">
+                <div class="balance-title" style="width:40%; height:12px; background:#2d2d2d; border-radius:6px; margin-bottom:12px;"></div>
+                <div class="balance-amount" style="width:60%; height:24px; background:#2d2d2d; border-radius:6px; margin-bottom:20px;"></div>
+                <div class="balance-buttons">
+                    <button class="dash-action-btn deposit" style="background:#2d2d2d;"></button>
+                    <button class="dash-action-btn" style="background:#2d2d2d;"></button>
+                </div>
+            </div>
+            <div class="skeleton-block grid-2">
+                <div class="sk-box long"></div>
+                <div class="sk-box long"></div>
+            </div>
+            <div class="skeleton-block">
+                <div class="sk-line title" style="width:30%; height:14px; background:#2d2d2d; border-radius:6px;"></div>
+                <div class="sk-box banner">
+                    <div class="live-ticker-dash">
+                        <span class="ticker-sym">BTC/USDT</span>
+                        <span class="ticker-price" id="dash-btc-price">92,450.50</span>
+                        <span class="ticker-change" id="dash-btc-change">+1.45%</span>
+                    </div>
+                </div>
+            </div>
+            <!-- الأزرار الخمسة السفلية المطابقة للصورة الهيكلية (أيقونات فقط) -->
+            <div class="bottom-nav">
+                <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-chart-simple"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-right-left"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="nav-item"><i class="fa-solid fa-briefcase"></i></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- نافذة الرسالة الاحترافية المنبثقة -->
+    <div class="modal-overlay" id="alertModal">
+        <div class="modal-box">
+            <div class="modal-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <div class="modal-text">عذراً، ليس لديك حساب مسبقاً!</div>
+            <button class="modal-btn" id="closeModal">حسناً</button>
+        </div>
+    </div>
+
+    <!-- استدعاء ملفات الـ JavaScript (الأجزاء البرمجية للتفاعل) -->
+    <script src="otp.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
