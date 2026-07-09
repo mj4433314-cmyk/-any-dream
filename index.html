@@ -1,695 +1,299 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
-    <title>HR Digital Premium Ecosystem</title>
-    <!-- استدعاء الخطوط الأجنبية المحترفة من قوقل لتطابق مظهر الشركات العالمية -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    }
-
-    body {
-        background-color: #000000;
-        color: #ffffff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        overflow: hidden;
-        position: relative;
-    }
-
-    /* محرك رسم جزيئات النيون المتحركة الفوسفورية */
-    #okxParticleCanvas {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    /* واجهة التسجيل الزجاجية بطراز OKX العالمي الفخم */
-    .auth-container {
-        width: 100%;
-        max-width: 390px;
-        padding: 45px 30px;
-        background: rgba(16, 20, 24, 0.75);
-        border: 1px solid rgba(0, 211, 149, 0.18);
-        border-radius: 28px;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 211, 149, 0.04);
-        text-align: center;
-        z-index: 10;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        position: relative;
-    }
-
-    /* عنوان HR الفوسفوري المشع للتطبيقات الأجنبية */
-    .auth-container h2 {
-        margin-bottom: 35px;
-        font-size: 38px;
-        font-weight: 800;
-        color: #00d395;
-        letter-spacing: 2px;
-        text-shadow: 0 0 20px rgba(0, 211, 149, 0.35);
-    }
-</style>
-<style>
-    .input-group {
-        margin-bottom: 18px;
-        text-align: left;
-    }
-
-    .input-group input {
-        width: 100%;
-        padding: 16px 18px;
-        background: rgba(28, 33, 39, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.07);
-        border-radius: 14px;
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 600;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-
-    .input-group input:focus {
-        border-color: #00d395;
-        background: #1f262e;
-        box-shadow: 0 0 15px rgba(0, 211, 149, 0.22);
-    }
-
-    .btn {
-        width: 100%;
-        padding: 16px;
-        border: none;
-        border-radius: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        margin-top: 8px;
-    }
-
-    .btn-register {
-        background: linear-gradient(135deg, #00d395 0%, #00b378 100%);
-        color: #000000;
-        box-shadow: 0 5px 20px rgba(0, 211, 149, 0.3);
-    }
-
-    .btn-register:hover {
-        background: linear-gradient(135deg, #00ffb5 0%, #00d395 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 211, 149, 0.45);
-    }
-
-    .btn-register:active {
-        transform: translateY(0);
-    }
-
-    .btn-login {
-        background-color: transparent;
-        color: #9ca3af;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: 14px;
-    }
-
-    .btn-login:hover {
-        color: #ffffff;
-        border-color: rgba(255, 255, 255, 0.3);
-        background: rgba(255, 255, 255, 0.02);
-    }
-
-    .alert-msg {
-        color: #ff453a;
-        font-size: 14px;
-        margin-top: 15px;
-        display: none;
-        font-weight: 600;
-        padding: 12px;
-        background: rgba(255, 69, 58, 0.08);
-        border-radius: 10px;
-        border: 1px solid rgba(255, 69, 58, 0.15);
-        text-align: center;
-    }
-
-    /* أنماط الشاشات التفاعلية وشاشة التحميل محسّنة */
-    .overlay-screen {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: #000000;
-        display: flex; justify-content: center; align-items: center;
-        flex-direction: column; z-index: 1999;
-        opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-    }
-    .overlay-screen.active { opacity: 1; pointer-events: auto; }
-
-    /* شاشة التحميل المحسنة مع تأثير النيون الأخضر */
-    .loader {
-        width: 80px; height: 80px;
-        border: 6px solid rgba(0, 211, 149, 0.15);
-        border-top: 6px solid #00d395;
-        border-radius: 50%;
-        animation: spin 1.5s linear infinite;
-        box-shadow: 0 0 30px rgba(0, 211, 149, 0.4), inset 0 0 30px rgba(0, 211, 149, 0.1);
-    }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-    .success-checkmark { display: none; width: 80px; height: 80px; }
-    .success-checkmark .check-icon { width: 80px; height: 80px; position: relative; border-radius: 50%; border: 4px solid #00d395; }
-    .success-checkmark .check-icon::after { content: ""; position: absolute; top: 18px; left: 32px; width: 15px; height: 30px; border: solid #00d395; border-width: 0 5px 5px 0; transform: rotate(45deg); animation: rotateTick 0.8s ease-in-out forwards; }
-    @keyframes rotateTick { 0% { transform: rotate(-45deg) scale(0); } 100% { transform: rotate(45deg) scale(1); } }
-
-    .vibrate { animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
-    @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
-</style>
-<style>
-    .main-app-interface {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background-color: #040608;
-        display: flex; flex-direction: column;
-        justify-content: flex-start; align-items: center;
-        z-index: 1000; transform: translateY(100%);
-        transition: transform 0.6s cubic-bezier(0.1, 1, 0.1, 1);
-    }
-    .main-app-interface.show { transform: translateY(0); }
-
-    .app-page-view {
-        width: 100%; max-width: 420px;
-        height: calc(100% - 85px);
-        overflow-y: auto; padding: 25px 15px;
-        display: none; flex-direction: column; gap: 22px;
-        padding-bottom: 50px;
-    }
-    .app-page-view.active-page { display: flex; }
-
-    /* كرت باقات التداول ومهام اليوتيوب بتصميم عالمي ذي اتجاه ثابت ومحكم عمودياً بالكامل */
-    .crypto-package-card, .youtube-task-card {
-        width: 100%; background: #ffffff; padding: 18px 22px;
-        display: flex; direction: ltr; align-items: center; justify-content: space-between;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); transition: transform 0.2s ease;
-        border-radius: 50px;
-    }
-    .youtube-task-card { cursor: pointer; } /* بيضاوي دائري نقي تماماً كصورتك */
-    .crypto-package-card:hover, .youtube-task-card:hover { transform: scale(1.02); }
-
-    .card-left-section { display: flex; align-items: center; justify-content: center; }
-    .discord-badge-icon { width: 62px; height: 62px; }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب</title>
+    <!-- استدعاء خط Cairo الأنيق وFontAwesome للأيقونات -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
     
-    .card-center-section, .task-center-text { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; margin: 0 12px; }
-    .task-center-text { font-size: 17px; font-weight: 700; color: #101317; letter-spacing: 0.3px; }
-    .usdt-main-balance { font-size: 32px; font-weight: 800; color: #1a9fd8; line-height: 1.1; margin-bottom: 8px; text-align: center; }
-    .usdt-sub-rate-box { background: #000000; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-size: 18px; font-weight: 700; text-align: center; }
-    
-    .card-right-section, .task-left-coins, .task-right-youtube { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 55px; }
-    .task-left-coins { width: 46px; height: 46px; }
-    .task-right-youtube { width: 54px; height: 54px; }
-    .tether-coins-stack-img { width: 50px; height: 50px; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
 
-    .activate-package-btn {
-        width: 100%; padding: 13px; background: #00d395; color: #000000; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: -12px; margin-bottom: 6px;
-    }
-    .activate-package-btn.sent { background: #1c2127 !important; color: #6b7280 !important; box-shadow: none !important; cursor: not-allowed; }
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    /* أنماط صندوق التحويل المنبثق والـ 50 دقيقة بالأسفل ومسح العناوين كلياً */
-    .payment-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .payment-modal-overlay.open { opacity: 1; pointer-events: auto; }
-    .payment-modal-box { width: 90%; max-width: 380px; background: #101317; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; padding: 25px; text-align: center; }
-    .payment-modal-box p { color: #9ca3af; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
-    .wallet-address-container { background: #1c2127; border: 1px solid #2d343c; padding: 15px; border-radius: 12px; font-size: 14px; color: #ffffff; word-break: break-all; margin-bottom: 20px; font-weight: 600; }
-    .modal-action-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-weight: bold; font-size: 16px; cursor: pointer; }
-    .btn-copy-address { background: #00d395; color: #000000; margin-bottom: 12px; }
-    .btn-close-modal { background: transparent; color: #9ca3af; border: 1px solid #374151; }
-    .modal-timer-ticker { margin-top: 18px; color: #ff453a; font-weight: bold; font-size: 15px; letter-spacing: 0.5px; }
-</style>
-<style>
-    /* هندسة لوحة الأصول والخط المنحني التفاعلي لـ Square المطابق لصورتك بالظبط */
-    .portfolio-graph-block {
-        width: 100%; background: linear-gradient(145deg, #0e1318 0%, #06080b 100%);
-        border: 1px solid rgba(0, 161, 226, 0.15); border-radius: 24px; padding: 22px;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.6); margin-bottom: 5px; position: relative;
-    }
-    .graph-header-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-    .graph-title { font-size: 13px; color: #848e9c; font-weight: 600; letter-spacing: 0.5px; }
-    .graph-asset-value { font-size: 34px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
-    
-    /* مؤشر السهم الأخضر النبضي الصاعد للأعلى والتأثير الحركي المذهل */
-    .graph-rate-indicator {
-        font-size: 15px; font-weight: 700; color: #00d395; display: flex; align-items: center; gap: 4px;
-        margin-top: 4px; margin-bottom: 15px; animation: pulseGlow 2s infinite ease-in-out;
-    }
-    .graph-rate-indicator svg { width: 16px; height: 16px; fill: currentColor; animation: floatArrow 1.5s infinite ease-in-out; }
-    @keyframes pulseGlow { 0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 2px rgba(0,211,149,0)); } 50% { opacity: 1; filter: drop-shadow(0 0 8px rgba(0,211,149,0.4)); } }
-    @keyframes floatArrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+        /* الحاوية الرئيسية للتطبيق */
+        .app-container {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            padding: 10px 15px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .static-graph-svg-line { width: 100%; height: 65px; margin-top: 5px; margin-bottom: 15px; }
-    .graph-time-tabs { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 12px; }
-    .time-tab-btn { font-size: 12px; color: #848e9c; font-weight: 700; cursor: pointer; padding: 2px 6px; }
-    .time-tab-btn.active-tab { color: #00d395; background: rgba(0, 211, 149, 0.08); border-radius: 4px; }
+        /* ترويسة الصفحة (اللوجو ورابط الدخول) */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
 
-    /* حقول لوحة السحب والشحن المرتبة عمودياً بالملي متر بالإنجليزية */
-    .square-management-card { width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-    .square-management-card h4 { font-size: 16px; color: #ffffff; font-weight: 700; border-bottom: 1px solid #1c2127; padding-bottom: 8px; margin-bottom: 2px; }
-    .square-dropdown-selector, .square-numeric-input { width: 100%; padding: 14px; background: #1c2127; border: 1px solid #2d343c; border-radius: 10px; color: #ffffff; font-size: 14px; font-weight: 600; }
-    .square-dropdown-selector option { background: #101317; }
-    .btn-withdraw-action { width: 100%; padding: 14px; background: #00d395; color: #000000; border: none; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,211,149,0.2); }
+        .login-link {
+            color: #4c8bf5;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
 
-    /* غرف الدردشة العشر المقفلة لـ Earn وصندوق الدعم لـ Portfolio */
-    .chat-room-locked-card { width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
-    .room-title-meta { font-size: 15px; font-weight: 700; color: #ffffff; }
-    .lock-glowing-icon { width: 22px; height: 22px; fill: #eaaf15; filter: drop-shadow(0 0 6px rgba(234,175,21,0.4)); }
-    .support-premium-box { width: 100%; background: linear-gradient(135deg, #1b122b 0%, #0d0914 100%); border: 1px solid rgba(168,85,247,0.2); border-radius: 20px; padding: 30px 20px; text-align: center; }
-    .support-premium-box p { font-size: 14px; color: #9ca3af; line-height: 1.5; padding: 0 10px; }
-    .elementx-interactive-btn { width: 85%; padding: 14px; background: linear-gradient(135deg, #ff2a85 0%, #b30059 100%); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 15px; display: inline-block; }
+        .logo-icon {
+            font-size: 32px;
+            color: #0066ff;
+            transform: rotate(-45deg);
+        }
 
-    /* شريط القوائم السفلي المطور لـ OKX - تحديث محسّن */
-    .bottom-nav {
-        position: absolute; bottom: 0; left: 0; width: 100%; height: 85px;
-        background-color: #0a0c0f; border-top: 1px solid #1c2127;
-        display: flex; direction: ltr; justify-content: space-around; align-items: flex-start; padding-top: 8px;
-        box-shadow: 0 -4px 20px rgba(0, 211, 149, 0.05);
-    }
-    .nav-item {
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        color: #6b7280; font-size: 10px; cursor: pointer;
-        text-decoration: none; width: 18%; transition: all 0.3s ease; font-weight: 600;
-    }
-    .nav-item.active-menu { color: #ffffff !important; }
-    .nav-item.active-menu svg { fill: #00d395; }
-    .nav-item.trade-center {
-        position: relative; bottom: 18px;
-        background: #101317; width: 60px; height: 60px; border-radius: 50%;
-        justify-content: center; border: 2px solid #1c2127;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-    }
-    .nav-item.trade-center svg { stroke: #6b7280; width: 26px; height: 26px; }
-    .nav-item.trade-center span { position: absolute; bottom: -26px; color: #6b7280; font-weight: bold; font-size: 9px; }
-    .nav-item.trade-center.active-white {
-        background: #ffffff !important; box-shadow: 0 6px 30px rgba(0, 211, 149, 0.5);
-        border-color: #ffffff;
-    }
-    .nav-item.trade-center.active-white svg { stroke: #000000 !important; }
-    .nav-item.trade-center.active-white span { color: #ffffff !important; }
-    .nav-item svg {
-        width: 24px; height: 24px; margin-bottom: 3px; fill: currentColor;
-    }
+        /* العنوان الرئيسي */
+        .main-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+        }
 
-    /* Discord icon styling */
-    .discord-icon {
-        width: 60px;
-        height: 60px;
-    }
+        /* تنسيق الحقول */
+        .input-wrapper {
+            margin-bottom: 20px;
+        }
 
-    /* Red flame logo styling */
-    .red-flame-logo {
-        width: 32px;
-        height: 32px;
-        margin-left: 8px;
-    }
-</style>
+        .input-label {
+            display: block;
+            font-size: 14px;
+            color: #4a4a4a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .arrow-down {
+            font-size: 10px;
+            color: #666;
+            margin-right: 4px;
+        }
+
+        /* حاوية حقل الإدخال لدمج قائمة الدول بداخلها */
+        .field-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #ffffff;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .field-container:focus-within {
+            border-color: #a3bffa;
+            box-shadow: 0 0 0 3px rgba(163, 191, 250, 0.2);
+        }
+
+        .field-container input {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #1a1a1a;
+            background: transparent;
+        }
+
+        .field-container input::placeholder {
+            color: #b0b0b0;
+        }
+
+        /* تصميم قائمة رموز الدول الذكية */
+        .country-dropdown {
+            display: none; /* مخفية بالوضع الافتراضي للبريد */
+            border: none;
+            outline: none;
+            background: #f7fafc;
+            padding: 0 10px;
+            height: 100%;
+            font-size: 14px;
+            color: #333;
+            border-left: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        /* كلاس مخصص يضاف بواسطة الجافا سكربت عند كتابة الأرقام */
+        .country-dropdown.show {
+            display: block;
+        }
+
+        /* زر التالي الأزرق الفاتح */
+        .next-btn {
+            width: 100%;
+            background-color: #adc6ff;
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            transition: background-color 0.2s;
+        }
+
+        .next-btn:hover {
+            background-color: #8daeff;
+        }
+
+        /* نص الفصل بين الطرق */
+        .divider-text {
+            text-align: center;
+            color: #888888;
+            font-size: 13px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* أزرار التواصل الاجتماعي */
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            width: 100%;
+            background-color: #f5f5f5;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background-color: #ededed;
+        }
+
+        .social-btn i {
+            font-size: 20px;
+        }
+
+        .social-icon-g { color: #ea4335; }
+        .social-icon-t { color: #0088cc; }
+
+        /* التذييل للغة */
+        .footer-lang {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            color: #333333;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <!-- قماش رسم شبكة جزيئات OKX المتوهجة -->
-    <canvas id="okxParticleCanvas"></canvas>
 
-    <!-- واجهة تسجيل الحساب باللغة الإنجليزية للشركات الأجنبية -->
-    <div class="auth-container" id="authBox">
-        <h2>HR</h2>
-        <div class="input-group">
-            <input type="text" placeholder="Username / Phone Number">
-        </div>
-        <div class="input-group">
-            <input type="email" placeholder="Email Address">
-        </div>
-        <div class="input-group">
-            <input type="password" placeholder="Password">
-        </div>
-        <div class="input-group">
-            <input type="text" placeholder="Invitation Code (Optional)">
-        </div>
-        <button class="btn btn-register" id="createAccountBtn">CREATE ACCOUNT</button>
-        <button class="btn btn-login" id="loginBtn">LOG IN</button>
-        <div class="alert-msg" id="loginAlert">Error: Account check failed.</div>
-    </div>
-
-    <!-- شاشة اللودينج التفاعلية مع علامة الصح الخضراء والاهتزاز -->
-    <div class="overlay-screen" id="overlayScreen">
-        <div class="loader" id="mainLoader"></div>
-        <div class="success-checkmark" id="successCheck">
-            <div class="check-icon"></div>
-        </div>
-    </div>
-    
-    <!-- واجهة التطبيق والمنصة الكبرى بعد تخطي حاجز الدخول -->
-    <div class="main-app-interface" id="mainApp">
-        
-        <!-- 🏠 صفحة المهام الرئيسية النظيفة تماماً (Home Page) -->
-        <div class="app-page-view active-page" id="page-home">
-            <!-- الحاوية البرمجية التلقائية لتكرار الـ 50 مهمة النظيفة بدون نصوص -->
-            <div id="htmlDynamicTasksContainer" style="display: flex; flex-direction: column; gap: 22px; width: 100%;"></div>
-        </div>
-        
-        <!-- 📈 صفحة باقات الاستثمار والتداول (Trade Page) -->
-        <div class="app-page-view" id="page-trade">
-            <div id="tradePackagesContainer" style="display: flex; flex-direction: column; gap: 0; width: 100%;"></div>
-        </div>
-
-        <!-- 🛡️ نافذة التحويل المنبثقة الموحدة المقفلة بـ OK والعداد التنازلي التلقائي -->
-        <div class="payment-modal-overlay" id="paymentModal">
-            <div class="payment-modal-box">
-                <p>To finalize activation, please transfer the exact cryptocurrency funds via <br><strong>USDT-TRC20 Network</strong> to the destination address below:</p>
-                <div class="wallet-address-container" id="walletAddr">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-                <button class="modal-action-btn btn-copy-address" onclick="copyWalletAddressAndConfirm()">OK</button>
-                <button class="modal-action-btn btn-close-modal" onclick="closePaymentModal()">Cancel</button>
-                <div class="modal-timer-ticker" id="modalCountdownTicker">Remaining Time: 50:00</div>
+    <div class="app-container">
+        <!-- ترويسة الصفحة -->
+        <div class="header">
+            <a href="#" class="login-link">تسجيل الدخول</a>
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-circle-notch"></i></div>
             </div>
         </div>
 
-        <!-- 🔷 صفحة إدارة الرصيد والسحب والشحن (Square Page) -->
-        <div class="app-page-view" id="page-square">
-            <!-- كرت لوحة البيانات والأصول المتوهجة والخط التفاعلي ومحرك نبض السهم الصاعد كصورتك بالملي -->
-            <div class="portfolio-graph-block">
-                <div class="graph-header-meta">
-                    <span class="graph-title">Total Crypto Assets</span>
-                    <span style="font-size:16px; color:#848e9c; cursor:pointer;">👁</span>
-                </div>
-                <div class="graph-asset-value">0.00 <span style="font-size:16px; color:#848e9c; font-weight:600;">USD</span></div>
-                
-                <!-- مؤشر السهم الأخضر النابض والصاعد للأعلى تل��ائياً بشكل مذهل -->
-                <div class="graph-rate-indicator">
-                    <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
-                    + $0.00 (1D)
-                </div>
-                
-                <!-- رسم الخط البياني المنحني والمنقط المتوهج بدقة بالـ SVG بداخل الكود مباشرة -->
-                <svg class="static-graph-svg-line" viewBox="0 0 300 70" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="neonGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d395" stop-opacity="0.25"/><stop offset="100%" stop-color="#00d395" stop-opacity="0"/></linearGradient>
-                    </defs>
-                    <path d="M0,55 Q40,25 80,45 T160,20 T240,35 T300,5" fill="none" stroke="#00d395" stroke-width="3" stroke-linecap="round" stroke-dasharray="1,1" filter="drop-shadow(0 0 4px #00d395)"/>
-                    <path d="M0,55 Q40,25 80,45 T160,20 T240,35 T300,5 L300,70 L0,70 Z" fill="url(#neonGlow)"/>
-                </svg>
-                
-                <div class="graph-time-tabs">
-                    <span class="time-tab-btn active-tab">1D</span><span class="time-tab-btn">7D</span><span class="time-tab-btn">30D</span><span class="time-tab-btn">3M</span><span class="time-tab-btn">1Y</span>
-                </div>
-            </div>
+        <h1 class="main-title">إنشاء حساب</h1>
 
-            <!-- قسم الشحن الفوري المدمج (Deposit Account) -->
-            <div class="square-management-card">
-                <h4>Deposit Crypto (TRC20)</h4>
-                <p style="font-size:12px; color:#9ca3af; margin-top:-5px;">Scan or copy the secure system address below to fund account:</p>
-                <div class="wallet-address-container" style="margin-bottom:0px; background:#14181e;">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-                <button class="btn-withdraw-action" style="background:#ffffff; color:#000000;" onclick="openDepositModal()">Deposit Funds</button>
-            </div>
-
-            <!-- قسم سحب الأرباح المطور المصفف عمودياً بالملي باللغة الإنجليزية لمنع الميلان والاهتزاز -->
-            <div class="square-management-card">
-                <h4>Secure Funds Withdrawal</h4>
-                <select class="square-dropdown-selector">
-                    <option value="trc20">USDT - TRC20 Network Connection</option>
-                    <option value="erc20">USDT - ERC20 Network Connection</option>
-                    <option value="bep20">USDT - BEP20 Binance Smart Chain</option>
+        <!-- حقل البريد الإلكتروني / الهاتف الذكي -->
+        <div class="input-wrapper">
+            <label class="input-label">بريدك الإلكتروني/الهاتف</label>
+            <div class="field-container">
+                <!-- قائمة رموز الدول (تظهر بالرقم فقط) -->
+                <select id="country-code" class="country-dropdown">
+                    <option value="+964">🇮🇶 +964</option>
+                    <option value="+966">🇸🇦 +966</option>
+                    <option value="+971">🇦🇪 +971</option>
+                    <option value="+20">🇪🇬 +20</option>
+                    <option value="+962">🇯🇴 +962</option>
                 </select>
-                <input type="text" class="square-numeric-input" id="withdrawWalletInput" placeholder="Enter Destination Wallet Address">
-                <input type="number" class="square-numeric-input" id="withdrawAmountInput" placeholder="Enter Amount to Withdraw">
-                <input type="password" class="square-numeric-input" id="withdrawPassInput" placeholder="Enter Security Withdrawal Password">
-                <button class="btn-withdraw-action" onclick="triggerWithdrawError()">Withdraw Assets</button>
+                <input type="text" id="identifier-input" placeholder="البريد الإلكتروني/رقم الهاتف (من دون رمز الدولة)">
             </div>
         </div>
 
-        <!-- 💬 صفحة غرف الدردشة العشر المقفلة بإحكام (Earn Page) -->
-        <div class="app-page-view" id="page-earn">
-            <div id="dynamicChatRoomsContainer" style="display: flex; flex-direction: column; gap: 15px; width: 100%;"></div>
-        </div>
-
-        <!-- 📁 صفحة الدعم الفني وتطبيق Elementx لحسابك الفخم (Portfolio Page) -->
-        <div class="app-page-view" id="page-portfolio" style="justify-content: center; align-items: center;">
-            <div class="support-premium-box">
-                <!-- صورة تطبيق Elementx الفخمة وشعار المحفظة المدمج برسم الـ SVG النقي عالي التوهج والشفافية -->
-                <svg viewBox="0 0 100 100" style="width: 90px; height: 90px; margin-bottom: 5px;">
-                    <g filter="drop-shadow(0 0 14px #ff2a85)">
-                        <rect x="12" y="12" width="76" height="76" rx="24" fill="#090a0f" stroke="url(#gradPink)" stroke-width="4.5"/>
-                        <defs>
-                            <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#ff2a85;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#b30059;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M32 32 L68 68 M68 32 L32 68" stroke="url(#gradPink)" stroke-width="11" stroke-linecap="round"/>
-                        <circle cx="50" cy="50" r="14" fill="#090a0f" stroke="#ffffff" stroke-width="3" />
-                    </g>
-                </svg>
-                <h3 style="color:#ffffff; font-size:22px; font-weight:800;">Elementx Official Support</h3>
-                <p>Connect immediately with our global system administrators regarding deposits, withdrawals, premium room key leaks, or VIP tier upgrades.</p>
-                <a href="https://matrix.to" target="_blank" class="elementx-interactive-btn">Contact Admin Now</a>
+        <!-- حقل رمز الإحالة -->
+        <div class="input-wrapper">
+            <label class="input-label">رمز الإحالة <span class="arrow-down">▲</span></label>
+            <div class="field-container">
+                <input type="text" placeholder="أدخل رمز الإحالة">
             </div>
         </div>
 
-        <!-- شريط القوائم والتنقل السفلي الفخم لـ OKX التفاعلي بالكامل لربط وإطلاق الصفحات الأربعة بسلاسة -->
-        <div class="bottom-nav">
-            <div class="nav-item" id="nav-home-btn" onclick="switchPage('home')">
-                <svg viewBox="0 0 24 24"><path d="M4 20h3V10H4v10zm6 0h3V4h-3v16zm6 0h3v-7h-3v7z"/></svg>
-                <span>Home</span>
+        <!-- زر المتابعة الرئيسي -->
+        <button class="next-btn">التالي</button>
+
+        <div class="divider-text">أو المتابعة باستخدام</div>
+
+        <!-- أزرار تسجيل الدخول الاجتماعي -->
+        <div class="social-buttons">
+            <div class="social-btn">
+                <span>Google</span>
+                <i class="fa-brands fa-google social-icon-g"></i>
             </div>
-            <div class="nav-item" id="nav-square-btn" onclick="switchPage('square')">
-                <svg viewBox="0 0 24 24"><path d="M20 18.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM17 12v1a4 4 0 0 0 4 4h1v-2h-1a2 2 0 0 1-2-2v-1h-2zM5 21a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5zM5 3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H5z"/></svg>
-                <span>Square</span>
+            <div class="social-btn">
+                <span>Apple</span>
+                <i class="fa-brands fa-apple"></i>
             </div>
-            <div class="nav-item trade-center" id="targetTradeBtn" onclick="switchPage('trade')">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
-                <span>Trade</span>
+            <div class="social-btn">
+                <span>Telegram</span>
+                <i class="fa-brands fa-telegram social-icon-t"></i>
             </div>
-            <div class="nav-item" id="nav-earn-btn" onclick="switchPage('earn')">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
-                <span>Earn</span>
-            </div>
-            <div class="nav-item active-menu" id="nav-portfolio-btn" onclick="switchPage('portfolio')">
-                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
-                <span>Portfolio</span>
-            </div>
+        </div>
+
+        <!-- التذييل الخاص باللغة -->
+        <div class="footer-lang">
+            <span>بالعربية</span>
+            <i class="fa-solid fa-globe"></i>
         </div>
     </div>
 
+    <!-- كود الجافا سكربت للتحكم الذكي بمربع النص -->
     <script>
-        let currentActivePkgId = null;
-        let countdownInterval = null;
+        const inputField = document.getElementById('identifier-input');
+        const countryDropdown = document.getElementById('country-code');
 
-        // 🌟 ميزة الحفظ التلقائي وجلسات الاستمرار الذكية ليبقى الموقع مفتوحاً دائماً للمسجلين
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedSession = localStorage.getItem('hr_user_active_session');
-            generateDynamicTasks(50);
-            generateTradePackages();
-            generateChatRooms(10);
-            
-            // ربط الأزرار بالدوال
-            document.getElementById('createAccountBtn').addEventListener('click', triggerRegistration);
-            document.getElementById('loginBtn').addEventListener('click', showLoginError);
-            
-            if (savedSession) {
-                document.getElementById('authBox').style.display = 'none';
-                document.getElementById('mainApp').classList.add('show');
+        inputField.addEventListener('input', function() {
+            const value = this.value.trim();
+            const isNumeric = /^[0-9+]+$/.test(value);
+
+            if (isNumeric && value.length > 0) {
+                countryDropdown.classList.add('show');
+                inputField.style.paddingRight = "10px";
+            } else {
+                countryDropdown.classList.remove('show');
+                inputField.style.paddingRight = "16px";
             }
         });
-
-        function triggerRegistration() {
-            const overlay = document.getElementById('overlayScreen');
-            const loader = document.getElementById('mainLoader');
-            const check = document.getElementById('successCheck');
-            
-            overlay.classList.add('active');
-            loader.style.display = 'block';
-            check.style.display = 'none';
-            
-            setTimeout(() => {
-                loader.style.display = 'none';
-                check.style.display = 'block';
-                localStorage.setItem('hr_user_active_session', 'true');
-                
-                setTimeout(() => {
-                    overlay.classList.remove('active');
-                    document.getElementById('authBox').style.display = 'none';
-                    document.getElementById('mainApp').classList.add('show');
-                }, 1200);
-            }, 2000);
-        }
-
-        function showLoginError() {
-            document.getElementById('authBox').classList.add('vibrate');
-            document.getElementById('loginAlert').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('authBox').classList.remove('vibrate');
-            }, 300);
-        }
-
-        function switchPage(pageName) {
-            // Hide all pages
-            document.querySelectorAll('.app-page-view').forEach(page => page.classList.remove('active-page'));
-            
-            // Show selected page
-            document.getElementById(`page-${pageName}`).classList.add('active-page');
-            
-            // Update nav items
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active-menu', 'active-white'));
-            
-            if (pageName === 'trade') {
-                document.getElementById('targetTradeBtn').classList.add('active-white');
-            } else {
-                document.getElementById(`nav-${pageName}-btn`).classList.add('active-menu');
-            }
-        }
-
-        function generateDynamicTasks(count) {
-            const container = document.getElementById('htmlDynamicTasksContainer');
-            for (let i = 1; i <= count; i++) {
-                const card = document.createElement('div');
-                card.className = 'youtube-task-card';
-                card.onclick = openTaskPaymentModal;
-                card.innerHTML = `
-                    <div class="task-left-coins">
-                        <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
-                            <g filter="drop-shadow(0px 3px 6px rgba(0,211,149,0.35))">
-                                <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
-                                <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
-                                <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
-                                <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1.2" />
-                                <circle cx="45" cy="53" r="14" fill="#009664" />
-                                <path d="M45 43v20M36 49h18M33 54h24" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
-                            </g>
-                        </svg>
-                    </div>
-                    <div style="flex-grow: 1;"></div>
-                    <div class="task-right-youtube">
-                        <svg viewBox="0 0 24 24" fill="#161914" style="width: 44px; height: 44px;">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </div>
-                `;
-                container.appendChild(card);
-            }
-        }
-
-        function generateTradePackages() {
-            const packages = [
-                { main: '30USDT', sub: '3.50USDT', id: 1 },
-                { main: '60USDT', sub: '7USDT', id: 2 },
-                { main: '90USDT', sub: '10USDT', id: 3 },
-                { main: '150USDT', sub: '18USDT', id: 4 },
-                { main: '300USDT', sub: '40USDT', id: 5 }
-            ];
-
-            const container = document.getElementById('tradePackagesContainer');
-            
-            packages.forEach(pkg => {
-                // Create card
-                const card = document.createElement('div');
-                card.className = 'crypto-package-card';
-                card.style.marginBottom = '0';
-                card.innerHTML = `
-                    <div class="card-left-section">
-                        <svg class="discord-icon" viewBox="0 0 24 24">
-                            <path d="M20.317 4.3698a19.7995 19.7995 0 00-4.885-1.515a.06.06 0 00-.064.03c-.211.378-.444.879-.607 1.27a18.27 18.27 0 00-5.487 0c-.163-.39-.396-.891-.607-1.27a.064.064 0 00-.064-.029c-1.582.269-3.139.8-4.885 1.515a.06.06 0 00-.02.025C1.61 10.079 0 15.92 0 21.96a.064.064 0 00.015.059a19.93 19.93 0 005.993 2.98a.06.06 0 00.064-.022c.411-.583.822-1.196 1.226-1.84a.06.06 0 00-.033-.084a13.07 13.07 0 01-1.872-.892a.06.06 0 00-.006-.1a8.571 8.571 0 001.248-.664a.06.06 0 00.064-.008c3.928 1.953 8.181 1.953 12.064 0a.06.06 0 00.066.007c.42.316.839.645 1.248.667a.06.06 0 00-.006.1a12.251 12.251 0 01-1.873.892a.06.06 0 00-.033.083c.404.644.814 1.257 1.226 1.84a.06.06 0 00.064.022a19.947 19.947 0 005.993-2.98a.06.06 0 00.015-.059zM8.02 17.982c-1.182 0-2.157-.968-2.157-2.153c0-1.186.956-2.153 2.157-2.153c1.21 0 2.176.968 2.157 2.153c0 1.186-.946 2.153-2.157 2.153zm7.975 0c-1.183 0-2.157-.968-2.157-2.153c0-1.186.955-2.153 2.157-2.153c1.21 0 2.176.968 2.157 2.153c0 1.186-.946 2.153-2.157 2.153z" fill="#3C366B"/>
-                        </svg>
-                    </div>
-                    <div class="card-center-section">
-                        <div style="display: flex; align-items: center; gap: 6px;">
-                            <div class="usdt-main-balance">${pkg.main}</div>
-                            <svg class="red-flame-logo" viewBox="0 0 100 100">
-                                <path d="M50 10C40 25, 30 35, 30 50C30 70, 38 85, 50 85C62 85, 70 70, 70 50C70 35, 60 25, 50 10Z" fill="#FF3B30"/>
-                                <ellipse cx="45" cy="55" rx="4" ry="8" fill="#FFFFFF"/>
-                                <ellipse cx="55" cy="55" rx="4" ry="8" fill="#FFFFFF"/>
-                            </svg>
-                        </div>
-                        <div class="usdt-sub-rate-box">${pkg.sub}</div>
-                    </div>
-                    <div class="card-right-section">
-                        <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
-                            <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
-                            <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
-                            <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
-                            <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" />
-                        </svg>
-                    </div>
-                `;
-                container.appendChild(card);
-
-                // Create button
-                const btn = document.createElement('button');
-                btn.className = 'activate-package-btn';
-                btn.id = `pkg-btn-${pkg.id}`;
-                btn.textContent = 'Activate Package';
-                btn.onclick = () => openPaymentModal(pkg.main, pkg.main, pkg.id);
-                container.appendChild(btn);
-            });
-        }
-
-    
-        }
-
-        function openPaymentModal(tierName, amount, pkgId) {
-            currentActivePkgId = pkgId;
-            document.getElementById('paymentModal').classList.add('open');
-            startCountdown();
-        }
-
-        function openTaskPaymentModal() {
-            document.getElementById('paymentModal').classList.add('open');
-            startCountdown();
-        }
-
-        function closePaymentModal() {
-            document.getElementById('paymentModal').classList.remove('open');
-            if (countdownInterval) clearInterval(countdownInterval);
-        }
-
-        function copyWalletAddressAndConfirm() {
-            const addr = document.getElementById('walletAddr').textContent;
-            navigator.clipboard.writeText(addr);
-            
-            if (currentActivePkgId) {
-                document.getElementById(`pkg-btn-${currentActivePkgId}`).textContent = 'Processing...';
-                document.getElementById(`pkg-btn-${currentActivePkgId}`).classList.add('sent');
-            }
-            
-            closePaymentModal();
-        }
-
-        function openDepositModal() {
-            alert('Deposit feature coming soon!');
-        }
-
-        function triggerWithdrawError() {
-            alert('Withdrawal request received. Please check your email for confirmation.');
-        }
-
-        function startCountdown() {
-            let timeLeft = 50 * 60;
-            const ticker = document.getElementById('modalCountdownTicker');
-            
-            if (countdownInterval) clearInterval(countdownInterval);
-            
-            countdownInterval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                ticker.textContent = `Remaining Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 0) {
-                    closePaymentModal();
-                    clearInterval(countdownInterval);
-                }
-                timeLeft--;
-            }, 1000);
-        }
     </script>
 </body>
 </html>
