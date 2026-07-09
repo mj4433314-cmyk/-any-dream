@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منصة التداول الاحترافية الموحدة</title>
+    <title>منصة التداول والمكافآت الاحترافية الموحدة</title>
     <!-- استدعاء أحدث الخطوط والأيقونات من خوادم عالمية سريعة آمنة -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -16,12 +16,12 @@
             margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Cairo', sans-serif; -webkit-font-smoothing: antialiased;
         }
-
-        html, body {
+                html, body {
             background-color: #fafbfe; width: 100%; height: 100%;
             display: flex; justify-content: center; align-items: center; overflow: hidden;
         }
-              /* الحاوية الهجينة المقاومة للمتصفحات */
+
+        /* الحاوية الهجينة المقاومة للمتصفحات */
         .app-container {
             width: 100%; max-width: 420px; height: 100%;
             background: #ffffff; display: flex; flex-direction: column;
@@ -33,18 +33,16 @@
         .no-padding-dash {
             padding: 0 !important; background-color: #121212 !important; overflow: hidden !important;
         }
-
-        /* ترويسة وعناوين واجهة التسجيل الأولى */
+                /* ترويسة وعناوين واجهة التسجيل الأولى */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; width: 100%; }
         .login-link { color: #4c8bf5; text-decoration: none; font-size: 15px; font-weight: 700; cursor: pointer; }
         .logo-icon { font-size: 32px; color: #0066ff; transform: rotate(-45deg); }
         .main-title { font-family: 'Reem Kufi', serif !important; font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; text-align: right; width: 100%; }
-        .main-title.text-center { text-align: center; color: #ffffff; }
 
         .input-wrapper { margin-bottom: 18px; width: 100%; text-align: right; }
         .input-label { display: block; font-size: 14px; color: #4a4a4a; margin-bottom: 8px; font-weight: 700; }
         .arrow-down { font-size: 10px; color: #666; margin-right: 4px; }
-              .field-container {
+                .field-container {
             display: flex; align-items: center; border: 1px solid #e2e8f0;
             border-radius: 12px; background-color: #ffffff; overflow: hidden; transition: border-color 0.2s;
         }
@@ -56,8 +54,7 @@
             display: none; border: none; outline: none; background: #f7fafc; padding: 0 10px; height: 52px; font-size: 14px; color: #333; border-left: 1px solid #e2e8f0; cursor: pointer; font-weight: 700;
         }
         .country-dropdown.show { display: block; }
-
-        /* زر التالي الإنجليزي الاحترافي */
+                /* زر التالي الإنجليزي الاحترافي */
         .next-btn {
             position: relative; width: 100%; background-color: #adc6ff; color: #ffffff;
             border: none; padding: 16px; border-radius: 30px; font-size: 18px; font-weight: 700;
@@ -80,7 +77,8 @@
             text-shadow: 0 0 10px rgba(34, 197, 94, 0.6); animation: popCheck 0.3s ease-in-out forwards;
         }
         @keyframes popCheck { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-              .divider-text { text-align: center; color: #888888; font-size: 13px; margin-bottom: 16px; font-weight: 600; width: 100%; }
+
+        .divider-text { text-align: center; color: #888888; font-size: 13px; margin-bottom: 16px; font-weight: 600; width: 100%; }
         .social-buttons { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
         .social-btn { width: 100%; background-color: #f5f5f5; border: none; padding: 14px 24px; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; color: #1a1a1a; }
         .social-btn i { font-size: 20px; }
@@ -88,7 +86,7 @@
         .social-icon-t { color: #0088cc; }
         .footer-lang { display: flex; justify-content: center; align-items: center; gap: 8px; color: #333333; font-size: 14px; font-weight: 700; margin-bottom: 25px; width: 100%; }
 
-        /* شريط أسعار أسفل شاشة التسجيل */
+        /* شريط أسعار أسفل شاشة التسجيل الأولى */
         .trading-footer { background-color: #111827; border-radius: 16px; padding: 14px; color: #ffffff; margin-top: auto; width: 100%; }
         .trading-title { font-size: 12px; color: #9ca3af; font-weight: 700; margin-bottom: 8px; text-align: right; }
         .ticker-container { display: flex; flex-direction: column; gap: 8px; }
@@ -97,8 +95,9 @@
         .crypto-price { font-size: 14px; font-weight: 700; font-family: monospace; }
 
         .hidden-step { display: none !important; }
-
-        /* تصميم لوحة التحكم الفخمة */
+                /* ================================================= */
+        /* تصميم لوحة التحكم الفخمة (الواجهة الرئيسية الحية) */
+        /* ================================================= */
         .dark-dashboard {
             background-color: #121212; color: #ffffff; width: 100%; height: 100%;
             padding: 20px 15px 75px 15px; display: flex; flex-direction: column; position: relative;
@@ -106,7 +105,8 @@
         .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%; }
         .dash-user { font-size: 22px; color: #262626; }
         .dash-actions { display: flex; gap: 18px; font-size: 18px; color: #262626; }
-              .balance-card { background: #1a1a1a; padding: 20px; border-radius: 16px; margin-bottom: 25px; border: 1px solid #232323; width: 100%; }
+
+        .balance-card { background: #1a1a1a; padding: 20px; border-radius: 16px; margin-bottom: 25px; border: 1px solid #232323; width: 100%; }
         .balance-buttons { display: flex; gap: 10px; }
         .dash-action-btn { flex: 1; height: 38px; background: #262626; border: none; border-radius: 8px; }
         .deposit { background: #1a1a1a; border: 1px solid #262626; }
@@ -121,39 +121,82 @@
         .ticker-sym { font-size: 15px; font-weight: 700; color: #ffffff; }
         .ticker-price { font-size: 16px; font-weight: 700; font-family: monospace; color: #ffffff; }
         .ticker-change { font-size: 13px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+                /* ================================================= */
+        /* تصميم واجهة المكافآت والباقات المدمجة داخل Assets */
+        /* ================================================= */
+        .bonus-banner { background-color: #0d0f12; padding: 20px 10px; text-align: center; border-radius: 16px; border: 1px solid #1e222b; margin-bottom: 20px; width: 100%; position: relative; }
+        .bonus-coins { display: flex; justify-content: center; gap: -15px; margin-bottom: 15px; }
+        .bonus-coins i { font-size: 55px; color: #727885; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); animation: bounceCoins 2s infinite ease-in-out; }
+        @keyframes bounceCoins { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .bonus-coins i.green { color: #22c55e; }
+        .bonus-text-green { color: #22c55e; font-size: 20px; font-weight: 800; margin-bottom: 4px; text-align: center; }
+        .bonus-text-white { color: #ffffff; font-size: 18px; font-weight: 700; margin-bottom: 6px; text-align: center; }
+        .bonus-text-sub { color: #565e6c; font-size: 11px; margin-bottom: 15px; font-weight: 600; text-align: center; }
+        
+        .countdown-boxes { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 15px; direction: ltr; }
+        .time-box { background: #1a1e25; color: #ffffff; font-family: monospace; font-size: 14px; font-weight: 700; padding: 4px 8px; border-radius: 6px; min-width: 32px; text-align: center; }
+        .time-label { color: #565e6c; font-size: 11px; font-weight: 600; margin: 0 2px; }
+        .rewards-hub-link { color: #727885; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; display: block; text-align: center; margin-bottom: 10px; }
 
-        /* تصميم صفحة مهمات غوغل بلاي */
-        .tasks-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; width: 100%; }
-        .task-card { background-color: #ffffff; border-radius: 16px; padding: 15px; display: flex; align-items: center; justify-content: space-between; position: relative; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); height: 110px; overflow: hidden; width: 100%; }
-        .google-play-side { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 30%; gap: 6px; }
-        .play-store-logo { font-size: 42px; background: linear-gradient(45deg, #00b0ff, #00e5ff, #4caf50, #ffeb3b, #ff5722); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2)); }
-        .claim-btn { width: 100%; background: linear-gradient(to right, #7F00FF, #E100FF); color: #ffffff; border: none; padding: 5px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; box-shadow: 0 2px 6px rgba(225, 0, 255, 0.3); text-transform: uppercase; letter-spacing: 0.5px; }
-        .details-side { width: 70%; display: flex; flex-direction: column; align-items: flex-start; padding-left: 15px; position: relative; height: 100%; justify-content: center; }
-        .task-main-title { font-size: 16px; font-weight: 800; color: #1a1a1a; margin-bottom: 5px; text-align: left; }
-        .task-sub-info { display: flex; align-items: center; gap: 6px; width: 100%; }
-        .reward-badge { background-color: #000000; color: #ffffff; font-family: monospace; font-size: 14px; font-weight: 800; padding: 2px 8px; border-radius: 4px; }
-        .task-status-text { font-size: 11px; color: #888888; font-weight: 600; }
-              /* تصميم صفحة الشروحات التعليمية الإنجليزية */
-        .guides-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; width: 100%; }
-        .guide-card { background-color: #1a1a1a; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; border: 1px solid #232323; gap: 10px; cursor: pointer; transition: background-color 0.2s ease; width: 100%; }
-        .guide-card:hover { background-color: #222222; }
-        .guide-top { display: flex; align-items: center; gap: 10px; width: 100%; }
-        .guide-icon { width: 36px; height: 36px; background-color: #2a2a2a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ff9900; font-size: 16px; }
-        .guide-badge { background-color: rgba(34, 197, 94, 0.1); color: #22c55e; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-right: auto; text-transform: uppercase; }
-        .guide-title-text { font-size: 15px; font-weight: 800; color: #ffffff; text-align: left; }
-        .guide-desc { font-size: 12px; color: #888888; line-height: 1.5; text-align: left; font-weight: 600; }
+        .assets-balance-row { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 15px 0; background: #1a1e25; padding: 12px 15px; border-radius: 12px; border: 1px solid #232932; }
+        .assets-bal-lbl { font-size: 13px; color: #727885; font-weight: 700; }
+        .assets-bal-val { font-size: 16px; color: #ffffff; font-weight: 800; font-family: monospace; }
+                /* حقول السحب وباقات ديسكورد والنوافذ المنبثقة داخل نفس ملف التنسيق */
+        .withdraw-fields-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; margin-bottom: 25px; }
+        .w-field-box { display: flex; flex-direction: column; width: 100%; text-align: right; }
+        .w-label { font-size: 13px; color: #727885; font-weight: 700; margin-bottom: 6px; }
+        .w-input-container { background: #1a1e25; border: 1px solid #232932; border-radius: 12px; padding: 12px 15px; display: flex; align-items: center; }
+        .w-input-container input { width: 100%; background: transparent; border: none; outline: none; color: #ffffff; font-size: 14px; font-weight: 600; text-align: right; }
+        .w-btn-main { width: 100%; background: #ffffff; color: #000000; border: none; padding: 15px; border-radius: 30px; font-size: 16px; font-weight: 800; cursor: pointer; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; transition: opacity 0.2s; margin-top: 5px; }
+        .w-btn-main:hover { opacity: 0.9; }
 
-        /* شريط الأزرار الخماسية السفلية */
-        .bottom-nav {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            height: 70px; background-color: #161616; border-top: 1px solid #262626;
-            display: flex; justify-content: space-around; align-items: center;
-            padding-bottom: max(6px, env(safe-area-inset-bottom)); z-index: 999; direction: ltr;
+        .subscription-container { display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; width: 100%; }
+        .vip-card { background-color: #ffffff; border-radius: 16px; padding: 15px; display: flex; align-items: center; justify-content: space-between; position: relative; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); height: 135px; overflow: hidden; width: 100%; }
+        .discord-side { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 32%; gap: 8px; }
+        .discord-logo { font-size: 55px; color: #2c2f33; background: linear-gradient(135deg, #3a1c5c 0%, #110724 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3)); }
+        .activate-btn { width: 100%; background: linear-gradient(to right, #7F00FF, #E100FF); color: #ffffff; border: none; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; box-shadow: 0 2px 6px rgba(225, 0, 255, 0.3); text-transform: uppercase; letter-spacing: 0.5px; }
+        .details-side { width: 68%; display: flex; flex-direction: column; align-items: flex-start; padding-left: 10px; position: relative; height: 100%; justify-content: center; }
+        .main-value-row { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 5px; }
+        .usdt-value { font-size: 30px; font-weight: 800; color: #0099ff; font-family: Arial, sans-serif; line-height: 1; }
+        .fire-icon { font-size: 32px; color: #ff3333; filter: drop-shadow(0px 2px 5px rgba(255,51,53,0.4)); }
+        .sub-value-row { display: flex; align-items: center; gap: 8px; width: 100%; }
+        .black-box { background-color: #000000; color: #ffffff; font-family: monospace; font-size: 16px; font-weight: 800; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+        .coins-icon-wrapper { display: flex; align-items: flex-end; position: relative; height: 32px; width: 42px; }
+        .coin-stack { font-size: 24px; color: #00b0ff; position: absolute; bottom: 0; left: 0; z-index: 2; }
+        .coin-offset { font-size: 16px; color: #00e5ff; position: absolute; bottom: -2px; left: 16px; z-index: 1; transform: rotate(-15deg); }
+
+        .payment-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 10000; padding: 20px; }
+        .payment-modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .payment-modal-box { background: #1e1e1e; border: 1px solid #2d2d2d; padding: 25px 20px; border-radius: 20px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); transform: scale(0.8); transition: transform 0.3s ease; color: #ffffff; }
+        .payment-modal-overlay.active .payment-modal-box { transform: scale(1); }
+        .p-modal-title { font-size: 16px; font-weight: 700; margin-bottom: 15px; color: #ffffff; }
+        .address-container { background-color: #121212; border: 1px solid #333333; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; gap: 10px; }
+        .address-text { font-family: monospace; font-size: 13px; color: #adc6ff; word-break: break-all; text-align: left; user-select: all; font-weight: 600; }
+        .copy-btn { background: #0066ff; color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
+        .copy-btn:hover { background: #0052cc; }
+        .p-timer-wrapper { margin-bottom: 20px; }
+        .p-timer-label { font-size: 12px; color: #888888; margin-bottom: 6px; font-weight: 600; }
+        .p-timer-display { font-family: monospace; font-size: 28px; font-weight: 800; color: #ff3333; text-shadow: 0 0 10px rgba(255, 51, 51, 0.3); letter-spacing: 1px; }
+        .p-close-btn { background: #2a2a2a; color: #aaaaaa; border: none; padding: 10px 25px; border-radius: 20px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .p-close-btn:hover { background: #333333; color: white; }
+                /* شريط الأزرار السفلية الخماسي الموحد والبارز والمطابق تماماً للصورة */
+        .bottom-nav { 
+            position: absolute; bottom: 0; left: 0; right: 0; 
+            height: 75px; background-color: #0f1115; border-top: 1px solid #1e222b; 
+            display: flex; justify-content: space-around; align-items: center; 
+            padding-bottom: max(6px, env(safe-area-inset-bottom)); z-index: 999; direction: ltr; 
         }
-        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7d7d7d; cursor: pointer; flex: 1; height: 100%; transition: color 0.2s ease; }
-        .nav-item i { font-size: 20px; margin-bottom: 4px; }
-        .nav-item span { font-size: 11px; font-weight: 600; }
+        .nav-item { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            color: #727885; cursor: pointer; flex: 1; height: 100%; transition: color 0.2s ease; 
+        }
+        .nav-item i { font-size: 21px; margin-bottom: 3px; }
+        .nav-item span { font-size: 11px; font-weight: 600; margin-top: 2px; }
         .nav-item.active { color: #ffffff; }
+
+        /* أزرار مخصصة لحركات جافا سكريبت الخاصة بكل واجهة فرعية */
+        .sub-tab-view { width: 100%; height: 100%; display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 20px; }
+        .sub-tab-view::-webkit-scrollbar { display: none; }
 
         /* تصميم نوافذ التنبيه المنبثقة الاحترافية للمستخدم */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease-in-out; z-index: 9999; padding: 20px; }
@@ -162,15 +205,15 @@
         .modal-overlay.active .modal-box { transform: scale(1); }
         .modal-icon { font-size: 45px; margin-bottom: 15px; }
         .modal-icon.red { color: #ef4444; }
-        .modal-icon.blue { color: #ff4d4f; }
+        .modal-icon.blue { color: #0066ff; }
         .modal-text { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; }
         .modal-btn { background: #0066ff; color: white; border: none; padding: 10px 35px; border-radius: 20px; font-size: 15px; font-weight: 700; cursor: pointer; }
     </style>
 </head>
 <body>
-      <div class="app-container" id="appCard">
+        <div class="app-container" id="appCard">
         
-        <!-- الواجهة الأولى: إنشاء حساب وتداول مباشر -->
+        <!-- الواجهة الأولى: شاشة إنشاء الحساب والتحقق -->
         <div id="signup-step" style="display: flex; flex-direction: column; height: 100%; width: 100%;">
             <div class="header">
                 <span class="login-link" id="loginBtn">تسجيل الدخول</span>
@@ -229,15 +272,14 @@
             </div>
         </div>
 
-        <!-- الواجهة الثانية الموحدة: لوحة التحكم والأقسام الثلاثة الداخلية الشغالة -->
+        <!-- الواجهة الثانية الموحدة: لوحة التحكم والأقسام التبادلية داخلياً -->
         <div id="dashboard-step" class="hidden-step dark-dashboard">
-            <!-- الهيدر العلوي للوحة التحكم -->
             <div class="dash-header">
                 <div class="dash-user"><i class="fa-solid fa-circle-user"></i></div>
                 <div class="dash-actions"><i class="fa-solid fa-bell"></i><i class="fa-solid fa-qrcode"></i></div>
             </div>
 
-            <!-- محتوى تبويب التداول الرئيسي (Home / Markets / Trade) -->
+            <!-- 1. محتوى تبويب التداول الرئيسي (Home) -->
             <div id="sub-trading-content" class="sub-tab-view">
                 <div class="balance-card">
                     <div class="balance-title" style="width:40%; height:12px; background:#2d2d2d; border-radius:6px; margin-bottom:12px;"></div>
@@ -247,7 +289,7 @@
                         <button class="dash-action-btn" style="background:#2d2d2d;"></button>
                     </div>
                 </div>
-                <div class="skeleton-block grid-2">
+                                <div class="skeleton-block grid-2">
                     <div class="sk-box long"></div>
                     <div class="sk-box long"></div>
                 </div>
@@ -263,7 +305,7 @@
                 </div>
             </div>
 
-            <!-- محتوى تبويب الشروحات التعليمية الإنجليزية (Futures) -->
+            <!-- 2. محتوى تبويب المساعد التعليمي الكورسات (Futures) -->
             <div id="sub-futures-content" class="sub-tab-view hidden-step">
                 <div class="guides-container">
                     <div class="guide-card">
@@ -282,69 +324,148 @@
                         </div>
                         <p class="guide-desc">A step-by-step tutorial on how to link your USDT-TRC20 external wallet address, confirm smart deposits, and complete active safe transactions.</p>
                     </div>
-                    <div class="guide-card">
-                        <div class="guide-top">
-                            <div class="guide-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                            <span class="guide-title-text">Account Security</span>
-                            <span class="guide-badge">Security</span>
-                        </div>
-                        <p class="guide-desc">Find out how to maximize your platform security settings, secure your login details, configure custom passwords, and enable safe verification blocks.</p>
-                    </div>
                 </div>
             </div>
-                        <!-- محتوى تبويب المهمات الخمسة وسوق بلي (Assets) -->
+                        <!-- 3. محتوى تبويب المكافآت وسحب الأرباح والباقات الرقمية المدمجة (Assets) -->
             <div id="sub-assets-content" class="sub-tab-view hidden-step">
-                <div class="tasks-container">
-                    <div class="task-card">
-                        <div class="google-play-side"><i class="fa-brands fa-google-play play-store-logo"></i><button class="claim-btn">Claim</button></div>
-                        <div class="details-side"><h3 class="task-main-title">Google Play Task #01</h3><div class="task-sub-info"><div class="reward-badge">+1.50 USDT</div><span class="task-status-text">Daily Limit: 1</span></div></div>
+                
+                <!-- إعلان العملات المعدنية والعداد التنازلي المطابق للصورة -->
+                <div class="bonus-banner">
+                    <div class="bonus-coins">
+                        <i class="fa-solid fa-coins"></i>
+                        <i class="fa-solid fa-coins green"></i>
+                        <i class="fa-solid fa-shield"></i>
                     </div>
-                    <div class="task-card">
-                        <div class="google-play-side"><i class="fa-brands fa-google-play play-store-logo"></i><button class="claim-btn">Claim</button></div>
-                        <div class="details-side"><h3 class="task-main-title">Google Play Task #02</h3><div class="task-sub-info"><div class="reward-badge">+3.20 USDT</div><span class="task-status-text">Daily Limit: 1</span></div></div>
+                    <h2 class="bonus-text-green">Up to 11,000 USDT</h2>
+                    <h3 class="bonus-text-white">Bonus for New Users</h3>
+                    <p class="bonus-text-sub">Sign up now for limited-time rewards</p>
+                    
+                    <div class="countdown-boxes">
+                        <div class="time-box" id="c-days">13</div> <span class="time-label">d</span>
+                        <div class="time-box" id="c-hours">23</div> <span class="time-label">h</span>
+                        <div class="time-box" id="c-mins">59</div> <span class="time-label">m</span>
+                        <div class="time-box" id="c-secs">53</div> <span class="time-label">s</span>
                     </div>
-                    <div class="task-card">
-                        <div class="google-play-side"><i class="fa-brands fa-google-play play-store-logo"></i><button class="claim-btn">Claim</button></div>
-                        <div class="details-side"><h3 class="task-main-title">Google Play Task #03</h3><div class="task-sub-info"><div class="reward-badge">+5.00 USDT</div><span class="task-status-text">Daily Limit: 1</span></div></div>
+                    
+                    <span class="rewards-hub-link">Rewards Hub <i class="fa-solid fa-arrow-right" style="font-size:11px;"></i></span>
+                </div>
+
+                <!-- شريط عرض الرصيد المتاح 0.00 USDT -->
+                <div class="assets-balance-row">
+                    <span class="assets-bal-lbl">Available Balance</span>
+                    <span class="assets-bal-val">0.00 USDT</span>
+                </div>
+
+                <!-- المربعات الثلاثة لإدخل بيانات سحب الأموال -->
+                <div class="withdraw-fields-wrapper">
+                    <div class="w-field-box">
+                        <label class="w-label">TRC20 Address</label>
+                        <div class="w-input-container">
+                            <input type="text" placeholder="Enter TRC20 Wallet Address">
+                        </div>
                     </div>
-                    <div class="task-card">
-                        <div class="google-play-side"><i class="fa-brands fa-google-play play-store-logo"></i><button class="claim-btn">Claim</button></div>
-                        <div class="details-side"><h3 class="task-main-title">Google Play Task #04</h3><div class="task-sub-info"><div class="reward-badge">+8.50 USDT</div><span class="task-status-text">Daily Limit: 1</span></div></div>
+                    <div class="w-field-box">
+                        <label class="w-label">Withdrawal Amount</label>
+                        <div class="w-input-container">
+                            <input type="number" placeholder="0.00">
+                        </div>
                     </div>
-                    <div class="task-card">
-                        <div class="google-play-side"><i class="fa-brands fa-google-play play-store-logo"></i><button class="claim-btn">Claim</button></div>
-                        <div class="details-side"><h3 class="task-main-title">Google Play Task #05</h3><div class="task-sub-info"><div class="reward-badge">+12.00 USDT</div><span class="task-status-text">Daily Limit: 1</span></div></div>
+                    <div class="w-field-box">
+                        <label class="w-label">Security Password</label>
+                        <div class="w-input-container">
+                            <input type="password" placeholder="Enter Password">
+                        </div>
+                    </div>
+                    <button class="w-btn-main" id="withdrawActionBtn">Withdraw USDT</button>
+                </div>
+                                <!-- قائمة باقات ديسكورد الرقمية الخمسة الاحترافية المدمجة بالأسفل -->
+                <div class="subscription-container">
+                    <!-- باقة 30 -->
+                    <div class="vip-card">
+                        <div class="discord-side"><i class="fa-brands fa-discord discord-logo"></i><button class="activate-btn">Activate</button></div>
+                        <div class="details-side">
+                            <div class="main-value-row"><span class="usdt-value">30USDT</span><i class="fa-solid fa-fire fire-icon"></i></div>
+                            <div class="sub-value-row"><div class="black-box">3.50USDT</div><div class="coins-icon-wrapper"><i class="fa-solid fa-coins coin-stack"></i><i class="fa-solid fa-coins coin-offset"></i></div></div>
+                        </div>
+                    </div>
+                    <!-- باقة 60 -->
+                    <div class="vip-card">
+                        <div class="discord-side"><i class="fa-brands fa-discord discord-logo"></i><button class="activate-btn">Activate</button></div>
+                        <div class="details-side">
+                            <div class="main-value-row"><span class="usdt-value">60USDT</span><i class="fa-solid fa-fire fire-icon"></i></div>
+                            <div class="sub-value-row"><div class="black-box">7USDT</div><div class="coins-icon-wrapper"><i class="fa-solid fa-coins coin-stack"></i><i class="fa-solid fa-coins coin-offset"></i></div></div>
+                        </div>
+                    </div>
+                    <!-- باقة 90 -->
+                    <div class="vip-card">
+                        <div class="discord-side"><i class="fa-brands fa-discord discord-logo"></i><button class="activate-btn">Activate</button></div>
+                        <div class="details-side">
+                            <div class="main-value-row"><span class="usdt-value">90USDT</span><i class="fa-solid fa-fire fire-icon"></i></div>
+                            <div class="sub-value-row"><div class="black-box">10USDT</div><div class="coins-icon-wrapper"><i class="fa-solid fa-coins coin-stack"></i><i class="fa-solid fa-coins coin-offset"></i></div></div>
+                        </div>
+                    </div>
+                    <!-- باقة 150 -->
+                    <div class="vip-card">
+                        <div class="discord-side"><i class="fa-brands fa-discord discord-logo"></i><button class="activate-btn">Activate</button></div>
+                        <div class="details-side">
+                            <div class="main-value-row"><span class="usdt-value">150USDT</span><i class="fa-solid fa-fire fire-icon"></i></div>
+                            <div class="sub-value-row"><div class="black-box">18USDT</div><div class="coins-icon-wrapper"><i class="fa-solid fa-coins coin-stack"></i><i class="fa-solid fa-coins coin-offset"></i></div></div>
+                        </div>
+                    </div>
+                    <!-- باقة 300 -->
+                    <div class="vip-card">
+                        <div class="discord-side"><i class="fa-brands fa-discord discord-logo"></i><button class="activate-btn">Activate</button></div>
+                        <div class="details-side">
+                            <div class="main-value-row"><span class="usdt-value">300USDT</span><i class="fa-solid fa-fire fire-icon"></i></div>
+                            <div class="sub-value-row"><div class="black-box">40USDT</div><div class="coins-icon-wrapper"><i class="fa-solid fa-coins coin-stack"></i><i class="fa-solid fa-coins coin-offset"></i></div></div>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- شريط الأزرار الخماسية الموحد بالأسفل لنفس الشاشة -->
+            <!-- شريط الأزرار الخماسية الموحد بالأسفل - مطابق للصورة الرسمية 100% -->
             <div class="bottom-nav">
-                <div class="nav-item active" id="btn-home"><i class="fa-solid fa-circle-notch"></i><span>Home</span></div>
-                <div class="nav-item" id="btn-markets"><i class="fa-solid fa-chart-simple"></i><span>Markets</span></div>
-                <div class="nav-item" id="btn-trade"><i class="fa-solid fa-right-left"></i><span>Trade</span></div>
-                <div class="nav-item" id="btn-futures"><i class="fa-solid fa-chart-line"></i><span>Futures</span></div>
+                <div class="nav-item active" id="btn-home"><i class="fa-solid fa-shapes"></i><span>Home</span></div>
+                <div class="nav-item" id="btn-markets"><i class="fa-solid fa-chart-bar"></i><span>Markets</span></div>
+                <div class="nav-item" id="btn-trade"><i class="fa-solid fa-right-left" style="transform: rotate(90deg);"></i><span>Trade</span></div>
+                <div class="nav-item" id="btn-futures"><i class="fa-solid fa-arrow-trend-up"></i><span>Futures</span></div>
                 <div class="nav-item" id="btn-assets"><i class="fa-solid fa-wallet"></i><span>Assets</span></div>
             </div>
         </div>
 
-    </div>
-
-    <!-- المودال 1: تنبيه تسجيل الدخول -->
+        </div>
+            <!-- المودال 1: تنبيه تسجيل الدخول -->
     <div class="modal-overlay" id="alertModal">
         <div class="modal-box">
-            <div class="modal-icon blue"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <div class="modal-icon blue" style="color:#0066ff;"><i class="fa-solid fa-circle-exclamation"></i></div>
             <div class="modal-text">عذراً ليس لديك حساب مسبقاً</div>
             <button class="modal-btn" id="closeModal">حسناً</button>
         </div>
     </div>
 
-    <!-- المودال 2: تنبيه عذراً ليس لديك باقة -->
+    <!-- المودال 2: تنبيه رصيدك غير كافٍ لسحب الأرباح -->
     <div class="modal-overlay" id="packageModal">
         <div class="modal-box">
             <div class="modal-icon red"><i class="fa-solid fa-circle-xmark"></i></div>
-            <div class="modal-text">عذراً ليس لديك باقه</div>
-            <button class="modal-btn" id="closePackageModal" style="background:#0066ff;">حسناً</button>
+            <div class="modal-text">عذراً رصيدك غير كافٍ</div>
+            <button class="modal-btn" id="closePackageModal" style="background:#ef4444;">حسناً</button>
+        </div>
+    </div>
+
+    <!-- نافذة الدفع المنبثقة الاحترافية للباقات (USDT-TRC20) -->
+    <div class="payment-modal-overlay" id="pModal">
+        <div class="payment-modal-box">
+            <h3 class="p-modal-title">إيداع تفعيل الباقة (USDT-TRC20)</h3>
+            <div class="address-container">
+                <span class="address-text" id="wAddress">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</span>
+                <button class="copy-btn" id="cBtn">Copy</button>
+            </div>
+            <div class="p-timer-wrapper">
+                <p class="p-timer-label">تنتهي صلاحية هذا العنوان خلال:</p>
+                <div class="p-timer-display" id="pCountdown">55:00</div>
+            </div>
+            <button class="p-close-btn" id="pClose">إغلاق</button>
         </div>
     </div>
 
@@ -352,23 +473,17 @@
         const inputField = document.getElementById('identifier-input');
         const countryDropdown = document.getElementById('country-code');
         
-        // محرك الفحص الفوري لإظهار رمز الدولة
         if (inputField && countryDropdown) {
             inputField.addEventListener('input', function() {
                 const value = this.value.trim();
-                if (/^[0-9+]/.test(value) && value.length > 0) {
-                    countryDropdown.classList.add('show');
-                } else { 
-                    countryDropdown.classList.remove('show'); 
-                }
+                if (/^[0-9+]/.test(value) && value.length > 0) { countryDropdown.classList.add('show'); } 
+                else { countryDropdown.classList.remove('show'); }
             });
         }
 
-        // إغلاق وفتح تنبيه تسجيل الدخول
         document.getElementById('loginBtn').addEventListener('click', () => { document.getElementById('alertModal').classList.add('active'); });
         document.getElementById('closeModal').addEventListener('click', () => { document.getElementById('alertModal').classList.remove('active'); });
-
-        // لودينج زر Next الـ 10 ثوانٍ مع علامة الصح
+                // لودينج زر Next الـ 10 ثوانٍ مع علامة الصح وتحول الواجهة
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
         const btnSpinner = document.getElementById('btnSpinner');
@@ -376,16 +491,10 @@
 
         if (submitBtn) {
             submitBtn.addEventListener('click', () => {
-                btnText.style.display = 'none';
-                btnSpinner.style.display = 'block';
-                submitBtn.style.pointerEvents = 'none';
-                submitBtn.style.backgroundColor = '#8daeff';
-
+                btnText.style.display = 'none'; btnSpinner.style.display = 'block';
+                submitBtn.style.pointerEvents = 'none'; submitBtn.style.backgroundColor = '#8daeff';
                 setTimeout(() => {
-                    btnSpinner.style.display = 'none';
-                    btnCheckmark.style.display = 'block';
-                    submitBtn.style.backgroundColor = '#22c55e';
-                    
+                    btnSpinner.style.display = 'none'; btnCheckmark.style.display = 'block'; submitBtn.style.backgroundColor = '#22c55e';
                     setTimeout(() => {
                         document.getElementById('signup-step').style.display = 'none';
                         document.getElementById('dashboard-step').classList.remove('hidden-step');
@@ -395,41 +504,70 @@
             });
         }
 
-        // منطق التنقل الداخلي الفوري والسلس بين التبويبات الخمسة بدون ملفات خارجية
+        // منطق التنقل الداخلي الفوري والسلس بين الأزرار الخمسة المحدثة
         const navItems = document.querySelectorAll('.nav-item');
         const subViews = document.querySelectorAll('.sub-tab-view');
-
         function switchTab(activeBtnId, viewId) {
             navItems.forEach(item => item.classList.remove('active'));
             subViews.forEach(view => view.classList.add('hidden-step'));
-            
             document.getElementById(activeBtnId).classList.add('active');
             document.getElementById(viewId).classList.remove('hidden-step');
         }
-
         document.getElementById('btn-home').addEventListener('click', () => switchTab('btn-home', 'sub-trading-content'));
         document.getElementById('btn-markets').addEventListener('click', () => switchTab('btn-markets', 'sub-trading-content'));
         document.getElementById('btn-trade').addEventListener('click', () => switchTab('btn-trade', 'sub-trading-content'));
         document.getElementById('btn-futures').addEventListener('click', () => switchTab('btn-futures', 'sub-futures-content'));
         document.getElementById('btn-assets').addEventListener('click', () => switchTab('btn-assets', 'sub-assets-content'));
 
-        // إظهار تنبيه "عذراً ليس لديك باقة" لمهمات سوق بلي
-        const packageModal = document.getElementById('packageModal');
-        const claimBtns = document.querySelectorAll('.claim-btn');
-        claimBtns.forEach(btn => {
-            btn.addEventListener('click', () => { packageModal.classList.add('active'); });
+        // تفعيل رسالة "عذراً رصيدك غير كافٍ" عند الضغط على سحب الأرباح
+        document.getElementById('withdrawActionBtn').addEventListener('click', () => {
+            document.getElementById('packageModal').classList.add('active');
         });
-        document.getElementById('closePackageModal').addEventListener('click', () => { packageModal.classList.remove('active'); });
+        document.getElementById('closePackageModal').addEventListener('click', () => {
+            document.getElementById('packageModal').classList.remove('active');
+        });
 
-        // محاكي تقلبات أسعار تداول الحية في الخلفية
+        // فتح وإغلاق نافذة إيداع الباقة المبرمجة على 55 دقيقة
+        const pModal = document.getElementById('pModal');
+        document.querySelectorAll('.activate-btn').forEach(btn => {
+            btn.addEventListener('click', () => { pModal.classList.add('active'); startPCountdown(); });
+        });
+        document.getElementById('pClose').addEventListener('click', () => pModal.classList.remove('active'));
+
+        // زر نسخ عنوان المحفظة الذكي بلمسة واحدة
+        document.getElementById('cBtn').addEventListener('click', () => {
+            const txt = document.getElementById('wAddress').innerText;
+            navigator.clipboard.writeText(txt).then(() => {
+                document.getElementById('cBtn').innerText = 'Copied!';
+                setTimeout(() => document.getElementById('cBtn').innerText = 'Copy', 2000);
+            });
+        });
+
+        let pInterval;
+        function startPCountdown() {
+            clearInterval(pInterval); let sec = 55 * 60;
+            pInterval = setInterval(() => {
+                let m = Math.floor(sec / 60); let s = sec % 60;
+                document.getElementById('pCountdown').innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+                if (sec <= 0) clearInterval(pInterval); sec--;
+            }, 1000);
+        }
+
+        // محرك العداد التنازلي التفاعلي المباشر للأيام والساعات بتبويب المكافآت
+        let d = 13, h = 23, m = 59, s = 53;
         setInterval(() => {
-            const btcPriceEl = document.getElementById('dash-btc-price');
-            const btcChangeEl = document.getElementById('dash-btc-change');
-            if (btcPriceEl && btcChangeEl) {
-                const changePercent = (Math.random() * 4 - 2).toFixed(2);
-                const newPrice = (92450 * (1 + parseFloat(changePercent) / 100)).toFixed(2);
-                btcPriceEl.innerText = parseFloat(newPrice).toLocaleString('en-US', { minimumFractionDigits: 2 });
-                btcChangeEl.innerText = changePercent >= 0 ? `+${changePercent}%` : `${changePercent}%`;
+            s--; if(s < 0) { s = 59; m--; if(m < 0) { m = 59; h--; if(h < 0) { h = 23; d--; } } }
+            document.getElementById('c-days').innerText = d; document.getElementById('c-hours').innerText = h;
+            document.getElementById('c-mins').innerText = m; document.getElementById('c-secs').innerText = s;
+        }, 1000);
+
+        // محاكي الأسعار الحية لـ BTC/USDT
+        setInterval(() => {
+            const elP = document.getElementById('dash-btc-price'); const elC = document.getElementById('dash-btc-change');
+            if (elP && elC) {
+                const pct = (Math.random() * 4 - 2).toFixed(2); const val = (92450 * (1 + parseFloat(pct)/100)).toFixed(2);
+                elP.innerText = parseFloat(val).toLocaleString('en-US', { minimumFractionDigits: 2 });
+                elC.innerText = pct >= 0 ? `+${pct}%` : `${pct}%`;
             }
         }, 10000);
     </script>
