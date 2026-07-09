@@ -138,7 +138,7 @@
         text-align: center;
     }
 
-    /* أنماط الشاشات التفاعلية وشاشة التحميل */
+    /* أنماط الشاشات التفاعلية وشاشة التحميل محسّنة */
     .overlay-screen {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -149,23 +149,26 @@
     }
     .overlay-screen.active { opacity: 1; pointer-events: auto; }
 
+    /* شاشة التحميل المحسنة مع تأثير النيون الأخضر */
     .loader {
-        width: 60px; height: 60px;
-        border: 5px solid #1c2127;
-        border-top: 5px solid #00d395;
+        width: 80px; height: 80px;
+        border: 6px solid rgba(0, 211, 149, 0.15);
+        border-top: 6px solid #00d395;
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 1.5s linear infinite;
+        box-shadow: 0 0 30px rgba(0, 211, 149, 0.4), inset 0 0 30px rgba(0, 211, 149, 0.1);
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     .success-checkmark { display: none; width: 80px; height: 80px; }
     .success-checkmark .check-icon { width: 80px; height: 80px; position: relative; border-radius: 50%; border: 4px solid #00d395; }
-    .success-checkmark .check-icon::after { content: ""; position: absolute; top: 18px; left: 32px; width: 15px; height: 30px; border: solid #00d395; border-width: 0 5px 5px 0; transform: rotate(45deg); }
+    .success-checkmark .check-icon::after { content: ""; position: absolute; top: 18px; left: 32px; width: 15px; height: 30px; border: solid #00d395; border-width: 0 5px 5px 0; transform: rotate(45deg); animation: rotateTick 0.8s ease-in-out forwards; }
+    @keyframes rotateTick { 0% { transform: rotate(-45deg) scale(0); } 100% { transform: rotate(45deg) scale(1); } }
 
     .vibrate { animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; }
-    @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
-                      </style>
-                      <style>
+    @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
+</style>
+<style>
     .main-app-interface {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -210,7 +213,7 @@
     .tether-coins-stack-img { width: 50px; height: 50px; }
 
     .activate-package-btn {
-        width: 100%; padding: 13px; background: #00d395; color: #000000; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: -12px; margin-bottom: 6px; box-shadow: 0 4px 12px rgba(0, 211, 149, 0.25);
+        width: 100%; padding: 13px; background: #00d395; color: #000000; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: -12px; margin-bottom: 6px;
     }
     .activate-package-btn.sent { background: #1c2127 !important; color: #6b7280 !important; box-shadow: none !important; cursor: not-allowed; }
 
@@ -219,13 +222,13 @@
     .payment-modal-overlay.open { opacity: 1; pointer-events: auto; }
     .payment-modal-box { width: 90%; max-width: 380px; background: #101317; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; padding: 25px; text-align: center; }
     .payment-modal-box p { color: #9ca3af; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
-    .wallet-address-container { background: #1c2127; border: 1px solid #2d343c; padding: 15px; border-radius: 12px; font-size: 14px; color: #ffffff; word-break: break-all; margin-bottom: 20px; font-weight: bold; }
+    .wallet-address-container { background: #1c2127; border: 1px solid #2d343c; padding: 15px; border-radius: 12px; font-size: 14px; color: #ffffff; word-break: break-all; margin-bottom: 20px; font-weight: 600; }
     .modal-action-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-weight: bold; font-size: 16px; cursor: pointer; }
     .btn-copy-address { background: #00d395; color: #000000; margin-bottom: 12px; }
     .btn-close-modal { background: transparent; color: #9ca3af; border: 1px solid #374151; }
     .modal-timer-ticker { margin-top: 18px; color: #ff453a; font-weight: bold; font-size: 15px; letter-spacing: 0.5px; }
-                      </style>
-                      <style>
+</style>
+<style>
     /* هندسة لوحة الأصول والخط المنحني التفاعلي لـ Square المطابق لصورتك بالظبط */
     .portfolio-graph-block {
         width: 100%; background: linear-gradient(145deg, #0e1318 0%, #06080b 100%);
@@ -253,32 +256,51 @@
     /* حقول لوحة السحب والشحن المرتبة عمودياً بالملي متر بالإنجليزية */
     .square-management-card { width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
     .square-management-card h4 { font-size: 16px; color: #ffffff; font-weight: 700; border-bottom: 1px solid #1c2127; padding-bottom: 8px; margin-bottom: 2px; }
-    .square-dropdown-selector, .square-numeric-input { width: 100%; padding: 14px; background: #1c2127; border: 1px solid #2d343c; border-radius: 10px; color: #ffffff; font-size: 14px; font-weight: 600; outline: none; }
+    .square-dropdown-selector, .square-numeric-input { width: 100%; padding: 14px; background: #1c2127; border: 1px solid #2d343c; border-radius: 10px; color: #ffffff; font-size: 14px; font-weight: 600; }
     .square-dropdown-selector option { background: #101317; }
-    .btn-withdraw-action { width: 100%; padding: 14px; background: #00d395; color: #000000; border: none; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,211,149,0.2); }
+    .btn-withdraw-action { width: 100%; padding: 14px; background: #00d395; color: #000000; border: none; border-radius: 10px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,211,149,0.2); }
 
     /* غرف الدردشة العشر المقفلة لـ Earn وصندوق الدعم لـ Portfolio */
-    .chat-room-locked-card { width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+    .chat-room-locked-card { width: 100%; background: #101317; border: 1px solid #1c2127; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
     .room-title-meta { font-size: 15px; font-weight: 700; color: #ffffff; }
     .lock-glowing-icon { width: 22px; height: 22px; fill: #eaaf15; filter: drop-shadow(0 0 6px rgba(234,175,21,0.4)); }
-    .support-premium-box { width: 100%; background: linear-gradient(135deg, #1b122b 0%, #0d0914 100%); border: 1px solid rgba(168,85,247,0.2); border-radius: 20px; padding: 30px 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .support-premium-box { width: 100%; background: linear-gradient(135deg, #1b122b 0%, #0d0914 100%); border: 1px solid rgba(168,85,247,0.2); border-radius: 20px; padding: 30px 20px; text-align: center; }
     .support-premium-box p { font-size: 14px; color: #9ca3af; line-height: 1.5; padding: 0 10px; }
-    .elementx-interactive-btn { width: 85%; padding: 14px; background: linear-gradient(135deg, #ff2a85 0%, #b30059 100%); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 15px; text-decoration: none; display: inline-block; box-shadow: 0 6px 20px rgba(255,42,133,0.3); }
+    .elementx-interactive-btn { width: 85%; padding: 14px; background: linear-gradient(135deg, #ff2a85 0%, #b30059 100%); color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 15px; display: inline-block; }
 
-    /* شريط القوائم السفلي المطور لـ OKX */
-    .bottom-nav { position: absolute; bottom: 0; left: 0; width: 100%; height: 75px; background-color: #101317; border-top: 1px solid #1c2127; display: flex; direction: ltr; justify-content: space-around; align-items: center; padding-bottom: 10px; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; color: #9ca3af; font-size: 11px; cursor: pointer; text-decoration: none; width: 20%; transition: all 0.2s ease; }
+    /* شريط القوائم السفلي المطور لـ OKX - تحديث محسّن */
+    .bottom-nav {
+        position: absolute; bottom: 0; left: 0; width: 100%; height: 85px;
+        background-color: #0a0c0f; border-top: 1px solid #1c2127;
+        display: flex; direction: ltr; justify-content: space-around; align-items: flex-start; padding-top: 8px;
+        box-shadow: 0 -4px 20px rgba(0, 211, 149, 0.05);
+    }
+    .nav-item {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: #6b7280; font-size: 10px; cursor: pointer;
+        text-decoration: none; width: 18%; transition: all 0.3s ease; font-weight: 600;
+    }
     .nav-item.active-menu { color: #ffffff !important; }
     .nav-item.active-menu svg { fill: #00d395; }
-    .nav-item.trade-center { position: relative; bottom: 12px; background: #101317; width: 54px; height: 54px; border-radius: 50%; justify-content: center; border: 1px solid #1c2127; }
-    .nav-item.trade-center svg { stroke: #9ca3af; width: 24px; height: 24px; }
-    .nav-item.trade-center span { position: absolute; bottom: -22px; color: #9ca3af; font-weight: bold; }
-    .nav-item.trade-center.active-white { background: #ffffff !important; box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4); border-color: #ffffff; }
+    .nav-item.trade-center {
+        position: relative; bottom: 18px;
+        background: #101317; width: 60px; height: 60px; border-radius: 50%;
+        justify-content: center; border: 2px solid #1c2127;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    }
+    .nav-item.trade-center svg { stroke: #6b7280; width: 26px; height: 26px; }
+    .nav-item.trade-center span { position: absolute; bottom: -26px; color: #6b7280; font-weight: bold; font-size: 9px; }
+    .nav-item.trade-center.active-white {
+        background: #ffffff !important; box-shadow: 0 6px 30px rgba(0, 211, 149, 0.5);
+        border-color: #ffffff;
+    }
     .nav-item.trade-center.active-white svg { stroke: #000000 !important; }
     .nav-item.trade-center.active-white span { color: #ffffff !important; }
-    .nav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
-                      </style>
-                      </head>
+    .nav-item svg {
+        width: 24px; height: 24px; margin-bottom: 3px; fill: currentColor;
+    }
+</style>
+</head>
 <body>
     <!-- قماش رسم شبكة جزيئات OKX المتوهجة -->
     <canvas id="okxParticleCanvas"></canvas>
@@ -310,7 +332,8 @@
             <div class="check-icon"></div>
         </div>
     </div>
-        <!-- واجهة التطبيق والمنصة الكبرى بعد تخطي حاجز الدخول -->
+    
+    <!-- واجهة التطبيق والمنصة الكبرى بعد تخطي حاجز الدخول -->
     <div class="main-app-interface" id="mainApp">
         
         <!-- 🏠 صفحة المهام الرئيسية النظيفة تماماً (Home Page) -->
@@ -351,54 +374,66 @@
             <!-- الحاوية البرمجية التلقائية لتكرار الـ 50 مهمة النظيفة لتجنب ثقل الكود وعرقلة الرفع -->
             <div id="htmlDynamicTasksContainer" style="display: flex; flex-direction: column; gap: 22px; width: 100%;"></div>
         </div>
-                <!-- 📈 صفحة باقات الاستثمار والتداول (Trade Page) -->
+        
+        <!-- 📈 صفحة باقات الاستثمار والتداول (Trade Page) -->
         <div class="app-page-view" id="page-trade">
             <!-- الباقة الأولى (30 USDT) -->
             <div class="crypto-package-card">
                 <div class="card-left-section">
                     <svg viewBox="0 0 100 100" style="width: 58px; height: 58px;">
                         <g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))">
-                            <polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="linear-gradient(#a855f7, #6366f1)" stroke-width="4" stroke-linejoin="round"/>
-                            <path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#a855f7"/>
+                            <polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/>
                         </g>
                     </svg>
                 </div>
                 <div class="card-center-section"><div class="usdt-main-balance">30USDT</div><div class="usdt-sub-rate-box">3.50USDT</div></div>
                 <div class="card-right-section">
-                    <img class="tether-coins-stack-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><ellipse cx='45' cy='65' rx='28' ry='13' fill='%23007d53'/><ellipse cx='45' cy='61' rx='28' ry='13' fill='%23009664'/><ellipse cx='45' cy='57' rx='28' ry='13' fill='%2300b378'/><ellipse cx='45' cy='53' rx='28' ry='13' fill='%2300d395' stroke='%23fff' stroke-width='1.2'/><circle cx='45' cy='53' r='14' fill='%23009664'/><path d='M45 43v20M36 49h18M33 54h24' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/></svg>" alt="Tether Stack">
+                    <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
+                        <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
+                        <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
+                        <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
+                        <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" />
+                    </svg>
                 </div>
             </div>
             <button class="activate-package-btn" id="pkg-btn-1" onclick="openPaymentModal('First Tier', '30', 1)">Activate Package</button>
 
             <!-- الباقة الثانية (60 USDT) -->
             <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="linear-gradient(#a855f7, #6366f1)" stroke-width="4" stroke-linejoin="round"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#a855f7"/></g></svg></div>
+                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">60USDT</div><div class="usdt-sub-rate-box">7USDT</div></div>
-                <div class="card-right-section"><img class="tether-coins-stack-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><ellipse cx='45' cy='65' rx='28' ry='13' fill='%23007d53'/><ellipse cx='45' cy='61' rx='28' ry='13' fill='%23009664'/><ellipse cx='45' cy='57' rx='28' ry='13' fill='%2300b378'/><ellipse cx='45' cy='53' rx='28' ry='13' fill='%2300d395' stroke='%23fff' stroke-width='1.2'/><circle cx='45' cy='53' r='14' fill='%23009664'/><path d='M45 43v20M36 49h18M33 54h24' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/></svg>" alt="Tether Stack"></div>
+                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
             </div>
             <button class="activate-package-btn" id="pkg-btn-2" onclick="openPaymentModal('Second Tier', '60', 2)">Activate Package</button>
 
             <!-- الباقة الثالثة (90 USDT) -->
             <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="linear-gradient(#a855f7, #6366f1)" stroke-width="4" stroke-linejoin="round"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#a855f7"/></g></svg></div>
+                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">90USDT</div><div class="usdt-sub-rate-box">10USDT</div></div>
-                <div class="card-right-section"><img class="tether-coins-stack-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><ellipse cx='45' cy='65' rx='28' ry='13' fill='%23007d53'/><ellipse cx='45' cy='61' rx='28' ry='13' fill='%23009664'/><ellipse cx='45' cy='57' rx='28' ry='13' fill='%2300b378'/><ellipse cx='45' cy='53' rx='28' ry='13' fill='%2300d395' stroke='%23fff' stroke-width='1.2'/><circle cx='45' cy='53' r='14' fill='%23009664'/><path d='M45 43v20M36 49h18M33 54h24' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/></svg>" alt="Tether Stack"></div>
+                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
             </div>
             <button class="activate-package-btn" id="pkg-btn-3" onclick="openPaymentModal('Third Tier', '90', 3)">Activate Package</button>
 
             <!-- الباقة الرابعة (150 USDT) -->
             <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="linear-gradient(#a855f7, #6366f1)" stroke-width="4" stroke-linejoin="round"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#a855f7"/></g></svg></div>
+                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">150USDT</div><div class="usdt-sub-rate-box">18USDT</div></div>
-                <div class="card-right-section"><img class="tether-coins-stack-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><ellipse cx='45' cy='65' rx='28' ry='13' fill='%23007d53'/><ellipse cx='45' cy='61' rx='28' ry='13' fill='%23009664'/><ellipse cx='45' cy='57' rx='28' ry='13' fill='%2300b378'/><ellipse cx='45' cy='53' rx='28' ry='13' fill='%2300d395' stroke='%23fff' stroke-width='1.2'/><circle cx='45' cy='53' r='14' fill='%23009664'/><path d='M45 43v20M36 49h18M33 54h24' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/></svg>" alt="Tether Stack"></div>
+                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
             </div>
             <button class="activate-package-btn" id="pkg-btn-4" onclick="openPaymentModal('Fourth Tier', '150', 4)">Activate Package</button>
 
             <!-- الباقة الخامسة (300 USDT) -->
             <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="linear-gradient(#a855f7, #6366f1)" stroke-width="4" stroke-linejoin="round"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm25 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#a855f7"/></g></svg></div>
+                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
                 <div class="card-center-section"><div class="usdt-main-balance">300USDT</div><div class="usdt-sub-rate-box">40USDT</div></div>
-                <div class="card-right-section"><img class="tether-coins-stack-img" src="data:image/svg+xml;utf8,<svg xmlns='http://w3.org' viewBox='0 0 100 100'><ellipse cx='45' cy='65' rx='28' ry='13' fill='%23007d53'/><ellipse cx='45' cy='61' rx='28' ry='13' fill='%23009664'/><ellipse cx='45' cy='57' rx='28' ry='13' fill='%2300b378'/><ellipse cx='45' cy='53' rx='28' ry='13' fill='%2300d395' stroke='%23fff' stroke-width='1.2'/><circle cx='45' cy='53' r='14' fill='%23009664'/><path d='M45 43v20M36 49h18M33 54h24' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/></svg>" alt="Tether Stack"></div>
+                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
             </div>
             <button class="activate-package-btn" id="pkg-btn-5" onclick="openPaymentModal('Fifth Tier', '300', 5)">Activate Package</button>
         </div>
@@ -413,7 +448,8 @@
                 <div class="modal-timer-ticker" id="modalCountdownTicker">Remaining Time: 50:00</div>
             </div>
         </div>
-                <!-- 🔷 صفحة إدارة الرصيد والسحب والشحن (Square Page) -->
+
+        <!-- 🔷 صفحة إدارة الرصيد والسحب والشحن (Square Page) -->
         <div class="app-page-view" id="page-square">
             <!-- كرت لوحة البيانات والأصول المتوهجة والخط التفاعلي ومحرك نبض السهم الصاعد كصورتك بالملي -->
             <div class="portfolio-graph-block">
@@ -439,7 +475,7 @@
                 </svg>
                 
                 <div class="graph-time-tabs">
-                    <span class="time-tab-btn active-tab">1D</span><span class="time-tab-btn">7D</span><span class="time-tab-btn">30D</span><span class="time-tab-btn">3M</span><span class="time-tab-btn">6M</span>
+                    <span class="time-tab-btn active-tab">1D</span><span class="time-tab-btn">7D</span><span class="time-tab-btn">30D</span><span class="time-tab-btn">3M</span><span class="time-tab-btn">1Y</span>
                 </div>
             </div>
 
@@ -477,8 +513,14 @@
                 <!-- صورة تطبيق Elementx الفخمة وشعار المحفظة المدمج برسم الـ SVG النقي عالي التوهج والشفافية -->
                 <svg viewBox="0 0 100 100" style="width: 90px; height: 90px; margin-bottom: 5px;">
                     <g filter="drop-shadow(0 0 14px #ff2a85)">
-                        <rect x="12" y="12" width="76" height="76" rx="24" fill="#090a0f" stroke="linear-gradient(#ff2a85, #b30059)" stroke-width="4.5"/>
-                        <path d="M32 32 L68 68 M68 32 L32 68" stroke="linear-gradient(#ff2a85, #b30059)" stroke-width="11" stroke-linecap="round"/>
+                        <rect x="12" y="12" width="76" height="76" rx="24" fill="#090a0f" stroke="url(#gradPink)" stroke-width="4.5"/>
+                        <defs>
+                            <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff2a85;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#b30059;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M32 32 L68 68 M68 32 L32 68" stroke="url(#gradPink)" stroke-width="11" stroke-linecap="round"/>
                         <circle cx="50" cy="50" r="14" fill="#090a0f" stroke="#ffffff" stroke-width="3" />
                     </g>
                 </svg>
@@ -490,33 +532,189 @@
 
         <!-- شريط القوائم والتنقل السفلي الفخم لـ OKX التفاعلي بالكامل لربط وإطلاق الصفحات الأربعة بسلاسة -->
         <div class="bottom-nav">
-            <div class="nav-item" id="nav-portfolio-btn" onclick="switchPage('portfolio')">
-                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
-                <span>Portfolio</span>
+            <div class="nav-item" id="nav-home-btn" onclick="switchPage('home')">
+                <svg viewBox="0 0 24 24"><path d="M4 20h3V10H4v10zm6 0h3V4h-3v16zm6 0h3v-7h-3v7z"/></svg>
+                <span>Home</span>
             </div>
-            <div class="nav-item" id="nav-earn-btn" onclick="switchPage('earn')">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
-                <span>Earn</span>
+            <div class="nav-item" id="nav-square-btn" onclick="switchPage('square')">
+                <svg viewBox="0 0 24 24"><path d="M20 18.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM17 12v1a4 4 0 0 0 4 4h1v-2h-1a2 2 0 0 1-2-2v-1h-2zM5 21a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5zM5 3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H5z"/></svg>
+                <span>Square</span>
             </div>
             <div class="nav-item trade-center" id="targetTradeBtn" onclick="switchPage('trade')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
                 <span>Trade</span>
             </div>
-            <div class="nav-item" id="nav-square-btn" onclick="switchPage('square')">
-                <svg viewBox="0 0 24 24"><path d="M20 18.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM17 12v1a4 4 0 0 0 4 4h1v-2h-1a2 2 0 0 1-2-2v-1h-2zM5 21a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5z"/></svg>
-                <span>Square</span>
+            <div class="nav-item" id="nav-earn-btn" onclick="switchPage('earn')">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                <span>Earn</span>
             </div>
-            <div class="nav-item active-menu" id="nav-home-btn" onclick="switchPage('home')">
-                <svg viewBox="0 0 24 24"><path d="M4 20h3V10H4v10zm6 0h3V4h-3v16zm6 0h3v-7h-3v7z"/></svg>
-                <span>Home</span>
+            <div class="nav-item active-menu" id="nav-portfolio-btn" onclick="switchPage('portfolio')">
+                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
+                <span>Portfolio</span>
             </div>
         </div>
     </div>
-        <script>
+
+    <script>
         let currentActivePkgId = null;
         let countdownInterval = null;
 
-        // 🌟 ميزة الحفظ التلقائي وجلسات الاستمرار الذكية ليبقى الموقع مفتوحاً دائماً للمسجلين
+        // 🌟 ميزة الحف�� التلقائي وجلسات الاستمرار الذكية ليبقى الموقع مفتوحاً دائماً للمسجلين
         window.addEventListener('DOMContentLoaded', () => {
-            const savedSession = localStorage.getItem('hr_user_active_
+            const savedSession = localStorage.getItem('hr_user_active_session');
+            generateDynamicTasks(50);
+            generateChatRooms(10);
             
+            if (savedSession) {
+                document.getElementById('authBox').style.display = 'none';
+                document.getElementById('mainApp').classList.add('show');
+            }
+        });
+
+        function triggerRegistration() {
+            const overlay = document.getElementById('overlayScreen');
+            const loader = document.getElementById('mainLoader');
+            const check = document.getElementById('successCheck');
+            
+            overlay.classList.add('active');
+            loader.style.display = 'block';
+            check.style.display = 'none';
+            
+            setTimeout(() => {
+                loader.style.display = 'none';
+                check.style.display = 'block';
+                localStorage.setItem('hr_user_active_session', 'true');
+                
+                setTimeout(() => {
+                    overlay.classList.remove('active');
+                    document.getElementById('authBox').style.display = 'none';
+                    document.getElementById('mainApp').classList.add('show');
+                }, 1200);
+            }, 2000);
+        }
+
+        function showLoginError() {
+            document.getElementById('authBox').classList.add('vibrate');
+            document.getElementById('loginAlert').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('authBox').classList.remove('vibrate');
+            }, 300);
+        }
+
+        function switchPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.app-page-view').forEach(page => page.classList.remove('active-page'));
+            
+            // Show selected page
+            document.getElementById(`page-${pageName}`).classList.add('active-page');
+            
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active-menu', 'active-white'));
+            
+            if (pageName === 'trade') {
+                document.getElementById('targetTradeBtn').classList.add('active-white');
+            } else {
+                document.getElementById(`nav-${pageName}-btn`).classList.add('active-menu');
+            }
+        }
+
+        function generateDynamicTasks(count) {
+            const container = document.getElementById('htmlDynamicTasksContainer');
+            for (let i = 2; i <= count; i++) {
+                const card = document.createElement('div');
+                card.className = 'youtube-task-card';
+                card.onclick = openTaskPaymentModal;
+                card.innerHTML = `
+                    <div class="task-left-coins">
+                        <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
+                            <g filter="drop-shadow(0px 3px 6px rgba(0,211,149,0.35))">
+                                <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
+                                <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
+                                <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
+                                <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1.2" />
+                                <circle cx="45" cy="53" r="14" fill="#009664" />
+                                <path d="M45 43v20M36 49h18M33 54h24" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="task-center-text">YouTube Task Premium Link</div>
+                    <div class="task-right-youtube">
+                        <svg viewBox="0 0 24 24" fill="#161914" style="width: 44px; height: 44px;">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        function generateChatRooms(count) {
+            const container = document.getElementById('dynamicChatRoomsContainer');
+            for (let i = 1; i <= count; i++) {
+                const room = document.createElement('div');
+                room.className = 'chat-room-locked-card';
+                room.innerHTML = `
+                    <span class="room-title-meta">Premium Chat Room ${i}</span>
+                    <svg class="lock-glowing-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16h4v2h-4v-2zm0-5h4v4h-4v-4zm0-5h4v4h-4v-4z"/></svg>
+                `;
+                container.appendChild(room);
+            }
+        }
+
+        function openPaymentModal(tierName, amount, pkgId) {
+            currentActivePkgId = pkgId;
+            document.getElementById('paymentModal').classList.add('open');
+            startCountdown();
+        }
+
+        function openTaskPaymentModal() {
+            document.getElementById('paymentModal').classList.add('open');
+            startCountdown();
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('open');
+            if (countdownInterval) clearInterval(countdownInterval);
+        }
+
+        function copyWalletAddressAndConfirm() {
+            const addr = document.getElementById('walletAddr').textContent;
+            navigator.clipboard.writeText(addr);
+            
+            if (currentActivePkgId) {
+                document.getElementById(`pkg-btn-${currentActivePkgId}`).textContent = 'Processing...';
+                document.getElementById(`pkg-btn-${currentActivePkgId}`).classList.add('sent');
+            }
+            
+            closePaymentModal();
+        }
+
+        function openDepositModal() {
+            alert('Deposit feature coming soon!');
+        }
+
+        function triggerWithdrawError() {
+            alert('Withdrawal request received. Please check your email for confirmation.');
+        }
+
+        function startCountdown() {
+            let timeLeft = 50 * 60;
+            const ticker = document.getElementById('modalCountdownTicker');
+            
+            if (countdownInterval) clearInterval(countdownInterval);
+            
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                ticker.textContent = `Remaining Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    closePaymentModal();
+                    clearInterval(countdownInterval);
+                }
+                timeLeft--;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
