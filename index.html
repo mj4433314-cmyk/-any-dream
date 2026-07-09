@@ -3,258 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب</title>
-    <!-- استدعاء خط Cairo الأنيق وFontAwesome للأيقونات -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>إنشاء حساب وتداول</title>
+    <!-- استدعاء الخطوط والأيقونات من خوادم سريعة -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cairo:wght@600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        /* الحاوية الرئيسية للتطبيق */
-        .app-container {
-            width: 100%;
-            max-width: 420px;
-            background: #ffffff;
-            padding: 10px 15px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ترويسة الصفحة (اللوجو ورابط الدخول) */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .login-link {
-            color: #4c8bf5;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .logo-icon {
-            font-size: 32px;
-            color: #0066ff;
-            transform: rotate(-45deg);
-        }
-
-        /* العنوان الرئيسي */
-        .main-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 25px;
-        }
-
-        /* تنسيق الحقول */
-        .input-wrapper {
-            margin-bottom: 20px;
-        }
-
-        .input-label {
-            display: block;
-            font-size: 14px;
-            color: #4a4a4a;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .arrow-down {
-            font-size: 10px;
-            color: #666;
-            margin-right: 4px;
-        }
-
-        /* حاوية حقل الإدخال لدمج قائمة الدول بداخلها */
-        .field-container {
-            display: flex;
-            align-items: center;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            background-color: #ffffff;
-            overflow: hidden;
-            transition: border-color 0.2s;
-        }
-
-        .field-container:focus-within {
-            border-color: #a3bffa;
-            box-shadow: 0 0 0 3px rgba(163, 191, 250, 0.2);
-        }
-
-        .field-container input {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            outline: none;
-            font-size: 15px;
-            color: #1a1a1a;
-            background: transparent;
-        }
-
-        .field-container input::placeholder {
-            color: #b0b0b0;
-        }
-
-        /* تصميم قائمة رموز الدول الذكية */
-        .country-dropdown {
-            display: none; /* مخفية بالوضع الافتراضي للبريد */
-            border: none;
-            outline: none;
-            background: #f7fafc;
-            padding: 0 10px;
-            height: 100%;
-            font-size: 14px;
-            color: #333;
-            border-left: 1px solid #e2e8f0;
-            cursor: pointer;
-        }
-
-        /* كلاس مخصص يضاف بواسطة الجافا سكربت عند كتابة الأرقام */
-        .country-dropdown.show {
-            display: block;
-        }
-
-        /* زر التالي الأزرق الفاتح */
-        .next-btn {
-            width: 100%;
-            background-color: #adc6ff;
-            color: #ffffff;
-            border: none;
-            padding: 16px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            margin-bottom: 25px;
-            transition: background-color 0.2s;
-        }
-
-        .next-btn:hover {
-            background-color: #8daeff;
-        }
-
-        /* نص الفصل بين الطرق */
-        .divider-text {
-            text-align: center;
-            color: #888888;
-            font-size: 13px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        /* أزرار التواصل الاجتماعي */
-        .social-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-
-        .social-btn {
-            width: 100%;
-            background-color: #f5f5f5;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1a1a1a;
-            transition: background-color 0.2s;
-            text-decoration: none;
-        }
-
-        .social-btn:hover {
-            background-color: #ededed;
-        }
-
-        .social-btn i {
-            font-size: 20px;
-        }
-
-        .social-icon-g { color: #ea4335; }
-        .social-icon-t { color: #0088cc; }
-
-        /* التذييل للغة */
-        .footer-lang {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            color: #333333;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: auto;
-            padding-top: 20px;
-        }
-    </style>
+    <!-- ربط ملف التنسيق الخارجي -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="app-container" id="appCard">
         <!-- ترويسة الصفحة -->
         <div class="header">
-            <a href="#" class="login-link">تسجيل الدخول</a>
+            <span class="login-link" id="loginBtn">تسجيل الدخول</span>
             <div class="logo">
                 <div class="logo-icon"><i class="fa-solid fa-circle-notch"></i></div>
             </div>
         </div>
 
-        <h1 class="main-title">إنشاء حساب</h1>
+        <!-- العنوان الممدود -->
+        <h1 class="main-title">إنْشَـــاء حِـــسَاب</h1>
 
-        <!-- حقل البريد الإلكتروني / الهاتف الذكي -->
+        <!-- الحقول والمدخلات -->
         <div class="input-wrapper">
             <label class="input-label">بريدك الإلكتروني/الهاتف</label>
             <div class="field-container">
-                <!-- قائمة رموز الدول (تظهر بالرقم فقط) -->
                 <select id="country-code" class="country-dropdown">
                     <option value="+964">🇮🇶 +964</option>
                     <option value="+966">🇸🇦 +966</option>
                     <option value="+971">🇦🇪 +971</option>
                     <option value="+20">🇪🇬 +20</option>
-                    <option value="+962">🇯🇴 +962</option>
                 </select>
                 <input type="text" id="identifier-input" placeholder="البريد الإلكتروني/رقم الهاتف (من دون رمز الدولة)">
             </div>
         </div>
 
-        <!-- حقل رمز الإحالة -->
         <div class="input-wrapper">
             <label class="input-label">رمز الإحالة <span class="arrow-down">▲</span></label>
             <div class="field-container">
-                <input type="text" placeholder="أدخل رمز الإحالة">
+                <input type="text" id="referral-input" placeholder="أدخل رمز الإحالة">
             </div>
         </div>
 
-        <!-- زر المتابعة الرئيسي -->
-        <button class="next-btn">التالي</button>
+        <!-- زر المتابعة التفاعلي -->
+        <button class="next-btn" id="submitBtn">
+            <span id="btnText">التالي</span>
+            <div class="spinner" id="btnSpinner"></div>
+        </button>
 
         <div class="divider-text">أو المتابعة باستخدام</div>
 
-        <!-- أزرار تسجيل الدخول الاجتماعي -->
         <div class="social-buttons">
             <div class="social-btn">
                 <span>Google</span>
@@ -270,15 +70,46 @@
             </div>
         </div>
 
-        <!-- التذييل الخاص باللغة -->
         <div class="footer-lang">
             <span>بالعربية</span>
             <i class="fa-solid fa-globe"></i>
         </div>
+
+        <!-- شريط التداول والعملات المتحرك في الأسفل -->
+        <div class="trading-footer">
+            <div class="trading-title">الأسواق الحية</div>
+            <div class="ticker-container">
+                <div class="crypto-item" id="btc-item">
+                    <span class="crypto-name">BTC/USDT</span>
+                    <span class="crypto-price" id="btc-price">92,450.50</span>
+                    <span class="crypto-change positive" id="btc-change">+1.45%</span>
+                </div>
+                <div class="crypto-item" id="eth-item">
+                    <span class="crypto-name">ETH/USDT</span>
+                    <span class="crypto-price" id="eth-price">3,120.25</span>
+                    <span class="crypto-change positive" id="eth-change">+0.82%</span>
+                </div>
+                <div class="crypto-item" id="sol-item">
+                    <span class="crypto-name">SOL/USDT</span>
+                    <span class="crypto-price" id="sol-price">184.10</span>
+                    <span class="crypto-change negative" id="sol-change">-2.15%</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- كود الجافا سكربت للتحكم الذكي بمربع النص -->
+    <!-- نافذة الرسالة الاحترافية المنبثقة -->
+    <div class="modal-overlay" id="alertModal">
+        <div class="modal-box">
+            <div class="modal-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <div class="modal-text">عذراً، ليس لديك حساب مسبقاً!</div>
+            <button class="modal-btn" id="closeModal">حسناً</button>
+        </div>
+    </div>
+
+    <!-- كود الجافا سكربت للمنطق الذكي والأسعار المتغيرة كل 10 ثوانٍ -->
     <script>
+        // إعدادات الحقل الذكي لرموز الدول
         const inputField = document.getElementById('identifier-input');
         const countryDropdown = document.getElementById('country-code');
 
@@ -294,6 +125,77 @@
                 inputField.style.paddingRight = "16px";
             }
         });
+
+        // منطق رسالة التنبيه "عذراً ليس لديك حساب مسبقاً"
+        const loginBtn = document.getElementById('loginBtn');
+        const alertModal = document.getElementById('alertModal');
+        const closeModal = document.getElementById('closeModal');
+
+        loginBtn.addEventListener('click', () => { alertModal.classList.add('active'); });
+        closeModal.addEventListener('click', () => { alertModal.classList.remove('active'); });
+
+        // منطق زر "التالي" (اللودينج والاهتزاز)
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+        const appCard = document.getElementById('appCard');
+
+        submitBtn.addEventListener('click', () => {
+            appCard.classList.add('shake-active');
+            setTimeout(() => { appCard.classList.remove('shake-active'); }, 600);
+
+            btnText.style.display = 'none';
+            btnSpinner.style.display = 'block';
+            submitBtn.style.pointerEvents = 'none';
+            submitBtn.style.backgroundColor = '#8daeff';
+
+            setTimeout(() => {
+                btnText.style.display = 'block';
+                btnSpinner.style.display = 'none';
+                submitBtn.style.pointerEvents = 'auto';
+                submitBtn.style.backgroundColor = '#adc6ff';
+            }, 10000);
+        });
+
+        // منطق محاكاة التداول: تحديث الأرقام عشوائياً وبشكل حيوي كل 10 ثوانٍ
+        function updateTradingPrices() {
+            const tickers = [
+                { id: 'btc', basePrice: 92450, digits: 2 },
+                { id: 'eth', basePrice: 3120, digits: 2 },
+                { id: 'sol', basePrice: 184, digits: 2 }
+            ];
+
+            tickers.forEach(ticker => {
+                const priceEl = document.getElementById(`${ticker.id}-price`);
+                const changeEl = document.getElementById(`${ticker.id}-change`);
+                const itemEl = document.getElementById(`${ticker.id}-item`);
+
+                // حساب سعر ونسبة عشوائية جديدة للتداول
+                const changePercent = (Math.random() * 4 - 2).toFixed(2); // نسبة بين -2% و +2%
+                const priceFactor = 1 + (parseFloat(changePercent) / 100);
+                const newPrice = (ticker.basePrice * priceFactor).toFixed(ticker.digits);
+
+                // تغيير النصوص في الصفحة
+                priceEl.innerText = parseFloat(newPrice).toLocaleString('en-US', { minimumFractionDigits: 2 });
+                
+                if (changePercent >= 0) {
+                    changeEl.innerText = `+${changePercent}%`;
+                    changeEl.className = 'crypto-change positive';
+                    itemEl.style.borderRight = '3px solid #22c55e'; // وميض أخضر خفيف من الجانب
+                } else {
+                    changeEl.innerText = `${changePercent}%`;
+                    changeEl.className = 'crypto-change negative';
+                    itemEl.style.borderRight = '3px solid #ef4444'; // وميض أحمر خفيف من الجانب
+                }
+
+                // وميض حركي عند تحديث الرقم
+                priceEl.style.transform = 'scale(1.05)';
+                setTimeout(() => { priceEl.style.transform = 'scale(1)'; }, 300);
+            });
+        }
+
+        // تشغيل التحديث التلقائي الفوري وكل 10 ثوانٍ دقيقة
+        setInterval(updateTradingPrices, 10000);
     </script>
 </body>
 </html>
