@@ -3,13 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب جديد</title>
+    <title>تسجيل الدخول / إنشاء حساب</title>
     <!-- استدعاء خط Cairo الاحترافي من جوجل -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
+</head>
+<body>
+
+    <div class="register-container" id="mainContainer">
+        <!-- قسم الشعار المرفق بالصورة -->
+        <div class="logo-container">
+            <img src="logo.png" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
+        </div>
+
+        <h2>تسجيل الدخول</h2>
+        <p class="subtitle">أدخل بياناتك للوصول إلى لوحة التحكم</p>
+
+        <form id="loginForm" onsubmit="event.preventDefault(); handleLoginProcess();">
+            <!-- اسم المستخدم -->
+            <div class="input-group">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="input-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" placeholder="example@domain.com" required>
+            </div>
+
+            <!-- كلمة السر -->
+            <div class="input-group">
+                <label for="password">كلمة السر</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <!-- رمز الدعوة -->
+            <div class="input-group">
+                <label for="invite-code">رمز الدعوة (اختياري)</label>
+                <input type="text" id="invite-code" placeholder="أدخل رمز الدعوة إذا وجد">
+            </div>
+
+            <!-- رمز التحقق المرئي -->
+            <div class="input-group">
+                <label for="captcha">رمز التحقق</label>
+                <div class="captcha-wrapper">
+                    <input type="text" id="captcha" placeholder="أدخل الرمز الموضح" required>
+                    <div class="captcha-image-box">
+                        <img src="https://rawpixel.com" alt="Captcha">
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر التسجيل المطور بتأثير التحميل -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span id="btnText">تسجيل الدخول</span>
+                <div class="spinner" id="btnSpinner"></div>
+            </button>
+        </form>
+    </div>
+
+    <!-- نافذة الخطأ المنبثقة الاحترافية -->
+    <div class="modal-overlay" id="errorModal">
+        <div class="modal-box">
+            <img src="logo.png" class="modal-logo" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
+            <div class="modal-title">عذراً!</div>
+            <div class="modal-text">ليس لديك حساب مسبقاً في النظام. يرجى مراجعة الإدارة أو التأكد من رمز الدعوة الخاص بك.</div>
+            <button class="modal-close-btn" onclick="closeModal()">حسناً، فهمت</button>
+        </div>
+    </div>
+        <style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,6 +89,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow: hidden;
         }
 
         .register-container {
@@ -39,9 +104,21 @@
             max-width: 450px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
+            transition: transform 0.3s ease;
         }
 
-        /* تنسيق اللوجو ثلاثي الأبعاد المرفق */
+        /* أنيميشن الاهتزاز العالمي عند حدوث خطأ */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .shake-effect {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        /* تنسيق اللوجو ثلاثي الأبعاد */
         .logo-container {
             margin-bottom: 25px;
         }
@@ -97,7 +174,6 @@
             background: rgba(15, 5, 25, 0.8);
         }
 
-        /* تنسيق خانة رمز التحقق والصورة */
         .captcha-wrapper {
             display: flex;
             gap: 12px;
@@ -126,7 +202,9 @@
             object-fit: cover;
         }
 
+        /* زر التسجيل المطور ومؤشر التحميل */
         .submit-btn {
+            position: relative;
             width: 100%;
             padding: 14px;
             background: linear-gradient(90deg, #c41c8c 0%, #851263 100%);
@@ -139,72 +217,164 @@
             transition: all 0.3s ease;
             margin-top: 10px;
             box-shadow: 0 8px 20px rgba(196, 28, 140, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(196, 28, 140, 0.5);
             filter: brightness(1.1);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
+        .submit-btn:disabled {
+            background: linear-gradient(90deg, #741755 0%, #4d0e3a 100%);
+            cursor: not-allowed;
+            opacity: 0.8;
         }
-    </style>
-</head>
-<body>
 
-    <div class="register-container">
-        <!-- قسم الشعار المرفق بالصورة -->
-        <div class="logo-container">
-            <!-- ملاحظة: يمكنك رفع صورة الديسكورد وتسميتها logo.png بجانب هذا الملف ليظهر التصميم كاملاً -->
-            <img src="logo.png" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
-        </div>
+        .spinner {
+            display: none;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 0.8s linear infinite;
+        }
 
-        <h2>إنشاء حساب جديد</h2>
-        <p class="subtitle">أدخل بياناتك للانضمام إلينا</p>
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
-        <form onsubmit="event.preventDefault(); alert('تم الضغط على التسجيل بنجاح!');">
-            <!-- اسم المستخدم -->
-            <div class="input-group">
-                <label for="username">اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل اسم المستخدم المفضل" required>
-            </div>
+        /* تصميم نافذة الخطأ المنبثقة */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 3, 18, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
 
-            <!-- البريد الإلكتروني -->
-            <div class="input-group">
-                <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" placeholder="example@domain.com" required>
-            </div>
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-            <!-- كلمة السر -->
-            <div class="input-group">
-                <label for="password">كلمة السر</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
+        .modal-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            padding: 40px 30px;
+            border-radius: 24px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-            <!-- رمز الدعوة -->
-            <div class="input-group">
-                <label for="invite-code">رمز الدعوة (اختياري)</label>
-                <input type="text" id="invite-code" placeholder="أدخل رمز الدعوة إذا وجد">
-            </div>
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
 
-            <!-- رمز التحقق المرئي -->
-            <div class="input-group">
-                <label for="captcha">رمز التحقق</label>
-                <div class="captcha-wrapper">
-                    <input type="text" id="captcha" placeholder="أدخل الرمز الموضح" required>
-                    <div class="captcha-image-box">
-                        <!-- هنا تضع رابط صورة الكابتشا الخاصة بسيرفرك، وضعت صورة تجريبية مؤقتاً -->
-                        <img src="https://rawpixel.com" alt="Captcha">
-                    </div>
-                </div>
-            </div>
+        .modal-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 8px 16px rgba(196, 28, 140, 0.4));
+        }
 
-            <!-- زر التسجيل -->
-            <button type="submit" class="submit-btn">تسجيل الحساب</button>
-        </form>
-    </div>
+        .modal-title {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
 
+        .modal-text {
+            color: #d1c4e0;
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-close-btn {
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: #c41c8c;
+            border-color: #c41c8c;
+            box-shadow: 0 5px 15px rgba(196, 28, 140, 0.4);
+        }
+        </style>
+            <script>
+        const modal = document.getElementById('errorModal');
+        const mainContainer = document.getElementById('mainContainer');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        function handleLoginProcess() {
+            // 1. تشغيل مؤشر التحميل وقفل الزر لمنع السبام
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnSpinner.style.display = 'block';
+
+            // محاكاة الاتصال بالسيرفر لمدة ثانية ونصف
+            setTimeout(() => {
+                // 2. إنهاء التحميل وإرجاع الزر لوضعه الطبيعي
+                submitBtn.disabled = false;
+                btnText.style.display = 'block';
+                btnSpinner.style.display = 'none';
+
+                // 3. تفعيل أنيميشن الاهتزاز الفوري للمربع الرئيسي
+                mainContainer.classList.add('shake-effect');
+
+                // إزالة كلاس الاهتزاز فور انتهائه ليكون جاهزاً للضغط مرة أخرى
+                setTimeout(() => {
+                    mainContainer.classList.remove('shake-effect');
+                    // 4. فتح نافذة الخطأ "عذراً ليس لديك حساب" مباشرة بعد الاهتزاز
+                    showModal();
+                }, 400);
+
+            }, 1500); 
+        }
+
+        function showModal() {
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // إغلاق التنبيه عند الضغط على المساحة الشفافة الخارجية
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
