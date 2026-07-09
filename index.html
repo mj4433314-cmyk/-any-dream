@@ -177,8 +177,7 @@
         .social-icon-t { color: #0088cc; }
 
         .footer-lang { display: flex; justify-content: center; align-items: center; gap: 8px; color: #333333; font-size: 14px; font-weight: 700; margin-bottom: 25px; }
-
-        /* شريط أسعار أسفل شاشة التسجيل */
+                /* شريط أسعار أسفل شاشة التسجيل */
         .trading-footer { background-color: #111827; border-radius: 16px; padding: 14px; color: #ffffff; margin-top: auto; }
         .trading-title { font-size: 12px; color: #9ca3af; font-weight: 700; margin-bottom: 8px; }
         .ticker-container { display: flex; flex-direction: column; gap: 8px; }
@@ -187,7 +186,8 @@
         .crypto-price { font-size: 14px; font-weight: 700; font-family: monospace; }
 
         .hidden-step { display: none !important; }
-                /* تصميم لوحة التحكم الفخمة */
+
+        /* تصميم لوحة التحكم الفخمة */
         .dark-dashboard {
             background-color: #121212;
             color: #ffffff;
@@ -220,32 +220,33 @@
         .ticker-sym { font-size: 15px; font-weight: 700; color: #ffffff; }
         .ticker-price { font-size: 16px; font-weight: 700; font-family: monospace; color: #ffffff; }
         .ticker-change { font-size: 13px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #22c55e; background: rgba(34, 197, 94, 0.1); }
-
-        /* شريط الأزرار الخماسية السفلية */
+                /* شريط الأزرار الخماسية السفلية المحدث بالأسماء والأيقونات كالصورة */
         .bottom-nav {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 65px;
-            background-color: #121212;
-            border-top: 1px solid #1a1a1a;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding-bottom: env(safe-area-inset-bottom);
+            bottom: 0; left: 0; right: 0;
+            height: 70px;
+            background-color: #161616;
+            border-top: 1px solid #262626;
+            display: flex; justify-content: space-around; align-items: center;
+            padding-bottom: max(6px, env(safe-area-inset-bottom));
             z-index: 100;
+            direction: ltr;
         }
 
-        .nav-item { display: flex; align-items: center; justify-content: center; color: #404040; cursor: pointer; transition: color 0.2s ease; flex: 1; height: 100%; }
-        .nav-item i { font-size: 20px; }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #7d7d7d; cursor: pointer; flex: 1; height: 100%; transition: color 0.2s ease;
+        }
+
+        .nav-item i { font-size: 20px; margin-bottom: 4px; }
+        .nav-item span { font-size: 11px; font-weight: 600; }
         .nav-item.active { color: #ffffff; }
 
         /* نافذة المودال والرسالة المنبثقة التوضيحية */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 9999; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 9999; padding: 20px; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .modal-box { background: #ffffff; padding: 30px 24px; border-radius: 20px; width: 90%; max-width: 360px; text-align: center; }
-        .modal-icon { font-size: 40px; color: #ff4d4f; margin-bottom: 15px; }
+        .modal-box { background: #ffffff; padding: 30px 24px; border-radius: 20px; width: 90%; max-width: 360px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .modal-icon { font-size: 45px; color: #ff4d4f; margin-bottom: 15px; }
         .modal-text { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 20px; }
         .modal-btn { background: #4c8bf5; color: white; border: none; padding: 10px 30px; border-radius: 20px; font-size: 15px; font-weight: 700; cursor: pointer; }
     </style>
@@ -342,17 +343,16 @@
                 </div>
             </div>
             <div class="bottom-nav">
-                <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
-                <div class="nav-item"><i class="fa-solid fa-chart-simple"></i></div>
-                <div class="nav-item"><i class="fa-solid fa-right-left"></i></div>
-                <div class="nav-item"><i class="fa-solid fa-chart-line"></i></div>
-                <div class="nav-item" id="assets-tab"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="nav-item active"><i class="fa-solid fa-circle-notch"></i><span>Home</span></div>
+                <div class="nav-item"><i class="fa-solid fa-chart-simple"></i><span>Markets</span></div>
+                <div class="nav-item"><i class="fa-solid fa-right-left"></i><span>Trade</span></div>
+                <div class="nav-item" id="futures-tab"><i class="fa-solid fa-chart-line"></i><span>Futures</span></div>
+                <div class="nav-item" id="assets-tab"><i class="fa-solid fa-wallet"></i><span>Assets</span></div>
             </div>
         </div>
 
     </div>
-
-    <div class="modal-overlay" id="alertModal">
+        <div class="modal-overlay" id="alertModal">
         <div class="modal-box">
             <div class="modal-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
             <div class="modal-text">عذراً ليس لديك حساب مسبقاً</div>
@@ -364,50 +364,56 @@
         const inputField = document.getElementById('identifier-input');
         const countryDropdown = document.getElementById('country-code');
         
-        inputField.addEventListener('input', function() {
-            const value = this.value.trim();
-            if (/^[0-9+]/.test(value) && value.length > 0) {
-                countryDropdown.classList.add('show');
-            } else { 
-                countryDropdown.classList.remove('show'); 
-            }
-        });
+        // فحص فوري لإظهار رمز الدولة بمجرد بدء كتابة رقم
+        if (inputField && countryDropdown) {
+            inputField.addEventListener('input', function() {
+                const value = this.value.trim();
+                if (/^[0-9+]/.test(value) && value.length > 0) {
+                    countryDropdown.classList.add('show');
+                } else { 
+                    countryDropdown.classList.remove('show'); 
+                }
+            });
+        }
 
         document.getElementById('loginBtn').addEventListener('click', () => { document.getElementById('alertModal').classList.add('active'); });
         document.getElementById('closeModal').addEventListener('click', () => { document.getElementById('alertModal').classList.remove('active'); });
 
+        // لودينج زر Next الـ 10 ثوانٍ بالشعار الاحترافي المضيء ثم علامة الصح
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
         const btnSpinner = document.getElementById('btnSpinner');
         const btnCheckmark = document.getElementById('btnCheckmark');
 
-        submitBtn.addEventListener('click', () => {
-            btnText.style.display = 'none';
-            btnSpinner.style.display = 'block';
-            submitBtn.style.pointerEvents = 'none';
-            submitBtn.style.backgroundColor = '#8daeff';
+        if (submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                btnText.style.display = 'none';
+                btnSpinner.style.display = 'block';
+                submitBtn.style.pointerEvents = 'none';
+                submitBtn.style.backgroundColor = '#8daeff';
 
-            setTimeout(() => {
-                btnSpinner.style.display = 'none';
-                btnCheckmark.style.display = 'block';
-                submitBtn.style.backgroundColor = '#22c55e';
-                
                 setTimeout(() => {
-                    document.getElementById('signup-step').style.display = 'none';
-                    document.getElementById('dashboard-step').classList.remove('hidden-step');
-                    document.getElementById('appCard').classList.add('no-padding-dash');
-                }, 600);
+                    btnSpinner.style.display = 'none';
+                    btnCheckmark.style.display = 'block';
+                    submitBtn.style.backgroundColor = '#22c55e';
+                    
+                    setTimeout(() => {
+                        document.getElementById('signup-step').style.display = 'none';
+                        document.getElementById('dashboard-step').classList.remove('hidden-step');
+                        document.getElementById('appCard').classList.add('no-padding-dash');
+                    }, 600);
 
-            }, 10000);
-        });
-
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', function() {
-                navItems.forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
+                }, 10000);
             });
-        });
+        }
+
+        // تفعيل التنقل والربط التفاعلي بين أزرار التبويبات السفلية الخمسة
+        const futuresTab = document.getElementById('futures-tab');
+        if (futuresTab) {
+            futuresTab.addEventListener('click', function() {
+                window.location.href = 'futures.html'; 
+            });
+        }
 
         const assetsTab = document.getElementById('assets-tab');
         if (assetsTab) {
@@ -416,6 +422,7 @@
             });
         }
 
+        // محاكاة دورية لتقلبات أسعار تداول التوصيات الحية في الصفحة الرئيسية
         setInterval(() => {
             const btcPriceEl = document.getElementById('dash-btc-price');
             const btcChangeEl = document.getElementById('dash-btc-change');
