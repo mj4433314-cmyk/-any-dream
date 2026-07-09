@@ -112,6 +112,10 @@
         box-shadow: 0 8px 25px rgba(0, 211, 149, 0.45);
     }
 
+    .btn-register:active {
+        transform: translateY(0);
+    }
+
     .btn-login {
         background-color: transparent;
         color: #9ca3af;
@@ -194,9 +198,9 @@
         width: 100%; background: #ffffff; padding: 18px 22px;
         display: flex; direction: ltr; align-items: center; justify-content: space-between;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); transition: transform 0.2s ease;
+        border-radius: 50px;
     }
-    .youtube-task-card { border-radius: 50px; cursor: pointer; } /* بيضاوي دائري نقي تماماً كصورتك */
-    .crypto-package-card { border-radius: 20px; }
+    .youtube-task-card { cursor: pointer; } /* بيضاوي دائري نقي تماماً كصورتك */
     .crypto-package-card:hover, .youtube-task-card:hover { transform: scale(1.02); }
 
     .card-left-section { display: flex; align-items: center; justify-content: center; }
@@ -204,7 +208,7 @@
     
     .card-center-section, .task-center-text { display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; margin: 0 12px; }
     .task-center-text { font-size: 17px; font-weight: 700; color: #101317; letter-spacing: 0.3px; }
-    .usdt-main-balance { font-size: 32px; font-weight: 800; color: #31a2dc; line-height: 1.1; margin-bottom: 8px; text-align: center; }
+    .usdt-main-balance { font-size: 32px; font-weight: 800; color: #1a9fd8; line-height: 1.1; margin-bottom: 8px; text-align: center; }
     .usdt-sub-rate-box { background: #000000; color: #ffffff; padding: 4px 14px; border-radius: 4px; font-size: 18px; font-weight: 700; text-align: center; }
     
     .card-right-section, .task-left-coins, .task-right-youtube { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 55px; }
@@ -299,6 +303,19 @@
     .nav-item svg {
         width: 24px; height: 24px; margin-bottom: 3px; fill: currentColor;
     }
+
+    /* Discord icon styling */
+    .discord-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Red flame logo styling */
+    .red-flame-logo {
+        width: 32px;
+        height: 32px;
+        margin-left: 8px;
+    }
 </style>
 </head>
 <body>
@@ -320,8 +337,8 @@
         <div class="input-group">
             <input type="text" placeholder="Invitation Code (Optional)">
         </div>
-        <button class="btn btn-register" onclick="triggerRegistration()">CREATE ACCOUNT</button>
-        <button class="btn btn-login" onclick="showLoginError()">LOG IN</button>
+        <button class="btn btn-register" id="createAccountBtn">CREATE ACCOUNT</button>
+        <button class="btn btn-login" id="loginBtn">LOG IN</button>
         <div class="alert-msg" id="loginAlert">Error: Account check failed.</div>
     </div>
 
@@ -338,104 +355,13 @@
         
         <!-- 🏠 صفحة المهام الرئيسية النظيفة تماماً (Home Page) -->
         <div class="app-page-view active-page" id="page-home">
-            <!-- الهيكل والنظام البصري المتكامل لكرت مهمة يوتيوب النقي تماماً بدون أرقام وبدون نصوص مشوشة -->
-            <div class="youtube-task-card" onclick="openTaskPaymentModal()">
-                <!-- شعار كومة وعملات التيثر المتراصة والمائلة باللون الفيروزي النيون بالـ SVG النقي -->
-                <div class="task-left-coins">
-                    <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
-                        <g filter="drop-shadow(0px 3px 6px rgba(0,211,149,0.35))">
-                            <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
-                            <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
-                            <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
-                            <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1.2" />
-                            <circle cx="45" cy="53" r="14" fill="#009664" />
-                            <path d="M45 43v20M36 49h18M33 54h24" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
-                            
-                            <ellipse cx="62" cy="45" rx="24" ry="11" fill="#007d53" />
-                            <ellipse cx="62" cy="41" rx="24" ry="11" fill="#009664" />
-                            <ellipse cx="62" cy="37" rx="24" ry="11" fill="#00b378" />
-                            <ellipse cx="62" cy="33" rx="24" ry="11" fill="#00d395" stroke="#ffffff" stroke-width="1.2" />
-                            <circle cx="62" cy="33" r="12" fill="#009664" />
-                            <path d="M62 25v16M54 29h16M51 34h22" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-                        </g>
-                    </svg>
-                </div>
-                
-                <!-- تم مسح أرقام المهام تماماً بناءً على طلبك ليكون غاية في النقاء والجمالية الحصرية -->
-                <div class="task-center-text">YouTube Task Premium Link</div>
-                
-                <!-- شعار يوتيوب الفخم باللون الداكن المات في أقصى اليمين من الكرت كالصورة تماماً -->
-                <div class="task-right-youtube">
-                    <svg viewBox="0 0 24 24" fill="#161914" style="width: 44px; height: 44px;">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                </div>
-            </div>
-            <!-- الحاوية البرمجية التلقائية لتكرار الـ 50 مهمة النظيفة لتجنب ثقل الكود وعرقلة الرفع -->
+            <!-- الحاوية البرمجية التلقائية لتكرار الـ 50 مهمة النظيفة بدون نصوص -->
             <div id="htmlDynamicTasksContainer" style="display: flex; flex-direction: column; gap: 22px; width: 100%;"></div>
         </div>
         
         <!-- 📈 صفحة باقات الاستثمار والتداول (Trade Page) -->
         <div class="app-page-view" id="page-trade">
-            <!-- الباقة الأولى (30 USDT) -->
-            <div class="crypto-package-card">
-                <div class="card-left-section">
-                    <svg viewBox="0 0 100 100" style="width: 58px; height: 58px;">
-                        <g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))">
-                            <polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4" stroke-linejoin="round"/>
-                            <defs>
-                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/>
-                        </g>
-                    </svg>
-                </div>
-                <div class="card-center-section"><div class="usdt-main-balance">30USDT</div><div class="usdt-sub-rate-box">3.50USDT</div></div>
-                <div class="card-right-section">
-                    <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
-                        <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
-                        <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
-                        <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
-                        <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" />
-                    </svg>
-                </div>
-            </div>
-            <button class="activate-package-btn" id="pkg-btn-1" onclick="openPaymentModal('First Tier', '30', 1)">Activate Package</button>
-
-            <!-- الباقة الثانية (60 USDT) -->
-            <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
-                <div class="card-center-section"><div class="usdt-main-balance">60USDT</div><div class="usdt-sub-rate-box">7USDT</div></div>
-                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
-            </div>
-            <button class="activate-package-btn" id="pkg-btn-2" onclick="openPaymentModal('Second Tier', '60', 2)">Activate Package</button>
-
-            <!-- الباقة الثالثة (90 USDT) -->
-            <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
-                <div class="card-center-section"><div class="usdt-main-balance">90USDT</div><div class="usdt-sub-rate-box">10USDT</div></div>
-                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
-            </div>
-            <button class="activate-package-btn" id="pkg-btn-3" onclick="openPaymentModal('Third Tier', '90', 3)">Activate Package</button>
-
-            <!-- الباقة الرابعة (150 USDT) -->
-            <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
-                <div class="card-center-section"><div class="usdt-main-balance">150USDT</div><div class="usdt-sub-rate-box">18USDT</div></div>
-                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
-            </div>
-            <button class="activate-package-btn" id="pkg-btn-4" onclick="openPaymentModal('Fourth Tier', '150', 4)">Activate Package</button>
-
-            <!-- الباقة الخامسة (300 USDT) -->
-            <div class="crypto-package-card">
-                <div class="card-left-section"><svg viewBox="0 0 100 100" style="width: 58px; height: 58px;"><g filter="drop-shadow(0px 4px 10px rgba(139,92,246,0.35))"><polygon points="50,10 88,32 88,78 50,100 12,78 12,32" fill="#130e24" stroke="url(#grad1)" stroke-width="4"/><path d="M68 38c-4.2-3.5-9.6-4.5-18-4.5s-13.8 1-18 4.5C21 51 21 68 25 76a44 45 0 0 0 25 10 44 45 0 0 0 25-10c4-8 4-25-7-38zm-30.5 22c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5zm23 0c-2.5 0-4.5-2.2-4.5-5s2-5 4.5-5 4.5 2.2 4.5 5-2 5-4.5 5z" fill="#ffffff"/></g></svg></div>
-                <div class="card-center-section"><div class="usdt-main-balance">300USDT</div><div class="usdt-sub-rate-box">40USDT</div></div>
-                <div class="card-right-section"><svg viewBox="0 0 100 100" style="width: 50px; height: 50px;"><ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" /><ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" /><ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" /><ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" /></svg></div>
-            </div>
-            <button class="activate-package-btn" id="pkg-btn-5" onclick="openPaymentModal('Fifth Tier', '300', 5)">Activate Package</button>
+            <div id="tradePackagesContainer" style="display: flex; flex-direction: column; gap: 0; width: 100%;"></div>
         </div>
 
         <!-- 🛡️ نافذة التحويل المنبثقة الموحدة المقفلة بـ OK والعداد التنازلي التلقائي -->
@@ -457,12 +383,12 @@
                     <span class="graph-title">Total Crypto Assets</span>
                     <span style="font-size:16px; color:#848e9c; cursor:pointer;">👁</span>
                 </div>
-                <div class="graph-asset-value">1,829.23 <span style="font-size:16px; color:#848e9c; font-weight:600;">USD</span></div>
+                <div class="graph-asset-value">0.00 <span style="font-size:16px; color:#848e9c; font-weight:600;">USD</span></div>
                 
-                <!-- مؤشر السهم الأخضر النابض والصاعد للأعلى تلقائياً بشكل مذهل -->
+                <!-- مؤشر السهم الأخضر النابض والصاعد للأعلى تل��ائياً بشكل مذهل -->
                 <div class="graph-rate-indicator">
                     <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
-                    + $982.22 (1D)
+                    + $0.00 (1D)
                 </div>
                 
                 <!-- رسم الخط البياني المنحني والمنقط المتوهج بدقة بالـ SVG بداخل الكود مباشرة -->
@@ -559,11 +485,16 @@
         let currentActivePkgId = null;
         let countdownInterval = null;
 
-        // 🌟 ميزة الحف�� التلقائي وجلسات الاستمرار الذكية ليبقى الموقع مفتوحاً دائماً للمسجلين
+        // 🌟 ميزة الحفظ التلقائي وجلسات الاستمرار الذكية ليبقى الموقع مفتوحاً دائماً للمسجلين
         window.addEventListener('DOMContentLoaded', () => {
             const savedSession = localStorage.getItem('hr_user_active_session');
             generateDynamicTasks(50);
+            generateTradePackages();
             generateChatRooms(10);
+            
+            // ربط الأزرار بالدوال
+            document.getElementById('createAccountBtn').addEventListener('click', triggerRegistration);
+            document.getElementById('loginBtn').addEventListener('click', showLoginError);
             
             if (savedSession) {
                 document.getElementById('authBox').style.display = 'none';
@@ -620,7 +551,7 @@
 
         function generateDynamicTasks(count) {
             const container = document.getElementById('htmlDynamicTasksContainer');
-            for (let i = 2; i <= count; i++) {
+            for (let i = 1; i <= count; i++) {
                 const card = document.createElement('div');
                 card.className = 'youtube-task-card';
                 card.onclick = openTaskPaymentModal;
@@ -637,7 +568,7 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="task-center-text">YouTube Task Premium Link</div>
+                    <div style="flex-grow: 1;"></div>
                     <div class="task-right-youtube">
                         <svg viewBox="0 0 24 24" fill="#161914" style="width: 44px; height: 44px;">
                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -646,6 +577,60 @@
                 `;
                 container.appendChild(card);
             }
+        }
+
+        function generateTradePackages() {
+            const packages = [
+                { main: '30USDT', sub: '3.50USDT', id: 1 },
+                { main: '60USDT', sub: '7USDT', id: 2 },
+                { main: '90USDT', sub: '10USDT', id: 3 },
+                { main: '150USDT', sub: '18USDT', id: 4 },
+                { main: '300USDT', sub: '40USDT', id: 5 }
+            ];
+
+            const container = document.getElementById('tradePackagesContainer');
+            
+            packages.forEach(pkg => {
+                // Create card
+                const card = document.createElement('div');
+                card.className = 'crypto-package-card';
+                card.style.marginBottom = '0';
+                card.innerHTML = `
+                    <div class="card-left-section">
+                        <svg class="discord-icon" viewBox="0 0 24 24">
+                            <path d="M20.317 4.3698a19.7995 19.7995 0 00-4.885-1.515a.06.06 0 00-.064.03c-.211.378-.444.879-.607 1.27a18.27 18.27 0 00-5.487 0c-.163-.39-.396-.891-.607-1.27a.064.064 0 00-.064-.029c-1.582.269-3.139.8-4.885 1.515a.06.06 0 00-.02.025C1.61 10.079 0 15.92 0 21.96a.064.064 0 00.015.059a19.93 19.93 0 005.993 2.98a.06.06 0 00.064-.022c.411-.583.822-1.196 1.226-1.84a.06.06 0 00-.033-.084a13.07 13.07 0 01-1.872-.892a.06.06 0 00-.006-.1a8.571 8.571 0 001.248-.664a.06.06 0 00.064-.008c3.928 1.953 8.181 1.953 12.064 0a.06.06 0 00.066.007c.42.316.839.645 1.248.667a.06.06 0 00-.006.1a12.251 12.251 0 01-1.873.892a.06.06 0 00-.033.083c.404.644.814 1.257 1.226 1.84a.06.06 0 00.064.022a19.947 19.947 0 005.993-2.98a.06.06 0 00.015-.059zM8.02 17.982c-1.182 0-2.157-.968-2.157-2.153c0-1.186.956-2.153 2.157-2.153c1.21 0 2.176.968 2.157 2.153c0 1.186-.946 2.153-2.157 2.153zm7.975 0c-1.183 0-2.157-.968-2.157-2.153c0-1.186.955-2.153 2.157-2.153c1.21 0 2.176.968 2.157 2.153c0 1.186-.946 2.153-2.157 2.153z" fill="#3C366B"/>
+                        </svg>
+                    </div>
+                    <div class="card-center-section">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <div class="usdt-main-balance">${pkg.main}</div>
+                            <svg class="red-flame-logo" viewBox="0 0 100 100">
+                                <path d="M50 10C40 25, 30 35, 30 50C30 70, 38 85, 50 85C62 85, 70 70, 70 50C70 35, 60 25, 50 10Z" fill="#FF3B30"/>
+                                <ellipse cx="45" cy="55" rx="4" ry="8" fill="#FFFFFF"/>
+                                <ellipse cx="55" cy="55" rx="4" ry="8" fill="#FFFFFF"/>
+                            </svg>
+                        </div>
+                        <div class="usdt-sub-rate-box">${pkg.sub}</div>
+                    </div>
+                    <div class="card-right-section">
+                        <svg viewBox="0 0 100 100" style="width: 50px; height: 50px;">
+                            <ellipse cx="45" cy="65" rx="28" ry="13" fill="#007d53" />
+                            <ellipse cx="45" cy="61" rx="28" ry="13" fill="#009664" />
+                            <ellipse cx="45" cy="57" rx="28" ry="13" fill="#00b378" />
+                            <ellipse cx="45" cy="53" rx="28" ry="13" fill="#00d395" stroke="#ffffff" stroke-width="1" />
+                        </svg>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Create button
+                const btn = document.createElement('button');
+                btn.className = 'activate-package-btn';
+                btn.id = `pkg-btn-${pkg.id}`;
+                btn.textContent = 'Activate Package';
+                btn.onclick = () => openPaymentModal(pkg.main, pkg.main, pkg.id);
+                container.appendChild(btn);
+            });
         }
 
         function generateChatRooms(count) {
