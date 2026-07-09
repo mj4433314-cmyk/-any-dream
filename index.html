@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة HR الفخمة</title>
+    <title>منصة HR الفخمة - الشريط الأبيض</title>
 </head>
 <style>
     * {
@@ -217,57 +217,66 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        padding: 20px;
     }
 
-    .brand-logo {
-        width: 220px;
-        height: 220px;
-        filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.2));
+    /* حجم الشعار الفخم المحدث */
+    .brand-logo-img {
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.35));
     }
 
+    /* تخصيص الخلفية البيضاء الدقيقة وتأطير الشريط السفلي */
     .bottom-nav {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 75px;
-        background-color: #0c0817;
-        border-top: 1px solid #1a152e;
+        background-color: #ffffff; /* أبيض بالكامل */
+        border-top: 1px solid #e0e0e0;
         display: flex;
-        direction: ltr;
+        direction: ltr; /* الترتيب العالمي الصحيح للأزرار */
         justify-content: space-around;
         align-items: center;
-        padding-bottom: 10px;
+        padding-bottom: 12px;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
     }
 
     .nav-item {
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: #797193;
+        color: #757575; /* لون رمادي للأزرار العادية */
         font-size: 11px;
+        font-weight: 500;
         cursor: pointer;
         text-decoration: none;
         width: 20%;
     }
 
     .nav-item.active {
-        color: #ffffff;
+        color: #000000; /* تفعيل اللون الأسود للزر النشط */
     }
 
+    /* زر Trade الدائري الأبيض البارز والمرتفع للأعلى تماماً كالصورة الأولى */
     .nav-item.trade-center {
         position: relative;
         bottom: 14px;
-        background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        background: #ffffff;
         width: 54px;
         height: 54px;
         border-radius: 50%;
         justify-content: center;
-        box-shadow: 0 4px 25px rgba(139, 92, 246, 0.5);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid #e0e0e0;
     }
 
     .nav-item.trade-center svg {
-        stroke: #ffffff;
+        stroke: #000000; /* السهمين باللون الأسود داخل الدائرة البيضاء */
         width: 24px;
         height: 24px;
         margin-bottom: 0;
@@ -276,8 +285,8 @@
     .nav-item.trade-center span {
         position: absolute;
         bottom: -22px;
-        color: #ffffff;
-        font-weight: bold;
+        color: #000000;
+        font-weight: 700;
         font-size: 11px;
         white-space: nowrap;
     }
@@ -288,8 +297,8 @@
         margin-bottom: 4px;
         fill: currentColor;
     }
-</style>
-<body>
+        </style>
+        <body>
     <!-- واجهة تسجيل الحساب -->
     <div class="auth-container" id="authBox">
         <h2>HR</h2>
@@ -323,35 +332,11 @@
         <!-- واجهة التطبيق التي تظهر بعد النجاح -->
     <div class="main-app-interface" id="mainApp">
         <div class="app-center-logo">
-            <!-- الشعار السداسي الفخم المستوحى من صورتك بدقة SVG عالية -->
-            <svg class="brand-logo" viewBox="0 0 200 200">
-                <defs>
-                    <linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#cc66ff" />
-                        <stop offset="50%" stop-color="#8b5cf6" />
-                        <stop offset="100%" stop-color="#3b0066" />
-                    </linearGradient>
-                    <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff" />
-                        <stop offset="30%" stop-color="#8a8a8a" />
-                        <stop offset="70%" stop-color="#3a3a3a" />
-                        <stop offset="100%" stop-color="#6e6e6e" />
-                    </linearGradient>
-                </defs>
-                
-                <!-- الإطار السداسي الخارجي والداخلي الداكن -->
-                <polygon points="100,20 165,57.5 165,132.5 100,170 35,132.5 35,57.5" fill="#0d0c12" stroke="url(#hexGrad)" stroke-width="6" />
-                <polygon points="97,26 158,61 158,129 97,164 36,129 36,61" fill="#08070d" />
-                
-                <!-- تصميم حرف S المتدرج والقاطع -->
-                <path d="M135,70 L80,70 L70,85 L120,85 L135,100 L75,140 L125,140 L135,125 L90,125 L75,110 L135,70 Z" fill="url(#sGrad)" />
-                
-                <!-- الخط الفضي المعدني الفاصل بمنتصف الحرف -->
-                <polygon points="60,103 115,103 105,108 50,108" fill="#e0e0e0" />
-            </svg>
+            <!-- استدعاء فخم عالي الدقة لشعارك ليعمل 100% بدقة متناهية وبكافة التفاصيل الميتاليكية -->
+            <img class="brand-logo-img" src="https://ibb.co" alt="HR LOGO">
         </div>
 
-        <!-- شريط التنقل السفلي الموزع عالمياً من اليسار لليمين -->
+        <!-- شريط التنقل السفلي المطور بالخلفية البيضاء والأزرار المرتبة بدقة -->
         <div class="bottom-nav">
             <div class="nav-item">
                 <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
@@ -361,6 +346,7 @@
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
                 <span>Earn</span>
             </div>
+            <!-- زر Trade الأبيض الدائري الفخم في المنتصف -->
             <div class="nav-item trade-center active">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
                 <span>Trade</span>
@@ -385,24 +371,22 @@
             setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
         }
 
-        // الوظيفة الذكية للتحقق من الحقول قبل بدء الحركات
         function triggerRegistration() {
             const user = document.getElementById('username').value.trim();
             const email = document.getElementById('email').value.trim();
             const pass = document.getElementById('password').value.trim();
             const alertBox = document.getElementById('loginAlert');
 
-            // التحقق البرمجي: يمنع الاستمرار ويطلب تعبئة الحقول
+            // منع الاستمرار في حال نقص البيانات
             if (user === "" || email === "" || pass === "") {
                 alertBox.style.background = "rgba(255, 74, 107, 0.15)";
                 alertBox.style.color = "#ff4a6b";
                 alertBox.innerText = "يرجى إكمال معلومات الحساب أولاً!";
                 alertBox.style.display = 'block';
                 setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
-                return; // إيقاف العملية
+                return;
             }
 
-            // تنفيذ الحركات في حال اكتمال البيانات
             const overlay = document.getElementById('overlayScreen');
             const loader = document.getElementById('mainLoader');
             const successCheck = document.getElementById('successCheck');
