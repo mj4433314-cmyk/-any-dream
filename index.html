@@ -633,17 +633,7 @@
             });
         }
 
-        function generateChatRooms(count) {
-            const container = document.getElementById('dynamicChatRoomsContainer');
-            for (let i = 1; i <= count; i++) {
-                const room = document.createElement('div');
-                room.className = 'chat-room-locked-card';
-                room.innerHTML = `
-                    <span class="room-title-meta">Premium Chat Room ${i}</span>
-                    <svg class="lock-glowing-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16h4v2h-4v-2zm0-5h4v4h-4v-4zm0-5h4v4h-4v-4z"/></svg>
-                `;
-                container.appendChild(room);
-            }
+    
         }
 
         function openPaymentModal(tierName, amount, pkgId) {
