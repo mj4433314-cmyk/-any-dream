@@ -12,7 +12,7 @@
 <body>
 
     <div class="register-container" id="mainContainer">
-        <!-- قسم الشعار المرفق بالصورة -->
+        <!-- قسم الشعار الجديد المرفق -->
         <div class="logo-container">
             <img src="logo.png" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
         </div>
@@ -64,7 +64,7 @@
         </form>
     </div>
 
-    <!-- نافذة الخطأ المنبثقة الاحترافية -->
+    <!-- نافذة الخطأ المنبثقة الاحترافية لشعارك الجديد -->
     <div class="modal-overlay" id="errorModal">
         <div class="modal-box">
             <img src="logo.png" class="modal-logo" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
@@ -82,7 +82,6 @@
         }
 
         body {
-            /* تدرج الألوان المطابق تماماً للصورة المرسلة */
             background: linear-gradient(135deg, #10041d 0%, #24093b 40%, #c41c8c 100%);
             min-height: 100vh;
             display: flex;
@@ -93,7 +92,6 @@
         }
 
         .register-container {
-            /* تصميم زجاجي عصري يتناسب مع الخلفية */
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -107,7 +105,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* أنيميشن الاهتزاز العالمي عند حدوث خطأ */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-8px); }
@@ -118,14 +115,14 @@
             animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
         }
 
-        /* تنسيق اللوجو ثلاثي الأبعاد */
         .logo-container {
             margin-bottom: 25px;
         }
         .logo-container img {
-            width: 90px;
+            width: 95px;
             height: auto;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+            border-radius: 50%; /* لجعل حواف الصورة السوداء ناعمة ودائرية ومتناسقة */
+            filter: drop-shadow(0 8px 20px rgba(196, 28, 140, 0.3));
         }
 
         h2 {
@@ -202,7 +199,6 @@
             object-fit: cover;
         }
 
-        /* زر التسجيل المطور ومؤشر التحميل */
         .submit-btn {
             position: relative;
             width: 100%;
@@ -248,7 +244,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* تصميم نافذة الخطأ المنبثقة */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -290,8 +285,9 @@
         }
 
         .modal-logo {
-            width: 80px;
+            width: 85px;
             height: auto;
+            border-radius: 50%;
             margin-bottom: 20px;
             filter: drop-shadow(0 8px 16px rgba(196, 28, 140, 0.4));
         }
@@ -327,8 +323,9 @@
             border-color: #c41c8c;
             box-shadow: 0 5px 15px rgba(196, 28, 140, 0.4);
         }
-        </style>
-            <script>
+                                        </style>
+
+        <script>
         const modal = document.getElementById('errorModal');
         const mainContainer = document.getElementById('mainContainer');
         const submitBtn = document.getElementById('submitBtn');
@@ -336,25 +333,19 @@
         const btnSpinner = document.getElementById('btnSpinner');
 
         function handleLoginProcess() {
-            // 1. تشغيل مؤشر التحميل وقفل الزر لمنع السبام
             submitBtn.disabled = true;
             btnText.style.display = 'none';
             btnSpinner.style.display = 'block';
 
-            // محاكاة الاتصال بالسيرفر لمدة ثانية ونصف
             setTimeout(() => {
-                // 2. إنهاء التحميل وإرجاع الزر لوضعه الطبيعي
                 submitBtn.disabled = false;
                 btnText.style.display = 'block';
                 btnSpinner.style.display = 'none';
 
-                // 3. تفعيل أنيميشن الاهتزاز الفوري للمربع الرئيسي
                 mainContainer.classList.add('shake-effect');
 
-                // إزالة كلاس الاهتزاز فور انتهائه ليكون جاهزاً للضغط مرة أخرى
                 setTimeout(() => {
                     mainContainer.classList.remove('shake-effect');
-                    // 4. فتح نافذة الخطأ "عذراً ليس لديك حساب" مباشرة بعد الاهتزاز
                     showModal();
                 }, 400);
 
@@ -369,7 +360,6 @@
             modal.classList.remove('active');
         }
 
-        // إغلاق التنبيه عند الضغط على المساحة الشفافة الخارجية
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 closeModal();
