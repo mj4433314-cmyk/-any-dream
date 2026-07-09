@@ -1,3 +1,4 @@
+/* التنسيق الأساسي ومعالجة شاشات الهاتف الهجينة */
 * {
     margin: 0;
     padding: 0;
@@ -76,15 +77,29 @@ html, body {
 }
 
 .country-dropdown {
-    display: none; border: none; outline: none; background: #f7fafc; padding: 0 10px; height: 100%; font-size: 14px; color: #333; border-left: 1px solid #e2e8f0; cursor: pointer; font-weight: 700;
+    display: none; border: none; outline: none; background: #f7fafc; padding: 0 10px; height: 52px; font-size: 14px; color: #333; border-left: 1px solid #e2e8f0; cursor: pointer; font-weight: 700;
 }
 .country-dropdown.show { display: block; }
 
 .next-btn {
     position: relative; width: 100%; background-color: #adc6ff; color: #ffffff; border: none; padding: 16px; border-radius: 30px; font-size: 18px; font-weight: 700; cursor: pointer; margin-top: 10px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; min-height: 58px;
+    font-family: 'Cairo', sans-serif !important;
+    transition: background-color 0.2s ease;
 }
 .active-btn { background-color: #0066ff !important; }
-.spinner { display: none; width: 24px; height: 24px; border: 3px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: #ffffff; animation: spin 1s ease-in-out infinite; }
+
+/* شعار اللودينج الاحترافي المضيء والمتحرك */
+.spinner { 
+    display: none; 
+    width: 26px; 
+    height: 26px; 
+    border: 3px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 50%; 
+    border-top-color: #ffffff; 
+    border-right-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: spin 0.8s linear infinite; 
+}
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .divider-text { text-align: center; color: #888888; font-size: 13px; margin-bottom: 16px; font-weight: 600; }
@@ -110,8 +125,6 @@ html, body {
 .otp-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 35px; direction: ltr; }
 .otp-input { width: 55px; height: 55px; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-size: 22px; font-weight: 700; color: #1a1a1a; outline: none; }
 .otp-input:focus { border-color: #0066ff; }
-.resend-text { text-align: center; font-size: 13px; color: #888888; margin-top: 15px; font-weight: 600; }
-.resend-link { color: #0066ff; cursor: pointer; font-weight: 700; }
 
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; z-index: 9999; }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
@@ -119,153 +132,3 @@ html, body {
 .modal-icon { font-size: 40px; color: #ff4d4f; margin-bottom: 15px; }
 .modal-text { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 20px; }
 .modal-btn { background: #4c8bf5; color: white; border: none; padding: 10px 30px; border-radius: 20px; font-size: 15px; font-weight: 700; cursor: pointer; }
-                .no-padding-dash {
-    padding: 0 !important;
-    background-color: #121212 !important;
-    overflow: hidden !important;
-}
-
-.dark-dashboard {
-    background-color: #121212;
-    color: #ffffff;
-    width: 100%;
-    height: 100%;
-    padding: 20px 15px 75px 15px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.dash-user { font-size: 22px; color: #262626; }
-.dash-actions { display: flex; gap: 18px; font-size: 18px; color: #262626; }
-
-.balance-card { background: #1a1a1a; padding: 20px; border-radius: 16px; margin-bottom: 25px; border: 1px solid #232323; }
-.balance-buttons { display: flex; gap: 10px; }
-.dash-action-btn { flex: 1; height: 38px; background: #262626; border: none; border-radius: 8px; }
-.deposit { background: #1a1a1a; border: 1px solid #262626; }
-
-.skeleton-block { margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
-.grid-2 { flex-direction: row; gap: 15px; }
-.sk-box { background: #1a1a1a; border-radius: 12px; border: 1px solid #232323; }
-.sk-box.long { flex: 1; height: 90px; }
-.sk-box.banner { height: 120px; width: 100%; background: #1a1a1a; }
-.sk-line { height: 12px; background: #1a1a1a; border-radius: 6px; width: 100%; }
-.sk-line.short { width: 40%; }
-
-.live-ticker-dash { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0 20px; direction: ltr; }
-.ticker-sym { font-size: 15px; font-weight: 700; color: #ffffff; }
-.ticker-price { font-size: 16px; font-weight: 700; font-family: monospace; color: #ffffff; }
-.ticker-change { font-size: 13px; font-weight: 700; padding: 3px 8px; border-radius: 6px; font-family: monospace; color: #22c55e; background: rgba(34, 197, 94, 0.1); }
-
-.bottom-nav {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 65px;
-    background-color: #121212;
-    border-top: 1px solid #1a1a1a;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-bottom: env(safe-area-inset-bottom);
-    z-index: 999;
-}
-
-.nav-item { display: flex; align-items: center; justify-content: center; color: #404040; cursor: pointer; transition: color 0.2s ease; flex: 1; height: 100%; }
-.nav-item i { font-size: 20px; }
-.nav-item.active { color: #ffffff; }
-// ملف الصوت الاحترافي المدمج
-const bellSound = new Audio('https://mixkit.co');
-
-// حقل رموز الدول التلقائي
-const inputField = document.getElementById('identifier-input');
-const countryDropdown = document.getElementById('country-code');
-if (inputField && countryDropdown) {
-    inputField.addEventListener('input', function() {
-        const value = this.value.trim();
-        if (/^[0-9+]+$/.test(value) && value.length > 0) {
-            countryDropdown.classList.add('show');
-            inputField.style.paddingRight = "10px";
-        } else {
-            countryDropdown.classList.remove('show');
-            inputField.style.paddingRight = "16px";
-        }
-    });
-}
-
-// نوافذ التنبيه المنبثقة للـ Login
-const loginBtn = document.getElementById('loginBtn');
-const alertModal = document.getElementById('alertModal');
-const closeModal = document.getElementById('closeModal');
-if (loginBtn && alertModal && closeModal) {
-    loginBtn.addEventListener('click', () => { alertModal.classList.add('active'); });
-    closeModal.addEventListener('click', () => { alertModal.classList.remove('active'); });
-}
-
-// لودينج 10 ثوانٍ مع تشغيل الجرس التفاعلي الفوري عند ضغط التالي
-const submitBtn = document.getElementById('submitBtn');
-if (submitBtn) {
-    submitBtn.addEventListener('click', () => {
-        bellSound.currentTime = 0;
-        bellSound.play().catch(e => console.log("Sound tracking"));
-
-        document.getElementById('btnText').style.display = 'none';
-        document.getElementById('btnSpinner').style.display = 'block';
-        submitBtn.style.pointerEvents = 'none';
-        submitBtn.style.backgroundColor = '#8daeff';
-
-        setTimeout(() => {
-            document.getElementById('signup-step').style.display = 'none';
-            document.getElementById('success-step').classList.remove('hidden-step');
-        }, 10000); 
-    });
-}
-
-// الانتقال إلى لوحة التحكم الهيكلية الداكنة
-const finishBtn = document.getElementById('finishBtn');
-if (finishBtn) {
-    finishBtn.addEventListener('click', () => {
-        document.getElementById('success-step').style.display = 'none';
-        document.getElementById('dashboard-step').classList.remove('hidden-step');
-        document.getElementById('appCard').classList.add('no-padding-dash');
-    });
-}
-
-// تشغيل لمس وتبديل الأزرار الخمسة السفلية لتبدو نشطة
-const navItems = document.querySelectorAll('.nav-item');
-navItems.forEach(item => {
-    item.addEventListener('click', function() {
-        navItems.forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-// محرك تحديث أسعار تداول التوصيات كل 10 ثوانٍ
-setInterval(() => {
-    const btcPriceEl = document.getElementById('dash-btc-price');
-    const btcChangeEl = document.getElementById('dash-btc-change');
-    if (btcPriceEl && btcChangeEl) {
-        const changePercent = (Math.random() * 4 - 2).toFixed(2);
-        const newPrice = (92450 * (1 + parseFloat(changePercent) / 100)).toFixed(2);
-        btcPriceEl.innerText = parseFloat(newPrice).toLocaleString('en-US', { minimumFractionDigits: 2 });
-        btcChangeEl.innerText = changePercent >= 0 ? `+${changePercent}%` : `${changePercent}%`;
-    }
-}, 10000);
-          // حركة الانتقال التلقائي الذكي بين حقول أرقام التوثيق للسرعة وسهولة الكتابة
-const otpInputs = document.querySelectorAll('.otp-input');
-otpInputs.forEach((input, index) => {
-    input.addEventListener('input', (e) => {
-        if (e.target.value.length === 1 && index < otpInputs.length - 1) {
-            otpInputs[index + 1].focus();
-        }
-    });
-    // معالجة الرجوع بالمسح للخلف (Backspace)
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
-            otpInputs[index - 1].focus();
-        }
-    });
-});
-          
