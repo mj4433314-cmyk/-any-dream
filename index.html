@@ -3,368 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول / إنشاء حساب</title>
-    <!-- استدعاء خط Cairo الاحترافي من جوجل -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>منصة التداول الاحترافية - المظهر البنفسجي</title>
 </head>
-<body>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    <div class="register-container" id="mainContainer">
-        <!-- قسم الشعار الجديد المرفق -->
-        <div class="logo-container">
-            <img src="logo.png" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
+    body {
+        background: radial-gradient(circle at center, #0f0a1c 0%, #05040a 100%);
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    /* واجهة التسجيل الأساسية */
+    .auth-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+        background: #110e1a;
+        border: 1px solid #231c36;
+        border-radius: 16px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+        text-align: center;
+        transition: all 0.5s ease;
+    }
+
+    .auth-container h2 {
+        margin-bottom: 25px;
+        background: linear-gradient(135deg, #a78bfa 0%, #6366f1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 24px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+        text-align: right;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 14px;
+        background: #1a1626;
+        border: 1px solid #2e2647;
+        border-radius: 8px;
+        color: white;
+        font-size: 15px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .input-group input:focus {
+        border-color: #8b5cf6;
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    .btn-register {
+        background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-register:hover {
+        opacity: 0.9;
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-login {
+        background-color: transparent;
+        color: #a7a2bc;
+        border: 1px solid #3c325c;
+        margin-top: 12px;
+    }
+
+    .btn-login:hover {
+        color: white;
+        border-color: #8b5cf6;
+    }
+
+    .alert-msg {
+        color: #ff4a6b;
+        font-size: 14px;
+        margin-top: 10px;
+        display: none;
+        font-weight: 500;
+    }
+</style>
+<style>
+    /* واجهة اللودينج والنجاح */
+    .overlay-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #05040a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .overlay-screen.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .loader {
+        width: 60px;
+        height: 60px;
+        border: 5px solid #1a1626;
+        border-top: 5px solid #8b5cf6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .success-checkmark {
+        display: none;
+        width: 80px;
+        height: 80px;
+        position: relative;
+    }
+
+    .success-checkmark .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: 4px solid #8b5cf6;
+    }
+
+    .success-checkmark .check-icon::after {
+        content: "";
+        position: absolute;
+        top: 18px;
+        left: 32px;
+        width: 15px;
+        height: 30px;
+        border: solid #8b5cf6;
+        border-width: 0 5px 5px 0;
+        transform: rotate(45deg);
+    }
+
+    .vibrate {
+        animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+    }
+
+    @keyframes shake {
+        10%, 90% { transform: translate3d(-2px, 0, 0); }
+        20%, 80% { transform: translate3d(4px, 0, 0); }
+        30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+        40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
+    .main-app-interface {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #05040a;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transform: translateY(100%);
+        transition: transform 0.6s cubic-bezier(0.1, 1, 0.1, 1);
+    }
+
+    .main-app-interface.show {
+        transform: translateY(0);
+    }
+
+    .app-center-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .brand-logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .bottom-nav {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 75px;
+        background-color: #110e1a;
+        border-top: 1px solid #231c36;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #797193;
+        font-size: 11px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .nav-item.active {
+        color: #ffffff;
+    }
+
+    .nav-item.trade-center {
+        position: relative;
+        bottom: 12px;
+        background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    }
+
+    .nav-item.trade-center svg {
+        stroke: #ffffff;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .nav-item.trade-center span {
+        position: absolute;
+        bottom: -22px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .nav-item svg {
+        width: 22px;
+        height: 22px;
+        margin-bottom: 4px;
+        fill: currentColor;
+    }
+        </style>
+        <body>
+    <!-- واجهة تسجيل الحساب -->
+    <div class="auth-container" id="authBox">
+        <h2>إنشاء حساب جديد</h2>
+        
+        <div class="input-group">
+            <input type="text" placeholder="اسم المستخدم" required>
+        </div>
+        <div class="input-group">
+            <input type="email" placeholder="البريد الإلكتروني" required>
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="كلمة السر" required>
+        </div>
+        <div class="input-group">
+            <input type="text" placeholder="رمز الدعوة (اختياري)">
         </div>
 
-        <h2>تسجيل الدخول</h2>
-        <p class="subtitle">أدخل بياناتك للوصول إلى لوحة التحكم</p>
-
-        <form id="loginForm" onsubmit="event.preventDefault(); handleLoginProcess();">
-            <!-- اسم المستخدم -->
-            <div class="input-group">
-                <label for="username">اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
-            </div>
-
-            <!-- البريد الإلكتروني -->
-            <div class="input-group">
-                <label for="email">البريد الإلكتروني</label>
-                <input type="email" id="email" placeholder="example@domain.com" required>
-            </div>
-
-            <!-- كلمة السر -->
-            <div class="input-group">
-                <label for="password">كلمة السر</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
-
-            <!-- رمز الدعوة -->
-            <div class="input-group">
-                <label for="invite-code">رمز الدعوة (اختياري)</label>
-                <input type="text" id="invite-code" placeholder="أدخل رمز الدعوة إذا وجد">
-            </div>
-
-            <!-- رمز التحقق المرئي -->
-            <div class="input-group">
-                <label for="captcha">رمز التحقق</label>
-                <div class="captcha-wrapper">
-                    <input type="text" id="captcha" placeholder="أدخل الرمز الموضح" required>
-                    <div class="captcha-image-box">
-                        <img src="https://rawpixel.com" alt="Captcha">
-                    </div>
-                </div>
-            </div>
-
-            <!-- زر التسجيل المطور بتأثير التحميل -->
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <span id="btnText">تسجيل الدخول</span>
-                <div class="spinner" id="btnSpinner"></div>
-            </button>
-        </form>
+        <button class="btn btn-register" onclick="triggerRegistration()">إنشاء حساب</button>
+        <button class="btn btn-login" onclick="showLoginError()">تسجيل الدخول</button>
+        
+        <div class="alert-msg" id="loginAlert">عذراً ليس لديك حساب مسبقاً</div>
     </div>
 
-    <!-- نافذة الخطأ المنبثقة الاحترافية لشعارك الجديد -->
-    <div class="modal-overlay" id="errorModal">
-        <div class="modal-box">
-            <img src="logo.png" class="modal-logo" alt="الشعار" onerror="this.src='https://website-files.com'; this.style.filter='none'">
-            <div class="modal-title">عذراً!</div>
-            <div class="modal-text">ليس لديك حساب مسبقاً في النظام. يرجى مراجعة الإدارة أو التأكد من رمز الدعوة الخاص بك.</div>
-            <button class="modal-close-btn" onclick="closeModal()">حسناً، فهمت</button>
+    <!-- شاشة اللودينج وعلامة النجاح -->
+    <div class="overlay-screen" id="overlayScreen">
+        <div class="loader" id="mainLoader"></div>
+        <div class="success-checkmark" id="successCheck">
+            <div class="check-icon"></div>
         </div>
     </div>
-        <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
+        <!-- واجهة التطبيق التي تظهر بعد النجاح -->
+    <div class="main-app-interface" id="mainApp">
+        <div class="app-center-logo">
+            <svg class="brand-logo" viewBox="0 0 200 200">
+                <defs>
+                    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a855f7" />
+                        <stop offset="100%" stop-color="#6366f1" />
+                    </linearGradient>
+                </defs>
+                <path d="M70,45 L130,45 L155,90 L120,150 L65,150 L45,110 L80,110 L95,130 L115,130 L135,95 L110,55 L75,55 Z" fill="url(#purpleGrad)" />
+                <path d="M140,80 L150,95 L125,145 L115,145 Z" fill="url(#purpleGrad)" opacity="0.8"/>
+            </svg>
+        </div>
 
-        body {
-            background: linear-gradient(135deg, #10041d 0%, #24093b 40%, #c41c8c 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .register-container {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 24px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
-        }
-
-        .shake-effect {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
-        }
-
-        .logo-container {
-            margin-bottom: 25px;
-        }
-        .logo-container img {
-            width: 95px;
-            height: auto;
-            border-radius: 50%; /* لجعل حواف الصورة السوداء ناعمة ودائرية ومتناسقة */
-            filter: drop-shadow(0 8px 20px rgba(196, 28, 140, 0.3));
-        }
-
-        h2 {
-            color: #ffffff;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        p.subtitle {
-            color: #b3a0c2;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: right;
-        }
-
-        .input-group label {
-            display: block;
-            color: #e2d5ed;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            padding-right: 4px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(15, 5, 25, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s ease;
-            text-align: right;
-        }
-
-        .input-group input:focus {
-            border-color: #c41c8c;
-            box-shadow: 0 0 12px rgba(196, 28, 140, 0.3);
-            background: rgba(15, 5, 25, 0.8);
-        }
-
-        .captcha-wrapper {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .captcha-wrapper input {
-            flex: 1;
-        }
-
-        .captcha-image-box {
-            background: #ffffff;
-            height: 48px;
-            width: 120px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
-        }
-
-        .captcha-image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .submit-btn {
-            position: relative;
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, #c41c8c 0%, #851263 100%);
-            border: none;
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 8px 20px rgba(196, 28, 140, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(196, 28, 140, 0.5);
-            filter: brightness(1.1);
-        }
-
-        .submit-btn:disabled {
-            background: linear-gradient(90deg, #741755 0%, #4d0e3a 100%);
-            cursor: not-allowed;
-            opacity: 0.8;
-        }
-
-        .spinner {
-            display: none;
-            width: 22px;
-            height: 22px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #ffffff;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 3, 18, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            padding: 40px 30px;
-            border-radius: 24px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            transform: scale(0.8);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-logo {
-            width: 85px;
-            height: auto;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 8px 16px rgba(196, 28, 140, 0.4));
-        }
-
-        .modal-title {
-            color: #ffffff;
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .modal-text {
-            color: #d1c4e0;
-            font-size: 15px;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .modal-close-btn {
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close-btn:hover {
-            background: #c41c8c;
-            border-color: #c41c8c;
-            box-shadow: 0 5px 15px rgba(196, 28, 140, 0.4);
-        }
-                                        </style>
-
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M4 20h3V10H4v10zm6 0h3V4h-3v16zm6 0h3v-7h-3v7z"/></svg>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M20 18.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM17 12v1a4 4 0 0 0 4 4h1v-2h-1a2 2 0 0 1-2-2v-1h-2zM5 21a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5z"/></svg>
+                <span>Square</span>
+            </div>
+            <div class="nav-item trade-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/></svg>
+                <span>Trade</span>
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                <span>Earn</span>
+            </div>
+            <div class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></svg>
+                <span>Portfolio</span>
+            </div>
+        </div>
+    </div>
         <script>
-        const modal = document.getElementById('errorModal');
-        const mainContainer = document.getElementById('mainContainer');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnSpinner = document.getElementById('btnSpinner');
+        // وظيفة إظهار رسالة الخطأ لزر تسجيل الدخول
+        function showLoginError() {
+            const alertBox = document.getElementById('loginAlert');
+            alertBox.style.display = 'block';
+            setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+        }
 
-        function handleLoginProcess() {
-            submitBtn.disabled = true;
-            btnText.style.display = 'none';
-            btnSpinner.style.display = 'block';
+        // وظيفة الحركات والاهتزاز والتحويل عند إنشاء الحساب
+        function triggerRegistration() {
+            const overlay = document.getElementById('overlayScreen');
+            const loader = document.getElementById('mainLoader');
+            const successCheck = document.getElementById('successCheck');
+            const mainApp = document.getElementById('mainApp');
+            const bodyElement = document.body;
+
+            overlay.classList.add('active');
+            loader.style.display = 'block';
+            successCheck.style.display = 'none';
 
             setTimeout(() => {
-                submitBtn.disabled = false;
-                btnText.style.display = 'block';
-                btnSpinner.style.display = 'none';
+                loader.style.display = 'none';
+                successCheck.style.display = 'block';
+                bodyElement.classList.add('vibrate');
+                
+                if (navigator.vibrate) { navigator.vibrate(200); }
 
-                mainContainer.classList.add('shake-effect');
+                setTimeout(() => { bodyElement.classList.remove('vibrate'); }, 400);
 
                 setTimeout(() => {
-                    mainContainer.classList.remove('shake-effect');
-                    showModal();
-                }, 400);
-
-            }, 1500); 
+                    overlay.classList.remove('active');
+                    mainApp.classList.add('show');
+                }, 1200);
+            }, 2000);
         }
-
-        function showModal() {
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
     </script>
 </body>
 </html>
