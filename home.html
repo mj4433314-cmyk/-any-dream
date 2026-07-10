@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Any Dream</title>
+
+<link rel="stylesheet" href="home.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+<h2>Any Dream</h2>
+
+<p>منصة التداول والمكافآت العالمية</p>
+
+</header>
+
+<section class="packages">
+
+<div class="card" onclick="openWallet()">
+
+<img src="h1.png">
+
+</div>
+
+<div class="card" onclick="openWallet()">
+
+<img src="h2.png">
+
+</div>
+
+<div class="card" onclick="openWallet()">
+
+<img src="h3.png">
+
+</div>
+
+<div class="card" onclick="openWallet()">
+
+<img src="h4.png">
+
+</div>
+
+</section>
+
+<div id="wallet" class="wallet">
+
+<div class="wallet-box">
+
+<h2>محفظة TRC20</h2>
+
+<p>قم بالتحويل إلى العنوان التالي</p>
+
+<input
+id="walletAddress"
+readonly
+value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP">
+
+<button onclick="copyWallet()">
+
+نسخ العنوان
+
+</button>
+
+<button onclick="closeWallet()">
+
+إغلاق
+
+</button>
+
+</div>
+
+</div>
+
+<nav class="bottom">
+
+<div class="item active">
+
+<i class="fa-solid fa-house"></i>
+
+<span>الرئيسية</span>
+
+</div>
+
+<div class="item">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>الأصول</span>
+
+</div>
+
+<div class="item">
+
+<i class="fa-solid fa-list-check"></i>
+
+<span>المهام</span>
+
+</div>
+
+<div class="item">
+
+<i class="fa-solid fa-user"></i>
+
+<span>حسابي</span>
+
+</div>
+
+</nav>
+
+<script src="home.js"></script>
+
+</body>
+
+</html>
