@@ -23,9 +23,24 @@
     .inp-grp input { background: none; border: none; color: white; font-size: 16px; width: 70%; outline: none; }
     .sub-btn { width: 100%; background: #0ecb81; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 12px; }
     .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; }
-    .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 10px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
-    .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; font-size: 12px; width: 25%; }
-    .nav a i { font-size: 20px; margin-bottom: 4px; }
+    
+    /* شريط التنقل السفلي المطور مثل بايننس (أيقونات فقط مع خط سفلي نشط) */
+    .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 12px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
+    .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 25%; position: relative; height: 35px; }
+    .nav a i { font-size: 22px; }
+    
+    /* تصميم الخط السفلي الأصفر للصفحة النشطة */
+    .nav a.active { color: #f0b90b; }
+    .nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 35%;
+      width: 30%;
+      height: 3px;
+      background-color: #f0b90b;
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body>
@@ -36,10 +51,8 @@
   </div>
   <div style="font-size:12px; color:#848e9c; margin-bottom:25px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
 
-  <!-- حاوية الأقسام العشرة التي سيتم إنشاؤها عبر الجافاسكربت تلقائياً وبكود قصير -->
   <div class="grid" id="cryptoGrid"></div>
 
-  <!-- منبثقة إضافة أموال -->
   <div class="ovr" id="depModal"><div class="box">
     <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;"><i class="fas fa-wallet"></i> إيداع TRC-20</div>
     <p style="font-size:13px; color:#848e9c;">قم بتحويل الأموال مباشرة للعنوان أدناه لتفعيل حسابك:</p>
@@ -47,7 +60,6 @@
     <button class="cls-btn" onclick="closeDep()">إغلاق</button>
   </div></div>
 
-  <!-- منبثقة لوحة التداول -->
   <div class="ovr" id="trdModal"><div class="box">
     <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;" id="mdlTtl">تداول عالمي</div>
     <div class="tabs">
@@ -60,16 +72,15 @@
     <button class="cls-btn" onclick="closeTrd()">إلغاء</button>
   </div></div>
 
-  <!-- شريط التنقل السفلي -->
+  <!-- شريط التنقل المحدث بالأيقونات والخط السفلي الأصفر المماثل لبايننس -->
   <div class="nav">
-    <a href="account.html" style="color:#f0b90b;"><i class="fas fa-user"></i><span>حسابي</span></a>
-    <a href="tasks.html"><i class="fas fa-list-ul"></i><span>المهام</span></a>
-    <a href="assets.html"><i class="fas fa-wallet"></i><span>الأصول</span></a>
-    <a href="home.html"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+    <a href="account.html" class="active"><i class="fas fa-user"></i></a>
+    <a href="tasks.html"><i class="fas fa-list-ul"></i></a>
+    <a href="assets.html"><i class="fas fa-wallet"></i></a>
+    <a href="home.html"><i class="fas fa-home"></i></a>
   </div>
 
   <script>
-    // مصفوفة الأقسام العشرة لإنشائها تلقائياً لتقليص حجم الكود وسهولة نسخه
     const coins = [
       {n:'BNB', p:576.05, c:'1.04% ▲', bg:'#f3ba2f', clr:'#000'}, {n:'SOL', p:78.17, c:'0.15% ▲', bg:'#00ffa3', clr:'#000'},
       {n:'BTC', p:61200, c:'0.45% ▼', bg:'#f7931a', clr:'#000', d:1}, {n:'ETH', p:3380, c:'0.82% ▲', bg:'#627eea', clr:'#fff'},
@@ -81,7 +92,7 @@
     const grid = document.getElementById('cryptoGrid');
     coins.forEach(c => {
       grid.innerHTML += `<div class="card" onclick="openTrd('${c.n}', ${c.p})">
-        <div class="card-hdr"><span>${c.n}</span><div class="icon" style="background:${c.bg}; color:${c.clr}">${c.n[0]}</div></div>
+        <div class="card-hdr"><span>${c.n}</span><div class="icon" style="background:${c.bg}; color:${c.clr}">${c.n}</div></div>
         <div class="prc">${c.p.toLocaleString()}</div>
         <div class="chg" style="color:${c.d?'#f6465d':'#0ecb81'}">${c.c}</div>
       </div>`;
