@@ -1,173 +1,89 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Any Dream</title>
 
 <link rel="stylesheet" href="style.css">
 
-<style>
-.packages{
-display:grid;
-grid-template-columns:1fr;
-gap:15px;
-margin-top:20px;
-}
-
-.package{
-background:#151c2f;
-border-radius:18px;
-overflow:hidden;
-cursor:pointer;
-transition:.3s;
-}
-
-.package:hover{
-transform:scale(1.02);
-}
-
-.package img{
-width:100%;
-display:block;
-}
-
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.75);
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-
-.modal-content{
-background:#151c2f;
-width:90%;
-max-width:380px;
-padding:20px;
-border-radius:20px;
-text-align:center;
-animation:show .3s;
-}
-
-@keyframes show{
-from{transform:scale(.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-.wallet{
-background:#0d1324;
-padding:12px;
-border-radius:10px;
-font-size:13px;
-word-break:break-all;
-color:#00ff99;
-margin:15px 0;
-}
-
-.copy-btn{
-width:100%;
-height:45px;
-border:none;
-border-radius:30px;
-background:#00b894;
-color:#fff;
-font-size:17px;
-margin-bottom:10px;
-}
-
-.close-btn{
-width:100%;
-height:45px;
-border:none;
-border-radius:30px;
-background:#ff3b30;
-color:#fff;
-font-size:17px;
-}
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="app">
+<div class="login-page">
 
-<div class="header">
-<h2>ANY DREAM</h2>
-<p>اختر إحدى الباقات</p>
-</div>
+<div class="login-box">
 
-<div class="packages">
+<h1>Any Dream</h1>
 
-<div class="package" onclick="openWallet()">
-<img src="h1.png">
-</div>
+<p>منصة التداول والمكافآت العالمية</p>
 
-<div class="package" onclick="openWallet()">
-<img src="h2.png">
-</div>
+<form id="registerForm">
 
-<div class="package" onclick="openWallet()">
-<img src="h3.png">
-</div>
+<div class="input-box">
+<i class="fa-solid fa-phone"></i>
 
-<div class="package" onclick="openWallet()">
-<img src="h4.png">
-</div>
+<input type="text" id="phone" placeholder="البريد الإلكتروني أو رقم الهاتف">
+
+<span id="countryCode"></span>
 
 </div>
 
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input type="password" placeholder="كلمة السر">
+
 </div>
 
-<div class="modal" id="walletBox">
+<div class="input-box">
 
-<div class="modal-content">
+<i class="fa-solid fa-user-plus"></i>
 
-<h2>محفظة TRC20</h2>
+<input type="text" placeholder="رمز الدعوة">
 
-<div class="wallet" id="wallet">
-THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP
 </div>
 
-<button class="copy-btn" onclick="copyWallet()">
-نسخ عنوان المحفظة
+<button type="button" id="loginBtn" class="login-btn">
+تسجيل الدخول
 </button>
 
-<button class="close-btn" onclick="closeWallet()">
-إغلاق
+<button type="button" id="createBtn" class="create-btn">
+إنشاء الحساب
 </button>
 
+</form>
+
+<div class="coins">
+
+<i class="fab fa-bitcoin btc"></i>
+
+<img src="https://cryptologos.cc/logos/solana-sol-logo.png" class="coin">
+
+<img src="https://cryptologos.cc/logos/tether-usdt-logo.png" class="coin">
+
+</div>
+
 </div>
 
 </div>
 
-<script>
+<div id="loading">
 
-function openWallet(){
-document.getElementById("walletBox").style.display="flex";
-}
+<div class="loader"></div>
 
-function closeWallet(){
-document.getElementById("walletBox").style.display="none";
-}
+<h2>جاري إنشاء الحساب...</h2>
 
-function copyWallet(){
+</div>
 
-const text="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP";
-
-navigator.clipboard.writeText(text);
-
-alert("تم نسخ عنوان المحفظة");
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
