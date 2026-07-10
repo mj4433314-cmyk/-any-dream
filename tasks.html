@@ -12,21 +12,13 @@
       color: #ffffff;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px 20px 80px 20px; /* مسافة سفلية حتى لا يغطي الشريط على المحتوى */
-    }
-
-    .page-title {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 30px;
+      padding: 10px 20px 80px 20px; /* مسافة علوية بسيطة ومسافة سفلية لشريط التنقل */
     }
 
     /* حاوي المهام كأزرار أو بنرات قابلة للنقر */
     .task-container {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 5px; /* تم تقليل المسافة هنا لتصبح الصور متقاربة */
       cursor: pointer;
       border-radius: 16px;
       overflow: hidden;
@@ -81,9 +73,7 @@
 </head>
 <body>
 
-  <div class="page-title">المهام المتاحة</div>
-
-  <!-- عرض الصور الأربعة الشفافة للمهام مع رسالة التنبيه عند النقر -->
+  <!-- عرض الصور الأربعة الشفافة للمهام مع رسالة التنبيه عند النقر ومسافات متقاربة -->
   <div class="task-container" onclick="showTaskAlert()">
     <img src="task1.png" alt="Task 1" class="task-image">
   </div>
