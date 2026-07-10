@@ -40,8 +40,8 @@ loading.style.display="flex";
 
 setTimeout(function(){
 
-loading.innerHTML="<h2>✅ تم إنشاء الحساب بنجاح</h2>";
-
+loading.innerHTML = `<div class="success-container"><div class="success-checkmark"><div class="check-icon"><span class="icon-line line-tip"></span><span class="icon-line line-long"></span><div class="icon-circle"></div><div class="icon-fix"></div></div></div><h2 class="success-title">تم إنشاء الحساب بنجاح</h2></div>`;
+  
 setTimeout(function(){
 
 window.location.href="home.html";
