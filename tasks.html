@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة المهام</title>
+  <!-- استدعاء أيقونات FontAwesome لتطابق شريط التنقل السفلي -->
+  <link rel="stylesheet" href="https://cloudflare.com">
+  <style>
+    body {
+      background-color: #0b0e14; /* لون الخلفية الداكن المطابق لموقعك */
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px 20px 80px 20px; /* مسافة سفلية حتى لا يغطي الشريط على المحتوى */
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+
+    /* حاوي المهام كأزرار أو بنرات قابلة للنقر */
+    .task-container {
+      width: 100%;
+      margin-bottom: 20px;
+      cursor: pointer;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .task-container:active {
+      transform: scale(0.98); /* تأثير بسيط عند الضغط بالهاتف */
+    }
+
+    .task-image {
+      width: 100%;
+      display: block;
+    }
+
+    /* تنسيق شريط التنقل السفلي الاحترافي لبايننس */
+    .binance-bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #181a20;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid #2b2f36;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+
+    .binance-bottom-nav a {
+      text-decoration: none;
+      color: #848e9c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+      width: 25%;
+    }
+
+    .binance-bottom-nav a i {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    /* تمييز زر المهام باللون الأصفر لأنه الصفحة النشطة حالياً */
+    .binance-bottom-nav a.active {
+      color: #f0b90b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-title">المهام المتاحة</div>
+
+  <!-- عرض الصور الأربعة الشفافة للمهام مع رسالة التنبيه عند النقر -->
+  <div class="task-container" onclick="showTaskAlert()">
+    <img src="task1.png" alt="Task 1" class="task-image">
+  </div>
+
+  <div class="task-container" onclick="showTaskAlert()">
+    <img src="task2.png" alt="Task 2" class="task-image">
+  </div>
+
+  <div class="task-container" onclick="showTaskAlert()">
+    <img src="task3.png" alt="Task 3" class="task-image">
+  </div>
+
+  <div class="task-container" onclick="showTaskAlert()">
+    <img src="task4.png" alt="Task 4" class="task-image">
+  </div>
+
+
+  <!-- شريط التنقل السفلي الثابت للاتصال بالصفحات الأخرى -->
+  <div class="binance-bottom-nav">
+    <a href="account.html">
+      <i class="fas fa-user"></i>
+      <span>حسابي</span>
+    </a>
+    <a href="tasks.html" class="active">
+      <i class="fas fa-list-ul"></i>
+      <span>المهام</span>
+    </a>
+    <a href="assets.html">
+      <i class="fas fa-wallet"></i>
+      <span>الأصول</span>
+    </a>
+    <a href="home.html">
+      <i class="fas fa-home"></i>
+      <span>الرئيسية</span>
+    </a>
+  </div>
+
+  <!-- كود الجافاسكربت الخاص بإظهار الرسالة للمستخدم -->
+  <script>
+    function showTaskAlert() {
+      alert("يرجى الاشتراك لتفعيل المهمات");
+    }
+  </script>
+
+</body>
+</html>
