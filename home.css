@@ -492,3 +492,60 @@ transform:translateY(-3px);
 .copy-btn:hover {
   background: #475569;
 }
+
+/* إعادة تنسيق شريط التنقل الأصلي من الصورة */
+.main-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0b0f19;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 10px 0 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 9999;
+}
+
+.main-bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #7a8599;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  width: 20%;
+  transition: all 0.2s ease;
+}
+
+.main-bottom-nav a i {
+  font-size: 22px;
+  margin-bottom: 5px;
+  color: #a0aec0;
+}
+
+.main-bottom-nav a.current-active {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.main-bottom-nav a.current-active .home-icon-circle {
+  background-color: #ffffff;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.main-bottom-nav a.current-active .home-icon-circle i {
+  color: #0b0f19 !important;
+  font-size: 24px;
+  margin: 0;
+}
