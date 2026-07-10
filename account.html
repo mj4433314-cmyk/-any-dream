@@ -8,72 +8,42 @@
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
     body {
-      background-color: #0b0e14; /* نفس خلفية موقعك المظلمة */
+      background-color: #0b0e14;
       color: #ffffff;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px 20px 100px 20px;
-    }
-
-    /* كارت معلومات المستخدم */
-    .user-card {
-      background-color: #181a20;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid #2b2f36;
-    }
-
-    .user-info {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .user-info i {
-      font-size: 24px;
-      color: #f0b90b;
-      margin-left: 12px;
-    }
-
-    .info-label {
-      font-size: 14px;
-      color: #848e9c;
-      margin-bottom: 2px;
-    }
-
-    .info-value {
-      font-size: 16px;
-      font-weight: bold;
+      padding: 20px 20px 120px 20px;
     }
 
     /* كارت الرصيد */
     .balance-card {
       background: linear-gradient(135deg, #1e222d, #181a20);
       border-radius: 16px;
-      padding: 20px;
+      padding: 25px 20px;
       border: 1px solid #2b2f36;
       margin-bottom: 25px;
+      text-align: center;
     }
 
     .balance-title {
-      font-size: 14px;
+      font-size: 15px;
       color: #848e9c;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
 
     .balance-amount {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: bold;
-      color: #f0b90b; /* لون ذهبي بايننس المميز */
+      color: #f0b90b;
     }
 
-    /* قسم التداول وشريط الأسعار المتحرك */
+    /* قسم التداول والأسعار المتحركة */
     .trading-section {
       background-color: #181a20;
       border-radius: 16px;
       padding: 15px;
       border: 1px solid #2b2f36;
+      margin-bottom: 25px;
       overflow: hidden;
     }
 
@@ -90,7 +60,6 @@
       color: #00b4d8;
     }
 
-    /* شريط البورصة والعملات المتحرك */
     .ticker-wrap {
       width: 100%;
       background-color: #0b0e14;
@@ -113,14 +82,8 @@
       font-weight: bold;
     }
 
-    .ticker-item img {
-      width: 18px;
-      height: 18px;
-      margin-left: 6px;
-    }
-
-    .price-up { color: #0ecb81; } /* لون أخضر صعود */
-    .price-down { color: #f6465d; } /* لون أحمر هبوط */
+    .price-up { color: #0ecb81; }
+    .price-down { color: #f6465d; }
 
     .arrow-up {
       display: inline-block;
@@ -129,7 +92,6 @@
       border-right: 5px solid transparent;
       border-bottom: 8px solid #0ecb81;
       margin-right: 4px;
-      animation: bounceUp 0.8s infinite alternate;
     }
 
     .arrow-down {
@@ -139,40 +101,136 @@
       border-right: 5px solid transparent;
       border-top: 8px solid #f6465d;
       margin-right: 4px;
-      animation: bounceDown 0.8s infinite alternate;
     }
 
-    /* شبكة شبكات الإيداع والرموز */
-    .network-grid {
+    /* كروت العملات والشعارات المحدثة */
+    .crypto-logos-section {
+      background-color: #181a20;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #2b2f36;
+      margin-bottom: 25px;
+    }
+
+    .crypto-logos-title {
+      font-size: 14px;
+      color: #848e9c;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .logos-container {
       display: flex;
       justify-content: space-around;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid #2b2f36;
+      align-items: center;
     }
 
-    .network-item {
+    .crypto-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 12px;
-      color: #848e9c;
+      font-size: 13px;
+      font-weight: bold;
     }
 
-    .network-item span.badge {
+    .crypto-item i {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .btc-icon { color: #f7931a; }
+    .sol-icon { color: #9945ff; }
+    .trc-icon { color: #26a17b; }
+
+    /* زر بدء الصفقة والدفع */
+    .action-btn {
+      width: 100%;
+      background-color: #f0b90b;
+      color: #000000;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.2s;
+    }
+
+    .action-btn:active {
+      background-color: #d8a60a;
+    }
+
+    /* تصميم النافذة المنبثقة لعملية الدفع */
+    .payment-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content {
+      background-color: #181a20;
+      border: 1px solid #2b2f36;
+      border-radius: 16px;
+      padding: 25px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #f0b90b;
+      margin-bottom: 15px;
+    }
+
+    .modal-text {
+      font-size: 14px;
+      color: #848e9c;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .address-box {
+      background-color: #0b0e14;
+      border: 1px dashed #f0b90b;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #ffffff;
+      word-break: break-all;
+      user-select: all;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
       background-color: #2b2f36;
       color: #ffffff;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-weight: bold;
-      margin-top: 4px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
     }
 
-    /* شريط التنقل السفلي لبايننس */
+    /* شريط التنقل السفلي */
     .binance-bottom-nav {
       position: fixed;
-      bottom: 0;
-      left: 0;
+      bottom: 0; left: 0;
       width: 100%;
       background-color: #181a20;
       display: flex;
@@ -203,80 +261,72 @@
       color: #f0b90b;
     }
 
-    /* حركات الأنميشن */
     @keyframes tickerAnimation {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
-    }
-    @keyframes bounceUp {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-3px); }
-    }
-    @keyframes bounceDown {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(3px); }
     }
   </style>
 </head>
 <body>
 
-  <!-- كارت البيانات الشخصية للمستخدم -->
-  <div class="user-card">
-    <div class="user-info">
-      <i class="fas fa-envelope"></i>
-      <div>
-        <div class="info-label">البريد الإلكتروني الحساب</div>
-        <div class="info-value" id="user-email">user@example.com</div>
-      </div>
-    </div>
-    <div class="user-info" style="margin-bottom: 0;">
-      <i class="fas fa-phone-alt"></i>
-      <div>
-        <div class="info-label">رقم الهاتف</div>
-        <div class="info-value" id="user-phone">+964 770 000 0000</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- كارت الرصيد المالي المتاح -->
+  <!-- كارت إجمالي الرصيد -->
   <div class="balance-card">
     <div class="balance-title">إجمالي الرصيد المتاح (USDT)</div>
     <div class="balance-amount">0.00 USDT</div>
   </div>
 
-  <!-- قسم علامات التداول وشاشات الأسعار المتحركة والشبكات المتاحة -->
+  <!-- مؤشرات أسواق التداول -->
   <div class="trading-section">
     <div class="trading-title">
       <i class="fas fa-chart-line"></i>
       <span>مؤشرات أسواق التداول الحية</span>
     </div>
-
-    <!-- شريط الأسعار والأسهم المتحركة -->
     <div class="ticker-wrap">
       <div class="ticker">
-        <!-- نسخة البورصة لضمان حركة مستمرة سلسة -->
         <div class="ticker-item price-up">SOL/USDT $142.50 <span class="arrow-up"></span></div>
         <div class="ticker-item price-down">BTC/USDT $61,200 <span class="arrow-down"></span></div>
         <div class="ticker-item price-up">ETH/USDT $3,380 <span class="arrow-up"></span></div>
         <div class="ticker-item price-up">TRX/USDT $0.12 <span class="arrow-up"></span></div>
-        <!-- تكرار العناصر لجعل الشريط يعمل بلا انقطاع -->
         <div class="ticker-item price-up">SOL/USDT $142.50 <span class="arrow-up"></span></div>
         <div class="ticker-item price-down">BTC/USDT $61,200 <span class="arrow-down"></span></div>
         <div class="ticker-item price-up">ETH/USDT $3,380 <span class="arrow-up"></span></div>
         <div class="ticker-item price-up">TRX/USDT $0.12 <span class="arrow-up"></span></div>
       </div>
     </div>
+  </div>
 
-    <!-- علامات وشعارات بلوكشين سولانا و TRC20 في الأسفل -->
-    <div class="network-grid">
-      <div class="network-item">
-        <span class="info-label">شبكة المدفوعات</span>
-        <span class="badge" style="color: #00ffa3;">SOLANA</span>
+  <!-- قسم شعارات وأيقونات العملات المشفرة المخصصة -->
+  <div class="crypto-logos-section">
+    <div class="crypto-logos-title">العملات والشبكات المدعومة</div>
+    <div class="logos-container">
+      <div class="crypto-item">
+        <i class="fab fa-bitcoin btc-icon"></i>
+        <span>Bitcoin</span>
       </div>
-      <div class="network-item">
-        <span class="info-label">بروتوكول الشحن</span>
-        <span class="badge" style="color: #26a17b;">TRC-20</span>
+      <div class="crypto-item">
+        <i class="fas fa-cube sol-icon"></i>
+        <span>Solana</span>
       </div>
+      <div class="crypto-item">
+        <i class="fas fa-coins trc-icon"></i>
+        <span>TRC-20</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- زر بدء الصفقة الذكي -->
+  <button class="action-btn" onclick="openPaymentModal()">
+    <i class="fas fa-exchange-alt"></i>
+    <span>بدء صفقة جديدة</span>
+  </button>
+
+  <!-- النافذة المنبثقة لعملية الدفع وشحن الرصيد عبر TRC20 -->
+  <div class="payment-modal" id="paymentModal">
+    <div class="modal-content">
+      <div class="modal-title">تفعيل الصفقة والدفع</div>
+      <div class="modal-text">يرجى تحويل قيمة الصفقة عبر شبكة <strong>TRC-20</strong> إلى العنوان التالي لإتمام عملية تفعيل الرصيد:</div>
+      <div class="address-box" id="walletAddress">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+      <button class="close-btn" onclick="closePaymentModal()">إغلاق</button>
     </div>
   </div>
 
@@ -300,12 +350,16 @@
     </a>
   </div>
 
+  <!-- كود الجافاسكربت لتشغيل النافذة المنبثقة -->
   <script>
-    // يمكنك ربط هذه القيم بقاعدة بيانات موقعك لاحقاً لعرض بيانات كل مستخدم حقيقي
-    // حالياً تم وضع بيانات افتراضية ممتازة لتجهيز العرض المبدئي
-    console.log("صفحة الحساب جاهزة للعمل بنجاح.");
+    function openPaymentModal() {
+      document.getElementById('paymentModal').style.display = 'flex';
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+    }
   </script>
 
 </body>
-          </html>
-          
+</html>
