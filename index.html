@@ -3,104 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trading App</title>
+<title>Any Dream</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+.packages{
+display:grid;
+grid-template-columns:1fr;
+gap:15px;
+margin-top:20px;
+}
+
+.package{
+background:#151c2f;
+border-radius:18px;
+overflow:hidden;
+cursor:pointer;
+transition:.3s;
+}
+
+.package:hover{
+transform:scale(1.02);
+}
+
+.package img{
+width:100%;
+display:block;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.75);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:#151c2f;
+width:90%;
+max-width:380px;
+padding:20px;
+border-radius:20px;
+text-align:center;
+animation:show .3s;
+}
+
+@keyframes show{
+from{transform:scale(.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.wallet{
+background:#0d1324;
+padding:12px;
+border-radius:10px;
+font-size:13px;
+word-break:break-all;
+color:#00ff99;
+margin:15px 0;
+}
+
+.copy-btn{
+width:100%;
+height:45px;
+border:none;
+border-radius:30px;
+background:#00b894;
+color:#fff;
+font-size:17px;
+margin-bottom:10px;
+}
+
+.close-btn{
+width:100%;
+height:45px;
+border:none;
+border-radius:30px;
+background:#ff3b30;
+color:#fff;
+font-size:17px;
+}
+</style>
 
 </head>
+
 <body>
 
 <div class="app">
 
-<header class="header">
-<h2>Global Trading</h2>
-<p>Rewards Platform</p>
-</header>
-
-<section class="packages">
-
-<div class="vip-card">
-<h3>H1 VIP Package</h3>
-<h1>30 USDT</h1>
-<p>Daily: 4.58 USDT</p>
-<button class="activate-btn">ACTIVATE</button>
+<div class="header">
+<h2>ANY DREAM</h2>
+<p>اختر إحدى الباقات</p>
 </div>
 
-<div class="vip-card">
-<h3>H2 VIP Package</h3>
-<h1>60 USDT</h1>
-<p>Daily: 7 USDT</p>
-<button class="activate-btn">ACTIVATE</button>
+<div class="packages">
+
+<div class="package" onclick="openWallet()">
+<img src="h1.png">
 </div>
 
-<div class="vip-card">
-<h3>H3 VIP Package</h3>
-<h1>90 USDT</h1>
-<p>Daily: 10 USDT</p>
-<button class="activate-btn">ACTIVATE</button>
+<div class="package" onclick="openWallet()">
+<img src="h2.png">
 </div>
 
-<div class="vip-card">
-<h3>H4 VIP Package</h3>
-<h1>150 USDT</h1>
-<p>Daily: 18 USDT</p>
-<button class="activate-btn">ACTIVATE</button>
+<div class="package" onclick="openWallet()">
+<img src="h3.png">
 </div>
 
-</section>
-<section class="tasks">
-
-<h2>Tasks</h2>
-
-<div class="task-card">
-<i class="fa-brands fa-youtube"></i>
-
-<div>
-<h3>YouTube Task</h3>
-<p>Reward: 1 USDT</p>
+<div class="package" onclick="openWallet()">
+<img src="h4.png">
 </div>
-
-<button onclick="showWallet()">Claim</button>
-</div>
-
-</section>
-
-<section class="assets">
-
-<h2>Assets</h2>
-
-<div class="asset-card">
-<h3>Balance</h3>
-<h1>0.00 USDT</h1>
-</div>
-
-</section>
-
-<nav class="bottom-nav">
-
-<div class="nav-item active">
-<i class="fa-solid fa-chart-line"></i>
-<span>Trade</span>
-</div>
-
-<div class="nav-item">
-<i class="fa-brands fa-youtube"></i>
-<span>Tasks</span>
-</div>
-
-<div class="nav-item">
-<i class="fa-solid fa-wallet"></i>
-<span>Assets</span>
-</div>
-
-</nav>
 
 </div>
 
-<script src="script.js"></script>
+</div>
+
+<div class="modal" id="walletBox">
+
+<div class="modal-content">
+
+<h2>محفظة TRC20</h2>
+
+<div class="wallet" id="wallet">
+THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP
+</div>
+
+<button class="copy-btn" onclick="copyWallet()">
+نسخ عنوان المحفظة
+</button>
+
+<button class="close-btn" onclick="closeWallet()">
+إغلاق
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function openWallet(){
+document.getElementById("walletBox").style.display="flex";
+}
+
+function closeWallet(){
+document.getElementById("walletBox").style.display="none";
+}
+
+function copyWallet(){
+
+const text="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP";
+
+navigator.clipboard.writeText(text);
+
+alert("تم نسخ عنوان المحفظة");
+
+}
+
+</script>
 
 </body>
 </html>
