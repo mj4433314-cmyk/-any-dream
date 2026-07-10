@@ -1,365 +1,114 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حسابي</title>
-  <!-- استدعاء أيقونات FontAwesome -->
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>حسابي</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    body {
-      background-color: #0b0e14;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px 20px 120px 20px;
-    }
-
-    /* كارت الرصيد */
-    .balance-card {
-      background: linear-gradient(135deg, #1e222d, #181a20);
-      border-radius: 16px;
-      padding: 25px 20px;
-      border: 1px solid #2b2f36;
-      margin-bottom: 25px;
-      text-align: center;
-    }
-
-    .balance-title {
-      font-size: 15px;
-      color: #848e9c;
-      margin-bottom: 8px;
-    }
-
-    .balance-amount {
-      font-size: 32px;
-      font-weight: bold;
-      color: #f0b90b;
-    }
-
-    /* قسم التداول والأسعار المتحركة */
-    .trading-section {
-      background-color: #181a20;
-      border-radius: 16px;
-      padding: 15px;
-      border: 1px solid #2b2f36;
-      margin-bottom: 25px;
-      overflow: hidden;
-    }
-
-    .trading-title {
-      font-size: 14px;
-      color: #848e9c;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-    }
-
-    .trading-title i {
-      margin-left: 6px;
-      color: #00b4d8;
-    }
-
-    .ticker-wrap {
-      width: 100%;
-      background-color: #0b0e14;
-      padding: 10px 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .ticker {
-      display: flex;
-      white-space: nowrap;
-      animation: tickerAnimation 15s linear infinite;
-    }
-
-    .ticker-item {
-      display: inline-flex;
-      align-items: center;
-      padding: 0 15px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .price-up { color: #0ecb81; }
-    .price-down { color: #f6465d; }
-
-    .arrow-up {
-      display: inline-block;
-      width: 0; height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 8px solid #0ecb81;
-      margin-right: 4px;
-    }
-
-    .arrow-down {
-      display: inline-block;
-      width: 0; height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 8px solid #f6465d;
-      margin-right: 4px;
-    }
-
-    /* كروت العملات والشعارات المحدثة */
-    .crypto-logos-section {
-      background-color: #181a20;
-      border-radius: 16px;
-      padding: 20px;
-      border: 1px solid #2b2f36;
-      margin-bottom: 25px;
-    }
-
-    .crypto-logos-title {
-      font-size: 14px;
-      color: #848e9c;
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
-
-    .logos-container {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-
-    .crypto-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .crypto-item i {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .btc-icon { color: #f7931a; }
-    .sol-icon { color: #9945ff; }
-    .trc-icon { color: #26a17b; }
-
-    /* زر بدء الصفقة والدفع */
-    .action-btn {
-      width: 100%;
-      background-color: #f0b90b;
-      color: #000000;
-      border: none;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: background-color 0.2s;
-    }
-
-    .action-btn:active {
-      background-color: #d8a60a;
-    }
-
-    /* تصميم النافذة المنبثقة لعملية الدفع */
-    .payment-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .modal-content {
-      background-color: #181a20;
-      border: 1px solid #2b2f36;
-      border-radius: 16px;
-      padding: 25px;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      box-sizing: border-box;
-      position: relative;
-    }
-
-    .modal-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #f0b90b;
-      margin-bottom: 15px;
-    }
-
-    .modal-text {
-      font-size: 14px;
-      color: #848e9c;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-    .address-box {
-      background-color: #0b0e14;
-      border: 1px dashed #f0b90b;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      color: #ffffff;
-      word-break: break-all;
-      user-select: all;
-      font-family: monospace;
-      margin-bottom: 20px;
-    }
-
-    .close-btn {
-      background-color: #2b2f36;
-      color: #ffffff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    /* شريط التنقل السفلي */
-    .binance-bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0;
-      width: 100%;
-      background-color: #181a20;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 0;
-      border-top: 1px solid #2b2f36;
-      z-index: 1000;
-      box-sizing: border-box;
-    }
-
-    .binance-bottom-nav a {
-      text-decoration: none;
-      color: #848e9c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 12px;
-      width: 25%;
-    }
-
-    .binance-bottom-nav a i {
-      font-size: 20px;
-      margin-bottom: 4px;
-    }
-
-    .binance-bottom-nav a.active {
-      color: #f0b90b;
-    }
-
-    @keyframes tickerAnimation {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
-    }
+    body { background-color: #0b0e14; color: #ffffff; font-family: Arial; margin: 0; padding: 20px 15px 120px 15px; }
+    .hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; padding-top: 10px; }
+    .bal-amt { font-size: 26px; font-weight: bold; color: #ffffff; }
+    .dep-btn { background-color: #f0b90b; color: #000000; border: none; padding: 10px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+    .card { background-color: #181a20; border-radius: 12px; padding: 15px; border: 1px solid #2b2f36; cursor: pointer; }
+    .card-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 14px; font-weight: bold; color: #848e9c; }
+    .icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #000000; font-weight: bold; }
+    .prc { font-size: 18px; font-weight: bold; text-align: left; margin-bottom: 4px; }
+    .chg { font-size: 12px; color: #0ecb81; text-align: left; }
+    .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
+    .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
+    .wlt { background: #0b0e14; border: 1px dashed #f0b90b; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 15px; }
+    .tab { flex: 1; padding: 10px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; }
+    .inp-grp { background: #0b0e14; border: 1px solid #2b2f36; border-radius: 8px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .inp-grp input { background: none; border: none; color: white; font-size: 16px; width: 70%; outline: none; }
+    .sub-btn { width: 100%; background: #0ecb81; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 12px; }
+    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; }
+    .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 10px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
+    .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; font-size: 12px; width: 25%; }
+    .nav a i { font-size: 20px; margin-bottom: 4px; }
   </style>
 </head>
 <body>
 
-  <!-- كارت إجمالي الرصيد -->
-  <div class="balance-card">
-    <div class="balance-title">إجمالي الرصيد المتاح (USDT)</div>
-    <div class="balance-amount">0.00 USDT</div>
+  <div class="hdr">
+    <div><div style="font-size:13px; color:#848e9c;">القيمة الإجمالية المقدرة (USD) ▲</div><div class="bal-amt">$0.00 USDT</div></div>
+    <button class="dep-btn" onclick="openDep()">إضافة أموال</button>
   </div>
+  <div style="font-size:12px; color:#848e9c; margin-bottom:25px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
 
-  <!-- مؤشرات أسواق التداول -->
-  <div class="trading-section">
-    <div class="trading-title">
-      <i class="fas fa-chart-line"></i>
-      <span>مؤشرات أسواق التداول الحية</span>
+  <!-- حاوية الأقسام العشرة التي سيتم إنشاؤها عبر الجافاسكربت تلقائياً وبكود قصير -->
+  <div class="grid" id="cryptoGrid"></div>
+
+  <!-- منبثقة إضافة أموال -->
+  <div class="ovr" id="depModal"><div class="box">
+    <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;"><i class="fas fa-wallet"></i> إيداع TRC-20</div>
+    <p style="font-size:13px; color:#848e9c;">قم بتحويل الأموال مباشرة للعنوان أدناه لتفعيل حسابك:</p>
+    <div class="wlt">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+    <button class="cls-btn" onclick="closeDep()">إغلاق</button>
+  </div></div>
+
+  <!-- منبثقة لوحة التداول -->
+  <div class="ovr" id="trdModal"><div class="box">
+    <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;" id="mdlTtl">تداول عالمي</div>
+    <div class="tabs">
+      <button class="tab" id="tBuy" style="background:#0ecb81; color:white;" onclick="setTy('buy')">شراء</button>
+      <button class="tab" id="tSell" style="background:#2b2f36; color:#848e9c;" onclick="setTy('sell')">بيع</button>
     </div>
-    <div class="ticker-wrap">
-      <div class="ticker">
-        <div class="ticker-item price-up">SOL/USDT $142.50 <span class="arrow-up"></span></div>
-        <div class="ticker-item price-down">BTC/USDT $61,200 <span class="arrow-down"></span></div>
-        <div class="ticker-item price-up">ETH/USDT $3,380 <span class="arrow-up"></span></div>
-        <div class="ticker-item price-up">TRX/USDT $0.12 <span class="arrow-up"></span></div>
-        <div class="ticker-item price-up">SOL/USDT $142.50 <span class="arrow-up"></span></div>
-        <div class="ticker-item price-down">BTC/USDT $61,200 <span class="arrow-down"></span></div>
-        <div class="ticker-item price-up">ETH/USDT $3,380 <span class="arrow-up"></span></div>
-        <div class="ticker-item price-up">TRX/USDT $0.12 <span class="arrow-up"></span></div>
-      </div>
-    </div>
+    <div class="inp-grp"><input type="number" placeholder="0.00" id="trdAmt" oninput="calc()"><span id="sym">USDT</span></div>
+    <div class="inp-grp" style="margin-bottom:20px;"><input type="text" id="trdTtl" readonly value="0.00"><span>إجمالي (USD)</span></div>
+    <button class="sub-btn" id="subB" onclick="exec()">تأكيد العملية</button>
+    <button class="cls-btn" onclick="closeTrd()">إلغاء</button>
+  </div></div>
+
+  <!-- شريط التنقل السفلي -->
+  <div class="nav">
+    <a href="account.html" style="color:#f0b90b;"><i class="fas fa-user"></i><span>حسابي</span></a>
+    <a href="tasks.html"><i class="fas fa-list-ul"></i><span>المهام</span></a>
+    <a href="assets.html"><i class="fas fa-wallet"></i><span>الأصول</span></a>
+    <a href="home.html"><i class="fas fa-home"></i><span>الرئيسية</span></a>
   </div>
 
-  <!-- قسم شعارات وأيقونات العملات المشفرة المخصصة -->
-  <div class="crypto-logos-section">
-    <div class="crypto-logos-title">العملات والشبكات المدعومة</div>
-    <div class="logos-container">
-      <div class="crypto-item">
-        <i class="fab fa-bitcoin btc-icon"></i>
-        <span>Bitcoin</span>
-      </div>
-      <div class="crypto-item">
-        <i class="fas fa-cube sol-icon"></i>
-        <span>Solana</span>
-      </div>
-      <div class="crypto-item">
-        <i class="fas fa-coins trc-icon"></i>
-        <span>TRC-20</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- زر بدء الصفقة الذكي -->
-  <button class="action-btn" onclick="openPaymentModal()">
-    <i class="fas fa-exchange-alt"></i>
-    <span>بدء صفقة جديدة</span>
-  </button>
-
-  <!-- النافذة المنبثقة لعملية الدفع وشحن الرصيد عبر TRC20 -->
-  <div class="payment-modal" id="paymentModal">
-    <div class="modal-content">
-      <div class="modal-title">تفعيل الصفقة والدفع</div>
-      <div class="modal-text">يرجى تحويل قيمة الصفقة عبر شبكة <strong>TRC-20</strong> إلى العنوان التالي لإتمام عملية تفعيل الرصيد:</div>
-      <div class="address-box" id="walletAddress">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-      <button class="close-btn" onclick="closePaymentModal()">إغلاق</button>
-    </div>
-  </div>
-
-  <!-- شريط التنقل السفلي الثابت للاتصال بالصفحات الأخرى -->
-  <div class="binance-bottom-nav">
-    <a href="account.html" class="active">
-      <i class="fas fa-user"></i>
-      <span>حسابي</span>
-    </a>
-    <a href="tasks.html">
-      <i class="fas fa-list-ul"></i>
-      <span>المهام</span>
-    </a>
-    <a href="assets.html">
-      <i class="fas fa-wallet"></i>
-      <span>الأصول</span>
-    </a>
-    <a href="home.html">
-      <i class="fas fa-home"></i>
-      <span>الرئيسية</span>
-    </a>
-  </div>
-
-  <!-- كود الجافاسكربت لتشغيل النافذة المنبثقة -->
   <script>
-    function openPaymentModal() {
-      document.getElementById('paymentModal').style.display = 'flex';
-    }
+    // مصفوفة الأقسام العشرة لإنشائها تلقائياً لتقليص حجم الكود وسهولة نسخه
+    const coins = [
+      {n:'BNB', p:576.05, c:'1.04% ▲', bg:'#f3ba2f', clr:'#000'}, {n:'SOL', p:78.17, c:'0.15% ▲', bg:'#00ffa3', clr:'#000'},
+      {n:'BTC', p:61200, c:'0.45% ▼', bg:'#f7931a', clr:'#000', d:1}, {n:'ETH', p:3380, c:'0.82% ▲', bg:'#627eea', clr:'#fff'},
+      {n:'TRX', p:0.124, c:'2.11% ▲', bg:'#ec0623', clr:'#fff'}, {n:'XRP', p:0.58, c:'0.31% ▲', bg:'#23292f', clr:'#fff'},
+      {n:'ADA', p:0.46, c:'1.20% ▼', bg:'#0033ad', clr:'#fff', d:1}, {n:'DOGE', p:0.14, c:'4.50% ▲', bg:'#c2a633', clr:'#000'},
+      {n:'DOT', p:6.25, c:'0.95% ▲', bg:'#e6007a', clr:'#fff'}, {n:'LINK', p:15.40, c:'1.15% ▼', bg:'#375bd2', clr:'#fff', d:1}
+    ];
 
-    function closePaymentModal() {
-      document.getElementById('paymentModal').style.display = 'none';
+    const grid = document.getElementById('cryptoGrid');
+    coins.forEach(c => {
+      grid.innerHTML += `<div class="card" onclick="openTrd('${c.n}', ${c.p})">
+        <div class="card-hdr"><span>${c.n}</span><div class="icon" style="background:${c.bg}; color:${c.clr}">${c.n[0]}</div></div>
+        <div class="prc">${c.p.toLocaleString()}</div>
+        <div class="chg" style="color:${c.d?'#f6465d':'#0ecb81'}">${c.c}</div>
+      </div>`;
+    });
+
+    let curC='', curP=0, curTy='buy';
+    function openDep() { document.getElementById('depModal').style.display='flex'; }
+    function closeDep() { document.getElementById('depModal').style.display='none'; }
+    function openTrd(coin, price) {
+      curC=coin; curP=price; document.getElementById('mdlTtl').innerText=`تداول حركي - ${coin}/USDT`;
+      document.getElementById('sym').innerText=coin; document.getElementById('trdAmt').value='';
+      document.getElementById('trdTtl').value='0.00'; setTy('buy'); document.getElementById('trdModal').style.display='flex';
+    }
+    function closeTrd() { document.getElementById('trdModal').style.display='none'; }
+    function setTy(t) {
+      curTy=t; const b=document.getElementById('tBuy'), s=document.getElementById('tSell'), sub=document.getElementById('subB');
+      if(t==='buy') { b.style.background='#0ecb81'; b.style.color='white'; s.style.background='#2b2f36'; s.style.color='#848e9c'; sub.style.background='#0ecb81'; sub.innerText=`تأكيد شراء ${curC}`; }
+      else { s.style.background='#f6465d'; s.style.color='white'; b.style.background='#2b2f36'; b.style.color='#848e9c'; sub.style.background='#f6465d'; sub.innerText=`تأكيد بيع ${curC}`; }
+    }
+    function calc() {
+      const a = parseFloat(document.getElementById('trdAmt').value)||0;
+      document.getElementById('trdTtl').value=(a*curP).toFixed(2);
+    }
+    function exec() {
+      if((parseFloat(document.getElementById('trdAmt').value)||0)<=0) { alert("حدد كمية صحيحة!"); return; }
+      alert(`عذراً، رصيدك الحالي غير كافٍ لإتمام عملية الـ ${curTy==='buy'?'شراء':'بيع'}. يرجى إضافة أموال أولاً!`); closeTrd();
     }
   </script>
-
 </body>
 </html>
