@@ -549,3 +549,44 @@ transform:translateY(-3px);
   font-size: 24px;
   margin: 0;
 }
+
+/* --- تصميم شريط بايننس السفلي المسطح --- */
+.binance-bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background-color: #12161c !important; /* لون خلفية بايننس المظلمة الدقيقة */
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  padding: 8px 0 12px 0 !important;
+  border-top: 1px solid #1e2329 !important;
+  z-index: 99999 !important;
+  height: 60px !important;
+  box-sizing: border-box !important;
+}
+
+.binance-nav-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #848e9c !important; /* لون الأيقونات غير النشطة في بايننس */
+  text-decoration: none !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  width: 25% !important;
+  gap: 4px !important;
+  transition: color 0.2s ease !important;
+  font-family: 'Cairo', sans-serif !important;
+}
+
+.binance-nav-item i {
+  font-size: 20px !important;
+}
+
+/* حالة الصفحة النشطة - تتلون بالذهبي الأصفر الخاص ببايننس */
+.binance-nav-item.current-active {
+  color: #f3ba2f !important; /* اللون الأصفر الذهبي الرسمي لـ Binance */
+}
