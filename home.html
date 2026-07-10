@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Any Dream</title>
   <link rel="stylesheet" href="home.css">
-  <!-- مكتبة الأيقونات الاحترافية -->
+  <!-- مكتبة الأيقونات الاحترافية الأساسية المفقودة -->
   <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
@@ -22,24 +22,24 @@
     </button>
   </div>
 
-  <!-- واجهة الدفع والشحن المحدثة بالعداد التنازلي واللودينغ -->
+  <!-- واجهة الدفع والشحن -->
   <div id="depositSection" class="deposit-container" style="display: none;">
     <div class="deposit-header">
       <h3>عملية الدفع TRC20</h3>
       <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
     </div>
     
-    <!-- شريط تحميل اللودينغ المتناسق برمجياً -->
+    <!-- شريط تحميل اللودينغ -->
     <div class="deposit-loading-bar">
       <div class="loading-progress"></div>
     </div>
 
-    <!-- العداد التنازلي الممتد لـ 45 دقيقة -->
+    <!-- العداد التنازلي -->
     <div class="countdown-timer-box">
       <i class="far fa-clock"></i> ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
     </div>
 
-    <!-- عنوان المحفظة كامل وبدون أي تقطيع -->
+    <!-- عنوان المحفظة -->
     <div class="address-display-box">
       <span class="address-title">عنوان المحفظة (TRC20):</span>
       <div class="crypto-address" id="walletAddrText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
@@ -49,8 +49,6 @@
 
   <!-- نموذج طلب السحب -->
   <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
-    
-    <!-- حقل اختيار الشبكة -->
     <div class="form-group">
       <label class="group-label">الشبكة</label>
       <select class="styled-input" id="networkSelect" required>
@@ -58,77 +56,67 @@
       </select>
     </div>
 
-    <!-- حقل عنوان المحفظة -->
     <div class="form-group">
       <label class="group-label">عنوان المحفظة</label>
       <input type="text" class="styled-input" id="walletAddress" placeholder="أدخل عنوان محفظة TRC20" required>
     </div>
 
-    <!-- حقل كلمة المرور -->
     <div class="form-group">
       <label class="group-label">كلمة مرور الصندوق</label>
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
 
-    <!-- رسالة رصيد غير كافٍ الاحترافية المحمية -->
+    <!-- رسالة رصيد غير كافٍ -->
     <div id="errorMessage" class="error-toast-message">
       <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
     </div>
 
-    <!-- زر السحب الأخضر -->
     <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الأصلي الموحد والدائري -->
+<!-- شريط التنقل السفلي الأصلي الموحد والدائري المعدل ليرتبط بالملفات القادمة -->
 <div class="main-bottom-nav">
   <a href="account.html" class="nav-btn-item">
-    <i class="fa-solid fa-user"></i>
+    <i class="fas fa-user"></i>
     <span>حسابي</span>
   </a>
   <a href="tasks.html" class="nav-btn-item">
-    <i class="fa-solid fa-list-check"></i>
+    <i class="fas fa-list-check"></i>
     <span>المهام</span>
   </a>
   <a href="assets.html" class="nav-btn-item">
-    <i class="fa-solid fa-wallet"></i>
+    <i class="fas fa-wallet"></i>
     <span>الأصول</span>
   </a>
   <a href="home.html" class="nav-btn-item current-active">
     <div class="home-icon-circle">
-      <i class="fa-solid fa-house"></i>
+      <i class="fas fa-house"></i>
     </div>
     <span>الرئيسية</span>
   </a>
 </div>
 
-<!-- البرمجة والأنيميشن والتحكم بالعداد والنسخ التلقائي -->
 <script>
 let timerInterval;
 
 function openDepositSection() {
   const depositDiv = document.getElementById('depositSection');
   depositDiv.style.display = 'block';
-  
   clearInterval(timerInterval);
   startCountdown(45 * 60);
-  
   depositDiv.scrollIntoView({ behavior: 'smooth' });
 }
 
 function startCountdown(duration) {
   let timer = duration, minutes, seconds;
   const display = document.getElementById('timer');
-  
   timerInterval = setInterval(function () {
     minutes = parseInt(timer / 60, 10);
     seconds = parseInt(timer % 60, 10);
-
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-
     display.textContent = minutes + ":" + seconds;
-
     if (--timer < 0) {
       clearInterval(timerInterval);
       display.textContent = "منتهي";
@@ -152,9 +140,7 @@ function handleWithdraw() {
       alert("يرجى ملء جميع الحقول المطلوبة أولاً.");
       return;
   }
-
   errorDiv.style.display = 'flex';
-  
   setTimeout(() => {
       errorDiv.style.display = 'none';
   }, 5000);
