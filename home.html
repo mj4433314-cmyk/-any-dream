@@ -15,6 +15,36 @@
   <div class="balance-card">
     <span class="balance-label">إجمالي الرصيد المقدر</span>
     <h2 class="balance-amount">0.00 <span class="currency">USDT</span></h2>
+    
+    <!-- زر شحن الحساب -->
+    <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">
+      <i class="fas fa-wallet"></i> شحن الحساب
+    </button>
+  </div>
+
+  <!-- واجهة الدفع والشحن المحدثة بالعداد التنازلي واللودينغ -->
+  <div id="depositSection" class="deposit-container" style="display: none;">
+    <div class="deposit-header">
+      <h3>عملية الدفع TRC20</h3>
+      <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
+    </div>
+    
+    <!-- شريط تحميل اللودينغ المتناسق برمجياً -->
+    <div class="deposit-loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+
+    <!-- العداد التنازلي الممتد لـ 45 دقيقة -->
+    <div class="countdown-timer-box">
+      <i class="far fa-clock"></i> ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
+    </div>
+
+    <!-- عنوان المحفظة كامل وبدون أي تقطيع -->
+    <div class="address-display-box">
+      <span class="address-title">عنوان المحفظة (TRC20):</span>
+      <div class="crypto-address" id="walletAddrText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+      <button type="button" class="copy-btn" onclick="copyAddress()">نسخ العنوان <i class="far fa-copy"></i></button>
+    </div>
   </div>
 
   <!-- نموذج طلب السحب -->
@@ -40,7 +70,7 @@
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
 
-    <!-- رسالة الخطأ المخفية بحركة احترافية -->
+    <!-- رسالة رصيد غير كافٍ الاحترافية المحمية -->
     <div id="errorMessage" class="error-toast-message">
       <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
     </div>
@@ -49,44 +79,82 @@
     <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
   </form>
 </div>
-  <!-- شريط الانتقالات السفلي -->
-<div class="bottom-nav">
-  <a href="account.html" class="nav-item">
-    <i class="fas fa-user"></i>
+
+<!-- شريط التنقل السفلي الأصلي الموحد والدائري -->
+<div class="main-bottom-nav">
+  <a href="account.html" class="nav-btn-item">
+    <i class="fa-solid fa-user"></i>
     <span>حسابي</span>
   </a>
-  <a href="tasks.html" class="nav-item">
-    <i class="fas fa-tasks"></i>
+  <a href="tasks.html" class="nav-btn-item">
+    <i class="fa-solid fa-list-check"></i>
     <span>المهام</span>
   </a>
-  <a href="assets.html" class="nav-item">
-    <i class="fas fa-wallet"></i>
+  <a href="assets.html" class="nav-btn-item">
+    <i class="fa-solid fa-wallet"></i>
     <span>الأصول</span>
   </a>
-  <a href="home.html" class="nav-item active">
-    <i class="fas fa-home"></i>
+  <a href="home.html" class="nav-btn-item current-active">
+    <div class="home-icon-circle">
+      <i class="fa-solid fa-house"></i>
+    </div>
     <span>الرئيسية</span>
   </a>
 </div>
-  
 
-<!-- كود التشغيل والتحقق البرمجي للزر والرسالة -->
+<!-- البرمجة والأنيميشن والتحكم بالعداد والنسخ التلقائي -->
 <script>
+let timerInterval;
+
+function openDepositSection() {
+  const depositDiv = document.getElementById('depositSection');
+  depositDiv.style.display = 'block';
+  
+  clearInterval(timerInterval);
+  startCountdown(45 * 60);
+  
+  depositDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+function startCountdown(duration) {
+  let timer = duration, minutes, seconds;
+  const display = document.getElementById('timer');
+  
+  timerInterval = setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      clearInterval(timerInterval);
+      display.textContent = "منتهي";
+    }
+  }, 1000);
+}
+
+function copyAddress() {
+  const addrText = document.getElementById('walletAddrText').innerText;
+  navigator.clipboard.writeText(addrText).then(() => {
+    alert("تم نسخ عنوان المحفظة بنجاح!");
+  });
+}
+
 function handleWithdraw() {
   const address = document.getElementById('walletAddress').value.trim();
   const password = document.getElementById('fundPassword').value.trim();
   const errorDiv = document.getElementById('errorMessage');
 
-  // التحقق من ملء البيانات
   if (address === "" || password === "") {
       alert("يرجى ملء جميع الحقول المطلوبة أولاً.");
       return;
   }
 
-  // إظهار التنبيه الاحترافي
   errorDiv.style.display = 'flex';
   
-  // إخفاء التنبيه تلقائياً بعد 5 ثوانٍ
   setTimeout(() => {
       errorDiv.style.display = 'none';
   }, 5000);
