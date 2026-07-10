@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Any Dream</title>
   <link rel="stylesheet" href="home.css">
-  <!-- استدعاء المكتبة الاحترافية للأيقونات بشكل كامل -->
+  <!-- رابط مكتبة الأيقونات المتوافقة مع قالب موقعك الأصلي -->
   <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
@@ -66,7 +66,7 @@
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
 
-    <!-- رسالة الخطأ المحمية -->
+    <!-- رسالة الخطأ -->
     <div id="errorMessage" class="error-toast-message">
       <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
     </div>
@@ -75,29 +75,28 @@
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الأصلي الموحد والدائري والمصلح بالأيقونات الحديثة -->
+<!-- شريط التنقل السفلي الأصلي الموحد والدائري بالأوسمة المتوافقة -->
 <div class="main-bottom-nav">
-  <a href="account.html">
+  <a href="account.html" class="nav-btn-item">
     <i class="fas fa-user"></i>
     <span>حسابي</span>
   </a>
-  <a href="tasks.html">
-    <i class="fas fa-list-check"></i>
+  <a href="tasks.html" class="nav-btn-item">
+    <i class="fas fa-list-ul"></i>
     <span>المهام</span>
   </a>
-  <a href="assets.html">
+  <a href="assets.html" class="nav-btn-item">
     <i class="fas fa-wallet"></i>
     <span>الأصول</span>
   </a>
-  <a href="home.html" class="current-active">
+  <a href="home.html" class="nav-btn-item current-active">
     <div class="home-icon-circle">
-      <i class="fas fa-house"></i>
+      <i class="fas fa-home"></i>
     </div>
     <span>الرئيسية</span>
   </a>
 </div>
 
-<!-- كود العداد والتحقق والنسخ -->
 <script>
 let timerInterval;
 
