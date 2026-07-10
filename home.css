@@ -372,3 +372,123 @@ transform:translateY(-3px);
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
+/* --- تنسيقات واجهة شحن الحساب والعداد التنازلي الجديدة --- */
+
+/* زر تفعيل شحن الحساب المدمج بالبطاقة البيضاء */
+.deposit-trigger-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cairo', sans-serif;
+}
+.deposit-trigger-btn:hover {
+  background: #1d4ed8;
+}
+
+/* صندوق الشحن والدفع الداكن */
+.deposit-container {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeInDown 0.4s ease;
+  text-align: right;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.deposit-header h3 {
+  color: #ffffff;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-family: 'Cairo', sans-serif;
+}
+.deposit-header p {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0 0 15px 0;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* شريط لودينج الشحن التنازلي المتحرك */
+.deposit-loading-bar {
+  background: #0b0f19;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.loading-progress {
+  background: #f3ba2f; /* لون ذهبي بايننس المميز */
+  height: 100%;
+  width: 100%;
+  animation: dynamicLoading 2700s linear forwards; /* 45 دقيقة تعادل 2700 ثانية */
+}
+@keyframes dynamicLoading {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* بوكس العداد التنازلي */
+.countdown-timer-box {
+  color: #f3ba2f;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* صندوق إظهار محفظة التشفير كاملة بدون أي تقطيع */
+.address-display-box {
+  background: #0b0f19;
+  border: 1px dashed #475569;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.address-title {
+  color: #64748b;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 6px;
+  font-family: 'Cairo', sans-serif;
+}
+.crypto-address {
+  color: #ffffff;
+  font-size: 14px;
+  font-family: monospace;
+  word-break: break-all; /* تضمن استعراض العنوان بالكامل في سطر واحد دون تقطع */
+  user-select: all;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.copy-btn {
+  background: #334155;
+  color: #e2e8f0;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  transition: background 0.2s ease;
+}
+.copy-btn:hover {
+  background: #475569;
+}
