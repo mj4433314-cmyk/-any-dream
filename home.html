@@ -1,32 +1,109 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Any Dream</title>
+  <title>Any Dream - Wallet</title>
   <link rel="stylesheet" href="home.css">
-  <!-- رابط مكتبة الأيقونات المتوافقة مع قالب موقعك الأصلي -->
+  <!-- مكتبة الأيقونات المحدثة لضمان ظهور الرموز بشكل سليم -->
   <link rel="stylesheet" href="https://cloudflare.com">
+  <style>
+    /* تنسيقات إضافية لضمان المظهر الاحترافي والأزرار الجديدة الموازية لبايننس */
+    body {
+      background-color: #12161a;
+      color: #ffffff;
+    }
+    .balance-card {
+      text-align: center;
+      padding: 20px;
+    }
+    .deposit-container {
+      background: #1e2329;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid #2b3139;
+    }
+    .address-display-box {
+      background: #12161a;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      border: 1px dashed #474d57;
+    }
+    .crypto-address {
+      color: #f0b90b;
+      font-family: monospace;
+      font-size: 14px;
+      word-break: break-all;
+      margin: 8px 0;
+    }
+    /* حاوية الأزرار السفلية الاحترافية */
+    .action-buttons-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn-action-style {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .btn-blue-deposit {
+      background-color: #0066ee; /* اللون الأزرق الاحترافي المماثل لبايننس في صورتك */
+      color: #ffffff;
+    }
+    .btn-blue-deposit:hover {
+      background-color: #0052cc;
+    }
+    .btn-gray-transfer {
+      background-color: #2b3139;
+      color: #eaeded;
+    }
+    .btn-gray-transfer:hover {
+      background-color: #474d57;
+    }
+    .copy-btn {
+      background: #2b3139;
+      color: #f0b90b;
+      border: 1px solid #474d57;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .copy-btn:hover {
+      background: #474d57;
+    }
+  </style>
 </head>
 <body>
 
 <div class="withdraw-page-container">
-  <!-- بطاقة الرصيد البيضاء الاحترافية -->
+  <!-- بطاقة الرصيد الاحترافية -->
   <div class="balance-card">
-    <span class="balance-label">إجمالي الرصيد المقدر</span>
-    <h2 class="balance-amount">0.00 <span class="currency">USDT</span></h2>
+    <span class="balance-label" style="color: #848e9c; font-size: 14px;">Estimated Total Balance</span>
+    <h2 class="balance-amount" style="font-size: 32px; font-weight: bold; margin: 8px 0;">
+      <span class="currency" style="color: #f0b90b; font-size: 20px; margin-right: 5px;">USDT</span>0.00
+    </h2>
     
-    <!-- زر شحن الحساب -->
-    <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">
-      <i class="fas fa-wallet"></i> شحن الحساب
-    </button>
+    <!-- الأزرار التفاعلية الاحترافية (إيداع ونقل) أسفل الرصيد مباشرة -->
+    <div class="action-buttons-group">
+      <button type="button" class="btn-action-style btn-gray-transfer" onclick="handleTransfer()">Transfer</button>
+      <button type="button" class="btn-action-style btn-blue-deposit" onclick="openDepositSection()">Deposit</button>
+    </div>
   </div>
 
-  <!-- واجهة الدفع والشحن -->
+  <!-- واجهة الدفع والشحن الذكية (تظهر عند ضغط زر Deposit الأزرق) -->
   <div id="depositSection" class="deposit-container" style="display: none;">
-    <div class="deposit-header">
-      <h3>عملية الدفع TRC20</h3>
-      <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
+    <div class="deposit-header" style="text-align: center; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #eaeded;">TRC20 Deposit Process</h3>
+      <p style="color: #848e9c; font-size: 12px; margin: 5px 0 0 0;">You can top up externally via OKX or Binance exchanges</p>
     </div>
     
     <!-- شريط تحميل اللودينغ التنازلي -->
@@ -35,47 +112,47 @@
     </div>
 
     <!-- العداد التنازلي -->
-    <div class="countdown-timer-box">
-      <i class="far fa-clock"></i> ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
+    <div class="countdown-timer-box" style="color: #848e9c; font-size: 13px; text-align: center; margin: 10px 0;">
+      <i class="far fa-clock"></i> Payment request expires in: <span id="timer" style="color: #f0b90b; font-weight: bold;">45:00</span>
     </div>
 
-    <!-- عنوان المحفظة كامل وبدون تقطيع -->
-    <div class="address-display-box">
-      <span class="address-title">عنوان المحفظة (TRC20):</span>
+    <!-- عنوان المحفظة الاحترافي مع النسخ بدون تعطيل -->
+    <div class="address-display-box" style="text-align: center;">
+      <span class="address-title" style="color: #848e9c; font-size: 13px;">Deposit Address (TRC20):</span>
       <div class="crypto-address" id="walletAddrText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-      <button type="button" class="copy-btn" onclick="copyAddress()">نسخ العنوان <i class="far fa-copy"></i></button>
+      <button type="button" class="copy-btn" onclick="copyAddress()">Copy Address <i class="far fa-copy"></i></button>
     </div>
   </div>
 
-  <!-- نموذج طلب السحب -->
-  <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
+  <!-- نموذج طلب السحب المنسق بالكامل بالإنجليزي -->
+  <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();" style="margin-top: 25px;">
     <div class="form-group">
-      <label class="group-label">الشبكة</label>
+      <label class="group-label">Network</label>
       <select class="styled-input" id="networkSelect" required>
         <option value="TRC20">TRC20</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label class="group-label">عنوان المحفظة</label>
-      <input type="text" class="styled-input" id="walletAddress" placeholder="أدخل عنوان محفظة TRC20" required>
+      <label class="group-label">Withdrawal Address</label>
+      <input type="text" class="styled-input" id="walletAddress" placeholder="Enter TRC20 wallet address" required>
     </div>
 
     <div class="form-group">
-      <label class="group-label">كلمة مرور الصندوق</label>
-      <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
+      <label class="group-label">Fund Password</label>
+      <input type="password" class="styled-input" id="fundPassword" placeholder="Enter fund password" required>
     </div>
 
-    <!-- رسالة الخطأ -->
-    <div id="errorMessage" class="error-toast-message">
-      <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
+    <!-- رسالة التنبيه المخفية للرصيد غير الكافي -->
+    <div id="errorMessage" class="error-toast-message" style="display: none; color: #f23645; font-size: 13px; align-items: center; gap: 8px; margin-bottom: 15px;">
+      <i class="fas fa-exclamation-circle"></i> Your balance is insufficient.
     </div>
 
-    <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
+    <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn" style="background-color: #00cc88; color: white; width: 100%; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer;">Withdraw Funds</button>
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الاحترافي على طريقة بايننس -->
+<!-- شريط التنقل السفلي الأصلي لموقعك دون أي تعديل يذكر للتصميم -->
 <div class="binance-bottom-nav">
   <a href="account.html" class="binance-nav-item">
     <i class="fas fa-user"></i>
@@ -95,12 +172,10 @@
   </a>
 </div>
  
-  
-      
-
 <script>
 let timerInterval;
 
+// فتح واجهة الشحن عند النقر على زر الإيداع الأزرق
 function openDepositSection() {
   const depositDiv = document.getElementById('depositSection');
   depositDiv.style.display = 'block';
@@ -109,6 +184,7 @@ function openDepositSection() {
   depositDiv.scrollIntoView({ behavior: 'smooth' });
 }
 
+// مؤقت العد التنازلي لعملية الإيداع
 function startCountdown(duration) {
   let timer = duration, minutes, seconds;
   const display = document.getElementById('timer');
@@ -120,31 +196,48 @@ function startCountdown(duration) {
     display.textContent = minutes + ":" + seconds;
     if (--timer < 0) {
       clearInterval(timerInterval);
-      display.textContent = "منتهي";
+      display.textContent = "Expired";
     }
   }, 1000);
 }
 
+// وظيفة نسخ المحفظة الفورية بدون أي تعطيل برمي
 function copyAddress() {
   const addrText = document.getElementById('walletAddrText').innerText;
   navigator.clipboard.writeText(addrText).then(() => {
-    alert("تم نسخ عنوان المحفظة بنجاح!");
+    alert("Address copied successfully!");
+  }).catch(() => {
+    // طريقة احتياطية للمتصفحات القديمة
+    const textArea = document.createElement("textarea");
+    textArea.value = addrText;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    alert("Address copied successfully!");
   });
 }
 
+// معالجة زر السحب وإظهار رسالة الرصيد غير كافٍ
 function handleWithdraw() {
   const address = document.getElementById('walletAddress').value.trim();
   const password = document.getElementById('fundPassword').value.trim();
   const errorDiv = document.getElementById('errorMessage');
 
   if (address === "" || password === "") {
-      alert("يرجى ملء جميع الحقول المطلوبة أولاً.");
+      alert("Please fill in all required fields first.");
       return;
   }
+  
   errorDiv.style.display = 'flex';
   setTimeout(() => {
       errorDiv.style.display = 'none';
   }, 5000);
+}
+
+// معالجة زر النقل لإظهار عدم تفعيل الحساب
+function handleTransfer() {
+  alert("Your account is inactive. Please subscribe first.");
 }
 </script>
 
