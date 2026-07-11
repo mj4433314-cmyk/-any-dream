@@ -221,10 +221,15 @@
 
     <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
 
-    <!-- إضافة زر أضـافه أعـضاء متبوعاً بقارئ كود الدعوة العشوائي الذكي المحفوظ -->
+    <!-- زر إضافة أعضاء المطور مع صندوق عرض الرمز الاحترافي المخفي -->
     <div style="margin-top: 20px; text-align: center; padding-bottom: 20px;">
-      <button type="button" style="width: 100%; background-color: #0066ee !important; color: white !important; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px;">أضـافه أعـضاء</button>
-      <p id="inviteCodeText" style="color: #848e9c !important; font-size: 14px; margin-top: 10px; font-weight: bold; letter-spacing: 0.5px;">رمز الدعوه الخاص بك جاري التوليد...</p>
+      <button type="button" onclick="showInviteCode()" style="width: 100%; background-color: #0066ee !important; color: white !important; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px;">أضـافه أعـضاء</button>
+      
+      <!-- الصندوق الاحترافي لعرض الرمز بحركة أنيميشن سلسة -->
+      <div id="inviteBox" style="display: none; margin-top: 15px; padding: 12px; background-color: #1e2329; border: 1px solid #2b3139; border-radius: 8px; animation: fadeInBox 0.4s ease-out;">
+        <p style="color: #848e9c !important; font-size: 14px; margin: 0 0 8px 0; font-weight: bold;">رمز الدعوه الخاص بك</p>
+        <span style="color: #0066ee; font-size: 22px; font-weight: bold; letter-spacing: 1px;">1352HR</span>
+      </div>
     </div>
   </form>
 </div>
@@ -248,6 +253,13 @@
     <span>الرئيسية</span>
   </a>
 </div>
+
+<style>
+  @keyframes fadeInBox {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
  
 <script>
 let timerInterval;
@@ -303,33 +315,15 @@ function handleWithdraw() {
   }, 10000);
 }
 
-// دالة توليد الرمز العشوائي الفردي وحفظه بشكل دائم لكل هاتف/جهاز على حدة
-function generateDeviceInviteCode() {
-    const inviteElement = document.getElementById("inviteCodeText");
-    if (!inviteElement) return;
-
-    let deviceCode = localStorage.getItem("userInviteCode");
-
-    if (!deviceCode) {
-        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-        const nums = '123456789';
-        let randomNums = '';
-        let randomChars = '';
-        
-        for (let i = 0; i < 4; i++) {
-            randomNums += nums.charAt(Math.floor(Math.random() * nums.length));
-        }
-        for (let i = 0; i < 2; i++) {
-            randomChars += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        deviceCode = randomNums + randomChars;
-        localStorage.setItem("userInviteCode", deviceCode);
-    }
-
-    inviteElement.innerHTML = `رمز الدعوه الخاص بك <span style="color: #0066ee; font-weight: bold;">${deviceCode}</span>`;
+// دالة إظهار الرمز المخصص عند الضغط على زر إضافة أعضاء
+function showInviteCode() {
+  const inviteBox = document.getElementById("inviteBox");
+  if (inviteBox.style.display === "none" || inviteBox.style.display === "") {
+    inviteBox.style.display = "block";
+  } else {
+    inviteBox.style.display = "none";
+  }
 }
-
-window.addEventListener("DOMContentLoaded", generateDeviceInviteCode);
 </script>
 
 </body>
