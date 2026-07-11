@@ -1,54 +1,101 @@
-const phone=document.getElementById("phone");
-const code=document.getElementById("countryCode");
-const loginBtn=document.getElementById("loginBtn");
-const createBtn=document.getElementById("createBtn");
-const loading=document.getElementById("loading");
+const phone = document.getElementById("phone");
+const code = document.getElementById("countryCode");
+const loginBtn = document.getElementById("loginBtn");
+const createBtn = document.getElementById("createBtn");
+const loading = document.getElementById("loading");
 
-phone.addEventListener("input",function(){
-
-if(this.value.startsWith("077")){
-code.innerHTML="🇮🇶 +964";
-}else{
-code.innerHTML="";
-}
-
+phone.addEventListener("input", function() {
+    if (this.value.startsWith("077")) {
+        code.innerHTML = "🇮🇶 +964";
+    } else {
+        code.innerHTML = "";
+    }
 });
 
-loginBtn.onclick=function(){
+// زر تسجيل الدخول: يتحقق من وجود الحساب المحفوظ في الـ localStorage
+loginBtn.onclick = function() {
+    const inputs = document.querySelectorAll("input");
 
-alert("عذراً، ليس لديك حساب.");
+    // 1. التحقق من ملء الحقول
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value.trim() === "") {
+            alert("يرجى إكمال جميع الحقول أولاً");
+            return;
+        }
+    }
 
+    // جلب البيانات المدخلة من الحقول
+    const enteredEmailOrPhone = inputs[0].value.trim();
+    const enteredPassword = inputs[1].value.trim();
+
+    // جلب البيانات المحفوظة مسبقاً في المتصفح
+    const savedUser = localStorage.getItem("userAccount");
+
+    if (savedUser) {
+        const userData = JSON.parse(savedUser);
+        
+        // مقارنة البيانات المدخلة بالبيانات المحفوظة
+        if (enteredEmailOrPhone === userData.emailOrPhone && enteredPassword === userData.password) {
+            // إذا كانت البيانات صحيحة، ينقله مباشرة للرئيسية
+            window.location.href = "home.html";
+        } else {
+            alert("عذراً، كلمة المرور أو اسم المستخدم غير صحيح.");
+        }
+    } else {
+        // إذا لم يجد أي حساب مسجل مسبقاً في المتصفح
+        alert("عذراً، ليس لديك حساب مسبقاً يرجى إنشاء الحساب.");
+    }
 };
 
-createBtn.onclick=function(){
+// زر إنشاء الحساب: يقوم بإنشاء الحساب وحفظه دائماً في المتصفح
+createBtn.onclick = function() {
+    const inputs = document.querySelectorAll("input");
 
-const inputs=document.querySelectorAll("input");
+    // 1. التحقق من ملء الحقول
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value.trim() === "") {
+            alert("يرجى إكمال جميع الحقول أولاً");
+            return;
+        }
+    }
 
-for(let i=0;i<inputs.length;i++){
+    // 2. حفظ البيانات داخل المتصفح بشكل دائم (LocalStorage)
+    const accountData = {
+        emailOrPhone: inputs[0].value.trim(),
+        password: inputs[1].value.trim(),
+        inviteCode: inputs[2] ? inputs[2].value.trim() : ""
+    };
+    
+    // تخزين البيانات بصيغة نصية دائمية
+    localStorage.setItem("userAccount", JSON.stringify(accountData));
 
-if(inputs[i].value==""){
+    // 3. تشغيل اللودينج وأنيميشن الشعار الاحترافي
+    loading.style.display = "flex";
 
-alert("يرجى إكمال جميع الحقول");
+    setTimeout(function() {
+        loading.innerHTML = `
+          <div style="text-align: center; animation: logoEntrance 0.8s ease-out forwards;">
+            <img src="lokgo.png" alt="Logo" style="width: 140px; height: auto; mix-blend-mode: screen; animation: logoPulse 2s infinite ease-in-out; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));">
+            <h2 style="color: #ffffff; margin-top: 25px; font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; letter-spacing: 0.5px;">Account Created Successfully!</h2>
+          </div>
+          
+          <style>
+            @keyframes logoEntrance {
+              0% { transform: scale(0.3); opacity: 0; }
+              70% { transform: scale(1.1); opacity: 0.9; }
+              100% { transform: scale(1); opacity: 1; }
+            }
+            @keyframes logoPulse {
+              0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,255,255,0.4)); }
+              50% { transform: scale(1.04); filter: drop-shadow(0 0 25px rgba(255,255,255,0.7)); }
+              100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,255,255,0.4)); }
+            }
+          </style>
+        `;
 
-return;
+        setTimeout(function() {
+            window.location.href = "home.html";
+        }, 3000);
 
-}
-
-}
-
-loading.style.display="flex";
-
-setTimeout(function(){
-
-loading.innerHTML = `<div class="success-container"><div class="success-checkmark"><div class="check-icon"><span class="icon-line line-tip"></span><span class="icon-line line-long"></span><div class="icon-circle"></div><div class="icon-fix"></div></div></div><h2 class="success-title">تم إنشاء الحساب بنجاح</h2></div>`;
-  
-  
-setTimeout(function(){
-
-window.location.href="home.html";
-
-},2000);
-
-},10000);
-
+    }, 10000);
 };
