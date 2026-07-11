@@ -8,21 +8,21 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* التنسيق الجديد لتحويل الشعار إلى عملة دائرية غير شفافة */
+    /* تنسيق الشعار ليكون على شكل دائرة بيضاء بدون إطار أزرق */
     .logo-container {
       text-align: center;
       margin-bottom: 25px;
       margin-top: 10px;
     }
     .main-app-logo {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       object-fit: cover;
-      border-radius: 50%; /* جعل الصورة دائرية تماماً */
-      background-color: #ffffff; /* خلفية بيضاء غير شفافة لتظهر تفاصيل الشعار */
-      border: 4px solid #00aeef; /* إطار أزرق أنيق مستوحى من لون حرف R في شعارك */
-      padding: 5px; /* مسافة داخلية صغيرة ليعطي مظهر العملة */
-      box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3); /* ظل مضيء خفيف حول العملة */
+      border-radius: 50%; /* جعل الصورة دائرية */
+      background-color: #ffffff; /* خلفية بيضاء دائرية وغير شفافة */
+      padding: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ظل خفيف وناعم للمظهر الاحترافي */
+      border: none !important; /* التأكيد على حذف الإطار الأزرق */
     }
   </style>
 </head>
@@ -32,7 +32,7 @@
 <div class="login-page">
   <div class="login-box">
     
-    <!-- حاوية الشعار التي تظهره كعملة دائرية خلفيتها بيضاء غير شفافة -->
+    <!-- الشعار في دائرة بيضاء نقية وبدون خط أزرق -->
     <div class="logo-container">
       <img src="lokgo.png" alt="Any Dream Coin" class="main-app-logo">
     </div>
@@ -65,10 +65,11 @@
 
     </form>
 
-    <div class="coins">
-      <i class="fab fa-bitcoin btc"></i>
-      <img src="https://cryptologos.cc" class="coin">
-      <img src="https://cryptologos.cc" class="coin">
+    <!-- إعادة إظهار أيقونات العملات الرقمية الأصلية بشكل صحيح ونظيف في الأسفل -->
+    <div class="coins" style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; align-items: center;">
+      <img src="https://cryptologos.cc" style="width: 32px; height: auto;" alt="Bitcoin">
+      <img src="https://cryptologos.cc" style="width: 32px; height: auto;" alt="Solana">
+      <img src="https://cryptologos.cc" style="width: 32px; height: auto;" alt="Tether">
     </div>
 
   </div>
