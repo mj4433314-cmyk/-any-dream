@@ -6,14 +6,84 @@
   <title>Any Dream</title>
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://cloudflare.com">
+  <style>
+    /* التنسيق الجديد لكارت الرصيد الاحترافي الداكن */
+    .balance-card {
+      background-color: #181a20 !important; /* خلفية داكنة */
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: right; /* محاذاة النص لليمين مثل الصورة */
+      box-shadow: none !important;
+      border: 1px solid #2b3139;
+    }
+    .balance-label {
+      color: #848e9c !important; /* لون رمادي خفيف للعنوان */
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .balance-label i {
+      font-size: 11px;
+    }
+    .balance-amount {
+      color: #ffffff !important; /* لون الرقم أبيض */
+      font-size: 32px;
+      font-weight: bold;
+      margin: 10px 0 5px 0 !important;
+      font-family: Arial, sans-serif;
+    }
+    .balance-stats {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .stat-green {
+      color: #0ecb81; /* اللون الأخضر للأرباح */
+      font-weight: 500;
+    }
+    .stat-badge {
+      background-color: #2b3139;
+      color: #eaeded;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    .deposit-trigger-btn {
+      width: 100%;
+      background-color: #0066ee !important; /* زر أزرق مريح للاستخدام */
+      color: white !important;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .deposit-trigger-btn:hover {
+      background-color: #0052cc !important;
+    }
+  </style>
 </head>
 <body>
 
 <div class="withdraw-page-container">
-  <!-- بطاقة الرصيد البيضاء الاحترافية -->
+  <!-- بطاقة الرصيد الداكنة الاحترافية الجديدة -->
   <div class="balance-card">
-    <span class="balance-label">إجمالي الرصيد المقدر</span>
-    <h2 class="balance-amount">0.00 <span class="currency">USDT</span></h2>
+    <div class="balance-label">
+      Assets, total <i class="fas fa-chevron-up" style="font-size:8px;"></i><i class="fas fa-chevron-down" style="font-size:8px; margin-right:-3px;"></i>
+    </div>
+    <h2 class="balance-amount">0.00 USDT</h2>
+    
+    <!-- إحصائيات اليوم باللون الأخضر مثل صورتك -->
+    <div class="balance-stats">
+      <span class="stat-green">+0.00 · 0.00%</span>
+      <span class="stat-badge">for today</span>
+    </div>
     
     <!-- زر شحن الحساب -->
     <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">
@@ -74,7 +144,7 @@
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الاحترافي على طريقة بايننس -->
+<!-- شريط التنقل السفلي الاحترافي على طريقة بايننس (مؤمن بالكامل من العطل) -->
 <div class="binance-bottom-nav">
   <a href="account.html" class="binance-nav-item">
     <i class="fas fa-user"></i>
