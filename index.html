@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Any Dream</title>
   <link rel="stylesheet" href="style.css">
+  <!-- مكتبة الأيقونات الرسمية لضمان ظهور شعارات العملات -->
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* تنسيق الشعار ليكون على شكل دائرة بيضاء بدون إطار أزرق */
+    /* تنسيق الشعار الدائري */
     .logo-container {
       text-align: center;
       margin-bottom: 25px;
@@ -18,11 +19,29 @@
       width: 140px;
       height: 140px;
       object-fit: cover;
-      border-radius: 50%; /* جعل الصورة دائرية */
-      background-color: #ffffff; /* خلفية بيضاء دائرية وغير شفافة */
+      border-radius: 50%;
+      background-color: #ffffff;
       padding: 5px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* ظل خفيف وناعم للمظهر الاحترافي */
-      border: none !important; /* التأكيد على حذف الإطار الأزرق */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: none !important;
+    }
+    /* تنسيق الأيقونات الجاهزة للعملات أسفل الصفحة */
+    .crypto-icons-footer {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 25px;
+      font-size: 32px; /* حجم الأيقونات */
+      align-items: center;
+    }
+    .icon-btc {
+      color: #f7931a; /* اللون البرتقالي الرسمي للبتكوين */
+    }
+    .icon-sol {
+      color: #00ffa3; /* اللون الأخضر المائل للأزرق لسولانا */
+    }
+    .icon-usdt {
+      color: #26a17b; /* اللون الأخضر الرسمي للتيثر */
     }
   </style>
 </head>
@@ -32,7 +51,7 @@
 <div class="login-page">
   <div class="login-box">
     
-    <!-- الشعار في دائرة بيضاء نقية وبدون خط أزرق -->
+    <!-- الشعار الدائري الاحترافي -->
     <div class="logo-container">
       <img src="lokgo.png" alt="Any Dream Coin" class="main-app-logo">
     </div>
@@ -65,11 +84,11 @@
 
     </form>
 
-    <!-- إعادة إظهار أيقونات العملات الرقمية الأصلية بشكل صحيح ونظيف في الأسفل -->
-    <div class="coins" style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; align-items: center;">
-      <img src="https://cryptologos.cc" style="width: 32px; height: auto;" alt="Bitcoin">
-      <img src="https://cryptologos.cc" style="width: 32px; height: auto;" alt="Solana">
-      <img src="https://cryptologos.cc" style="width: 32px; height: auto;" alt="Tether">
+    <!-- الأيقونات البرمجية الجاهزة بدون الحاجة لرفع صور -->
+    <div class="crypto-icons-footer">
+      <i class="fa-brands fa-bitcoin icon-btc"></i>
+      <i class="fa-solid fa-cubes icon-sol"></i> <!-- أيقونة بديلة وجميلة لشبكة سولانا -->
+      <i class="fa-solid fa-circle-dollar-to-slot icon-usdt"></i> <!-- أيقونة تفاعلية للتيثر الرقمي -->
     </div>
 
   </div>
