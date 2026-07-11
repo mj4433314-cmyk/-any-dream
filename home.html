@@ -67,6 +67,35 @@
     .deposit-trigger-btn:hover {
       background-color: #0052cc !important;
     }
+
+    /* تعديل شريط اللودينغ والخط إلى اللون الأزرق الاحترافي */
+    .deposit-loading-bar {
+      width: 100%;
+      background-color: #2b3139;
+      height: 4px;
+      border-radius: 2px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+    .loading-progress {
+      width: 100%;
+      background-color: #0066ee !important; /* لودينغ باللون الأزرق */
+      height: 100%;
+      animation: countdownProgress 2700s linear forwards; /* 45 دقيقة */
+    }
+    @keyframes countdownProgress {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
+    .countdown-timer-box {
+      color: #0066ee !important; /* نص وقت طلب الدفع باللون الأزرق */
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #timer {
+      color: #0066ee !important; /* أرقام العداد باللون الأزرق */
+    }
   </style>
 </head>
 <body>
@@ -91,19 +120,19 @@
     </button>
   </div>
 
-  <!-- واجهة الدفع والشحن -->
+  <!-- واجهة الدفع والشحن المحدثة باللون الأزرق -->
   <div id="depositSection" class="deposit-container" style="display: none;">
     <div class="deposit-header">
       <h3>عملية الدفع TRC20</h3>
       <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
     </div>
     
-    <!-- شريط تحميل اللودينغ التنازلي -->
+    <!-- شريط تحميل اللودينغ التنازلي الأزرق -->
     <div class="deposit-loading-bar">
       <div class="loading-progress"></div>
     </div>
 
-    <!-- العداد التنازلي -->
+    <!-- العداد التنازلي الأزرق -->
     <div class="countdown-timer-box">
       <i class="far fa-clock"></i> ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
     </div>
@@ -144,7 +173,7 @@
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الاحترافي على طريقة بايننس (مؤمن بالكامل من العطل) -->
+<!-- شريط التنقل السفلي الاحترافي على طريقة بايننس -->
 <div class="binance-bottom-nav">
   <a href="account.html" class="binance-nav-item">
     <i class="fas fa-user"></i>
