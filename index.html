@@ -8,20 +8,16 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* تنسيق الشعار الدائري الاحترافي */
+    /* تنسيق طبيعي ومفتوح للشعار بدون أي دوائر */
     .logo-container {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      margin-top: 10px;
     }
     .main-app-logo {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      background-color: #ffffff;
-      padding: 5px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border: none !important;
+      width: 160px;
+      height: auto;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -31,9 +27,9 @@
 <div class="login-page">
   <div class="login-box">
     
-    <!-- الشعار الدائري المنسق -->
+    <!-- الشعار مدمج بشكل طبيعي بدون دائرة -->
     <div class="logo-container">
-      <img src="lokgo.png" alt="Any Dream Coin" class="main-app-logo">
+      <img src="lokgo.png" alt="Any Dream Logo" class="main-app-logo">
     </div>
 
     <form id="registerForm">
@@ -64,11 +60,11 @@
 
     </form>
 
-    <!-- إرجاع حاوية العملات الأصلية لموقعك كما كانت بالظبط لتأخذ تنسيق الـ CSS القديم -->
+    <!-- العملات الثلاثة الأصلية في الأسفل -->
     <div class="coins">
+      <img src="https://cryptologos.cc" class="coin" alt="USDT">
+      <img src="https://cryptologos.cc" class="coin" alt="Solana">
       <i class="fab fa-bitcoin btc"></i>
-      <img src="https://cryptologos.cc" class="coin">
-      <img src="https://cryptologos.cc" class="coin">
     </div>
 
   </div>
