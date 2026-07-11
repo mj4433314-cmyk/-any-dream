@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Any Dream</title>
   <link rel="stylesheet" href="style.css">
-  <!-- مكتبة الأيقونات الرسمية لضمان ظهور شعارات العملات -->
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* تنسيق الشعار الدائري */
+    /* تنسيق الشعار الدائري الاحترافي */
     .logo-container {
       text-align: center;
-      margin-bottom: 25px;
-      margin-top: 10px;
+      margin-bottom: 20px;
     }
     .main-app-logo {
       width: 140px;
@@ -25,24 +23,6 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       border: none !important;
     }
-    /* تنسيق الأيقونات الجاهزة للعملات أسفل الصفحة */
-    .crypto-icons-footer {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 25px;
-      font-size: 32px; /* حجم الأيقونات */
-      align-items: center;
-    }
-    .icon-btc {
-      color: #f7931a; /* اللون البرتقالي الرسمي للبتكوين */
-    }
-    .icon-sol {
-      color: #00ffa3; /* اللون الأخضر المائل للأزرق لسولانا */
-    }
-    .icon-usdt {
-      color: #26a17b; /* اللون الأخضر الرسمي للتيثر */
-    }
   </style>
 </head>
 
@@ -51,7 +31,7 @@
 <div class="login-page">
   <div class="login-box">
     
-    <!-- الشعار الدائري الاحترافي -->
+    <!-- الشعار الدائري المنسق -->
     <div class="logo-container">
       <img src="lokgo.png" alt="Any Dream Coin" class="main-app-logo">
     </div>
@@ -84,11 +64,11 @@
 
     </form>
 
-    <!-- الأيقونات البرمجية الجاهزة بدون الحاجة لرفع صور -->
-    <div class="crypto-icons-footer">
-      <i class="fa-brands fa-bitcoin icon-btc"></i>
-      <i class="fa-solid fa-cubes icon-sol"></i> <!-- أيقونة بديلة وجميلة لشبكة سولانا -->
-      <i class="fa-solid fa-circle-dollar-to-slot icon-usdt"></i> <!-- أيقونة تفاعلية للتيثر الرقمي -->
+    <!-- إرجاع حاوية العملات الأصلية لموقعك كما كانت بالظبط لتأخذ تنسيق الـ CSS القديم -->
+    <div class="coins">
+      <i class="fab fa-bitcoin btc"></i>
+      <img src="https://cryptologos.cc" class="coin">
+      <img src="https://cryptologos.cc" class="coin">
     </div>
 
   </div>
