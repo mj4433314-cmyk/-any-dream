@@ -19,6 +19,23 @@
       height: auto;
       object-fit: contain;
     }
+    /* تنسيق لضمان ظهور صور العملات في الأسفل بشكل متناسق وصحيح */
+    .coins {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      align-items: center;
+    }
+    .coins img {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+    }
+    .coins i {
+      font-size: 35px;
+      color: #f7931a; /* لون البتكوين البرتقالي */
+    }
   </style>
 </head>
 
@@ -60,10 +77,10 @@
 
     </form>
 
-    <!-- العملات الثلاثة الأصلية في الأسفل -->
+    <!-- روابط إنترنت مباشرة وموثوقة للعملات لتظهر فوراً وبشكل ملون بدون ما ترفع أي ملف بنفسك -->
     <div class="coins">
-      <img src="https://cryptologos.cc" class="coin" alt="USDT">
-      <img src="https://cryptologos.cc" class="coin" alt="Solana">
+      <img src="https://githubusercontent.com" alt="USDT">
+      <img src="https://githubusercontent.com" alt="Solana">
       <i class="fab fa-bitcoin btc"></i>
     </div>
 
