@@ -2,89 +2,84 @@
 <html lang="ar" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Any Dream</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Any Dream</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cloudflare.com">
+  <style>
+    /* التنسيق الجديد لتحويل الشعار إلى عملة دائرية غير شفافة */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 25px;
+      margin-top: 10px;
+    }
+    .main-app-logo {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%; /* جعل الصورة دائرية تماماً */
+      background-color: #ffffff; /* خلفية بيضاء غير شفافة لتظهر تفاصيل الشعار */
+      border: 4px solid #00aeef; /* إطار أزرق أنيق مستوحى من لون حرف R في شعارك */
+      padding: 5px; /* مسافة داخلية صغيرة ليعطي مظهر العملة */
+      box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3); /* ظل مضيء خفيف حول العملة */
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="login-page">
+  <div class="login-box">
+    
+    <!-- حاوية الشعار التي تظهره كعملة دائرية خلفيتها بيضاء غير شفافة -->
+    <div class="logo-container">
+      <img src="lokgo.png" alt="Any Dream Coin" class="main-app-logo">
+    </div>
 
-<div class="login-box">
+    <form id="registerForm">
+      
+      <div class="input-box">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" id="phone" placeholder="البريد الإلكتروني أو رقم الهاتف">
+        <span id="countryCode"></span>
+      </div>
 
-<h1>Any Dream</h1>
+      <div class="input-box">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" placeholder="كلمة السر">
+      </div>
 
+      <div class="input-box">
+        <i class="fa-solid fa-user-plus"></i>
+        <input type="text" id="inviteInput" placeholder="رمز الدعوة">
+      </div>
 
+      <button type="button" id="loginBtn" class="login-btn">
+        تسجيل الدخول
+      </button>
 
-<form id="registerForm">
+      <button type="button" id="createBtn" class="create-btn">
+        إنشاء الحساب
+      </button>
 
-  
-<div class="input-box">
-<i class="fa-solid fa-phone"></i>
+    </form>
 
-<input type="text" id="phone" placeholder="البريد الإلكتروني أو رقم الهاتف">
+    <div class="coins">
+      <i class="fab fa-bitcoin btc"></i>
+      <img src="https://cryptologos.cc" class="coin">
+      <img src="https://cryptologos.cc" class="coin">
+    </div>
 
-<span id="countryCode"></span>
-
-</div>
-
-<div class="input-box">
-
-<i class="fa-solid fa-lock"></i>
-
-<input type="password" placeholder="كلمة السر">
-
-</div>
-
-<div class="input-box">
-
-<i class="fa-solid fa-user-plus"></i>
-
-<input type="text" placeholder="رمز الدعوة">
-
-</div>
-
-<button type="button" id="loginBtn" class="login-btn">
-تسجيل الدخول
-</button>
-
-<button type="button" id="createBtn" class="create-btn">
-إنشاء الحساب
-</button>
-
-</form>
-
-<div class="coins">
-
-<i class="fab fa-bitcoin btc"></i>
-
-<img src="https://cryptologos.cc/logos/solana-sol-logo.png" class="coin">
-
-<img src="https://cryptologos.cc/logos/tether-usdt-logo.png" class="coin">
-
-</div>
-
-</div>
-
+  </div>
 </div>
 
 <div id="loading">
-
-<div class="loader"></div>
-
-<h2>جاري إنشاء الحساب...</h2>
-
+  <div class="loader"></div>
+  <h2>جاري إنشاء الحساب...</h2>
 </div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
