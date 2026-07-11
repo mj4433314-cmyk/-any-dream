@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Any Dream</title>
   <link rel="stylesheet" href="style.css">
-  <!-- استدعاء المكتبة الرسمية لضمان ظهور كافة الأيقونات والشعارات -->
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
     /* تنسيق طبيعي ومفتوح للشعار بدون أي دوائر */
@@ -20,30 +19,6 @@
       height: auto;
       object-fit: contain;
     }
-    /* تنسيق احترافي لأيقونات العملات السفلية لضمان ظهورها بألوانها الرسمية المضيئة */
-    .coins {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 25px;
-      align-items: center;
-    }
-    .coins i {
-      font-size: 38px; /* حجم أيقونات العملات */
-      transition: transform 0.2s;
-    }
-    .coins i:hover {
-      transform: scale(1.1);
-    }
-    .btc-icon {
-      color: #f7931a !important; /* اللون البرتقالي الرسمي للبتكوين */
-    }
-    .usdt-icon {
-      color: #26a17b !important; /* اللون الأخضر الرسمي للتيثر */
-    }
-    .sol-icon {
-      color: #00ffa3 !important; /* لون مضيء مميز لشبكة سولانا */
-    }
   </style>
 </head>
 
@@ -52,27 +27,25 @@
 <div class="login-page">
   <div class="login-box">
     
-    <!-- الشعار مدمج بشكل طبيعي بدون دائرة -->
+    <!-- الشعار مدمج بشكل طبيعي بدون دائرة وبدون صور بالأسفل -->
     <div class="logo-container">
       <img src="lokgo.png" alt="Any Dream Logo" class="main-app-logo">
     </div>
 
     <form id="registerForm">
       
-      <!-- إرجاع أيقونة الهاتف داخل المربع -->
+      <!-- إرجاع نفس تركيبة كلاسات الأيقونات الأصلية لموقعك القديم لتظهر بدقة -->
       <div class="input-box">
         <i class="fa-solid fa-phone"></i>
         <input type="text" id="phone" placeholder="البريد الإلكتروني أو رقم الهاتف">
         <span id="countryCode"></span>
       </div>
 
-      <!-- إرجاع أيقونة القفل داخل المربع -->
       <div class="input-box">
         <i class="fa-solid fa-lock"></i>
         <input type="password" placeholder="كلمة السر">
       </div>
 
-      <!-- إرجاع أيقونة المستخدم داخل المربع -->
       <div class="input-box">
         <i class="fa-solid fa-user-plus"></i>
         <input type="text" id="inviteInput" placeholder="رمز الدعوة">
@@ -87,13 +60,6 @@
       </button>
 
     </form>
-
-    <!-- أيقونات العملات البرمجية الملونة والذكية لضمان ظهورها بشكل دائم بدون صور مكسورة -->
-    <div class="coins">
-      <i class="fa-brands fa-bitcoin btc-icon"></i>
-      <i class="fa-solid fa-cubes-stacked sol-icon"></i>
-      <i class="fa-solid fa-circle-dollar-to-slot usdt-icon"></i>
-    </div>
 
   </div>
 </div>
