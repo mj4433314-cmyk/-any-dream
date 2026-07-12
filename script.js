@@ -1,12 +1,12 @@
-// 1. استيراد حزم Firebase الأساسية المتوافقة مع المتصفح
-import { initializeApp } from "https://gstatic.com";
-import { getAnalytics } from "https://gstatic.com";
-import { getFirestore, collection, addDoc, getDocs, query, where } from "https://gstatic.com";
+// 1. استيراد حزم Firebase الأساسية المتوافقة مع المتصفح بالروابط الصحيحة والكاملة
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// 2. إعدادات مشروعك الكاملة والخاصة بك 100%
+// 2. إعدادات مشروعك الكاملة والمصححة بنسبة 100%
 const firebaseConfig = {
     apiKey: "AIzaSyAs7tvPA4OUA_D7_3DEyBL_SEbwTZ8KJaI",
-    authDomain: "://firebaseapp.com",
+    authDomain: "mywebproject-2c548.firebaseapp.com", // تم تصحيح الرابط هنا لربطه بمشروعك
     projectId: "mywebproject-2c548",
     storageBucket: "mywebproject-2c548.firebasestorage.app",
     messagingSenderId: "864322797605",
@@ -145,4 +145,4 @@ if(createBtn) {
             alert("حدث خطأ أثناء الاتصال بالسيرفر، يرجى المحاولة لاحقاً");
         }
     };
-            }
+    }
