@@ -40,17 +40,18 @@
         }
 
         /* عناوين الحقول الاحترافية العريضة والممتدة فوق المربعات */
-        .field-label {
-            font-size: 20px;
+               .field-label {
+            font-size: 24px;
             font-weight: 900; 
             color: #1a202c;
             margin-bottom: 8px;
             display: block;
             padding-right: 5px;
-            font-family: 'Arial Black', Gadget, Impact, sans-serif; 
+            font-family: 'Arial Black', Gadget, Impact, sans-serif;
             font-style: italic;
             letter-spacing: 0.5px;
-        }
+               }
+        
 
         /* المربعات الطويلة والنظيفة */
         input { 
@@ -127,16 +128,21 @@
             <img src="lokgo.png" alt="شعار مخصص">
         </div>
 
-        <label class="field-label">جيميل / هاتف</label>
+                <!-- الحقل الأول الإنجليزي العريض المائل فوق المربع -->
+        <label class="field-label">Gmail / Phone</label>
         <div style="display: flex; align-items: center;">
             <span id="countryCode"></span>
             <input type="text" id="phone" placeholder="">
         </div>
 
-        <label class="field-label">كلمة السر</label>
+        <!-- الحقل الثاني الإنجليزي العريض المائل فوق المربع -->
+        <label class="field-label">Password</label>
         <input type="password" id="password" placeholder="">
 
-        <label class="field-label">رمز الدعوة OY</label>
+        <!-- الحقل الثالث الإنجليزي العريض المائل فوق المربع -->
+        <label class="field-label">Invite Code OY</label>
+        <input type="text" id="inviteCode" placeholder="">
+        
         <input type="text" id="inviteCode" placeholder="">
         
     
