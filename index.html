@@ -4,16 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب وتسجيل الدخول</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #121212; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { background-color: #1e1e1e; padding: 30px; border-radius: 10px; width: 320px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #333; border-radius: 5px; background-color: #2a2a2a; color: #fff; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; margin: 5px 0; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        #loginBtn { background-color: #007bff; color: white; }
-        #createBtn { background-color: #28a745; color: white; }
-        #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; }
-        #countryCode { margin-left: 5px; font-weight: bold; }
-    </style>
+        <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f6f9; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .container { 
+            background-color: #ffffff; 
+            padding: 30px; 
+            border-radius: 24px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+            width: 360px; 
+            text-align: center; 
+        }
+        h2 {
+            color: #333333;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 12px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+            background-color: #ffffff;
+            color: #333333;
+        }
+        input:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        button { 
+            width: 100%; 
+            padding: 15px; 
+            border: none; 
+            border-radius: 12px; 
+            color: white; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-bottom: 12px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #loginBtn { 
+            background: linear-gradient(135deg, #2563eb, #1d4ed8); 
+        }
+        #createBtn { 
+            background: linear-gradient(135deg, #10b981, #059669); 
+            margin-bottom: 0;
+        }
+        #loading { display: none; position: fixed; }
+        #countryCode { margin-left: 5px; }
+        </style>
+    
 </head>
 <body>
 
