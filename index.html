@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إنشاء حساب وتسجيل الدخول</title>
+    <title>تسجيل الدخول</title>
     <style>
         body { 
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
             background-color: #fcfcfd; 
             display: flex; 
             justify-content: center; 
@@ -16,108 +16,81 @@
         }
         .container { 
             background-color: #ffffff; 
-            padding: 40px 30px; 
+            padding: 30px 24px; 
             border-radius: 40px; 
             width: 380px; 
-            text-align: center; 
+            text-align: right; 
             box-sizing: border-box;
         }
         
-        /* قسم الشعار العلوي المتطابق */
+        /* قسم الشعار المخصص المربوط بصورتك lokgo.png */
         .logo-section {
-            margin-bottom: 45px;
+            margin-bottom: 35px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
         .logo-section img {
-            width: 140px;
+            width: 170px; 
             height: auto;
             display: block;
-            margin-bottom: 5px;
-        }
-        .logo-url {
-            font-size: 8px;
-            font-family: 'Courier New', Courier, monospace;
-            color: #000000;
-            font-weight: 900;
-            margin: 0 0 4px 0;
-            letter-spacing: -0.2px;
-        }
-        .brand-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-        .brand-okx {
-            font-family: 'Arial Black', Gadget, sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            color: #000000;
-            letter-spacing: 1px;
-            line-height: 1;
-        }
-        .brand-x {
-            border: 1.5px solid #000000;
-            border-radius: 4px;
-            padding: 0px 3px;
-            font-size: 8px;
-            font-weight: 900;
-            font-family: Arial, sans-serif;
-            line-height: 1.2;
-            display: inline-block;
+            margin-bottom: 8px;
+            background: transparent; 
         }
 
-        /* مربعات حقول الإدخال الطويلة والمائلة */
+        /* عناوين الحقول الاحترافية العريضة والممتدة فوق المربعات */
+        .field-label {
+            font-size: 20px;
+            font-weight: 900; 
+            color: #1a202c;
+            margin-bottom: 8px;
+            display: block;
+            padding-right: 5px;
+            font-family: 'Arial Black', Gadget, Impact, sans-serif; 
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* المربعات الطويلة والنظيفة */
         input { 
             width: 100%; 
             height: 60px; 
-            padding: 0 20px; 
-            margin-bottom: 20px; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 18px; 
+            padding: 0 15px; 
+            margin-bottom: 22px; 
+            border: 2px solid #3b82f6; 
+            border-radius: 16px; 
             box-sizing: border-box; 
             font-size: 20px; 
-            font-family: Arial, Helvetica, sans-serif; 
-            font-style: italic; 
+            font-weight: bold;
             background-color: #ffffff !important; 
             color: #000000;
-            text-align: center;
+            text-align: right; 
             box-shadow: none;
-            transition: all 0.2s ease;
+            transition: border-color 0.2s;
         }
 
-        /* تحديد الحقل الأول بالأزرق العريض */
-        input:first-of-type, input#phone {
-            border: 2px solid #2563eb !important; 
-        }
-
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover, 
-        input:-webkit-autofill:focus {
-            -webkit-text-fill-color: #000000 !important;
-            -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
-            transition: background-color 5000s ease-in-out 0s;
+        input#inviteCode {
+            border: 1px solid #e2e8f0;
         }
 
         input:focus {
             outline: none;
-            border-color: #2563eb !important;
+            border-color: #1d4ed8 !important;
         }
 
-        /* الأزرار المطابقة بالكامل */
         button { 
             width: 100%; 
             height: 56px; 
             border: none; 
-            border-radius: 18px; 
+            border-radius: 16px; 
             color: white; 
             font-size: 20px; 
             font-weight: bold; 
             cursor: pointer; 
             margin-bottom: 16px; 
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15); 
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.15); 
+            text-align: center;
         }
         #loginBtn { 
             background: linear-gradient(to right, #1d4ed8, #2563eb); 
@@ -125,70 +98,47 @@
         #createBtn { 
             background: linear-gradient(to right, #059669, #10b981); 
             margin-bottom: 0;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.15);
         }
 
-        /* لودينج الخلفية البيضاء */
         #loading { 
             display: none; 
             position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
+            top: 0; left: 0; width: 100%; height: 100%; 
             background-color: #ffffff; 
             z-index: 9999; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column;
+            justify-content: center; align-items: center; flex-direction: column;
         }
         .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #10b981; 
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+            width: 60px; height: 60px;
+            border: 5px solid #f3f3f3; border-top: 5px solid #10b981; 
+            border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;
         }
-        .loading-text {
-            font-family: system-ui, sans-serif;
-            font-size: 20px;
-            color: #333333;
-            font-weight: bold;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        .loading-text { font-family: sans-serif; font-size: 20px; color: #333; font-weight: bold; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- الشعار العلوي -->
+        <!-- الشعار المخصص المرفوع في ملفاتك -->
         <div class="logo-section">
-            <img src="https://pages.dev" alt="HR Logo">
-            <p class="logo-url">https://dev.com</p>
-            <div class="brand-footer">
-                <span class="brand-okx">OKX</span>
-                <span class="brand-x">X</span>
-            </div>
+            <img src="lokgo.png" alt="شعار مخصص">
         </div>
-            
+
+        <label class="field-label">جيميل / هاتف</label>
+        <div style="display: flex; align-items: center;">
+            <span id="countryCode"></span>
+            <input type="text" id="phone" placeholder="">
+        </div>
+
+        <label class="field-label">كلمة السر</label>
+        <input type="password" id="password" placeholder="">
+
+        <label class="field-label">رمز الدعوة OY</label>
+        <input type="text" id="inviteCode" placeholder="">
         
-    
-    <div style="display: flex; align-items: center;">
-        <span id="countryCode"></span>
-        <input type="text" id="phone" placeholder="البريد الإلكتروني أو رقم الهاتف">
-    </div>
-    
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <input type="text" id="inviteCode" placeholder="رمز الدعوة">
     
     <button id="loginBtn">تسجيل الدخول</button>
     <button id="createBtn">إنشاء حساب</button>
