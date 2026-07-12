@@ -1,7 +1,7 @@
 // 1. استيراد حزم Firebase الأساسية المتوافقة مع المتصفح
 import { initializeApp } from "https://gstatic.com";
 import { getAnalytics } from "https://gstatic.com";
-import { getFirestore, collection, addDoc } from "https://gstatic.com";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://gstatic.com";
 
 // 2. إعدادات مشروعك الكاملة والخاصة بك 100%
 const firebaseConfig = {
@@ -37,12 +37,56 @@ if(phone) {
     });
 }
 
-// 🔑 زر إنشاء الحساب وإرسال البيانات لقاعدة بيانات Firebase Firestore الآمنة
+// 🔑 زر تسجيل الدخول: يتحقق من البيانات المخزنة سحابياً مع شرط الرمز 1234566
+if(loginBtn) {
+    loginBtn.onclick = async function() {
+        const inputs = document.querySelectorAll("input");
+
+        // التحقق من ملء جميع الحقول أولاً
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.trim() === "") {
+                alert("يرجى إكمال جميع الحقول أولاً");
+                return;
+            }
+        }
+
+        const enteredEmailOrPhone = inputs[0].value.trim();
+        const enteredPassword = inputs[1].value.trim();
+        const loginInviteCode = inputs[2] ? inputs[2].value.trim() : "";
+
+        // 🚀 الشرط الصارم والمطلوب لزر تسجيل الدخول
+        if (loginInviteCode !== "1234566") {
+            alert("تنبيه: رمز الدعوة الخاص بتسجيل الدخول غير صحيح!");
+            return;
+        }
+
+        try {
+            // الاستعلام من قاعدة البيانات للتحقق من الحساب
+            const q = query(collection(db, "users"), 
+                where("emailOrPhone", "==", enteredEmailOrPhone),
+                where("password", "==", enteredPassword)
+            );
+            
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                window.location.href = "home.html";
+            } else {
+                alert("عذراً، كلمة المرور أو اسم المستخدم غير صحيح.");
+            }
+        } catch (error) {
+            console.error("خطأ أثناء تسجيل الدخول: ", error);
+            alert("حدث خطأ في الاتصال بالخادم، يرجى المحاولة لاحقاً");
+        }
+    };
+}
+
+// 🔑 زر إنشاء الحساب وإرسال البيانات لقاعدة بيانات Firebase Firestore مع شرط الرمز 43688
 if(createBtn) {
     createBtn.onclick = async function() {
         const inputs = document.querySelectorAll("input");
 
-        // التحقق من ملء جميع الحقول
+        // التحقق من ملء جميع الحقول أولاً
         for (let i = 0; i < inputs.length; i++) {
             if (inputs[i].value.trim() === "") {
                 alert("يرجى إكمال جميع الحقول أولاً");
@@ -54,14 +98,14 @@ if(createBtn) {
         const passwordValue = inputs[1].value.trim();
         const inviteCodeValue = inputs[2] ? inputs[2].value.trim() : "";
 
-        // شرط رمز الدعوة الخاص بك المخصص لإنشاء الحساب
+        // 🚀 الشرط الصارم والمطلوب لزر إنشاء الحساب
         if (inviteCodeValue !== "43688") {
             alert("تنبيه: رمز الدعوة غير صحيح!");
             return;
         }
 
         try {
-            // 🚀 حفظ البيانات بشكل نظامي ومشفر داخل مجموعة "users" في Firestore
+            // حفظ البيانات بشكل نظامي داخل مجموعة "users" في Firestore
             await addDoc(collection(db, "users"), {
                 emailOrPhone: emailOrPhoneValue,
                 password: passwordValue,
@@ -101,4 +145,4 @@ if(createBtn) {
             alert("حدث خطأ أثناء الاتصال بالسيرفر، يرجى المحاولة لاحقاً");
         }
     };
-                    }
+            }
