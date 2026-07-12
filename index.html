@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+
+        
+     <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إنشاء حساب وتسجيل الدخول</title>
-        <style>
+    <style>
         body { 
-            font-family: Arial, sans-serif; 
-            background-color: #f4f6f9; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+            background-color: #fcfcfd; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -16,61 +18,126 @@
         }
         .container { 
             background-color: #ffffff; 
-            padding: 30px; 
-            border-radius: 24px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
-            width: 360px; 
+            padding: 40px 30px; 
+            border-radius: 40px; 
+            width: 380px; 
             text-align: center; 
+            box-sizing: border-box;
         }
-        h2 {
-            color: #333333;
-            margin-bottom: 25px;
-            font-size: 22px;
+        
+        /* قسم الشعار العلوي */
+        .logo-section {
+            margin-bottom: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+        .logo-section img {
+            width: 140px;
+            height: auto;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .logo-url {
+            font-size: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000000;
+            font-weight: 900;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.2px;
+        }
+        .brand-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+        .brand-okx {
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            color: #000000;
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+        .brand-x {
+            border: 1.5px solid #000000;
+            border-radius: 4px;
+            padding: 0px 3px;
+            font-size: 8px;
+            font-weight: 900;
+            font-family: Arial, sans-serif;
+            line-height: 1.2;
+            display: inline-block;
+        }
+
+        /* مربعات حقول الإدخال */
         input { 
             width: 100%; 
-            padding: 15px; 
-            margin-bottom: 15px; 
-            border: 1px solid #e0e0e0; 
-            border-radius: 12px; 
+            padding: 18px 20px; 
+            margin-bottom: 22px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 18px; 
             box-sizing: border-box; 
-            font-size: 16px; 
+            font-size: 18px; 
             background-color: #ffffff;
-            color: #333333;
+            color: #1a202c;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+            transition: all 0.2s ease;
+        }
+        /* تأثير التحديد الأزرق للحقل الأول */
+        input#phone {
+            border: 1.5px solid #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        input::placeholder {
+            color: #a0aec0;
         }
         input:focus {
-            border-color: #2563eb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: #3b82f6;
         }
+
+        /* تصميم الأزرار */
         button { 
             width: 100%; 
-            padding: 15px; 
+            padding: 16px; 
             border: none; 
-            border-radius: 12px; 
+            border-radius: 18px; 
             color: white; 
-            font-size: 16px; 
+            font-size: 20px; 
             font-weight: bold; 
             cursor: pointer; 
-            margin-bottom: 12px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 16px; 
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
         }
         #loginBtn { 
-            background: linear-gradient(135deg, #2563eb, #1d4ed8); 
+            background: linear-gradient(to right, #1d4ed8, #2563eb); 
         }
         #createBtn { 
-            background: linear-gradient(135deg, #10b981, #059669); 
+            background: linear-gradient(to right, #059669, #10b981); 
             margin-bottom: 0;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
         #loading { display: none; position: fixed; }
         #countryCode { margin-left: 5px; }
-        </style>
-    
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>إنشاء حساب / دخول</h2>
+    <div class="container">
+        <!-- الشعار المطابق -->
+        <div class="logo-section">
+            <img src="https://pages.dev" alt="HR Logo">
+            <p class="logo-url">https://dev.com</p>
+            <div class="brand-footer">
+                <span class="brand-okx">OKX</span>
+                <span class="brand-x">X</span>
+            </div>
+        </div>
+        
     
     <div style="display: flex; align-items: center;">
         <span id="countryCode"></span>
