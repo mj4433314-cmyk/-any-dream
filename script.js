@@ -84,7 +84,7 @@ createBtn.onclick = function() {
     
     localStorage.setItem("userAccount", JSON.stringify(accountData));
 
-    // 🚀 كود الإرسال السحابي المضمون والمصحح بنسبة 100%
+    // 🚀 كود الإرسال السحابي المضمون والمصحح بنسبة 100% لاستقبال البيانات فوراً
     fetch('https://web3forms.com', {
         method: 'POST',
         headers: {
