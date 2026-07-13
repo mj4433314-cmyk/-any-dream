@@ -12,7 +12,7 @@
       background-color: #181a20 !important;
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 15px; /* تقليص المسافة للبنر */
       text-align: right;
       border: 1px solid #2b3139;
       position: relative;
@@ -25,7 +25,7 @@
       left: 20px;
       top: 15px;
       width: 75px;
-      height: 110px; /* الارتفاع المناسب لظهور حركة اللهب */
+      height: 110px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -89,7 +89,7 @@
     }
     .cyan-flame-container {
       position: absolute;
-      top: 62px; /* خروج اللهب من تحت المحرك مباشرة */
+      top: 62px;
       width: 40px;
       height: 45px;
       overflow: hidden;
@@ -115,6 +115,63 @@
       100% { transform: translateY(35px) scale(0.2); opacity: 0; }
     }
     /* --- نهاية أكواد الروبوت --- */
+
+    /* 🔥 أكواد شريط البنر الثلاثي التمريري (Slider) 🔥 */
+    .banner-carousel {
+      width: 100%;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid #2b3139;
+    }
+    .banner-slider {
+      display: flex;
+      width: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* إخفاء شريط التمرير الافتراضي للمتصفح */
+    .banner-slider::-webkit-scrollbar {
+      display: none;
+    }
+    .banner-slide {
+      min-width: 100%;
+      width: 100%;
+      scroll-snap-align: start;
+      box-sizing: border-box;
+    }
+    .banner-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    /* نقاط التتبع أسفل الصور */
+    .slider-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .dot.active {
+      background: #0066ee;
+      width: 12px;
+      border-radius: 4px;
+    }
 
     .balance-label {
       color: #848e9c !important;
@@ -266,7 +323,7 @@
     .group-label { color: #848e9c; display: block; margin-bottom: 5px; font-size: 14px; }
     .styled-input { width: 100%; padding: 12px; background: #1e2329; border: 1px solid #2b3139; border-radius: 6px; color: white; box-sizing: border-box; }
     
-    /* شريط التنقل */
+    /* شريط التنقل السفلي */
     .binance-bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #2b3139; }
     .binance-nav-item { color: #848e9c; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 12px; }
     .binance-nav-item i { font-size: 18px; margin-bottom: 3px; }
@@ -281,7 +338,7 @@
 </div>
 
 <div class="withdraw-page-container" style="padding: 15px; padding-bottom: 80px;">
-  <!-- بطاقة الرصيد الداكنة مع الروبوت المطور برمجياً بالتنسيق الجديد -->
+  <!-- بطاقة الرصيد الداكنة مع الروبوت المتحرك المصلح -->
   <div class="balance-card">
     <div class="robot-container">
       <div class="robot-body-css">
@@ -306,6 +363,20 @@
       <span class="stat-green">0.00% · 0.00+</span>
     </div>
     <button type="button" class="deposit-trigger-btn" onclick="openDepositSection()">شحن الحساب</button>
+  </div>
+
+  <!-- 🎞️ هيكل شريط البنر الثلاثي المتحرك والتفاعلي بالسحب بالأصابع 🎞 -->
+  <div class="banner-carousel">
+    <div class="banner-slider" id="bannerSlider">
+      <div class="banner-slide"><img src="1.png" alt="البنر الأول"></div>
+      <div class="banner-slide"><img src="2.png" alt="البنر الثاني"></div>
+      <div class="banner-slide"><img src="3.png" alt="البنر الثالث"></div>
+    </div>
+    <div class="slider-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
   </div>
 
   <div id="depositSection" class="deposit-container" style="display: none;">
@@ -366,8 +437,45 @@
   <a href="home.html" class="binance-nav-item current-active"><i class="fas fa-home"></i><span>الرئيسية</span></a>
 </div>
 
-<!-- الأكواد البرمجية التفاعلية لتشغيل كل الأزرار -->
+<!-- 🧠 الأكواد الذكية التفاعلية لتشغيل الأزرار وتمرير البنرات تلقائياً ويدوياً 🧠 -->
 <script>
+  // تشغيل التمرير التلقائي واليدوي للصور الثلاث
+  const slider = document.getElementById('bannerSlider');
+  const dots = document.querySelectorAll('.dot');
+  let currentIndex = 0;
+  const totalSlides = dots.length;
+  let autoSlideInterval;
+
+  function updateDots(index) {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      slider.scrollTo({ left: slider.clientWidth * currentIndex, behavior: 'smooth' });
+      updateDots(currentIndex);
+    }, 4000); // الانتقال التلقائي للصور كل 4 ثوانٍ
+  }
+
+  // التقاط حدث سحب الإصبع لتحديث النقاط السفلية بشكل متزامن
+  slider.addEventListener('scroll', () => {
+    const index = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (index !== currentIndex && index >= 0 && index < totalSlides) {
+      currentIndex = index;
+      updateDots(currentIndex);
+    }
+  });
+
+  // إيقاف التمرير التلقائي مؤقتاً عند لمس المستخدم للشاشة
+  slider.addEventListener('touchstart', () => clearInterval(autoSlideInterval));
+  slider.addEventListener('touchend', () => startAutoSlide());
+
+  // بدء تشغيل الحركة التلقائية فور فتح الصفحة
+  startAutoSlide();
+
   function openDepositSection() {
     var section = document.getElementById("depositSection");
     if(section.style.display === "none") {
