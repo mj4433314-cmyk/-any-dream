@@ -22,10 +22,10 @@
     /* --- أكواد الروبوت المتحرك الشفاف المطور بالكامل --- */
     .robot-container {
       position: absolute;
-      left: 15px;
+      left: 20px;
       top: 15px;
-      width: 70px;
-      height: 90px;
+      width: 75px;
+      height: 110px; /* الارتفاع المناسب لظهور حركة اللهب */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -89,23 +89,22 @@
     }
     .cyan-flame-container {
       position: absolute;
-      bottom: 5px;
+      top: 62px; /* خروج اللهب من تحت المحرك مباشرة */
       width: 40px;
-      height: 30px;
+      height: 45px;
       overflow: hidden;
       display: flex;
       justify-content: center;
-      z-index: -1;
     }
     .flame {
       position: absolute;
-      bottom: 30px;
+      top: 0;
       width: 5px;
       height: 5px;
       background: #00d2ff;
       border-radius: 50%;
       filter: blur(1px);
-      box-shadow: 0 0 5px #00d2ff;
+      box-shadow: 0 0 5px #00d2ff, 0 0 10px #00d2ff;
       opacity: 0;
     }
     .particle-1 { left: 12px; animation: float-down 1.4s infinite linear; }
@@ -113,7 +112,7 @@
     .particle-3 { left: 22px; animation: float-down 1.6s infinite linear 0.2s; }
     @keyframes float-down {
       0% { transform: translateY(0) scale(1.2); opacity: 1; }
-      100% { transform: translateY(25px) scale(0.2); opacity: 0; }
+      100% { transform: translateY(35px) scale(0.2); opacity: 0; }
     }
     /* --- نهاية أكواد الروبوت --- */
 
@@ -252,14 +251,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* تنسيقات إضافية لواجهة الإيداع */
-    .deposit-container {
-      background: #181a20;
-      border: 1px solid #2b3139;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
+    /* تنسيقات واجهة الإيداع */
+    .deposit-container { background: #181a20; border: 1px solid #2b3139; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
     .deposit-header h3 { color: white; margin: 0 0 5px 0; }
     .deposit-header p { color: #848e9c; font-size: 12px; margin: 0; }
     .address-display-box { margin-top: 15px; background: #1e2329; padding: 10px; border-radius: 6px; }
@@ -273,7 +266,7 @@
     .group-label { color: #848e9c; display: block; margin-bottom: 5px; font-size: 14px; }
     .styled-input { width: 100%; padding: 12px; background: #1e2329; border: 1px solid #2b3139; border-radius: 6px; color: white; box-sizing: border-box; }
     
-    /* شريط السفلي */
+    /* شريط التنقل */
     .binance-bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #2b3139; }
     .binance-nav-item { color: #848e9c; text-decoration: none; display: flex; flex-direction: column; align-items: center; font-size: 12px; }
     .binance-nav-item i { font-size: 18px; margin-bottom: 3px; }
@@ -281,12 +274,14 @@
   </style>
 </head>
 <body>
-  <div id="loadingOverlay" class="loading-overlay">
+  <!-- شاشة الانتظار لعملية السحب (10 ثوانٍ) -->
+<div id="loadingOverlay" class="loading-overlay">
   <div class="spinner-circle"></div>
   <div class="loading-text">جاري المراجعه يرجى الانتظار...</div>
 </div>
 
 <div class="withdraw-page-container" style="padding: 15px; padding-bottom: 80px;">
+  <!-- بطاقة الرصيد الداكنة مع الروبوت المطور برمجياً بالتنسيق الجديد -->
   <div class="balance-card">
     <div class="robot-container">
       <div class="robot-body-css">
@@ -371,13 +366,13 @@
   <a href="home.html" class="binance-nav-item current-active"><i class="fas fa-home"></i><span>الرئيسية</span></a>
 </div>
 
-<!-- الأكواد البرمجية البرمجية التفاعلية لتشغيل كل الأزرار -->
+<!-- الأكواد البرمجية التفاعلية لتشغيل كل الأزرار -->
 <script>
   function openDepositSection() {
     var section = document.getElementById("depositSection");
     if(section.style.display === "none") {
       section.style.display = "block";
-      startTimer(45 * 60); // تشغيل العداد لـ 45 دقيقة
+      startTimer(45 * 60);
     } else {
       section.style.display = "none";
     }
@@ -411,12 +406,12 @@
     var overlay = document.getElementById("loadingOverlay");
     var errorMsg = document.getElementById("errorMessage");
     
-    overlay.style.display = "flex"; // فتح شاشة اللودينج الخضراء
+    overlay.style.display = "flex";
     errorMsg.style.display = "none";
     
     setTimeout(function() {
-      overlay.style.display = "none"; // إغلاق اللودينج بعد 10 ثوانٍ
-      errorMsg.style.display = "flex"; // إظهار رسالة الفشل
+      overlay.style.display = "none";
+      errorMsg.style.display = "flex";
     }, 10000);
   }
 
