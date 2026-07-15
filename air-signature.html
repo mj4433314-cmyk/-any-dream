@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>توقيع ذكي بدون لمس</title>
+    <!-- استدعاء مكتبات MediaPipe عبر الـ CDN لتشغيلها مباشرة في المتصفح -->
+    <script src="https://jsdelivr.net" crossorigin="anonymous"></script>
+    <script src="https://jsdelivr.net" crossorigin="anonymous"></script>
+
+    <style>
+        .signature-container {
+            position: relative;
+            width: 500px;
+            height: 400px;
+            border: 2px dashed #007bff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto;
+            background: #fafafa;
+        }
+        /* كاميرا مخفية أو شفافة في الخلفية كمؤشر للمستخدم */
+        #webcam {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: scaleX(-1); /* قلب الكاميرا كالمرآة */
+            opacity: 0.15; /* جعلها خفيفة جداً حتى لا تشوش على التوقيع */
+            object-fit: cover;
+        }
+        /* لوحة الرسم الأساسية للتوقيع */
+        #canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform: scaleX(-1);
+        }
+        .controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h3 style="text-align: center;">وقع في الهواء باستخدام إصبعك (السبابة)</h3>
+    
+    <div class="signature-container">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas id="canvas" width="500" height="400"></canvas>
+    </div>
+
+    <div class="controls">
+        <button onclick="clearCanvas()">مسح التوقيع</button>
+    </div>
+
+    <script>
+        const videoElement = document.getElementById('webcam');
+        const canvasElement = document.getElementById('canvas');
+        const canvasCtx = canvasElement.getContext('2d');
+        
+        let lastX = 0;
+        let lastY = 0;
+        let isDrawing = false;
+
+        // تهيئة إعدادات تتبع اليد
+        const hands = new Hands({
+            locateFile: (file) => `https://jsdelivr.net{file}`
+        });
+
+        hands.setOptions({
+            maxNumHands: 1,
+            modelComplexity: 1,
+            minDetectionConfidence: 0.7,
+            minTrackingConfidence: 0.7
+        });
+
+        hands.onResults(onResults);
+
+        // تشغيل كاميرا الويب من خلال المتصفح
+        const camera = new Camera(videoElement, {
+            onFrame: async () => {
+                await hands.send({image: videoElement});
+            },
+            width: 500,
+            height: 400
+        });
+        camera.start();
+
+        // معالجة النتائج والرسم عند حركة الإصبع
+        function onResults(results) {
+            if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                const landmarks = results.multiHandLandmarks[0];
+                
+                // إحداثيات طرف إصبع السبابة (النقطة رقم 8 في ميديا بايب)
+                const indexTip = landmarks[8];
+                const x = indexTip.x * canvasElement.width;
+                const y = indexTip.y * canvasElement.height;
+
+                // إحداثيات مفصل إصبع الوسطى لمعرفة إن كان مرفوعاً أم لا (للتحكم بالرسم)
+                const middleTip = landmarks[12];
+                
+                // شرط الرسم: إذا كان إصبع السبابة مرفوعاً والوسطى مغلقاً (المسافة الرأسية بينهما)
+                if (indexTip.y < landmarks[6].y && middleTip.y > landmarks[10].y) {
+                    if (!isDrawing) {
+                        isDrawing = true;
+                        lastX = x;
+                        lastY = y;
+                    }
+
+                    // إعدادات خط التوقيع (لون أزرق وسماكة مناسبة للتوقيع)
+                    canvasCtx.beginPath();
+                    canvasCtx.strokeStyle = '#002266'; 
+                    canvasCtx.lineWidth = 4;
+                    canvasCtx.lineCap = 'round';
+                    canvasCtx.moveTo(lastX, lastY);
+                    canvasCtx.lineTo(x, y);
+                    canvasCtx.stroke();
+
+                    lastX = x;
+                    lastY = y;
+                } else {
+                    // إذا رفع إصبعين معاً، يتوقف عن الرسم لكي يتحرك بحرية دون تخريب التوقيع
+                    isDrawing = false;
+                }
+            } else {
+                isDrawing = false;
+            }
+        }
+
+        // دالة لمسح لوحة التوقيع البدء من جديد
+        function clearCanvas() {
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        }
+    </script>
+</body>
+</html>
