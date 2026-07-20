@@ -6,20 +6,23 @@
   <title>HR</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* استخدام نظام الخطوط السميكة المدمجة بالهواتف لضمان عملها الفوري مائة بالمائة */
+    /* تطبيق أعلى درجات السُمك (900) وإجبار المتصفح على عرض الخط العريض المحترف المتناسق */
+    * {
+      font-weight: 900 !important;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    }
+    
     body { 
       background-color: #0b0e14; 
       color: #ffffff; 
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important; 
       margin: 0; 
       padding: 40px 15px 160px 15px; 
-      font-weight: 900 !important;
     }
     
     .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2550; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
     .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
-    .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #00bfff; }
-    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 900; font-family: system-ui, sans-serif !important; }
+    .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace !important; margin: 15px 0; color: #00bfff; }
+    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; }
 
     /* مربع الروبوت التفاعلي للدعم الفني */
     .robot-wrapper { 
@@ -53,13 +56,11 @@
     .dot2 { width: 5px; height: 5px; animation-delay: 0.3s; }
     .dot3 { width: 3px; height: 3px; animation-delay: 0.6s; }
 
-    /* تطبيق السُمك الأقصى للنص داخل مربع البوت */
+    /* تطبيق السُمك الاحترافي العريض */
     .robot-btn-text {
       margin-top: 20px;
-      font-size: 22px !important;
-      font-weight: 900 !important;
+      font-size: 21px !important;
       color: #00bfff;
-      font-family: system-ui, sans-serif !important;
     }
 
     /* الخط الفاصل المضيء */
@@ -77,9 +78,9 @@
 
     /* تنسيق قسم الأزرار السفلية */
     .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
-    .action-title { font-size: 15px; color: #848e9c; margin: 0 0 15px 0; font-weight: 900; }
+    .action-title { font-size: 15px; color: #848e9c; margin: 0 0 15px 0; }
     
-    /* جعل خط الزر سميكاً وعريضاً جداً ومطابقاً تماماً للصورة بفضل الخطوط المدمجة */
+    /* جعل خط الزر سميكاً وعريضاً جداً ومطابقاً تماماً لتصميم شحن الحساب الفخم */
     .btn-style { 
       display: inline-flex; 
       align-items: center; 
@@ -88,12 +89,10 @@
       padding: 16px 24px; 
       border-radius: 10px; 
       text-decoration: none; 
-      font-weight: 900 !important; 
       font-size: 20px !important; 
       width: 95%; 
       box-sizing: border-box; 
       transition: all 0.3s ease; 
-      font-family: system-ui, sans-serif !important; 
       cursor: pointer; 
       background-color: #007bff; 
       color: #ffffff; 
@@ -101,7 +100,7 @@
     }
     .btn-style:hover { background-color: #0056b3; transform: translateY(-2px); }
 
-    /* تصميم قسم شعارات العملات المبرمجة مع تثبيت الأيقونات بداخل المربعات */
+    /* تصميم قسم شعارات العملات المبرمجة */
     .crypto-badges-container {
       display: flex;
       justify-content: center;
@@ -121,34 +120,32 @@
       gap: 8px;
     }
     .badge-icon { font-size: 22px; }
-    .badge-name { font-size: 13px; font-weight: 900; color: #ffffff; font-family: system-ui, sans-serif !important; }
+    .badge-name { font-size: 13px; color: #ffffff; }
 
     /* واجهة شات تيليجرام */
     .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
     .tg-header { background: #17212b; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #101921; }
     .tg-back { font-size: 20px; color: #6c7883; cursor: pointer; }
-    .tg-avatar { width: 40px; height: 40px; background: #2f6ea5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 16px; }
+    .tg-avatar { width: 40px; height: 40px; background: #2f6ea5; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; }
     .tg-user-info { display: flex; flex-direction: column; text-align: right; justify-content: center; }
-    .tg-name { font-size: 17px; font-weight: 900; color: #fff; font-family: system-ui, sans-serif !important; }
+    .tg-name { font-size: 17px; color: #fff; }
     
     .tg-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: url('https://githubusercontent.com'); background-color: #0e1621; opacity: 0.95; }
-    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; font-family: system-ui, sans-serif !important; font-weight: 900; }
+    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; }
     .msg-in { background: #182533; color: #fff; align-self: flex-start; border-bottom-left-radius: 4px; }
     .msg-out { background: #2b5278; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
     .msg-img { max-width: 100%; border-radius: 8px; margin-bottom: 5px; display: block; }
     
     .tg-footer { background: #17212b; padding: 10px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #101921; }
     .tg-input-wrapper { flex: 1; background: #24303f; border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; gap: 10px; }
-    .tg-input { flex: 1; background: none; border: none; color: white; font-family: system-ui, sans-serif !important; font-size: 14px; outline: none; font-weight: 900; }
+    .tg-input { flex: 1; background: none; border: none; color: white; font-size: 14px; outline: none; }
     .tg-file-label { color: #6c7883; font-size: 18px; cursor: pointer; transition: color 0.2s; }
     .tg-file-label:hover { color: #5288c1; }
     #imageInput { display: none; }
     .tg-send-btn { background: none; border: none; color: #5288c1; font-size: 20px; cursor: pointer; transition: transform 0.2s; }
     .tg-send-btn:hover { transform: scale(1.1); color: #2f6ea5; }
 
-    .wlt-copy-box { background: #0b0e14; border: 1px dashed #007bff; padding: 8px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #00bfff; word-break: break-all; margin-top: 5px; text-align: center; }
-
-    /* شريط التنقل السفلي */
+    /* شريط النقل السفلي */
     .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 12px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
     .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 25%; position: relative; height: 35px; }
     .nav a i { font-size: 22px; }
@@ -158,7 +155,7 @@
 </head>
 <body>
 
-  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني بالخط الفصيح المدمج بالنظام والسميك جداً عالي الوضوح -->
+  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني بالخط العربي العريض والمحترف للغاية -->
   <div class="robot-wrapper" onclick="openSup()">
     <div class="robot-canvas">
       <div class="robot-ear-l"></div>
@@ -181,7 +178,7 @@
   <!-- الخط الفاصل المضيء المدمج -->
   <hr class="glow-divider">
 
-  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" فقط بالخط العريض المضمون من النظام -->
+  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" بخط سميك وعريض متطابق تماماً -->
   <div class="action-section">
     <p class="action-title">الوصول السريع لخدمات المنصة</p>
     <a href="https://appsgeyser.io" class="btn-style" target="_blank">
@@ -189,26 +186,23 @@
     </a>
   </div>
 
-  <!-- قسم العملات الثلاث المحدث المضاف به الأيقونات الرائعة المدمجة لمنع الاختفاء ومطابقة تصميمك -->
+  <!-- قسم العملات الثلاث المحدث المضاف به الأيقونات الرائعة الثابتة -->
   <div class="crypto-badges-container">
-    <!-- شعار بيتكوين مبرمج بأيقونة حية ثابتة -->
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #f7931a;"><i class="fab fa-bitcoin"></i></div>
       <div class="badge-name">Bitcoin</div>
     </div>
-    <!-- شعار سولانا مبرمج بأيقونة حية ثابتة -->
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #00ffa3;"><i class="fas fa-bolt"></i></div>
       <div class="badge-name">Solana</div>
     </div>
-    <!-- شعار TRC20 مبرمج بأيقونة حية ثابتة -->
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #26a17b;"><i class="fas fa-dollar-sign"></i></div>
       <div class="badge-name">TRC20</div>
     </div>
   </div>
 
-  <!-- واجهة شات تيليجرام التفاعلية -->
+  <!-- واجهة شات تيليجرام التفاعلية بقوة الخط العريض الشاملة -->
   <div class="tg-overlay" id="supModal">
     <div class="tg-header">
       <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
