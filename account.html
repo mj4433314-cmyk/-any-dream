@@ -6,13 +6,11 @@
   <title>HR</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* جلب خط القاهرة بأعلى سُمك ممكن لإجبار المتصفح على عرضه بشكل عريض */
-    @import url('https://googleapis.com');
-
+    /* استخدام نظام الخطوط السميكة المدمجة بالهواتف لضمان عملها الفوري مائة بالمائة */
     body { 
       background-color: #0b0e14; 
       color: #ffffff; 
-      font-family: 'Cairo', sans-serif !important; 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important; 
       margin: 0; 
       padding: 40px 15px 160px 15px; 
       font-weight: 900 !important;
@@ -21,7 +19,7 @@
     .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2550; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
     .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
     .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #00bfff; }
-    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 900; font-family: 'Cairo', sans-serif !important; }
+    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 900; font-family: system-ui, sans-serif !important; }
 
     /* مربع الروبوت التفاعلي للدعم الفني */
     .robot-wrapper { 
@@ -58,10 +56,10 @@
     /* تطبيق السُمك الأقصى للنص داخل مربع البوت */
     .robot-btn-text {
       margin-top: 20px;
-      font-size: 20px !important;
+      font-size: 22px !important;
       font-weight: 900 !important;
       color: #00bfff;
-      font-family: 'Cairo', sans-serif !important;
+      font-family: system-ui, sans-serif !important;
     }
 
     /* الخط الفاصل المضيء */
@@ -79,23 +77,23 @@
 
     /* تنسيق قسم الأزرار السفلية */
     .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
-    .action-title { font-size: 14px; color: #848e9c; margin: 0 0 15px 0; font-weight: 900; }
+    .action-title { font-size: 15px; color: #848e9c; margin: 0 0 15px 0; font-weight: 900; }
     
-    /* جعل خط الزر سميكاً وعريضاً جداً ومطابقاً تماماً للصورة */
+    /* جعل خط الزر سميكاً وعريضاً جداً ومطابقاً تماماً للصورة بفضل الخطوط المدمجة */
     .btn-style { 
       display: inline-flex; 
       align-items: center; 
       justify-content: center; 
       gap: 10px; 
-      padding: 15px 24px; 
+      padding: 16px 24px; 
       border-radius: 10px; 
       text-decoration: none; 
       font-weight: 900 !important; 
-      font-size: 19px !important; 
+      font-size: 20px !important; 
       width: 95%; 
       box-sizing: border-box; 
       transition: all 0.3s ease; 
-      font-family: 'Cairo', sans-serif !important; 
+      font-family: system-ui, sans-serif !important; 
       cursor: pointer; 
       background-color: #007bff; 
       color: #ffffff; 
@@ -103,27 +101,27 @@
     }
     .btn-style:hover { background-color: #0056b3; transform: translateY(-2px); }
 
-    /* تصميم قسم شعارات العملات المبرمجة بدون صور */
+    /* تصميم قسم شعارات العملات المبرمجة مع تثبيت الأيقونات بداخل المربعات */
     .crypto-badges-container {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 12px;
       margin: 25px 0 10px 0;
-      padding: 0 10px;
+      padding: 0 5px;
     }
     .crypto-badge {
       flex: 1;
       background-color: #181a20;
       border: 1px solid #2b2f36;
       border-radius: 10px;
-      padding: 10px 5px;
+      padding: 12px 5px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .badge-icon { font-size: 20px; }
-    .badge-name { font-size: 12px; font-weight: 900; color: #848e9c; }
+    .badge-icon { font-size: 22px; }
+    .badge-name { font-size: 13px; font-weight: 900; color: #ffffff; font-family: system-ui, sans-serif !important; }
 
     /* واجهة شات تيليجرام */
     .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
@@ -131,17 +129,17 @@
     .tg-back { font-size: 20px; color: #6c7883; cursor: pointer; }
     .tg-avatar { width: 40px; height: 40px; background: #2f6ea5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 16px; }
     .tg-user-info { display: flex; flex-direction: column; text-align: right; justify-content: center; }
-    .tg-name { font-size: 17px; font-weight: 900; color: #fff; font-family: 'Cairo', sans-serif !important; }
+    .tg-name { font-size: 17px; font-weight: 900; color: #fff; font-family: system-ui, sans-serif !important; }
     
     .tg-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: url('https://githubusercontent.com'); background-color: #0e1621; opacity: 0.95; }
-    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; font-family: 'Cairo', sans-serif !important; font-weight: 900; }
+    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; font-family: system-ui, sans-serif !important; font-weight: 900; }
     .msg-in { background: #182533; color: #fff; align-self: flex-start; border-bottom-left-radius: 4px; }
     .msg-out { background: #2b5278; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
     .msg-img { max-width: 100%; border-radius: 8px; margin-bottom: 5px; display: block; }
     
     .tg-footer { background: #17212b; padding: 10px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #101921; }
     .tg-input-wrapper { flex: 1; background: #24303f; border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; gap: 10px; }
-    .tg-input { flex: 1; background: none; border: none; color: white; font-family: 'Cairo', sans-serif !important; font-size: 14px; outline: none; font-weight: 900; }
+    .tg-input { flex: 1; background: none; border: none; color: white; font-family: system-ui, sans-serif !important; font-size: 14px; outline: none; font-weight: 900; }
     .tg-file-label { color: #6c7883; font-size: 18px; cursor: pointer; transition: color 0.2s; }
     .tg-file-label:hover { color: #5288c1; }
     #imageInput { display: none; }
@@ -160,7 +158,7 @@
 </head>
 <body>
 
-  <!-- حاوية الروبوت المطور المتحرك مدمج بها نص فريق الدعم الفني بالخط الفصيح والسميك جداً -->
+  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني بالخط الفصيح المدمج بالنظام والسميك جداً عالي الوضوح -->
   <div class="robot-wrapper" onclick="openSup()">
     <div class="robot-canvas">
       <div class="robot-ear-l"></div>
@@ -183,7 +181,7 @@
   <!-- الخط الفاصل المضيء المدمج -->
   <hr class="glow-divider">
 
-  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" فقط بالخط السميك الأبيض العريض -->
+  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" فقط بالخط العريض المضمون من النظام -->
   <div class="action-section">
     <p class="action-title">الوصول السريع لخدمات المنصة</p>
     <a href="https://appsgeyser.io" class="btn-style" target="_blank">
@@ -191,19 +189,19 @@
     </a>
   </div>
 
-  <!-- قسم العملات البرمجية الثلاث المضاف حديثاً بأسفل الشاشة مرسوم بالأكواد بالكامل -->
+  <!-- قسم العملات الثلاث المحدث المضاف به الأيقونات الرائعة المدمجة لمنع الاختفاء ومطابقة تصميمك -->
   <div class="crypto-badges-container">
-    <!-- شعار بيتكوين مبرمج -->
+    <!-- شعار بيتكوين مبرمج بأيقونة حية ثابتة -->
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #f7931a;"><i class="fab fa-bitcoin"></i></div>
       <div class="badge-name">Bitcoin</div>
     </div>
-    <!-- شعار سولانا مبرمج -->
+    <!-- شعار سولانا مبرمج بأيقونة حية ثابتة -->
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #00ffa3;"><i class="fas fa-bolt"></i></div>
       <div class="badge-name">Solana</div>
     </div>
-    <!-- شعار TRC20 مبرمج -->
+    <!-- شعار TRC20 مبرمج بأيقونة حية ثابتة -->
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #26a17b;"><i class="fas fa-dollar-sign"></i></div>
       <div class="badge-name">TRC20</div>
