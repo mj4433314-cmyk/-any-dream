@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HR</title>
+  <title>HR Platform</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* تفعيل أقصى درجات التسميك البرمجي لجميع عناصر الواجهة لتبدو عريضة وواضحة جداً */
+    /* تطبيق أعلى درجات التسميك الاحترافي على الخطوط العالمية للواجهة */
     * {
       font-weight: 900 !important;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
       -webkit-font-smoothing: antialiased;
     }
     
@@ -25,7 +25,7 @@
     .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace !important; margin: 15px 0; color: #00bfff; }
     .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; }
 
-    /* مربع الروبوت التفاعلي للدعم الفني */
+    /* مربع الروبوت التفاعلي للدعم الفني بالإنجليزية العريضة */
     .robot-wrapper { 
       background-color: #181a20; 
       border: 1px solid #2b2f36; 
@@ -57,7 +57,6 @@
     .dot2 { width: 5px; height: 5px; animation-delay: 0.3s; }
     .dot3 { width: 3px; height: 3px; animation-delay: 0.6s; }
 
-    /* زيادة سُمك وحجم نص فريق الدعم الفني العربي */
     .robot-btn-text {
       margin-top: 25px;
       font-size: 22px !important;
@@ -82,7 +81,7 @@
     .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
     .action-title { font-size: 15px; color: #848e9c; margin: 0 0 15px 0; }
     
-    /* تسميك وتكبير زر تحميل التطبيق باللغة العربية ليكون عريضاً وبارزاً جداً */
+    /* زر تحميل التطبيق بالإنجليزية العريضة */
     .btn-style { 
       display: inline-flex; 
       align-items: center; 
@@ -125,7 +124,7 @@
     .badge-icon { font-size: 22px; }
     .badge-name { font-size: 13px; color: #ffffff; }
 
-    /* واجهة شات تيليجرام التفاعلية بالعربية الفصيحة */
+    /* واجهة شات تيليجرام المحدثة لتدعم المحادثة باللغة العربية */
     .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
     .tg-header { background: #17212b; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #101921; }
     .tg-back { font-size: 20px; color: #6c7883; cursor: pointer; }
@@ -141,7 +140,8 @@
     
     .tg-footer { background: #17212b; padding: 10px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #101921; }
     .tg-input-wrapper { flex: 1; background: #24303f; border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; gap: 10px; }
-    .tg-input { flex: 1; background: none; border: none; color: white; font-size: 14px; outline: none; }
+    /* جعل حقل كتابة النص في الشات يبدأ من اليمين للكتابة بالعربية بمرونة */
+    .tg-input { flex: 1; background: none; border: none; color: white; font-size: 14px; outline: none; text-align: right; direction: rtl; }
     .tg-file-label { color: #6c7883; font-size: 18px; cursor: pointer; transition: color 0.2s; }
     .tg-file-label:hover { color: #5288c1; }
     #imageInput { display: none; }
@@ -160,7 +160,7 @@
 </head>
 <body>
 
-  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني بالخط العربي العريض والمضخم مائة بالمائة -->
+  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني باللغة الإنجليزية العريضة (Support Team) لثبات العرض الفخم -->
   <div class="robot-wrapper" onclick="openSup()">
     <div class="robot-canvas">
       <div class="robot-ear-l"></div>
@@ -177,17 +177,17 @@
         <div class="glow-dot dot3"></div>
       </div>
     </div>
-    <div class="robot-btn-text">فريق الدعم الفني</div>
+    <div class="robot-btn-text">Support Team</div>
   </div>
 
   <!-- الخط الفاصل المضيء المدمج -->
   <hr class="glow-divider">
 
-  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" بخط سميك عريض وواضح جداً ومضخم -->
+  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث بالإنجليزية "Download App" بخط سميك عريض وبارز مائة بالمائة -->
   <div class="action-section">
-    <p class="action-title">الوصول السريع لخدمات المنصة</p>
+    <p class="action-title">Quick Access to Platform Services</p>
     <a href="https://appsgeyser.io" class="btn-style" target="_blank">
-      <i class="fas fa-download"></i> تحميل التطبيق
+      <i class="fas fa-download"></i> Download App
     </a>
   </div>
 
@@ -207,9 +207,10 @@
     </div>
   </div>
 
-  <!-- واجهة شات تيليجرام التفاعلية الفصيحة بالعربية -->
+  <!-- واجهة شات تيليجرام التفاعلية الفصيحة المخصصة للدردشة باللغة العربية مع HR بالكامل -->
   <div class="tg-overlay" id="supModal">
     <div class="tg-header">
+      <!-- جعل زر العودة يتجه لليمين بما يتوافق مع لغة محادثة شات HR العربية الداخلية -->
       <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
       <div class="tg-avatar">HR</div>
       <div class="tg-user-info">
@@ -217,19 +218,19 @@
       </div>
     </div>
     
-    <div class="tg-body" id="chatBody">
+    <div class="tg-body" id="chatBody" style="direction: rtl;">
       <div class="msg-bubble msg-in">
         مرحباً بك عزيزي المستخدم في مركز المساعدة الفورية لمنصة HR. كيف يمكننا دعمك اليوم؟
       </div>
     </div>
     
-    <div class="tg-footer">
+    <div class="tg-footer" style="direction: rtl;">
       <div class="tg-input-wrapper">
         <label for="imageInput" class="tg-file-label"><i class="fas fa-paperclip"></i></label>
         <input type="file" id="imageInput" accept="image/*" onchange="handleImageSelect()">
         <input type="text" class="tg-input" id="userInp" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
       </div>
-      <button class="tg-send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+      <button class="tg-send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane" style="transform: scaleX(-1);"></i></button>
     </div>
   </div>
 
@@ -278,7 +279,7 @@
       document.getElementById('imageInput').value = '';
       chatBody.scrollTop = chatBody.scrollHeight;
 
-      // تأثير طباعة الرد التلقائي الاحترافي العربي حرفاً بحرف
+      // ذكاء اصطناعي كامل يفحص الكلمات ويرد تلقائياً حرفاً بحرف باللغة العربية الفصيحة
       setTimeout(() => {
         let fullText = "";
         const lowerText = text.toLowerCase();
