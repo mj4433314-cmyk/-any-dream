@@ -366,7 +366,80 @@
 
   </ul>
 </nav>
+    <style>
+:root {
+  --bg-nav: #1e222b;
+  --text-active: #3b82f6;
+  --text-inactive: #9ca3af;
+}
+
+.tab-bar {
+  position: fixed;
+  bottom: 15px;
+  left: 5%;
+  width: 90%;
+  background-color: var(--bg-nav);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  padding: 10px 0;
+  direction: rtl;
+}
+
+.tab-bar__tabs {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-bar__tab {
+  flex: 1;
+  text-align: center;
+}
+
+.tab-bar__tab-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-inactive);
+  transition: color 0.3s ease;
+}
+
+.tab-bar__tab-link[aria-current="page"],
+.tab-bar__tab-link:hover {
+  color: var(--text-active);
+}
+
+.tab-bar__tab-link[aria-current="page"] svg {
+  fill: currentColor;
+}
+
+.tab-bar__tab-icon {
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.tab-bar__tab-link:active .tab-bar__tab-icon {
+  transform: scale(0.85);
+}
+
+.tab-bar__tab-text {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.tab-bar__logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+    </style>
+    
+</script>
     
 </body>
 </html>
-            
+
+
