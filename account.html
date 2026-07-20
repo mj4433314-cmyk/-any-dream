@@ -6,10 +6,14 @@
   <title>HR</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* تطبيق أعلى درجات السُمك (900) وإجبار المتصفح على عرض الخط العريض المحترف المتناسق */
+    /* ربط مباشر لخطوط واجهات التداول العالمية الفخمة وعالية السُمك */
+    @import url('https://googleapis.com');
+
     * {
+      font-family: 'Cairo', 'Inter', system-ui, sans-serif !important;
       font-weight: 900 !important;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
     body { 
@@ -24,7 +28,7 @@
     .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace !important; margin: 15px 0; color: #00bfff; }
     .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; }
 
-    /* مربع الروبوت التفاعلي للدعم الفني */
+    /* مربع الروبوت الفخم للدعم الفني */
     .robot-wrapper { 
       background-color: #181a20; 
       border: 1px solid #2b2f36; 
@@ -56,11 +60,12 @@
     .dot2 { width: 5px; height: 5px; animation-delay: 0.3s; }
     .dot3 { width: 3px; height: 3px; animation-delay: 0.6s; }
 
-    /* تطبيق السُمك الاحترافي العريض */
+    /* حجم وعرض نص الروبوت الفخم */
     .robot-btn-text {
       margin-top: 20px;
       font-size: 21px !important;
       color: #00bfff;
+      letter-spacing: 0.5px;
     }
 
     /* الخط الفاصل المضيء */
@@ -76,11 +81,10 @@
     @keyframes robotBlink { 0%, 45%, 55%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
     @keyframes particleFade { 0% { opacity: 0.3; transform: scale(0.8) translateY(0px); } 50% { opacity: 1; transform: scale(1.2) translateY(3px); } 100% { opacity: 0.1; transform: scale(0.6) translateY(6px); } }
 
-    /* تنسيق قسم الأزرار السفلية */
+    /* كارت القسم السفلي والزر العريض الفخم */
     .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
     .action-title { font-size: 15px; color: #848e9c; margin: 0 0 15px 0; }
     
-    /* جعل خط الزر سميكاً وعريضاً جداً ومطابقاً تماماً لتصميم شحن الحساب الفخم */
     .btn-style { 
       display: inline-flex; 
       align-items: center; 
@@ -100,7 +104,7 @@
     }
     .btn-style:hover { background-color: #0056b3; transform: translateY(-2px); }
 
-    /* تصميم قسم شعارات العملات المبرمجة */
+    /* تصميم قسم كروت العملات الثلاث الاحترافي */
     .crypto-badges-container {
       display: flex;
       justify-content: center;
@@ -145,7 +149,7 @@
     .tg-send-btn { background: none; border: none; color: #5288c1; font-size: 20px; cursor: pointer; transition: transform 0.2s; }
     .tg-send-btn:hover { transform: scale(1.1); color: #2f6ea5; }
 
-    /* شريط النقل السفلي */
+    /* شريط التنقل السفلي */
     .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 12px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
     .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 25%; position: relative; height: 35px; }
     .nav a i { font-size: 22px; }
@@ -155,7 +159,7 @@
 </head>
 <body>
 
-  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني بالخط العربي العريض والمحترف للغاية -->
+  <!-- حاوية الروبوت مدمج بها نص فريق الدعم الفني بخط المنصات العالمية السميك جداً وعالي الدقة -->
   <div class="robot-wrapper" onclick="openSup()">
     <div class="robot-canvas">
       <div class="robot-ear-l"></div>
@@ -178,7 +182,7 @@
   <!-- الخط الفاصل المضيء المدمج -->
   <hr class="glow-divider">
 
-  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" بخط سميك وعريض متطابق تماماً -->
+  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" بخط سميك عريض جداً -->
   <div class="action-section">
     <p class="action-title">الوصول السريع لخدمات المنصة</p>
     <a href="https://appsgeyser.io" class="btn-style" target="_blank">
@@ -186,7 +190,7 @@
     </a>
   </div>
 
-  <!-- قسم العملات الثلاث المحدث المضاف به الأيقونات الرائعة الثابتة -->
+  <!-- قسم العملات الثلاث المحدث المضاف به الأيقونات الاحترافية الثابتة -->
   <div class="crypto-badges-container">
     <div class="crypto-badge">
       <div class="badge-icon" style="color: #f7931a;"><i class="fab fa-bitcoin"></i></div>
@@ -202,7 +206,7 @@
     </div>
   </div>
 
-  <!-- واجهة شات تيليجرام التفاعلية بقوة الخط العريض الشاملة -->
+  <!-- واجهة شات تيليجرام التفاعلية بقوة الخط السميك العالمي الشاملة -->
   <div class="tg-overlay" id="supModal">
     <div class="tg-header">
       <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
