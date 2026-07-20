@@ -6,39 +6,65 @@
   <title>حسابي</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    body { background-color: #0b0e14; color: #ffffff; font-family: Arial, sans-serif; margin: 0; padding: 20px 15px 140px 15px; }
+    /* دمج خط عالي الاحترافية مناسب للواجهات التقنية والمالية الحديثة */
+    @import url('https://googleapis.com');
+
+    body { background-color: #0b0e14; color: #ffffff; font-family: 'Cairo', Arial, sans-serif; margin: 0; padding: 20px 15px 160px 15px; }
     .hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; padding-top: 10px; }
     .bal-amt { font-size: 26px; font-weight: bold; color: #ffffff; }
-    .dep-btn { background-color: #f0b90b; color: #000000; border: none; padding: 10px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+    .dep-btn { background-color: #f0b90b; color: #000000; border: none; padding: 10px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; cursor: pointer; font-family: 'Cairo', sans-serif; }
+    
     .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
     .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
     .wlt { background: #0b0e14; border: 1px dashed #f0b90b; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #f0b90b; }
-    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
+    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; font-family: 'Cairo', sans-serif; }
+
+    /* تصميم الروبوت المتحرك الاحترافي */
+    .bot-container { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 25px 15px; text-align: center; margin: 30px 0; box-shadow: 0 0 20px rgba(240, 185, 11, 0.05); position: relative; overflow: hidden; }
+    .bot-icon { font-size: 55px; color: #f0b90b; margin-bottom: 15px; animation: floatBot 3s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(240, 185, 11, 0.4)); }
+    .bot-title { font-size: 16px; font-weight: 900; color: #ffffff; margin: 0 0 8px 0; }
+    .bot-desc { font-size: 13px; color: #848e9c; margin: 0; line-height: 1.6; }
+    @keyframes floatBot { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+
+    /* تنسيق قسم الخدمات السفلية والأزرار الاحترافية */
+    .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 20px; text-align: center; margin-top: 25px; }
+    .action-title { font-size: 14px; color: #848e9c; margin: 0 0 15px 0; font-weight: bold; }
+    .btn-style { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; width: 90%; box-sizing: border-box; transition: all 0.3s ease; font-family: 'Cairo', sans-serif; margin-bottom: 12px; cursor: pointer; }
+    .btn-style:last-child { margin-bottom: 0; }
     
-    /* شبكة المربعات المتجاورة */
-    .crypto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
-    .crypto-card { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 15px; display: flex; flex-direction: column; position: relative; }
-    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .coin-symbol { font-size: 14px; font-weight: bold; color: #848e9c; }
-    .coin-icon { font-size: 20px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
-    .card-middle { text-align: left; margin-bottom: 10px; }
-    .live-price { font-size: 18px; font-weight: bold; color: #ffffff; margin-bottom: 2px; }
-    .live-change { font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+    /* زر تحميل التطبيق باللون الأصفر التوافقي والخط الاحترافي */
+    .download-btn { background-color: #f0b90b; color: #0b0e14; }
+    .download-btn:hover { background-color: #d4a307; transform: translateY(-2px); }
     
-    .up { color: #0ecb81; }
-    .down { color: #f6465d; }
+    /* زر الدعم الفني المطور */
+    .support-btn { background-color: #2b2f36; color: #ffffff; border: 1px solid #474f59; }
+    .support-btn:hover { background-color: #3a424c; color: #f0b90b; transform: translateY(-2px); }
 
-    /* تصميم الخطوط البيانية */
-    .sparkline-container { width: 100%; height: 30px; margin-top: auto; overflow: hidden; position: relative; }
-    .sparkline-svg { width: 100%; height: 100%; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    /* واجهة شات تيليجرام الاحترافية المتقدمة لرفع الصور */
+    .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
+    .tg-header { background: #17212b; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #101921; }
+    .tg-back { font-size: 20px; color: #6c7883; cursor: pointer; }
+    .tg-avatar { width: 40px; height: 40px; background: #2f6ea5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 16px; }
+    .tg-user-info { display: flex; flex-direction: column; text-align: right; }
+    .tg-name { font-size: 15px; font-weight: bold; color: #fff; font-family: 'Cairo', sans-serif; }
+    .tg-status { font-size: 12px; color: #5288c1; font-family: 'Cairo', sans-serif; }
+    
+    .tg-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: url('https://githubusercontent.com'); background-color: #0e1621; opacity: 0.95; }
+    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; font-family: 'Cairo', sans-serif; }
+    .msg-in { background: #182533; color: #fff; align-self: flex-start; border-bottom-left-radius: 4px; }
+    .msg-out { background: #2b5278; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .msg-img { max-width: 100%; border-radius: 8px; margin-bottom: 5px; display: block; }
+    
+    .tg-footer { background: #17212b; padding: 10px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #101921; }
+    .tg-input-wrapper { flex: 1; background: #24303f; border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; gap: 10px; }
+    .tg-input { flex: 1; background: none; border: none; color: white; font-family: 'Cairo', sans-serif; font-size: 14px; outline: none; }
+    .tg-file-label { color: #6c7883; font-size: 18px; cursor: pointer; transition: color 0.2s; }
+    .tg-file-label:hover { color: #5288c1; }
+    #imageInput { display: none; }
+    .tg-send-btn { background: none; border: none; color: #5288c1; font-size: 20px; cursor: pointer; transition: transform 0.2s; }
+    .tg-send-btn:hover { transform: scale(1.1); color: #2f6ea5; }
 
-    /* تنسيق قسم تحميل التطبيق */
-    .download-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 12px; padding: 20px; text-align: center; margin-top: 25px; }
-    .download-title { font-size: 15px; color: #ffffff; margin: 0 0 12px 0; font-weight: bold; }
-    .download-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: #f0b90b; color: #0b0e14; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; width: 80%; box-sizing: border-box; transition: background 0.3s; }
-    .download-btn:hover { background-color: #d4a307; }
-
-    /* شريط التنقل السفلي */
+    /* شريط التنقل السفلي الرئيسي */
     .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 12px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
     .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 25%; position: relative; height: 35px; }
     .nav a i { font-size: 22px; }
@@ -56,79 +82,28 @@
     </div>
     <button class="dep-btn" onclick="openDep()">إضافة أموال</button>
   </div>
-  <div style="font-size:12px; color:#848e9c; margin-bottom:5px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
+  <div style="font-size:12px; color:#848e9c; margin-bottom:15px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
 
-  <!-- شبكة المربعات المتجاورة المحدثة بالأيقونات المدمجة لمنع الاختفاء -->
-  <div class="crypto-grid">
-    
-    <!-- كارت BTC -->
-    <div class="crypto-card">
-      <div class="card-top">
-        <span class="coin-symbol">BTC</span>
-        <div class="coin-icon" style="color: #f7931a;"><i class="fab fa-bitcoin"></i></div>
-      </div>
-      <div class="card-middle">
-        <div class="live-price" id="btc-p">0.00</div>
-        <div class="live-change" id="btc-c">0.00%</div>
-      </div>
-      <div class="sparkline-container">
-        <svg class="sparkline-svg"><path id="btc-g" d="M 0 15 Q 20 5 40 25 T 80 15 T 120 20 T 160 10" stroke="#0ecb81"></path></svg>
-      </div>
-    </div>
-
-    <!-- كارت ETH -->
-    <div class="crypto-card">
-      <div class="card-top">
-        <span class="coin-symbol">ETH</span>
-        <div class="coin-icon" style="color: #627eea;"><i class="fab fa-ethereum"></i></div>
-      </div>
-      <div class="card-middle">
-        <div class="live-price" id="eth-p">0.00</div>
-        <div class="live-change" id="eth-c">0.00%</div>
-      </div>
-      <div class="sparkline-container">
-        <svg class="sparkline-svg"><path id="eth-g" d="M 0 20 Q 20 25 40 10 T 80 20 T 120 15 T 160 25" stroke="#0ecb81"></path></svg>
-      </div>
-    </div>
-
-    <!-- كارت BNB -->
-    <div class="crypto-card">
-      <div class="card-top">
-        <span class="coin-symbol">BNB</span>
-        <div class="coin-icon" style="color: #f3ba2f;"><i class="fas fa-coins"></i></div>
-      </div>
-      <div class="card-middle">
-        <div class="live-price" id="bnb-p">0.00</div>
-        <div class="live-change" id="bnb-c">0.00%</div>
-      </div>
-      <div class="sparkline-container">
-        <svg class="sparkline-svg"><path id="bnb-g" d="M 0 15 Q 20 20 40 15 T 80 10 T 120 25 T 160 15" stroke="#0ecb81"></path></svg>
-      </div>
-    </div>
-
-    <!-- كارت SOL -->
-    <div class="crypto-card">
-      <div class="card-top">
-        <span class="coin-symbol">SOL</span>
-        <div class="coin-icon" style="color: #00ffa3;"><i class="fas fa-bolt"></i></div>
-      </div>
-      <div class="card-middle">
-        <div class="live-price" id="sol-p">0.00</div>
-        <div class="live-change" id="sol-c">0.00%</div>
-      </div>
-      <div class="sparkline-container">
-        <svg class="sparkline-svg"><path id="sol-g" d="M 0 25 Q 20 10 40 20 T 80 15 T 120 10 T 160 20" stroke="#0ecb81"></path></svg>
-      </div>
-    </div>
-
+  <!-- الروبوت الذكي المتحرك لإعطاء مظهر متطور للمنصة -->
+  <div class="bot-container">
+    <div class="bot-icon"><i class="fas fa-robot"></i></div>
+    <h3 class="bot-title">مساعد التداول الذكي نشط</h3>
+    <p class="bot-desc">أنظمتنا تعمل بأعلى كفاءة لمراقبة حسابك وتأمين معاملاتك الاستثمارية على مدار الساعة.</p>
   </div>
 
-  <!-- قسم تحميل التطبيق -->
-  <div class="download-section">
-    <p class="download-title">حمّل تطبيق المنصة الرسمي الآن</p>
-    <a href="https://appsgeyser.io" class="download-btn" target="_blank">
-      <i class="fas fa-download"></i> تحميل التطبيق
+  <!-- قسم خدمات المنصة المتضمن زر تحميل التطبيق وخط القاهرة الاحترافي -->
+  <div class="action-section">
+    <p class="action-title">الوصول السريع لخدمات المنصة</p>
+    
+    <!-- زر تحميل التطبيق مع التثبيت والروابط الفعالة -->
+    <a href="https://appsgeyser.io" class="btn-style download-btn" target="_blank">
+      <i class="fas fa-download"></i> تحميل التطبيق الرسمي
     </a>
+    
+    <!-- زر تواصل مع الدعم الفني شات تيليجرام المطور -->
+    <div class="btn-style support-btn" onclick="openSup()">
+      <i class="fas fa-headset"></i> التواصل مع الدعم الفني
+    </div>
   </div>
 
   <!-- نافذة الإيداع المنبثقة -->
@@ -143,6 +118,33 @@
     </div>
   </div>
 
+  <!-- واجهة شات تيليجرام التفاعلية لرفع الصور والرسائل الفصيحة -->
+  <div class="tg-overlay" id="supModal">
+    <div class="tg-header">
+      <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
+      <div class="tg-avatar">HR</div>
+      <div class="tg-user-info">
+        <span class="tg-name">الدعم الفني للمنصة</span>
+        <span class="tg-status">متصل الآن</span>
+      </div>
+    </div>
+    
+    <div class="tg-body" id="chatBody">
+      <div class="msg-bubble msg-in">
+        مرحباً بك عزيزي المستخدم في مركز المساعدة الفورية المطور. كيف يمكننا دعمك اليوم؟
+      </div>
+    </div>
+    
+    <div class="tg-footer">
+      <div class="tg-input-wrapper">
+        <label for="imageInput" class="tg-file-label"><i class="fas fa-paperclip"></i></label>
+        <input type="file" id="imageInput" accept="image/*" onchange="handleImageSelect()">
+        <input type="text" class="tg-input" id="userInp" placeholder="اكتب رسالتك هنا..." onkeypress="handleKeyPress(event)">
+      </div>
+      <button class="tg-send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
   <!-- شريط التنقل السفلي -->
   <div class="nav">
     <a href="account.html" class="active"><i class="fas fa-user"></i></a>
@@ -154,44 +156,55 @@
   <script>
     function openDep() { document.getElementById('depModal').style.display = 'flex'; }
     function closeDep() { document.getElementById('depModal').style.display = 'none'; }
+    
+    function openSup() { document.getElementById('supModal').style.display = 'flex'; }
+    function closeSup() { document.getElementById('supModal').style.display = 'none'; }
 
-    function updateGraph(id, isUp) {
-      const color = isUp ? '#0ecb81' : '#f6465d';
-      const points = [];
-      for(let i=0; i<=160; i+=20) { points.push(`${i} ${Math.floor(Math.random() * 25) + 5}`); }
-      const pathD = `M ${points.join(' L ')}`;
-      const pathEl = document.getElementById(id);
-      if(pathEl) { pathEl.setAttribute('d', pathD); pathEl.setAttribute('stroke', color); }
+    let selectedImgBase64 = "";
+
+    function handleImageSelect() {
+      const file = document.getElementById('imageInput').files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          selectedImgBase64 = e.target.result;
+          alert("تم إرفاق الصورة بنجاح! اضغط على زر الإرسال الأزرق لرفعها.");
+        }
+        reader.readAsDataURL(file);
+      }
     }
 
-    // خادم جلب أسعار حر وسريع ومباشر ومتوافق بالكامل مع متصفحات الهواتف
-    async function updateLiveTicker() {
-      try {
-        const response = await fetch('https://cryptocompare.com');
-        const json = await response.json();
-        const data = json.RAW;
+    function handleKeyPress(e) { if(e.key === 'Enter') { sendMsg(); } }
 
-        const coins = ['BTC', 'ETH', 'BNB', 'SOL'];
+    function sendMsg() {
+      const text = document.getElementById('userInp').value.trim();
+      const chatBody = document.getElementById('chatBody');
 
-        coins.forEach(coin => {
-          if (data[coin] && data[coin].USD) {
-            const coinData = data[coin].USD;
-            const price = coinData.PRICE.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            const change = coinData.CHANGEPCT24HOUR.toFixed(2);
-            const isUp = change >= 0;
-            const arrow = isUp ? '▲' : '▼';
-            const prefix = coin.toLowerCase();
+      if (text === "" && selectedImgBase64 === "") { return; }
 
-            document.getElementById(`${prefix}-p`).innerText = `$${price}`;
-            document.getElementById(`${prefix}-c`).innerHTML = `<span class="${isUp ? 'up' : 'down'}">${change}% ${arrow}</span>`;
-            updateGraph(`${prefix}-g`, isUp);
-          }
-        });
-      } catch (error) { console.error("Error fetching live prices:", error); }
+      let userBubble = `<div class="msg-bubble msg-out">`;
+      if (selectedImgBase64 !== "") { userBubble += `<img src="${selectedImgBase64}" class="msg-img">`; }
+      if (text !== "") { userBubble += text; }
+      userBubble += `</div>`;
+      
+      chatBody.innerHTML += userBubble;
+
+      document.getElementById('userInp').value = '';
+      selectedImgBase64 = "";
+      document.getElementById('imageInput').value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      // رد الشات التلقائي الفصيح والموجه لبريدك الإلكتروني المستهدف بعد ثانية واحدة
+      setTimeout(() => {
+        const botBubble = `<div class="msg-bubble msg-in">
+          مرحباً بك عزيزي المستخدم، أخبرنا هل توجد لديك مشكلة؟<br>
+          يرجى التواصل معنا وتزويدنا بتفاصيلها واللقطات عبر البريد الإلكتروني المباشر:<br>
+          <span style="color:#f0b90b; font-weight:bold; word-break:break-all;">mj4433314@gmail.com</span>
+        </div>`;
+        chatBody.innerHTML += botBubble;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 1000);
     }
-
-    updateLiveTicker();
-    setInterval(updateLiveTicker, 4000); // تحديث فوري مباشر كل 4 ثوانٍ
   </script>
 
 </body>
