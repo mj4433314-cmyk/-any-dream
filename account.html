@@ -1,78 +1,149 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>حسابي</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حسابي</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    body { background-color: #0b0e14; color: #ffffff; font-family: Arial; margin: 0; padding: 20px 15px 120px 15px; }
+    body { background-color: #0b0e14; color: #ffffff; font-family: Arial; margin: 0; padding: 20px 15px 140px 15px; }
     .hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; padding-top: 10px; }
     .bal-amt { font-size: 26px; font-weight: bold; color: #ffffff; }
     .dep-btn { background-color: #f0b90b; color: #000000; border: none; padding: 10px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; cursor: pointer; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-    .card { background-color: #181a20; border-radius: 12px; padding: 15px; border: 1px solid #2b2f36; cursor: pointer; }
-    .card-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 14px; font-weight: bold; color: #848e9c; }
-    .icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #000000; font-weight: bold; }
-    .prc { font-size: 18px; font-weight: bold; text-align: left; margin-bottom: 4px; }
-    .chg { font-size: 12px; color: #0ecb81; text-align: left; }
     .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
     .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
-    .wlt { background: #0b0e14; border: 1px dashed #f0b90b; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; }
-    .tabs { display: flex; gap: 10px; margin-bottom: 15px; }
-    .tab { flex: 1; padding: 10px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; }
-    .inp-grp { background: #0b0e14; border: 1px solid #2b2f36; border-radius: 8px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .inp-grp input { background: none; border: none; color: white; font-size: 16px; width: 70%; outline: none; }
-    .sub-btn { width: 100%; background: #0ecb81; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 12px; }
-    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; }
+    .wlt { background: #0b0e14; border: 1px dashed #f0b90b; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #f0b90b; }
+    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
     
-    /* شريط التنقل السفلي المطور مثل بايننس (أيقونات فقط مع خط سفلي نشط) */
+    /* تصميم شبكة المربعات المتجاورة */
+    .crypto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .crypto-card { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 15px; display: flex; flex-direction: column; position: relative; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .coin-symbol { font-size: 14px; font-weight: bold; color: #848e9c; }
+    .coin-icon-img { width: 24px; height: 24px; }
+    .card-middle { text-align: left; margin-bottom: 10px; }
+    .live-price { font-size: 18px; font-weight: bold; color: #ffffff; margin-bottom: 2px; }
+    .live-change { font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+    
+    .up { color: #0ecb81; }
+    .down { color: #f6465d; }
+
+    /* تصميم الخطوط البيانية المصغرة */
+    .sparkline-container { width: 100%; height: 30px; margin-top: auto; overflow: hidden; position: relative; }
+    .sparkline-svg { width: 100%; height: 100%; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* تنسيق قسم تحميل التطبيق */
+    .download-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 12px; padding: 20px; text-align: center; margin-top: 25px; }
+    .download-title { font-size: 15px; color: #ffffff; margin: 0 0 12px 0; font-weight: bold; }
+    .download-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background-color: #f0b90b; color: #0b0e14; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; width: 80%; box-sizing: border-box; transition: background 0.3s; }
+    .download-btn:hover { background-color: #d4a307; }
+
+    /* شريط التنقل السفلي */
     .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 12px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
     .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 25%; position: relative; height: 35px; }
     .nav a i { font-size: 22px; }
-    
-    /* تصميم الخط السفلي الأصفر للصفحة النشطة */
     .nav a.active { color: #f0b90b; }
-    .nav a.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 35%;
-      width: 30%;
-      height: 3px;
-      background-color: #f0b90b;
-      border-radius: 2px;
-    }
+    .nav a.active::after { content: ''; position: absolute; bottom: -6px; left: 35%; width: 30%; height: 3px; background-color: #f0b90b; border-radius: 2px; }
   </style>
 </head>
 <body>
 
+  <!-- قسم الرصيد وزر إضافة أموال -->
   <div class="hdr">
-    <div><div style="font-size:13px; color:#848e9c;">القيمة الإجمالية المقدرة (USD) ▲</div><div class="bal-amt">$0.00 USDT</div></div>
+    <div>
+      <div style="font-size:13px; color:#848e9c;">القيمة الإجمالية المقدرة (USD) ▲</div>
+      <div class="bal-amt">$0.00 USDT</div>
+    </div>
     <button class="dep-btn" onclick="openDep()">إضافة أموال</button>
   </div>
-  <div style="font-size:12px; color:#848e9c; margin-bottom:25px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
+  <div style="font-size:12px; color:#848e9c; margin-bottom:5px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
 
-  <div class="grid" id="cryptoGrid"></div>
-
-  <div class="ovr" id="depModal"><div class="box">
-    <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;"><i class="fas fa-wallet"></i> إيداع TRC-20</div>
-    <p style="font-size:13px; color:#848e9c;">قم بتحويل الأموال مباشرة للعنوان أدناه لتفعيل حسابك:</p>
-    <div class="wlt">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-    <button class="cls-btn" onclick="closeDep()">إغلاق</button>
-  </div></div>
-
-  <div class="ovr" id="trdModal"><div class="box">
-    <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;" id="mdlTtl">تداول عالمي</div>
-    <div class="tabs">
-      <button class="tab" id="tBuy" style="background:#0ecb81; color:white;" onclick="setTy('buy')">شراء</button>
-      <button class="tab" id="tSell" style="background:#2b2f36; color:#848e9c;" onclick="setTy('sell')">بيع</button>
+  <!-- شبكة المربعات المتجاورة للعملات الرقمية -->
+  <div class="crypto-grid">
+    
+    <!-- كارت BTC -->
+    <div class="crypto-card">
+      <div class="card-top">
+        <span class="coin-symbol">BTC</span>
+        <img class="coin-icon-img" src="https://coingecko.com" alt="btc">
+      </div>
+      <div class="card-middle">
+        <div class="live-price" id="btc-p">--.--</div>
+        <div class="live-change" id="btc-c">--.--</div>
+      </div>
+      <div class="sparkline-container">
+        <svg class="sparkline-svg"><path id="btc-g" d="M 0 15 Q 20 5 40 25 T 80 15 T 120 20 T 160 10" stroke="#0ecb81"></path></svg>
+      </div>
     </div>
-    <div class="inp-grp"><input type="number" placeholder="0.00" id="trdAmt" oninput="calc()"><span id="sym">USDT</span></div>
-    <div class="inp-grp" style="margin-bottom:20px;"><input type="text" id="trdTtl" readonly value="0.00"><span>إجمالي (USD)</span></div>
-    <button class="sub-btn" id="subB" onclick="exec()">تأكيد العملية</button>
-    <button class="cls-btn" onclick="closeTrd()">إلغاء</button>
-  </div></div>
 
-  <!-- شريط التنقل المحدث بالأيقونات والخط السفلي الأصفر المماثل لبايننس -->
+    <!-- كارت ETH -->
+    <div class="crypto-card">
+      <div class="card-top">
+        <span class="coin-symbol">ETH</span>
+        <img class="coin-icon-img" src="https://coingecko.com" alt="eth">
+      </div>
+      <div class="card-middle">
+        <div class="live-price" id="eth-p">--.--</div>
+        <div class="live-change" id="eth-c">--.--</div>
+      </div>
+      <div class="sparkline-container">
+        <svg class="sparkline-svg"><path id="eth-g" d="M 0 20 Q 20 25 40 10 T 80 20 T 120 15 T 160 25" stroke="#0ecb81"></path></svg>
+      </div>
+    </div>
+
+    <!-- كارت BNB -->
+    <div class="crypto-card">
+      <div class="card-top">
+        <span class="coin-symbol">BNB</span>
+        <img class="coin-icon-img" src="https://coingecko.com" alt="bnb">
+      </div>
+      <div class="card-middle">
+        <div class="live-price" id="bnb-p">--.--</div>
+        <div class="live-change" id="bnb-c">--.--</div>
+      </div>
+      <div class="sparkline-container">
+        <svg class="sparkline-svg"><path id="bnb-g" d="M 0 15 Q 20 20 40 15 T 80 10 T 120 25 T 160 15" stroke="#0ecb81"></path></svg>
+      </div>
+    </div>
+
+    <!-- كارت SOL -->
+    <div class="crypto-card">
+      <div class="card-top">
+        <span class="coin-symbol">SOL</span>
+        <img class="coin-icon-img" src="https://coingecko.com" alt="sol">
+      </div>
+      <div class="card-middle">
+        <div class="live-price" id="sol-p">--.--</div>
+        <div class="live-change" id="sol-c">--.--</div>
+      </div>
+      <div class="sparkline-container">
+        <svg class="sparkline-svg"><path id="sol-g" d="M 0 25 Q 20 10 40 20 T 80 15 T 120 10 T 160 20" stroke="#0ecb81"></path></svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- قسم تحميل التطبيق -->
+  <div class="download-section">
+    <p class="download-title">حمّل تطبيق المنصة الرسمي الآن</p>
+    <a href="https://appsgeyser.io" class="download-btn" target="_blank">
+      <i class="fas fa-download"></i> تحميل التطبيق
+    </a>
+  </div>
+
+  <!-- نافذة الإيداع المنبثقة -->
+  <div class="ovr" id="depModal">
+    <div class="box">
+      <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;">
+        <i class="fas fa-wallet"></i> إيداع TRC-20
+      </div>
+      <p style="font-size:13px; color:#848e9c;">قم بتحويل الأموال مباشرة للعنوان أدناه لتفعيل حسابك:</p>
+      <div class="wlt">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+      <button class="cls-btn" onclick="closeDep()">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- شريط التنقل السفلي -->
   <div class="nav">
     <a href="account.html" class="active"><i class="fas fa-user"></i></a>
     <a href="tasks.html"><i class="fas fa-list-ul"></i></a>
@@ -81,47 +152,43 @@
   </div>
 
   <script>
-    const coins = [
-      {n:'BNB', p:576.05, c:'1.04% ▲', bg:'#f3ba2f', clr:'#000'}, {n:'SOL', p:78.17, c:'0.15% ▲', bg:'#00ffa3', clr:'#000'},
-      {n:'BTC', p:61200, c:'0.45% ▼', bg:'#f7931a', clr:'#000', d:1}, {n:'ETH', p:3380, c:'0.82% ▲', bg:'#627eea', clr:'#fff'},
-      {n:'TRX', p:0.124, c:'2.11% ▲', bg:'#ec0623', clr:'#fff'}, {n:'XRP', p:0.58, c:'0.31% ▲', bg:'#23292f', clr:'#fff'},
-      {n:'ADA', p:0.46, c:'1.20% ▼', bg:'#0033ad', clr:'#fff', d:1}, {n:'DOGE', p:0.14, c:'4.50% ▲', bg:'#c2a633', clr:'#000'},
-      {n:'DOT', p:6.25, c:'0.95% ▲', bg:'#e6007a', clr:'#fff'}, {n:'LINK', p:15.40, c:'1.15% ▼', bg:'#375bd2', clr:'#fff', d:1}
-    ];
+    function openDep() { document.getElementById('depModal').style.display = 'flex'; }
+    function closeDep() { document.getElementById('depModal').style.display = 'none'; }
 
-    const grid = document.getElementById('cryptoGrid');
-    coins.forEach(c => {
-      grid.innerHTML += `<div class="card" onclick="openTrd('${c.n}', ${c.p})">
-        <div class="card-hdr"><span>${c.n}</span><div class="icon" style="background:${c.bg}; color:${c.clr}">${c.n}</div></div>
-        <div class="prc">${c.p.toLocaleString()}</div>
-        <div class="chg" style="color:${c.d?'#f6465d':'#0ecb81'}">${c.c}</div>
-      </div>`;
-    });
+    function updateGraph(id, isUp) {
+      const color = isUp ? '#0ecb81' : '#f6465d';
+      const points = [];
+      for(let i=0; i<=160; i+=20) { points.push(`${i} ${Math.floor(Math.random() * 25) + 5}`); }
+      const pathD = `M ${points.join(' L ')}`;
+      const pathEl = document.getElementById(id);
+      if(pathEl) { pathEl.setAttribute('d', pathD); pathEl.setAttribute('stroke', color); }
+    }
 
-    let curC='', curP=0, curTy='buy';
-    function openDep() { document.getElementById('depModal').style.display='flex'; }
-    function closeDep() { document.getElementById('depModal').style.display='none'; }
-    function openTrd(coin, price) {
-      curC=coin; curP=price; document.getElementById('mdlTtl').innerText=`تداول حركي - ${coin}/USDT`;
-      document.getElementById('sym').innerText=coin; document.getElementById('trdAmt').value='';
-      document.getElementById('trdTtl').value='0.00'; setTy('buy'); document.getElementById('trdModal').style.display='flex';
+    async function updateLiveTicker() {
+      try {
+        const response = await fetch('https://binance.com["BTCUSDT","ETHUSDT","BNBUSDT","SOLUSDT"]');
+        const data = await response.json();
+        const pairs = { 'BTCUSDT': 'btc', 'ETHUSDT': 'eth', 'BNBUSDT': 'bnb', 'SOLUSDT': 'sol' };
+
+        data.forEach(coin => {
+          const prefix = pairs[coin.symbol];
+          if(prefix) {
+            const price = parseFloat(coin.lastPrice).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            const change = parseFloat(coin.priceChangePercent).toFixed(2);
+            const isUp = change >= 0;
+            const arrow = isUp ? '▲' : '▼';
+
+            document.getElementById(`${prefix}-p`).innerText = price;
+            document.getElementById(`${prefix}-c`).innerHTML = `<span class="${isUp ? 'up' : 'down'}">${change}% ${arrow}</span>`;
+            updateGraph(`${prefix}-g`, isUp);
+          }
+        });
+      } catch (error) { console.error("Error updating charts:", error); }
     }
-    function closeTrd() { document.getElementById('trdModal').style.display='none'; }
-    function setTy(t) {
-      curTy=t; const b=document.getElementById('tBuy'), s=document.getElementById('tSell'), sub=document.getElementById('subB');
-      if(t==='buy') { b.style.background='#0ecb81'; b.style.color='white'; s.style.background='#2b2f36'; s.style.color='#848e9c'; sub.style.background='#0ecb81'; sub.innerText=`تأكيد شراء ${curC}`; }
-      else { s.style.background='#f6465d'; s.style.color='white'; b.style.background='#2b2f36'; b.style.color='#848e9c'; sub.style.background='#f6465d'; sub.innerText=`تأكيد بيع ${curC}`; }
-    }
-    function calc() {
-      const a = parseFloat(document.getElementById('trdAmt').value)||0;
-      document.getElementById('trdTtl').value=(a*curP).toFixed(2);
-    }
-    function exec() {
-      if((parseFloat(document.getElementById('trdAmt').value)||0)<=0) { alert("حدد كمية صحيحة!"); return; }
-      alert(`عذراً، رصيدك الحالي غير كافٍ لإتمام عملية الـ ${curTy==='buy'?'شراء':'بيع'}. يرجى إضافة أموال أولاً!`); closeTrd();
-        }
+
+    updateLiveTicker();
+    setInterval(updateLiveTicker, 4000);
   </script>
+
 </body>
 </html>
-
-    
