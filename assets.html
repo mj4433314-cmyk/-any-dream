@@ -6,31 +6,101 @@
     <title>الباقات - الأصول</title>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="https://cloudflare.com">
-</head>
-<body style="background-color: #0b0f19; color: white; padding: 20px; font-family: 'Cairo', sans-serif; margin: 0; padding-bottom: 80px;">
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: white;
+            padding: 20px;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding-bottom: 90px;
+        }
 
-    <div style="max-width: 450px; margin: auto; text-align: center;">
-        <h2 style="font-family: 'Cairo', sans-serif; color: #f0b90b;">الباقات الاستثمارية</h2>
+        .pkg-container {
+            max-width: 450px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* ضبط مربعات الباقات لتصبح متساوية 100% */
+        .pkg-card {
+            width: 100%;
+            height: 160px; /* طول موحد لكل الكروت */
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            background-color: #111522;
+        }
+
+        /* ضبط الصور لتملأ المربع وتتناسق تلقائياً دون تمدد مكسور */
+        .pkg-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* تجعل الصورة تأخذ الحجم الكامل بالتساوي */
+            display: block;
+        }
+
+        /* تنسيق شريط التنقل السفلي الكلاسيكي */
+        .binance-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111522;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #22293f;
+            z-index: 9999;
+            direction: rtl;
+        }
+
+        .binance-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #848e9c;
+            font-size: 12px;
+            flex: 1;
+        }
+
+        .binance-nav-item.active {
+            color: #f0b90b;
+        }
+
+        .binance-nav-item i {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pkg-container">
+        <h2 style="font-family: 'Cairo', sans-serif; color: #f0b90b; margin-bottom: 20px;">الباقات الاستثمارية</h2>
         
-        <!-- الباقات الخمسة كمربعات صور قابلة للنقر -->
-        <div style="width: 100%; border-radius: 15px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;" onclick="openPkgModal()">
-            <img src="pkg1.jpg" alt="الباقة الأولى" style="width: 100%; display: block;">
+        <!-- كروت الباقات الخمسة بأبعاد مضبوطة وموحدة -->
+        <div class="pkg-card" onclick="openPkgModal()">
+            <img src="pkg1.jpg" alt="الباقة الأولى">
         </div>
-        <div style="width: 100%; border-radius: 15px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;" onclick="openPkgModal()">
-            <img src="pkg2.jpg" alt="الباقة الثانية" style="width: 100%; display: block;">
+        <div class="pkg-card" onclick="openPkgModal()">
+            <img src="pkg2.jpg" alt="الباقة الثانية">
         </div>
-        <div style="width: 100%; border-radius: 15px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;" onclick="openPkgModal()">
-            <img src="pkg3.jpg" alt="الباقة الثالثة" style="width: 100%; display: block;">
+        <div class="pkg-card" onclick="openPkgModal()">
+            <img src="pkg3.jpg" alt="الباقة الثالثة">
         </div>
-        <div style="width: 100%; border-radius: 15px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;" onclick="openPkgModal()">
-            <img src="pkg4.jpg" alt="الباقة الرابعة" style="width: 100%; display: block;">
+        <div class="pkg-card" onclick="openPkgModal()">
+            <img src="pkg4.jpg" alt="الباقة الرابعة">
         </div>
-        <div style="width: 100%; border-radius: 15px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;" onclick="openPkgModal()">
-            <img src="pkg5.jpg" alt="الباقة الخامسة" style="width: 100%; display: block;">
+        <div class="pkg-card" onclick="openPkgModal()">
+            <img src="pkg5.jpg" alt="الباقة الخامسة">
         </div>
     </div>
 
-    <!-- نافذة منبثقة لطلب كلمة المرور تفتح عند النقر على أي باقة -->
+    <!-- نافذة طلب كلمة المرور المنبثقة -->
     <div id="pkgModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center;">
         <div style="background: #182030; padding: 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.5); border: 1px solid #f0b90b;">
             <h3 style="margin-top: 0; color: #f0b90b; font-family: 'Cairo', sans-serif;">تفعيل الباقة</h3>
@@ -44,22 +114,22 @@
         </div>
     </div>
 
-    <!-- شريط التنقل السفلي الموحد بالمظهر القديم والـ 4 انتقالات -->
-    <div class="binance-bottom-nav" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #111522; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #22293f; z-index: 9999; direction: rtl;">
-        <a href="index.html" class="binance-nav-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #848e9c; font-size: 12px;">
-            <i class="fas fa-user" style="font-size: 18px; margin-bottom: 4px;"></i>
+    <!-- شريط التنقل الكلاسيكي الموحد -->
+    <div class="binance-bottom-nav">
+        <a href="index.html" class="binance-nav-item">
+            <i class="fas fa-user"></i>
             <span>حسابي</span>
         </a>
-        <a href="tasks.html" class="binance-nav-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #848e9c; font-size: 12px;">
-            <i class="fas fa-list-ul" style="font-size: 18px; margin-bottom: 4px;"></i>
+        <a href="tasks.html" class="binance-nav-item">
+            <i class="fas fa-list-ul"></i>
             <span>المهام</span>
         </a>
-        <a href="assets.html" class="binance-nav-item active" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #f0b90b; font-size: 12px;">
-            <i class="fas fa-wallet" style="font-size: 18px; margin-bottom: 4px;"></i>
+        <a href="assets.html" class="binance-nav-item active">
+            <i class="fas fa-wallet"></i>
             <span>الأصول</span>
         </a>
-        <a href="home.html" class="binance-nav-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #848e9c; font-size: 12px;">
-            <i class="fas fa-home" style="font-size: 18px; margin-bottom: 4px;"></i>
+        <a href="home.html" class="binance-nav-item">
+            <i class="fas fa-home"></i>
             <span>الرئيسية</span>
         </a>
     </div>
