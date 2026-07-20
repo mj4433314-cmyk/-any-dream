@@ -22,10 +22,9 @@
             text-align: center;
         }
 
-        /* ضبط مربعات الباقات لتصبح متساوية 100% */
+        /* جعل مربع الباقة مرناً لكي لا يضغط الصورة */
         .pkg-card {
             width: 100%;
-            height: 160px; /* طول موحد لكل الكروت */
             border-radius: 15px;
             margin-bottom: 15px;
             overflow: hidden;
@@ -34,12 +33,12 @@
             background-color: #111522;
         }
 
-        /* ضبط الصور لتملأ المربع وتتناسق تلقائياً دون تمدد مكسور */
+        /* ضبط الصورة لتعرض مقاسها الحقيقي الطبيعي دون تمدد */
         .pkg-card img {
             width: 100%;
-            height: 100%;
-            object-fit: fill; /* تجعل الصورة تأخذ الحجم الكامل بالتساوي */
+            height: auto; /* جعل الارتفاع تلقائي لمنع الانضغاط والتشويه */
             display: block;
+            object-fit: contain;
         }
 
         /* تنسيق شريط التنقل السفلي الكلاسيكي */
@@ -82,7 +81,7 @@
     <div class="pkg-container">
         <h2 style="font-family: 'Cairo', sans-serif; color: #f0b90b; margin-bottom: 20px;">الباقات الاستثمارية</h2>
         
-        <!-- كروت الباقات الخمسة بأبعاد مضبوطة وموحدة -->
+        <!-- كروت الباقات الخمسة بأبعاد طبيعية معتدلة -->
         <div class="pkg-card" onclick="openPkgModal()">
             <img src="pkg1.jpg" alt="الباقة الأولى">
         </div>
