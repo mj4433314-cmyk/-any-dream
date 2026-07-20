@@ -6,75 +6,8 @@
     <title>الباقات - الأصول</title>
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="https://cloudflare.com">
-    <style>
-        body {
-            background-color: #0b0f19;
-            color: white;
-            padding: 20px;
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding-bottom: 80px; /* لحماية الأزرار من الاختفاء خلف الشريط */
-        }
-
-        /* تنسيق شريط التنقل القديم التقليدي */
-        .tab-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 65px;
-            background-color: #111522; /* نفس لون خلفية الشريط القديم */
-            border-top: 1px solid #22293f; /* الخط العلوي الخفيف */
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 9999;
-            direction: rtl;
-        }
-
-        .tab-bar__tabs {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .tab-bar__tab {
-            flex: 1;
-            text-align: center;
-        }
-
-        .tab-bar__tab-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #848e9c; /* لون الأيقونات القديم الرمادي */
-            font-size: 12px;
-        }
-
-        /* لون العنصر النشط الأصفر التقليدي لموقعك */
-        .tab-bar__tab-link[aria-current="page"],
-        .tab-bar__tab-link:hover {
-            color: #f0b90b; 
-        }
-
-        .tab-bar__logo {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-            margin-bottom: 4px;
-        }
-
-        .tab-bar__tab-icon {
-            font-size: 18px;
-            margin-bottom: 4px;
-        }
-    </style>
 </head>
-<body>
+<body style="background-color: #0b0f19; color: white; padding: 20px; font-family: 'Cairo', sans-serif; margin: 0; padding-bottom: 80px;">
 
     <div style="max-width: 450px; margin: auto; text-align: center;">
         <h2 style="font-family: 'Cairo', sans-serif; color: #f0b90b;">الباقات الاستثمارية</h2>
@@ -112,34 +45,24 @@
     </div>
 
     <!-- شريط التنقل السفلي الموحد بالمظهر القديم والـ 4 انتقالات -->
-    <nav class="tab-bar">
-      <ul class="tab-bar__tabs">
-        <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" href="index.html">
-            <i class="fas fa-user tab-bar__tab-icon"></i>
-            <span>الحساب</span>
-          </a>
-        </li>
-        <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" href="home.html">
-            <img src="lokgo.png" alt="Logo" class="tab-bar__logo">
-            <span>الرئيسية</span>
-          </a>
-        </li>
-        <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" href="assets.html" aria-current="page">
-            <i class="fas fa-wallet tab-bar__tab-icon"></i>
-            <span>الأصول</span>
-          </a>
-        </li>
-        <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" href="tasks.html">
-            <i class="fas fa-list-ul tab-bar__tab-icon"></i>
+    <div class="binance-bottom-nav" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #111522; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #22293f; z-index: 9999; direction: rtl;">
+        <a href="index.html" class="binance-nav-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #848e9c; font-size: 12px;">
+            <i class="fas fa-user" style="font-size: 18px; margin-bottom: 4px;"></i>
+            <span>حسابي</span>
+        </a>
+        <a href="tasks.html" class="binance-nav-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #848e9c; font-size: 12px;">
+            <i class="fas fa-list-ul" style="font-size: 18px; margin-bottom: 4px;"></i>
             <span>المهام</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+        </a>
+        <a href="assets.html" class="binance-nav-item active" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #f0b90b; font-size: 12px;">
+            <i class="fas fa-wallet" style="font-size: 18px; margin-bottom: 4px;"></i>
+            <span>الأصول</span>
+        </a>
+        <a href="home.html" class="binance-nav-item" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #848e9c; font-size: 12px;">
+            <i class="fas fa-home" style="font-size: 18px; margin-bottom: 4px;"></i>
+            <span>الرئيسية</span>
+        </a>
+    </div>
 
     <script>
         function openPkgModal() {
