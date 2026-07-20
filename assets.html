@@ -22,7 +22,6 @@
             text-align: center;
         }
 
-        /* جعل مربع الباقة مرناً لكي لا يضغط الصورة */
         .pkg-card {
             width: 100%;
             border-radius: 15px;
@@ -31,9 +30,13 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             cursor: pointer;
             background-color: #111522;
+            transition: transform 0.2s ease;
         }
 
-        /* ضبط الصورة لتعرض مقاسها الحقيقي الطبيعي دون تمدد */
+        .pkg-card:active {
+            transform: scale(0.97);
+        }
+
         .pkg-card img {
             width: 100%;
             height: auto;
@@ -41,7 +44,7 @@
             object-fit: contain;
         }
 
-        /* تنسيق شريط التنقل السفلي الكلاسيكي */
+        /* تنسيق شريط التنقل السفلي مع إضافة تأثير النبض الكلاسيكي السريع */
         .binance-bottom-nav {
             position: fixed;
             bottom: 0;
@@ -64,6 +67,12 @@
             color: #848e9c;
             font-size: 12px;
             flex: 1;
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* تأثير النبضة والارتداد عند الضغط على الأزرار */
+        .binance-nav-item:active {
+            transform: scale(0.88);
         }
 
         .binance-nav-item.active {
@@ -74,6 +83,92 @@
             font-size: 18px;
             margin-bottom: 4px;
         }
+
+        /* تنسيق النافذة المنبثقة للـ CodePen */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .popup {
+            background: #ffffff;
+            border-radius: 8px;
+            width: 85%;
+            max-width: 340px;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            font-family: sans-serif;
+            animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .popup-content {
+            padding: 30px 20px;
+            color: #333333;
+        }
+
+        .popup-content .icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px auto;
+            display: block;
+            animation: pulseIcon 1.5s infinite ease-in-out; /* تأثير نبض أيقونة التحذير */
+        }
+
+        .popup-content .title {
+            display: block;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .popup-content .detail {
+            font-size: 15px;
+            color: #7f8c8d;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .popup-footer {
+            background: #F65656;
+            color: white;
+            padding: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .popup-footer:hover {
+            background: #e04b4b;
+        }
+
+        /* تأثيرات الحركة (Animations) */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulseIcon {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -81,7 +176,6 @@
     <div class="pkg-container">
         <h2 style="font-family: 'Cairo', sans-serif; color: #f0b90b; margin-bottom: 20px;">الباقات الاستثمارية</h2>
         
-        <!-- كروت الباقات الخمسة بأبعاد طبيعية معتدلة -->
         <div class="pkg-card" onclick="openPkgModal()">
             <img src="pkg1.jpg" alt="الباقة الأولى">
         </div>
@@ -99,20 +193,23 @@
         </div>
     </div>
 
-    <!-- النافذة المنبثقة الاحترافية الجديدة لرسالة عذراً رصيدك غير كافي -->
-    <div id="pkgModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center;">
-        <div style="background: #182030; padding: 30px 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.5); border: 1px solid #ff4a5a;">
-            <!-- علامة التحذير الاحترافية الملونة -->
-            <div style="font-size: 45px; margin-bottom: 15px; color: #ff4a5a;">⚠️</div>
-            <h3 style="margin-top: 0; color: #ff4a5a; font-family: 'Cairo', sans-serif; font-size: 20px;">عذراً، رصيدك غير كافي!</h3>
-            <p style="font-size: 14px; color: #a0a5b5; margin-bottom: 25px; line-height: 1.6;">يرجى شحن حسابك أولاً لتتمكن من تفعيل وتشغيل هذه الباقة الاستثمارية.</p>
-            <div style="display: flex; justify-content: center;">
-                <button onclick="closePackageModal()" style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #ff4a5a; color: white; font-weight: bold; cursor: pointer; font-family: 'Cairo', sans-serif; font-size: 15px; box-shadow: 0 4px 10px rgba(255, 74, 90, 0.3);">إلغاء</button>
+    <!-- شاشة النافذة المنبثقة المستوحاة من CodePen مع تأثير النبض للتحذير -->
+    <div id="pkgModal" class="modal-overlay">
+        <div class="popup">
+            <div class="popup-content">
+                <span class="icon">
+                    <svg fill="#F65656" viewBox="0 0 1024 1024" xmlns="http://w3.org" stroke="#F65656">
+                        <path d="M955.7 856l-416-720c-6.2-10.7-16.9-16-27.7-16s-21.6 5.3-27.7 16l-416 720C56 877.4 71.4 904 96 904h832c24.6 0 40-26.6 27.7-48zM480 416c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v184c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V416zm32 352a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"></path>
+                    </svg>
+                </span>
+                <span class="title">HRUSDT</span>
+                <p class="detail">Please top up your account to activate the package.</p>
             </div>
+            <div class="popup-footer" onclick="closePackageModal()">Dismiss</div>
         </div>
     </div>
 
-    <!-- شريط التنقل الكلاسيكي الموحد -->
+    <!-- شريط التنقل الكلاسيكي الموحد مع تأثير النبضات السلس وسلسلة الربط الدقيقة -->
     <div class="binance-bottom-nav">
         <a href="index.html" class="binance-nav-item">
             <i class="fas fa-user"></i>
