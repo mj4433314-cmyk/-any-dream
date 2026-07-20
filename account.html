@@ -6,10 +6,11 @@
   <title>HR</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* تطبيق أعلى درجات التسميك والتضخيم الفوري على نصوص الواجهة بالكامل */
+    /* تفعيل أقصى درجات التسميك البرمجي لجميع عناصر الواجهة لتبدو عريضة وواضحة جداً */
     * {
       font-weight: 900 !important;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
     }
     
     body { 
@@ -56,12 +57,12 @@
     .dot2 { width: 5px; height: 5px; animation-delay: 0.3s; }
     .dot3 { width: 3px; height: 3px; animation-delay: 0.6s; }
 
-    /* تسميك وتضخيم خط الدعم الفني عبر دمج الحدود والظلال التقنية */
+    /* زيادة سُمك وحجم نص فريق الدعم الفني العربي */
     .robot-btn-text {
       margin-top: 25px;
-      font-size: 21px !important;
+      font-size: 22px !important;
       color: #00bfff !important;
-      text-shadow: 0.5px 0px 0px #00bfff, -0.5px 0px 0px #00bfff, 0px 0.5px 0px #00bfff, 0px -0.5px 0px #00bfff;
+      text-shadow: 0.5px 0px 0px #00bfff, -0.5px 0px 0px #00bfff;
     }
 
     /* الخط الفاصل المضيء */
@@ -81,7 +82,7 @@
     .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
     .action-title { font-size: 15px; color: #848e9c; margin: 0 0 15px 0; }
     
-    /* تضخيم وتوسيع زر تحميل التطبيق ليظهر بشكل سميك وبارز جداً ومقروء */
+    /* تسميك وتكبير زر تحميل التطبيق باللغة العربية ليكون عريضاً وبارزاً جداً */
     .btn-style { 
       display: inline-flex; 
       align-items: center; 
@@ -90,7 +91,7 @@
       padding: 16px 24px; 
       border-radius: 10px; 
       text-decoration: none; 
-      font-size: 20px !important; 
+      font-size: 21px !important; 
       width: 95%; 
       box-sizing: border-box; 
       transition: all 0.3s ease; 
@@ -98,7 +99,7 @@
       background-color: #007bff; 
       color: #ffffff !important; 
       box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-      text-shadow: 0.5px 0px 0px #ffffff, -0.5px 0px 0px #ffffff, 0px 0.5px 0px #ffffff, 0px -0.5px 0px #ffffff;
+      text-shadow: 0.5px 0px 0px #ffffff, -0.5px 0px 0px #ffffff;
     }
     .btn-style:hover { background-color: #0056b3; transform: translateY(-2px); }
 
@@ -124,7 +125,7 @@
     .badge-icon { font-size: 22px; }
     .badge-name { font-size: 13px; color: #ffffff; }
 
-    /* واجهة شات تيليجرام */
+    /* واجهة شات تيليجرام التفاعلية بالعربية الفصيحة */
     .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
     .tg-header { background: #17212b; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #101921; }
     .tg-back { font-size: 20px; color: #6c7883; cursor: pointer; }
@@ -182,7 +183,7 @@
   <!-- الخط الفاصل المضيء المدمج -->
   <hr class="glow-divider">
 
-  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" بخط سميك عريض وواضح جداً -->
+  <!-- قسم خدمات المنصة السفلية المطور بالزر المحدث "تحميل التطبيق" بخط سميك عريض وواضح جداً ومضخم -->
   <div class="action-section">
     <p class="action-title">الوصول السريع لخدمات المنصة</p>
     <a href="https://appsgeyser.io" class="btn-style" target="_blank">
@@ -206,7 +207,7 @@
     </div>
   </div>
 
-  <!-- واجهة شات تيليجرام التفاعلية -->
+  <!-- واجهة شات تيليجرام التفاعلية الفصيحة بالعربية -->
   <div class="tg-overlay" id="supModal">
     <div class="tg-header">
       <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
@@ -277,7 +278,7 @@
       document.getElementById('imageInput').value = '';
       chatBody.scrollTop = chatBody.scrollHeight;
 
-      // تأثير طباعة الرد التلقائي الاحترافي حرفاً بحرف
+      // تأثير طباعة الرد التلقائي الاحترافي العربي حرفاً بحرف
       setTimeout(() => {
         let fullText = "";
         const lowerText = text.toLowerCase();
