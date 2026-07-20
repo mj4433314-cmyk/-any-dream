@@ -6,17 +6,14 @@
   <title>HR</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* دمج خط عالي الاحترافية مناسب للواجهات التقنية والمالية الحديثة */
+    /* دمج خط القاهرة المطور والفاخر المناسب للواجهات التقنية والمالية العصرية */
     @import url('https://googleapis.com');
 
-    body { background-color: #0b0e14; color: #ffffff; font-family: 'Cairo', Arial, sans-serif; margin: 0; padding: 20px 15px 160px 15px; }
-    .hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; padding-top: 10px; }
-    .bal-amt { font-size: 26px; font-weight: bold; color: #ffffff; }
-    .dep-btn { background-color: #f0b90b; color: #000000; border: none; padding: 10px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; cursor: pointer; font-family: 'Cairo', sans-serif; }
+    body { background-color: #0b0e14; color: #ffffff; font-family: 'Cairo', Arial, sans-serif; margin: 0; padding: 40px 15px 160px 15px; }
     
     .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
     .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
-    .wlt { background: #0b0e14; border: 1px dashed #f0b90b; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #f0b90b; }
+    .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #00bfff; }
     .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; font-family: 'Cairo', sans-serif; }
 
     /* التصميم البرمجي لمربع الروبوت التفاعلي ليكون زراً للدعم الفني */
@@ -24,9 +21,9 @@
       background-color: #181a20; 
       border: 1px solid #2b2f36; 
       border-radius: 16px; 
-      padding: 30px 15px 25px 15px; 
+      padding: 35px 15px 30px 15px; 
       text-align: center; 
-      margin: 25px 0; 
+      margin: 10px 0 25px 0; 
       position: relative; 
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -53,23 +50,25 @@
 
     /* تصميم النص الاحترافي داخل مربع البوت */
     .robot-btn-text {
-      margin-top: 15px;
-      font-size: 16px;
+      margin-top: 20px;
+      font-size: 17px;
       font-weight: 700;
       color: #00bfff;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     @keyframes robotFloat { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
     @keyframes robotBlink { 0%, 45%, 55%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
     @keyframes particleFade { 0% { opacity: 0.3; transform: scale(0.8) translateY(0px); } 50% { opacity: 1; transform: scale(1.2) translateY(3px); } 100% { opacity: 0.1; transform: scale(0.6) translateY(6px); } }
 
-    /* تنسيق قسم الخدمات السفلية والأزرار الاحترافية */
-    .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 20px; text-align: center; margin-top: 20px; }
+    /* تنسيق قسم الأزرار المحدثة باللون الأزرق الفاخر والخط الأبيض الاحترافي */
+    .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
     .action-title { font-size: 14px; color: #848e9c; margin: 0 0 15px 0; font-weight: bold; }
-    .btn-style { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; width: 90%; box-sizing: border-box; transition: all 0.3s ease; font-family: 'Cairo', sans-serif; cursor: pointer; }
-    .download-btn { background-color: #f0b90b; color: #0b0e14; }
-    .download-btn:hover { background-color: #d4a307; transform: translateY(-2px); }
+    .btn-style { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 16px; width: 95%; box-sizing: border-box; transition: all 0.3s ease; font-family: 'Cairo', sans-serif; cursor: pointer; }
+    
+    /* زر التحميل والتفاعل المحدث بالكامل للون الأزرق الملكي والخط الأبيض الناصع */
+    .download-btn { background-color: #007bff; color: #ffffff; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); }
+    .download-btn:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3); }
 
     /* واجهة شات تيليجرام */
     .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
@@ -94,20 +93,10 @@
     .tg-send-btn { background: none; border: none; color: #5288c1; font-size: 20px; cursor: pointer; transition: transform 0.2s; }
     .tg-send-btn:hover { transform: scale(1.1); color: #2f6ea5; }
 
-    .wlt-copy-box { background: #0b0e14; border: 1px dashed #f0b90b; padding: 8px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #f0b90b; word-break: break-all; margin-top: 5px; text-align: center; }
+    .wlt-copy-box { background: #0b0e14; border: 1px dashed #007bff; padding: 8px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #00bfff; word-break: break-all; margin-top: 5px; text-align: center; }
   </style>
 </head>
 <body>
-
-  <!-- قسم الرصيد وزر إضافة أموال -->
-  <div class="hdr">
-    <div>
-      <div style="font-size:13px; color:#848e9c;">القيمة الإجمالية المقدرة (USD) ▲</div>
-      <div class="bal-amt">$0.00 USDT</div>
-    </div>
-    <button class="dep-btn" onclick="openDep()">إضافة أموال</button>
-  </div>
-  <div style="font-size:12px; color:#848e9c; margin-bottom:15px;">ربح وخسارة اليوم $0.00 (0.00%) ▼</div>
 
   <!-- حاوية الروبوت المطور المتحرك مدمج بها نص التـــواصل الدعــم الفـــني وتفتح الشات عند الضغط -->
   <div class="robot-wrapper" onclick="openSup()">
@@ -129,7 +118,7 @@
     <div class="robot-btn-text">التـــواصل الدعــم الفـــني</div>
   </div>
 
-  <!-- قسم خدمات المنصة السفلية -->
+  <!-- قسم خدمات المنصة السفلية المطور بالزر الأزرق والخط الأبيض الفخم المحدث -->
   <div class="action-section">
     <p class="action-title">الوصول السريع لخدمات المنصة</p>
     <a href="https://appsgeyser.io" class="btn-style download-btn" target="_blank">
@@ -137,19 +126,7 @@
     </a>
   </div>
 
-  <!-- نافذة الإيداع المنبثقة -->
-  <div class="ovr" id="depModal">
-    <div class="box">
-      <div style="font-size:18px; font-weight:bold; color:#f0b90b; margin-bottom:12px;">
-        <i class="fas fa-wallet"></i> إيداع TRC-20
-      </div>
-      <p style="font-size:13px; color:#848e9c;">قم بتحويل الأموال مباشرة للعنوان أدناه لتفعيل حسابك:</p>
-      <div class="wlt">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
-      <button class="cls-btn" onclick="closeDep()">إغلاق</button>
-    </div>
-  </div>
-
-  <!-- واجهة شات تيليجرام التفاعلية - تم إزالة كلمة متصل الآن تماماً -->
+  <!-- واجهة شات تيليجرام التفاعلية -->
   <div class="tg-overlay" id="supModal">
     <div class="tg-header">
       <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
@@ -183,9 +160,6 @@
     <a href="home.html"><i class="fas fa-home"></i></a>
   </div>
     <script>
-    function openDep() { document.getElementById('depModal').style.display = 'flex'; }
-    function closeDep() { document.getElementById('depModal').style.display = 'none'; }
-    
     function openSup() { document.getElementById('supModal').style.display = 'flex'; }
     function closeSup() { document.getElementById('supModal').style.display = 'none'; }
 
@@ -238,7 +212,7 @@
           fullText = `📊 <b>قائمة الباقات الاستثمارية وعوائدها المتاحة حالياً:</b><br><br>💰 سعر الباقة: <b>30 USDT</b><br>💵 العائد اليومي: <b>3.50 USDT</b><br>────────────────<br>💰 سعر الباقة: <b>60 USDT</b><br>💵 العائد اليومي: <b>7 USDT</b><br>────────────────<br>💰 سعر الباقة: <b>90 USDT</b><br>💵 العائد اليومي: <b>10 USDT</b><br>────────────────<br>💰 سعر الباقة: <b>150 USDT</b><br>💵 العائد اليومي: <b>18 USDT</b><br>────────────────<br>💰 سعر الباقة: <b>300 USDT</b><br>💵 العائد اليومي: <b>40 USDT</b><br>────────────────`;
         } 
         else {
-          fullText = `مرحباً بك عزيزي المستخدم، يرجى تزويدنا بتفاصيل المشكلة أو اللقطات عبر بريدنا الإلكتروني الرسمي لحلها فوراً:<br><span style="color:#f0b90b; font-weight:bold; word-break:break-all;">mj4433314@gmail.com</span>`;
+          fullText = `مرحباً بك عزيزي المستخدم، يرجى تزويدنا بتفاصيل المشكلة أو اللقطات عبر بريدنا الإلكتروني الرسمي لحلها فوراً:<br><span style="color:#007bff; font-weight:bold; word-break:break-all;">mj4433314@gmail.com</span>`;
         }
 
         const botBubbleId = "bot-" + Date.now();
