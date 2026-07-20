@@ -36,7 +36,7 @@
         /* ضبط الصورة لتعرض مقاسها الحقيقي الطبيعي دون تمدد */
         .pkg-card img {
             width: 100%;
-            height: auto; /* جعل الارتفاع تلقائي لمنع الانضغاط والتشويه */
+            height: auto;
             display: block;
             object-fit: contain;
         }
@@ -99,16 +99,15 @@
         </div>
     </div>
 
-    <!-- نافذة طلب كلمة المرور المنبثقة -->
+    <!-- النافذة المنبثقة الاحترافية الجديدة لرسالة عذراً رصيدك غير كافي -->
     <div id="pkgModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center;">
-        <div style="background: #182030; padding: 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.5); border: 1px solid #f0b90b;">
-            <h3 style="margin-top: 0; color: #f0b90b; font-family: 'Cairo', sans-serif;">تفعيل الباقة</h3>
-            <p style="font-size: 14px; color: #a0a5b5; margin-bottom: 20px;">يرجى إدخال مفتاح التفعيل الخاص بك لتشغيل هذه الباقة الاستثمارية.</p>
-            <input type="text" id="pkgPassword" placeholder="أدخل مفتاح التفعيل هنا" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333d52; background: #0b0f19; color: white; text-align: center; font-size: 15px; margin-bottom: 10px; box-sizing: border-box;">
-            <div id="pkgError" style="color: #ff4a5a; font-size: 13px; margin-bottom: 15px; display: none;">مفتاح التفعيل غير صحيح!</div>
-            <div style="display: flex; gap: 12px;">
-                <button onclick="submitPkgActivation()" style="flex: 1; padding: 12px; border-radius: 8px; border: none; background: #f0b90b; color: #0b0f19; font-weight: bold; cursor: pointer; font-family: 'Cairo', sans-serif;">تفعيل</button>
-                <button onclick="closePackageModal()" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #333d52; background: transparent; color: white; cursor: pointer; font-family: 'Cairo', sans-serif;">إلغاء</button>
+        <div style="background: #182030; padding: 30px 25px; border-radius: 15px; width: 85%; max-width: 320px; text-align: center; box-shadow: 0 5px 25px rgba(0,0,0,0.5); border: 1px solid #ff4a5a;">
+            <!-- علامة التحذير الاحترافية الملونة -->
+            <div style="font-size: 45px; margin-bottom: 15px; color: #ff4a5a;">⚠️</div>
+            <h3 style="margin-top: 0; color: #ff4a5a; font-family: 'Cairo', sans-serif; font-size: 20px;">عذراً، رصيدك غير كافي!</h3>
+            <p style="font-size: 14px; color: #a0a5b5; margin-bottom: 25px; line-height: 1.6;">يرجى شحن حسابك أولاً لتتمكن من تفعيل وتشغيل هذه الباقة الاستثمارية.</p>
+            <div style="display: flex; justify-content: center;">
+                <button onclick="closePackageModal()" style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: #ff4a5a; color: white; font-weight: bold; cursor: pointer; font-family: 'Cairo', sans-serif; font-size: 15px; box-shadow: 0 4px 10px rgba(255, 74, 90, 0.3);">إلغاء</button>
             </div>
         </div>
     </div>
@@ -136,18 +135,9 @@
     <script>
         function openPkgModal() {
             document.getElementById('pkgModal').style.display = 'flex';
-            document.getElementById('pkgError').style.display = 'none';
-            document.getElementById('pkgPassword').value = '';
         }
         function closePackageModal() {
             document.getElementById('pkgModal').style.display = 'none';
-        }
-        function submitPkgActivation() {
-            if(document.getElementById('pkgPassword').value.trim() === ""){
-                alert("يرجى إدخال كلمة المرور أولاً!");
-                return;
-            }
-            document.getElementById('pkgError').style.display = 'block';
         }
     </script>
 </body>
