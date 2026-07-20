@@ -6,24 +6,31 @@
   <title>HR</title>
   <link rel="stylesheet" href="https://cloudflare.com">
   <style>
-    /* دمج خط القاهرة المطور والفاخر المناسب للواجهات التقنية والمالية العصرية */
+    /* دمج خط القاهرة بأعلى درجات السُمك (900) ليعطي المظهر التقني السميك الموضح بالصورة */
     @import url('https://googleapis.com');
 
-    body { background-color: #0b0e14; color: #ffffff; font-family: 'Cairo', Arial, sans-serif; margin: 0; padding: 40px 15px 160px 15px; }
+    body { 
+      background-color: #0b0e14; 
+      color: #ffffff; 
+      font-family: 'Cairo', sans-serif; 
+      margin: 0; 
+      padding: 40px 15px 160px 15px; 
+      font-weight: 700;
+    }
     
     .ovr { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
     .box { background: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; width: 100%; max-width: 360px; text-align: center; box-sizing: border-box; }
     .wlt { background: #0b0e14; border: 1px dashed #007bff; padding: 14px; border-radius: 8px; font-size: 13px; word-break: break-all; font-family: monospace; margin: 15px 0; color: #00bfff; }
-    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; font-family: 'Cairo', sans-serif; }
+    .cls-btn { background: #2b2f36; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 900; font-family: 'Cairo', sans-serif; }
 
-    /* التصميم البرمجي لمربع الروبوت التفاعلي ليكون زراً للدعم الفني */
+    /* مربع الروبوت التفاعلي */
     .robot-wrapper { 
       background-color: #181a20; 
       border: 1px solid #2b2f36; 
       border-radius: 16px; 
       padding: 35px 15px 30px 15px; 
       text-align: center; 
-      margin: 10px 0 25px 0; 
+      margin: 10px 0 10px 0; 
       position: relative; 
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -31,7 +38,7 @@
     .robot-wrapper:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(0, 191, 255, 0.1);
-      border-color: #00bfff;
+      border-color: #007bff;
     }
     .robot-canvas { position: relative; width: 100px; height: 120px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; animation: robotFloat 3s ease-in-out infinite; }
     .robot-head { position: relative; width: 80px; height: 70px; background-color: #ffffff; border-radius: 35px 35px 30px 30px; }
@@ -48,45 +55,73 @@
     .dot2 { width: 5px; height: 5px; animation-delay: 0.3s; }
     .dot3 { width: 3px; height: 3px; animation-delay: 0.6s; }
 
-    /* تصميم النص الاحترافي داخل مربع البوت */
+    /* تطبيق الخط الفخم والسميك العريض داخل مربع البوت */
     .robot-btn-text {
       margin-top: 20px;
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 19px;
+      font-weight: 900;
       color: #00bfff;
       letter-spacing: 0.5px;
+    }
+
+    /* الخط الفاصل المضيء */
+    .glow-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2b2f36, #007bff, #2b2f36, transparent);
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+      margin: 25px 10px;
+      border: none;
     }
 
     @keyframes robotFloat { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
     @keyframes robotBlink { 0%, 45%, 55%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
     @keyframes particleFade { 0% { opacity: 0.3; transform: scale(0.8) translateY(0px); } 50% { opacity: 1; transform: scale(1.2) translateY(3px); } 100% { opacity: 0.1; transform: scale(0.6) translateY(6px); } }
 
-    /* تنسيق قسم الأزرار المحدثة باللون الأزرق الفاخر والخط الأبيض الاحترافي */
+    /* كارت القسم السفلي */
     .action-section { background-color: #181a20; border: 1px solid #2b2f36; border-radius: 16px; padding: 22px; text-align: center; }
-    .action-title { font-size: 14px; color: #848e9c; margin: 0 0 15px 0; font-weight: bold; }
-    .btn-style { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 16px; width: 95%; box-sizing: border-box; transition: all 0.3s ease; font-family: 'Cairo', sans-serif; cursor: pointer; }
     
-    /* زر التحميل والتفاعل المحدث بالكامل للون الأزرق الملكي والخط الأبيض الناصع */
-    .download-btn { background-color: #007bff; color: #ffffff; box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); }
-    .download-btn:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3); }
+    /* عنوان الخدمات بالخط العريض */
+    .action-title { font-size: 15px; color: #848e9c; margin: 0 0 18px 0; font-weight: 900; }
+    
+    /* الزر الأزرق المتطابق تماماً مع خط شحن الحساب السميك والمحترف */
+    .btn-style { 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 10px; 
+      padding: 15px 24px; 
+      border-radius: 10px; 
+      text-decoration: none; 
+      font-weight: 900; 
+      font-size: 18px; 
+      width: 95%; 
+      box-sizing: border-box; 
+      transition: all 0.3s ease; 
+      font-family: 'Cairo', sans-serif; 
+      cursor: pointer; 
+      background-color: #007bff; 
+      color: #ffffff; 
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    }
+    .btn-style:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3); }
 
-    /* واجهة شات تيليجرام */
+    /* شات تيليجرام */
     .tg-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0e1621; z-index: 2500; flex-direction: column; }
     .tg-header { background: #17212b; padding: 15px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #101921; }
     .tg-back { font-size: 20px; color: #6c7883; cursor: pointer; }
-    .tg-avatar { width: 40px; height: 40px; background: #2f6ea5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 16px; }
+    .tg-avatar { width: 40px; height: 40px; background: #2f6ea5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 16px; }
     .tg-user-info { display: flex; flex-direction: column; text-align: right; justify-content: center; }
-    .tg-name { font-size: 16px; font-weight: bold; color: #fff; font-family: 'Cairo', sans-serif; }
+    .tg-name { font-size: 17px; font-weight: 900; color: #fff; font-family: 'Cairo', sans-serif; }
     
     .tg-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: url('https://githubusercontent.com'); background-color: #0e1621; opacity: 0.95; }
-    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; font-family: 'Cairo', sans-serif; }
+    .msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 15px; line-height: 1.5; position: relative; word-break: break-word; text-align: right; font-family: 'Cairo', sans-serif; font-weight: 700; }
     .msg-in { background: #182533; color: #fff; align-self: flex-start; border-bottom-left-radius: 4px; }
     .msg-out { background: #2b5278; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
     .msg-img { max-width: 100%; border-radius: 8px; margin-bottom: 5px; display: block; }
     
     .tg-footer { background: #17212b; padding: 10px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #101921; }
     .tg-input-wrapper { flex: 1; background: #24303f; border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; gap: 10px; }
-    .tg-input { flex: 1; background: none; border: none; color: white; font-family: 'Cairo', sans-serif; font-size: 14px; outline: none; }
+    .tg-input { flex: 1; background: none; border: none; color: white; font-family: 'Cairo', sans-serif; font-size: 14px; outline: none; font-weight: 700; }
     .tg-file-label { color: #6c7883; font-size: 18px; cursor: pointer; transition: color 0.2s; }
     .tg-file-label:hover { color: #5288c1; }
     #imageInput { display: none; }
@@ -94,11 +129,18 @@
     .tg-send-btn:hover { transform: scale(1.1); color: #2f6ea5; }
 
     .wlt-copy-box { background: #0b0e14; border: 1px dashed #007bff; padding: 8px; border-radius: 6px; font-family: monospace; font-size: 12px; color: #00bfff; word-break: break-all; margin-top: 5px; text-align: center; }
+
+    /* شريط التنقل السفلي */
+    .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #181a20; display: flex; padding: 12px 0; border-top: 1px solid #2b2f36; z-index: 1000; box-sizing: border-box; }
+    .nav a { text-decoration: none; color: #848e9c; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 25%; position: relative; height: 35px; }
+    .nav a i { font-size: 22px; }
+    .nav a.active { color: #007bff; }
+    .nav a.active::after { content: ''; position: absolute; bottom: -6px; left: 35%; width: 30%; height: 3px; background-color: #007bff; border-radius: 2px; }
   </style>
 </head>
 <body>
 
-  <!-- حاوية الروبوت المطور المتحرك مدمج بها نص التـــواصل الدعــم الفـــني وتفتح الشات عند الضغط -->
+  <!-- حاوية الروبوت المطور المتحرك مدمج بها نص التـــواصل الدعــم الفـــني بالخط السميك الجديد المماثل للصورة -->
   <div class="robot-wrapper" onclick="openSup()">
     <div class="robot-canvas">
       <div class="robot-ear-l"></div>
@@ -118,15 +160,18 @@
     <div class="robot-btn-text">التـــواصل الدعــم الفـــني</div>
   </div>
 
-  <!-- قسم خدمات المنصة السفلية المطور بالزر الأزرق والخط الأبيض الفخم المحدث -->
+  <!-- الخط الفاصل المضيء والاحترافي المدمج -->
+  <hr class="glow-divider">
+
+  <!-- قسم خدمات المنصة السفلية المطور بالزر الأزرق والخط الأبيض الفخم العريض المكتوب بأعلى درجات السُمك -->
   <div class="action-section">
     <p class="action-title">الوصول السريع لخدمات المنصة</p>
-    <a href="https://appsgeyser.io" class="btn-style download-btn" target="_blank">
+    <a href="https://appsgeyser.io" class="btn-style" target="_blank">
       <i class="fas fa-download"></i> تحميل التطبيق الرسمي
     </a>
   </div>
 
-  <!-- واجهة شات تيليجرام التفاعلية -->
+  <!-- واجهة شات تيليجرام التفاعلية المحدثة بكامل ميزات الخط العريض -->
   <div class="tg-overlay" id="supModal">
     <div class="tg-header">
       <div class="tg-back" onclick="closeSup()"><i class="fas fa-arrow-right"></i></div>
@@ -150,14 +195,6 @@
       </div>
       <button class="tg-send-btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
     </div>
-  </div>
-
-  <!-- شريط التنقل السفلي الرئيسي للمنصة -->
-  <div class="nav">
-    <a href="account.html" class="active"><i class="fas fa-user"></i></a>
-    <a href="tasks.html"><i class="fas fa-list-ul"></i></a>
-    <a href="assets.html"><i class="fas fa-wallet"></i></a>
-    <a href="home.html"><i class="fas fa-home"></i></a>
   </div>
     <script>
     function openSup() { document.getElementById('supModal').style.display = 'flex'; }
