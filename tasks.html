@@ -4,50 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>صفحة المهام</title>
-  <!-- استدعاء أيقونات FontAwesome لتطابق شريط التنقل السفلي -->
-  <link rel="stylesheet" href="https://cloudflare.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #0b0e14; /* لون الخلفية الداكن المطابق لموقعك */
-      color: #ffffff;
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
-      padding: 10px 20px 80px 20px; /* مسافة علوية بسيطة ومسافة سفلية لشريط التنقل */
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0b0e14 0%, #1a1f2e 100%);
+      color: #ffffff;
+      padding: 15px;
+      padding-bottom: 100px;
+      min-height: 100vh;
+    }
+
+    .header {
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 900;
+      color: #00d4ff;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #848e9c;
+      font-weight: 600;
     }
 
     /* حاوي المهام كأزرار أو بنرات قابلة للنقر */
     .task-container {
       width: 100%;
-      margin-bottom: 5px; /* تم تقليل المسافة هنا لتصبح الصور متقاربة */
+      margin-bottom: 8px;
       cursor: pointer;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      transition: transform 0.2s;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .task-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+      border-color: #00d4ff;
     }
 
     .task-container:active {
-      transform: scale(0.98); /* تأثير بسيط عند الضغط بالهاتف */
+      transform: scale(0.98);
     }
 
     .task-image {
       width: 100%;
       display: block;
+      background: linear-gradient(135deg, rgba(24,26,32,0.5), rgba(24,26,32,0.3));
     }
 
-    /* تنسيق شريط التنقل السفلي الاحترافي لبايننس */
+    /* شريط التنقل السفلي الاحترافي */
     .binance-bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color: #181a20;
+      background: linear-gradient(180deg, rgba(24,26,32,0.5), rgba(24,26,32,0.9));
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 10px 0;
-      border-top: 1px solid #2b2f36;
+      padding: 12px 0;
+      border-top: 1px solid rgba(43, 49, 57, 0.6);
       z-index: 1000;
       box-sizing: border-box;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
     }
 
     .binance-bottom-nav a {
@@ -56,24 +94,52 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 12px;
+      font-size: 11px;
       width: 25%;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .binance-bottom-nav a:hover {
+      color: #00d4ff;
     }
 
     .binance-bottom-nav a i {
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 4px;
+      transition: all 0.3s ease;
     }
 
-    /* تمييز زر المهام باللون الأصفر لأنه الصفحة النشطة حالياً */
+    .binance-bottom-nav a:hover i {
+      transform: scale(1.2);
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    }
+
+    /* تمييز الزر النشط */
     .binance-bottom-nav a.active {
-      color: #f0b90b;
+      color: #00d4ff;
+    }
+
+    .binance-bottom-nav a.active i {
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
   </style>
 </head>
 <body>
 
-  <!-- عرض الصور الأربعة الشفافة للمهام مع رسالة التنبيه عند النقر ومسافات متقاربة -->
+  <div class="header">
+    <h1><i class="fas fa-tasks" style="margin-left:10px;"></i>المهام اليومية</h1>
+    <p><i class="fas fa-clipboard-list" style="margin-left:6px;"></i>أكمل المهام واحصل على مكافآت</p>
+  </div>
+
+  <!-- عرض الصور الأربعة للمهام -->
   <div class="task-container" onclick="showTaskAlert()">
     <img src="task1.png" alt="Task 1" class="task-image">
   </div>
@@ -90,8 +156,7 @@
     <img src="task4.png" alt="Task 4" class="task-image">
   </div>
 
-
-  <!-- شريط التنقل السفلي الثابت للاتصال بالصفحات الأخرى -->
+  <!-- شريط التنقل السفلي -->
   <div class="binance-bottom-nav">
     <a href="account.html">
       <i class="fas fa-user"></i>
@@ -111,10 +176,9 @@
     </a>
   </div>
 
-  <!-- كود الجافاسكربت الخاص بإظهار الرسالة للمستخدم -->
   <script>
     function showTaskAlert() {
-      alert("يرجى الاشتراك لتفعيل المهمات");
+      alert("🔒 يرجى الاشتراك لتفعيل المهمات");
     }
   </script>
 

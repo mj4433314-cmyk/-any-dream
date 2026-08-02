@@ -3,34 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الباقات - الأصول</title>
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <title>الأصول - الباقات الاستثمارية</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
         body {
-            background-color: #0b0f19;
+            background: linear-gradient(135deg, #0b0e14 0%, #1a1f2e 100%);
             color: white;
             padding: 20px;
-            font-family: 'Cairo', sans-serif;
             margin: 0;
-            padding-bottom: 90px;
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: #848e9c;
+            font-weight: 600;
         }
 
         .pkg-container {
-            max-width: 450px;
+            max-width: 500px;
             margin: auto;
-            text-align: center;
         }
 
         .pkg-card {
             width: 100%;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             cursor: pointer;
-            background-color: #111522;
-            transition: transform 0.2s ease;
+            background: linear-gradient(135deg, rgba(24,26,32,0.5), rgba(24,26,32,0.3));
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .pkg-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+            border-color: #00d4ff;
         }
 
         .pkg-card:active {
@@ -41,21 +74,106 @@
             width: 100%;
             height: auto;
             display: block;
-            object-fit: contain;
+            object-fit: cover;
         }
 
-        /* تنسيق شريط التنقل السفلي مع إضافة تأثير النبض الكلاسيكي السريع */
+        /* النافذة المنبثقة */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(11,14,20,0.95), rgba(26,31,46,0.95));
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+            border-radius: 16px;
+            width: 85%;
+            max-width: 340px;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .popup-content {
+            padding: 35px 25px;
+            color: #333333;
+        }
+
+        .popup-content .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            animation: pulseIcon 1.5s infinite ease-in-out;
+            color: #f23645;
+        }
+
+        .popup-content .title {
+            display: block;
+            font-size: 24px;
+            font-weight: 900;
+            color: #1a1f2e;
+            margin-bottom: 12px;
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .popup-content .detail {
+            font-size: 15px;
+            color: #7f8c8d;
+            margin: 0;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .popup-footer {
+            background: linear-gradient(135deg, #00d4ff 0%, #0066ee 100%);
+            color: white;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .popup-footer:hover {
+            background: linear-gradient(135deg, #0066ee 0%, #00d4ff 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* شريط التنقل السفلي */
         .binance-bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #111522;
+            background: linear-gradient(180deg, rgba(24,26,32,0.5), rgba(24,26,32,0.9));
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #22293f;
-            z-index: 9999;
+            align-items: center;
+            padding: 12px 0;
+            border-top: 1px solid rgba(43, 49, 57, 0.6);
+            z-index: 1000;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
             direction: rtl;
         }
 
@@ -65,95 +183,37 @@
             align-items: center;
             text-decoration: none;
             color: #848e9c;
-            font-size: 12px;
+            font-size: 11px;
             flex: 1;
-            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        /* تأثير النبضة والارتداد عند الضغط على الأزرار */
-        .binance-nav-item:active {
-            transform: scale(0.88);
-        }
-
-        .binance-nav-item.active {
-            color: #f0b90b;
+        .binance-nav-item:hover {
+            color: #00d4ff;
         }
 
         .binance-nav-item i {
-            font-size: 18px;
-            margin-bottom: 4px;
-        }
-
-        /* تنسيق النافذة المنبثقة للـ CodePen */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .popup {
-            background: #ffffff;
-            border-radius: 8px;
-            width: 85%;
-            max-width: 340px;
-            text-align: center;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            font-family: sans-serif;
-            animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .popup-content {
-            padding: 30px 20px;
-            color: #333333;
-        }
-
-        .popup-content .icon {
-            width: 55px;
-            height: 55px;
-            margin: 0 auto 15px auto;
-            display: block;
-            animation: pulseIcon 1.5s infinite ease-in-out; /* تأثير نبض أيقونة التحذير */
-        }
-
-        .popup-content .title {
-            display: block;
             font-size: 22px;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
         }
 
-        .popup-content .detail {
-            font-size: 15px;
-            color: #7f8c8d;
-            margin: 0;
-            line-height: 1.5;
+        .binance-nav-item:hover i {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
         }
 
-        .popup-footer {
-            background: #F65656;
-            color: white;
-            padding: 15px 0;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
+        .binance-nav-item.active {
+            color: #00d4ff;
         }
 
-        .popup-footer:hover {
-            background: #e04b4b;
+        .binance-nav-item.active i {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            animation: pulse 2s infinite ease-in-out;
         }
 
-        /* تأثيرات الحركة (Animations) */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -166,16 +226,24 @@
 
         @keyframes pulseIcon {
             0% { transform: scale(1); }
-            50% { transform: scale(1.12); }
+            50% { transform: scale(1.15); }
             100% { transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
     </style>
 </head>
 <body>
 
+    <div class="header">
+        <h1><i class="fas fa-gem" style="margin-left:10px; color:#f0b90b;"></i>الباقات الاستثمارية</h1>
+        <p><i class="fas fa-star" style="margin-left:6px; color:#f0b90b;"></i>اختر باقتك واحصل على عوائد مميزة</p>
+    </div>
+
     <div class="pkg-container">
-        <h2 style="font-family: 'Cairo', sans-serif; color: #f0b90b; margin-bottom: 20px;">الباقات الاستثمارية</h2>
-        
         <div class="pkg-card" onclick="openPkgModal()">
             <img src="pkg1.jpg" alt="الباقة الأولى">
         </div>
@@ -193,25 +261,25 @@
         </div>
     </div>
 
-    <!-- شاشة النافذة المنبثقة المستوحاة من CodePen مع تأثير النبض للتحذير -->
+    <!-- النافذة المنبثقة -->
     <div id="pkgModal" class="modal-overlay">
         <div class="popup">
             <div class="popup-content">
-                <span class="icon">
-                    <svg fill="#F65656" viewBox="0 0 1024 1024" xmlns="http://w3.org" stroke="#F65656">
-                        <path d="M955.7 856l-416-720c-6.2-10.7-16.9-16-27.7-16s-21.6 5.3-27.7 16l-416 720C56 877.4 71.4 904 96 904h832c24.6 0 40-26.6 27.7-48zM480 416c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v184c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V416zm32 352a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"></path>
-                    </svg>
-                </span>
-                <span class="title">HRUSDT</span>
-                <p class="detail">Please top up your account to activate the package.</p>
+                <div class="icon">
+                    <i class="fas fa-triangle-exclamation"></i>
+                </div>
+                <span class="title">تنبيه مهم</span>
+                <p class="detail">يرجى شحن حسابك لتفعيل الباقة المختارة</p>
             </div>
-            <div class="popup-footer" onclick="closePackageModal()">Dismiss</div>
+            <div class="popup-footer" onclick="closePackageModal()">
+                <i class="fas fa-check" style="margin-left:8px;"></i>حسناً، فهمت
+            </div>
         </div>
     </div>
 
-    <!-- شريط التنقل الكلاسيكي الموحد مع تأثير النبضات السلس وسلسلة الربط الدقيقة -->
+    <!-- شريط التنقل السفلي -->
     <div class="binance-bottom-nav">
-        <a href="index.html" class="binance-nav-item">
+        <a href="account.html" class="binance-nav-item">
             <i class="fas fa-user"></i>
             <span>حسابي</span>
         </a>
