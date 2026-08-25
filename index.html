@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Cairo', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        
+        .container { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            width: 100%;
+            max-width: 380px; 
+            text-align: right; 
+            box-sizing: border-box;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .logo-section {
+            margin-bottom: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo-section img {
+            width: 170px; 
+            height: auto;
+            display: block;
+            margin-bottom: 8px;
+            background: transparent; 
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .field-label {
+            font-size: 16px;
+            font-weight: 700; 
+            color: #e0e0e0; 
+            margin-bottom: 10px;
+            display: block;
+            padding-right: 5px;
+            font-family: 'Cairo', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        input { 
+            width: 100%; 
+            height: 55px; 
+            padding: 0 15px; 
+            margin-bottom: 20px; 
+            border: 2px solid rgba(59, 130, 246, 0.3); 
+            border-radius: 12px; 
+            box-sizing: border-box; 
+            font-size: 16px; 
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(30, 35, 41, 0.5);
+            color: #ffffff;
+            text-align: right; 
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(30, 35, 41, 0.8);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        button { 
+            width: 100%; 
+            height: 55px; 
+            border: none; 
+            border-radius: 12px; 
+            color: #ffffff; 
+            font-size: 18px; 
+            font-weight: 800; 
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer; 
+            margin-bottom: 12px; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #loginBtn { 
+            background: linear-gradient(135deg, #0f52ba 0%, #1e3a8a 100%);
+            box-shadow: 0 4px 15px rgba(15, 82, 186, 0.3);
+        }
+        
+        #loginBtn:hover {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f52ba 100%);
+            box-shadow: 0 6px 25px rgba(30, 58, 138, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #createBtn { 
+            background: linear-gradient(135deg, #00b074 0%, #059669 100%);
+            margin-bottom: 0;
+            box-shadow: 0 4px 15px rgba(0, 176, 116, 0.3);
+        }
+        
+        #createBtn:hover {
+            background: linear-gradient(135deg, #059669 0%, #00b074 100%);
+            box-shadow: 0 6px 25px rgba(5, 150, 105, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #loading { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(135deg, rgba(15,20,25,0.95), rgba(26,31,46,0.95));
+            z-index: 9999; 
+            justify-content: center; align-items: center; flex-direction: column;
+        }
+        
+        .spinner {
+            width: 60px; height: 60px;
+            border: 4px solid rgba(59, 130, 246, 0.2);
+            border-top: 4px solid #3b82f6; 
+            border-radius: 50%; 
+            animation: spin 1.2s linear infinite;
+        }
+        
+        .loading-text { 
+            font-family: 'Cairo', sans-serif; 
+            font-size: 18px; 
+            color: #ffffff; 
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-section">
+            <img src="lokgo.png" alt="شعار مخصص">
+        </div>
+
+        <label class="field-label"><i class="fas fa-envelope" style="margin-left:8px;"></i>Gmail / Phone</label>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="text" id="phone" placeholder="أدخل بريدك أو هاتفك" style="flex:1; margin-bottom:20px;">
+        </div>
+
+        <label class="field-label"><i class="fas fa-lock" style="margin-left:8px;"></i>Password</label>
+        <input type="password" id="password" placeholder="أدخل كلمة المرور">
+
+        <label class="field-label"><i class="fas fa-key" style="margin-left:8px;"></i>Invite Code OY</label>
+        <input type="text" id="inviteCode" placeholder="أدخل رمز الدعوة">
+        
+        <button id="loginBtn"><i class="fas fa-sign-in-alt" style="margin-left:10px;"></i>تسجيل الدخول</button>
+        <button id="createBtn"><i class="fas fa-user-plus" style="margin-left:10px;"></i>إنشاء حساب</button>
+    </div>
+
+    <div id="loading"></div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAs7tvPA4OUA_D7_3DEyBL_SEbwTZ8KJaI",
+            authDomain: "mywebproject-2c548.firebaseapp.com",
+            projectId: "mywebproject-2c548",
+            storageBucket: "mywebproject-2c548.firebasestorage.app",
+            messagingSenderId: "864322797605",
+            appId: "1:864322797605:web:6e99a72ee5a0e7e9eb3fcc",
+            measurementId: "G-341N04ERR3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const phone = document.getElementById("phone");
+        const password = document.getElementById("password");
+        const inviteCode = document.getElementById("inviteCode");
+        const loginBtn = document.getElementById("loginBtn");
+        const createBtn = document.getElementById("createBtn");
+        const loading = document.getElementById("loading");
+
+        if(loginBtn) {
+            loginBtn.onclick = async function() {
+                const enteredEmailOrPhone = phone.value.trim();
+                const enteredPassword = password.value.trim();
+                const loginInviteCode = inviteCode ? inviteCode.value.trim() : "";
+
+                if (enteredEmailOrPhone === "" || enteredPassword === "" || loginInviteCode === "") {
+                    alert("يرجى إكمال جميع الحقول أولاً");
+                    return;
+                }
+
+                if (loginInviteCode !== "1234566") {
+                    alert("تنبيه: رمز الدعوة الخاص بتسجيل الدخول غير صحيح!");
+                    return;
+                }
+
+                try {
+                    const q = query(collection(db, "users"), 
+                        where("emailOrPhone", "==", enteredEmailOrPhone),
+                        where("password", "==", enteredPassword)
+                    );
+                    
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        window.location.href = "home.html";
+                    } else {
+                        alert("عذراً، كلمة المرور أو اسم المستخدم غير صحيح.");
+                    }
+                } catch (error) {
+                    alert("حدث خطأ في الاتصال بالخادم، يرجى المحاولة لاحقاً");
+                }
+            };
+        }
+
+        if(createBtn) {
+            createBtn.onclick = async function() {
+                const emailOrPhoneValue = phone.value.trim();
+                const passwordValue = password.value.trim();
+                const inviteCodeValue = inviteCode ? inviteCode.value.trim() : "";
+
+                if (emailOrPhoneValue === "" || passwordValue === "" || inviteCodeValue === "") {
+                    alert("يرجى إكمال جميع الحقول أولاً");
+                    return;
+                }
+
+                if (inviteCodeValue !== "43688") {
+                    alert("تنبيه: رمز الدعوة غير صحيح!");
+                    return;
+                }
+
+                try {
+                    await addDoc(collection(db, "users"), {
+                        emailOrPhone: emailOrPhoneValue,
+                        password: passwordValue,
+                        inviteCode: inviteCodeValue,
+                        createdAt: new Date()
+                    });
+
+                    if(loading) {
+                        loading.style.display = "flex";
+                        loading.innerHTML = `
+                          <div style="text-align: center; animation: logoEntrance 0.8s ease-out forwards;">
+                            <img src="lokgo.png" alt="Logo" style="width: 140px; height: auto; filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4)); animation: logoPulse 2s infinite ease-in-out;">
+                            <h2 style="color: #00d4ff; margin-top: 25px; font-family: 'Cairo', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 1px;">HR.drm.com!</h2>
+                          </div>
+                          <style>
+                            @keyframes logoEntrance {
+                              0% { transform: scale(0.3); opacity: 0; }
+                              70% { transform: scale(1.1); opacity: 0.9; }
+                              100% { transform: scale(1); opacity: 1; }
+                            }
+                            @keyframes logoPulse {
+                              0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4)); }
+                              50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.6)); }
+                              100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4)); }
+                            }
+                          </style>
+                        `;
+                    }
+
+                    setTimeout(function() {
+                        window.location.href = "home.html";
+                    }, 3000);
+
+                } catch (error) {
+                    alert("حدث خطأ أثناء الاتصال بالسيرفر، يرجى المحاولة لاحقاً");
+                }
+            };
+        }
+    </script>
+</body>
+</html>
