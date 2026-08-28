@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HR Chat</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f5;font-family:Arial,"Cairo",sans-serif}
+.app{max-width:480px;height:100vh;margin:auto;background:#fff;display:flex;flex-direction:column}
+header{padding:14px 16px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:12px}
+.logo{width:45px;height:45px;border-radius:50%;background:#08a88a;color:#fff;display:grid;place-items:center;font-weight:bold}
+h2{margin:0;font-size:18px}.online{font-size:12px;color:#16a477;margin-top:3px}
+#messages{flex:1;overflow:auto;padding:14px;background:#f6f8fa}
+.msg{max-width:82%;margin:7px 0;padding:9px 12px;border-radius:15px;background:#e7edf1;word-break:break-word}
+.msg.me{margin-right:auto;background:#08a88a;color:#fff}.name{font-size:11px;font-weight:bold;margin-bottom:3px}
+.time{font-size:10px;opacity:.65;margin-top:4px}
+form{display:flex;gap:7px;padding:9px;border-top:1px solid #ddd}
+input{min-width:0;border:1px solid #ccd3d9;border-radius:12px;padding:12px;font-size:15px;outline:0}
+#name{width:95px}#text{flex:1}button{border:0;border-radius:12px;background:#08a88a;color:#fff;padding:0 15px;font-size:15px}
+#setup{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;padding:20px}
+.card{background:#fff;width:min(400px,100%);border-radius:18px;padding:22px}.card h3{margin-top:0}
+.card input{width:100%;margin:7px 0}.card button{height:45px;width:100%}
+</style></head>
+<body>
+<div class="app">
+<header><div class="logo">HR</div><div><h2>غرفة HR Chat</h2><div class="online">● المحادثة المباشرة</div></div></header>
+<div id="messages"></div>
+<form id="form"><input id="name" maxlength="30" placeholder="اسمك"><input id="text" maxlength="500" placeholder="اكتب رسالة..."><button>إرسال</button></form>
+</div>
+<div id="setup"><div class="card"><h3>مرحباً 👋</h3><p>اكتب اسمك للدخول إلى غرفة الدردشة.</p><input id="setupName" maxlength="30" placeholder="اسم العضو"><button id="enter">دخول للدردشة</button></div></div>
+<script>
+const API="/api", box=document.getElementById("messages"), form=document.getElementById("form");
+let myName=localStorage.getItem("hr_chat_name")||"";
+const setup=document.getElementById("setup"), setupName=document.getElementById("setupName"), name=document.getElementById("name"), text=document.getElementById("text");
+function start(){if(!myName)return;name.value=myName;setup.style.display="none";load()}
+if(myName)start();
+document.getElementById("enter").onclick=()=>{let n=setupName.value.trim();if(n.length<2)return alert("اكتب اسمًا صحيحًا");myName=n;localStorage.setItem("hr_chat_name",n);start()};
+function esc(s){let d=document.createElement("div");d.textContent=s;return d.innerHTML}
+async function load(){try{let r=await fetch(API+"/messages");let a=await r.json();box.innerHTML=a.map(x=>`<div class="msg ${x.name===myName?"me":""}"><div class="name">${esc(x.name)}</div>${esc(x.text)}<div class="time">${esc(x.time)}</div></div>`).join("");box.scrollTop=box.scrollHeight}catch(e){}}
+form.onsubmit=async e=>{e.preventDefault();let t=text.value.trim();let n=name.value.trim();if(!t||!n)return;await fetch(API+"/messages",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({name:n,text:t})});text.value="";load()};
+setInterval(load,2000);
+</script></body></html>
