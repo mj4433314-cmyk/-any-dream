@@ -1,0 +1,127 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#3f7fe8"><title>الرئيسية - ACCE</title><link rel="stylesheet" href="styles.css"></head><body><div class="app">
+<header class="dashboard-head"><div class="user"><div class="avatar">👤</div><strong>****22674</strong><b>B2</b></div></header>
+<main><section class="stats"><div class="profit-title">الأرباح</div><div class="profit">1058.2</div><div class="progress"><i></i></div><div class="stats-grid"><div><small>مكافأة الاحالة الداخلية</small><strong>0</strong></div><div><small>إجمالي دخل المهمة</small><strong>1799.2</strong></div><div><small>دخل مهمة اليوم</small><strong>0</strong></div><div><small>إجمالي الإيرادات</small><strong>362</strong></div><div><small>يوم العمل الفعال</small><strong>2399.2</strong></div></div></section>
+<section class="menu-card ref-menu">
+<a href="#" onclick="event.preventDefault();showWalletList()"><span class="ref-icon topup" aria-hidden="true">●<i>●</i></span><em>شحن الحساب</em><b>›</b></a>
+<a href="bottom-wallet.html"><span class="ref-icon withdraw" aria-hidden="true">⌁</span><em>سحب</em><b>›</b></a>
+<a href="employment.html"><span class="ref-icon hire" aria-hidden="true">●</span><em>توظيف الموظفين</em><b>›</b></a>
+<a href="bottom-wallet.html"><span class="ref-icon wallet" aria-hidden="true">⌂</span><em>عنوان المحفظة</em><b>›</b></a>
+<a href="bottom-tasks.html" class="tribe-row"><span class="ref-icon tribe" aria-hidden="true">12</span><em>حجم القبيلة</em><strong class="row-count">3</strong></a>
+<a href="bottom-records.html"><span class="ref-icon deposit" aria-hidden="true">▰</span><em>سجل الإيداع</em><b>›</b></a>
+<a href="bottom-records.html"><span class="ref-icon withdraw-record" aria-hidden="true">▰</span><em>سجل السحب</em><b>›</b></a>
+<a href="bottom-tasks.html"><span class="ref-icon store" aria-hidden="true">▰</span><em>متجر ACCE المختار</em><b>›</b></a>
+<a href="bottom-records.html"><span class="ref-icon win" aria-hidden="true">□</span><em>سجل الفوز</em><b>›</b></a>
+</section></main></div>
+<nav class="bottom-nav" aria-label="التنقل الرئيسي">
+  <a class="nav-item active" href="index.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.2 24 8l17 14.2v17.3a2.5 2.5 0 0 1-2.5 2.5H29V29H19v13H9.5A2.5 2.5 0 0 1 7 39.5V22.2Z" fill="currentColor"/><path d="M3.8 21.5 24 4.8l20.2 16.7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><small>الرئيسية</small>
+  </a>
+  <a class="nav-item " href="bottom-tasks.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 16.5h34v24H7z" fill="currentColor" opacity=".95"/><path d="M15 16.5V12c0-2.2 1.8-4 4-4h10c2.2 0 4 1.8 4 4v4.5" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 20v4m-6-1c2.1 1.6 3.9 2.4 6 2.4s3.9-.8 6-2.4" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M18 31c1.7-3.2 4-4.8 6-4.8s4.3 1.6 6 4.8" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></span><small>التوظيف</small>
+  </a>
+  <a class="nav-item center " href="bottom-tasks.html">
+    <span class="center-circle"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M28 4 12 27h11l-3 17 16-24H25z" fill="currentColor"/></svg></span><small>المنصب</small>
+  </a>
+  <a class="nav-item " href="bottom-records.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="7" width="28" height="34" rx="4" fill="currentColor"/><path d="M17 17h14M17 24h14M17 31h10" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></span><small>السجل</small>
+  </a>
+  <a class="nav-item " href="bottom-profile.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="9" fill="currentColor"/><path d="M8 42c1.5-10 7.2-15 16-15s14.5 5 16 15" fill="currentColor"/></svg></span><small>المركز الشخصي</small>
+  </a>
+</nav>
+
+<div id="walletScreen" class="wallet-screen" aria-hidden="true">
+  <div id="walletList">
+    <div class="wallet-head"><button class="wallet-close" type="button" onclick="closeWallet()">رجوع</button><div class="wallet-head-title">شحن الحساب</div><span style="width:70px"></span></div>
+    <div class="wallet-list"><div class="wallet-list-card">
+      <button class="wallet-choice" type="button" data-wallet="tron">
+        <span class="coin-logo tron" aria-hidden="true">△</span>
+        <strong>USDT.TRC20</strong><span class="wallet-arrow">‹</span>
+      </button>
+      <button class="wallet-choice" type="button" data-wallet="polygon">
+        <span class="coin-logo polygon" aria-hidden="true">⬡</span>
+        <strong>USDT.Polygon</strong><span class="wallet-arrow">‹</span>
+      </button>
+      <button class="wallet-choice" type="button" data-wallet="ton">
+        <span class="coin-logo ton" aria-hidden="true">◇</span>
+        <strong>USDT.TON</strong><span class="wallet-arrow">‹</span>
+      </button></div></div>
+  </div>
+  
+    <section class="wallet-detail" id="wallet-tron" data-address="THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP">
+      <button class="wallet-back" type="button" onclick="showWalletList()">‹ <span>شحن الحساب</span></button>
+      <div class="wallet-detail-card">
+        <div class="detail-coin"><span class="coin-logo tron">△</span><strong>USDT.TRC20</strong></div>
+        <img class="wallet-qr" src="data:image/png;base64,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" alt="باركود USDT.TRC20">
+        <div class="countdown-label">ينتهي خلال</div>
+        <div class="countdown" data-countdown>55:00</div>
+        <div class="address-title">عنوان المحفظة</div>
+        <div class="wallet-address">THJN4XBKxbZNYsw7YAHmNiZSupn3kVEDFP</div>
+        <button class="copy-address" type="button" onclick="copyWallet(this)">نسخ عنوان المحفظة</button>
+      </div>
+    </section>
+    <section class="wallet-detail" id="wallet-polygon" data-address="0x7abf43da91bbeb2c8b93073cdcb44c63711f0ded">
+      <button class="wallet-back" type="button" onclick="showWalletList()">‹ <span>شحن الحساب</span></button>
+      <div class="wallet-detail-card">
+        <div class="detail-coin"><span class="coin-logo polygon">⬡</span><strong>USDT.Polygon</strong></div>
+        <img class="wallet-qr" src="data:image/png;base64,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" alt="باركود USDT.Polygon">
+        <div class="countdown-label">ينتهي خلال</div>
+        <div class="countdown" data-countdown>55:00</div>
+        <div class="address-title">عنوان المحفظة</div>
+        <div class="wallet-address">0x7abf43da91bbeb2c8b93073cdcb44c63711f0ded</div>
+        <button class="copy-address" type="button" onclick="copyWallet(this)">نسخ عنوان المحفظة</button>
+      </div>
+    </section>
+    <section class="wallet-detail" id="wallet-ton" data-address="UQBxy5Rk9_6B9Gi5DM2HtzAXJXmkMeetwu3eIDd4etuvovVa">
+      <button class="wallet-back" type="button" onclick="showWalletList()">‹ <span>شحن الحساب</span></button>
+      <div class="wallet-detail-card">
+        <div class="detail-coin"><span class="coin-logo ton">◇</span><strong>USDT.TON</strong></div>
+        <img class="wallet-qr" src="data:image/png;base64,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" alt="باركود USDT.TON">
+        <div class="countdown-label">ينتهي خلال</div>
+        <div class="countdown" data-countdown>55:00</div>
+        <div class="address-title">عنوان المحفظة</div>
+        <div class="wallet-address">UQBxy5Rk9_6B9Gi5DM2HtzAXJXmkMeetwu3eIDd4etuvovVa</div>
+        <button class="copy-address" type="button" onclick="copyWallet(this)">نسخ عنوان المحفظة</button>
+      </div>
+    </section>
+</div>
+
+<style>
+.wallet-screen{display:none;position:fixed;inset:0;z-index:9999;background:#f5f8fc;color:#171b24;overflow:auto;font-family:inherit}
+.wallet-screen.show{display:block}.wallet-head{height:82px;background:linear-gradient(135deg,#3f7fe8,#4b88ec);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-sizing:border-box;position:sticky;top:0;z-index:3;box-shadow:0 2px 8px #0002}
+.wallet-head-title{font-size:25px;font-weight:800;flex:1;text-align:center}.wallet-close{border:1px solid #fff9;background:transparent;color:#fff;border-radius:12px;padding:8px 15px;font-size:17px}
+.wallet-list{padding:22px 14px 36px}.wallet-list-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 14px #0002}
+.wallet-choice{width:100%;min-height:92px;border:0;border-bottom:1px solid #e6e9ee;background:#fff;display:flex;align-items:center;gap:17px;padding:15px 20px;direction:ltr;text-align:left;font-family:inherit;cursor:pointer}
+.wallet-choice:last-child{border-bottom:0}.wallet-choice strong{font-size:21px;color:#111820;flex:1}.wallet-arrow{font-size:38px;color:#3378cf;line-height:1;transform:rotate(180deg)}
+.coin-logo{width:55px;height:55px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:31px;font-weight:900;flex:none;box-shadow:inset 0 0 0 3px #fff8,0 2px 5px #0002}
+.coin-logo.tron{background:#cf1741}.coin-logo.polygon{background:#7432d4}.coin-logo.ton{background:#20a8e0}
+.wallet-detail{min-height:100vh;background:linear-gradient(180deg,#f4f8ff 0,#fff 48%,#f3f6fa 100%);padding-bottom:35px}
+.wallet-back{width:100%;height:82px;border:0;background:linear-gradient(135deg,#3f7fe8,#4b88ec);color:#fff;font-family:inherit;font-size:23px;font-weight:800;text-align:right;padding:0 20px;cursor:pointer}
+.wallet-back span{display:inline-block;margin-right:8px}.wallet-detail-card{margin:16px 12px;background:#fff;border-radius:16px;padding:20px 15px 24px;text-align:center;box-shadow:0 4px 16px #0002}
+.detail-coin{display:flex;direction:ltr;align-items:center;justify-content:center;gap:12px;margin:2px 0 14px}.detail-coin strong{font-size:23px;color:#111820}.detail-coin .coin-logo{width:50px;height:50px;font-size:27px}
+.wallet-qr{display:block;width:min(72vw,300px);height:auto;aspect-ratio:1/1;margin:8px auto 13px;border:9px solid #fff;box-shadow:0 1px 6px #0002}
+.countdown-label{font-size:16px;color:#6b7280;margin-top:4px}.countdown{font-size:31px;font-weight:900;color:#256bc2;direction:ltr;margin:2px 0 13px}
+.address-title{font-size:18px;color:#737b87;margin-top:5px}.wallet-address{direction:ltr;word-break:break-all;font-size:18px;font-weight:700;line-height:1.5;color:#171b24;margin:5px auto 14px;max-width:620px}
+.copy-address{border:0;background:#3f7fe8;color:#fff;border-radius:10px;padding:11px 18px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer}
+@media(max-width:420px){.wallet-head-title{font-size:22px}.wallet-choice strong{font-size:19px}.wallet-detail-card{margin:12px 8px}.wallet-address{font-size:16px}}
+</style>
+
+<script>
+(function(){
+  const screen=document.getElementById("walletScreen"),list=document.getElementById("walletList");
+  let timer=null,seconds=3300;
+  function tick(){
+    const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");
+    document.querySelectorAll("[data-countdown]").forEach(e=>e.textContent=m+":"+s);
+    if(seconds>0)seconds--;
+  }
+  function startTimer(){clearInterval(timer);seconds=3300;tick();timer=setInterval(tick,1000)}
+  window.showWalletList=function(){list.style.display="block";document.querySelectorAll(".wallet-detail").forEach(e=>e.style.display="none");screen.classList.add("show");screen.setAttribute("aria-hidden","false");startTimer()};
+  window.closeWallet=function(){clearInterval(timer);screen.classList.remove("show");screen.setAttribute("aria-hidden","true")};
+  window.showWallet=function(key){list.style.display="none";document.querySelectorAll(".wallet-detail").forEach(e=>e.style.display="none");const d=document.getElementById("wallet-"+key);if(d)d.style.display="block";startTimer()};
+  window.copyWallet=async function(btn){const a=btn.closest(".wallet-detail").dataset.address;try{await navigator.clipboard.writeText(a);const old=btn.textContent;btn.textContent="تم نسخ العنوان ✓";setTimeout(()=>btn.textContent=old,1500)}catch(e){}};
+  document.querySelectorAll(".wallet-choice").forEach(b=>b.addEventListener("click",()=>showWallet(b.dataset.wallet)));
+})();
+</script>
+
+</body></html>
