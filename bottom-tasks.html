@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>المنصب - ACCE</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Noto Kufi Arabic","Tajawal","Cairo","Arial",sans-serif;background:#f7f9fc;color:#1256b3}
+  .app{min-height:100vh;padding-bottom:105px}
+  .dashboard-head{height:64px;background:#3779df;display:flex;align-items:center;justify-content:center;color:#fff}
+  .user{display:flex;align-items:center;gap:10px;font-size:18px}
+  .avatar{width:38px;height:38px;border-radius:50%;background:#eaf2ff;display:grid;place-items:center;font-size:22px;box-shadow:0 2px 8px #0002}
+  .user b{color:#ffbd28;font-size:20px}
+  .page-pad{padding:14px 12px 30px;max-width:720px;margin:auto}
+  .page-title{text-align:center;margin:5px 0 16px;font-size:29px;font-weight:900;color:#1261bd}
+  .task-list{display:flex;flex-direction:column;gap:14px}
+  .task-card{
+    position:relative;overflow:hidden;border-radius:15px;padding:18px 18px 17px;
+    min-height:185px;color:#1254aa;border:1px solid #b9d1f5;
+    background:
+      linear-gradient(135deg,rgba(255,255,255,.82),rgba(172,204,250,.58)),
+      repeating-linear-gradient(125deg,transparent 0 38px,rgba(255,255,255,.28) 39px 78px);
+    box-shadow:0 4px 10px rgba(30,83,150,.20);
+  }
+  .task-card:after{content:"";position:absolute;inset:-30px;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.35) 31% 44%,transparent 45% 62%,rgba(255,255,255,.22) 63% 76%,transparent 77%);pointer-events:none}
+  .task-top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .amount{font-size:25px;font-weight:900;line-height:1.1;color:#1457b3}
+  .details{margin-top:9px;font-size:14px;line-height:1.65;color:#fff;text-shadow:0 1px 2px #2d5e9a}
+  .level{min-width:82px;height:70px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:900;box-shadow:0 2px 5px #0001}
+  .c1{color:#a77bd0}.c2{color:#a7be00}.b1{color:#8b6259}.b2{color:#9a9d22}
+  .buy{
+    position:relative;z-index:2;width:100%;height:54px;margin-top:16px;border:0;border-radius:28px;
+    background:#1260bd;color:#fff;font:900 20px inherit;cursor:pointer;
+    box-shadow:inset 0 1px 0 #ffffff33,0 3px 7px #1256b344;
+  }
+  .buy:active{transform:scale(.99)}
+  .bottom-nav{position:fixed!important;left:0;right:0;bottom:0;z-index:50}
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(10,18,32,.38);backdrop-filter:blur(7px)}
+  .modal.show{display:flex}
+  .modal-box{width:min(92vw,390px);background:#fff;border-radius:22px;padding:24px 20px 20px;text-align:center;box-shadow:0 15px 45px #0004;animation:pop .18s ease-out}
+  @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+  .modal-box h2{margin:0 0 18px;color:#145db8;font-size:24px}
+  .balance{border-radius:15px;background:#f1f6ff;padding:17px;margin-bottom:16px;color:#1a5db1;font-size:20px;font-weight:800}
+  .balance strong{display:block;margin-top:5px;font-size:27px}
+  .activate{width:100%;height:52px;border:0;border-radius:26px;background:#1464c4;color:#fff;font:900 19px inherit;cursor:pointer}
+  .close{position:absolute;top:18px;left:18px;width:40px;height:40px;border:0;border-radius:50%;background:#fff;color:#245fae;font-size:25px;cursor:pointer}
+  .error{display:none;margin-top:17px;padding:14px;border-radius:14px;background:#fff1f1;color:#c52323;font-weight:800;line-height:1.7}
+  .error.show{display:block}
+  @media(max-width:430px){
+    .page-title{font-size:27px}
+    .task-card{min-height:177px;padding:16px}
+    .amount{font-size:23px}
+    .level{min-width:75px;height:63px;font-size:24px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+<header class="dashboard-head">
+  <div class="user"><div class="avatar">👤</div><strong>****22674</strong><b>B2</b></div>
+</header>
+
+<main class="page-pad">
+  <h1 class="page-title">شراء</h1>
+  <section class="task-list">
+
+    <article class="task-card">
+      <div class="task-top">
+        <div>
+          <div class="amount">600 USDT</div>
+          <div class="details">عدد المهام في اليوم الواحد: 5<br>فترة الصلاحية: 365</div>
+        </div>
+        <div class="level c1">C1</div>
+      </div>
+      <button class="buy" type="button" data-plan="600 USDT">شراء</button>
+    </article>
+
+    <article class="task-card">
+      <div class="task-top">
+        <div>
+          <div class="amount">1200 USDT</div>
+          <div class="details">عدد المهام في اليوم الواحد: 10<br>فترة الصلاحية: 365</div>
+        </div>
+        <div class="level c2">C2</div>
+      </div>
+      <button class="buy" type="button" data-plan="1200 USDT">شراء</button>
+    </article>
+
+    <article class="task-card">
+      <div class="task-top">
+        <div>
+          <div class="amount">2600 USDT</div>
+          <div class="details">عدد المهام في اليوم الواحد: 11<br>فترة الصلاحية: 365</div>
+        </div>
+        <div class="level b1">B1</div>
+      </div>
+      <button class="buy" type="button" data-plan="2600 USDT">شراء</button>
+    </article>
+
+    <article class="task-card">
+      <div class="task-top">
+        <div>
+          <div class="amount">6000 USDT</div>
+          <div class="details">عدد المهام في اليوم الواحد: 15<br>فترة الصلاحية: 365</div>
+        </div>
+        <div class="level b2">B2</div>
+      </div>
+      <button class="buy" type="button" data-plan="6000 USDT">شراء</button>
+    </article>
+
+  </section>
+</main>
+</div>
+
+<!-- شريط التنقل السفلي محفوظ كما هو -->
+<nav class="bottom-nav" aria-label="التنقل الرئيسي">
+  <a class="nav-item " href="index.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.2 24 8l17 14.2v17.3a2.5 2.5 0 0 1-2.5 2.5H29V29H19v13H9.5A2.5 2.5 0 0 1 7 39.5V22.2Z" fill="currentColor"/><path d="M3.8 21.5 24 4.8l20.2 16.7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><small>الرئيسية</small>
+  </a>
+  <a class="nav-item " href="employment.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 16.5h34v24H7z" fill="currentColor" opacity=".95"/><path d="M15 16.5V12c0-2.2 1.8-4 4-4h10c2.2 0 4 1.8 4 4v4.5" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 20v4m-6-1c2.1 1.6 3.9 2.4 6 2.4s3.9-.8 6-2.4" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M18 31c1.7-3.2 4-4.8 6-4.8s4.3 1.6 6 4.8" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></span><small>التوظيف</small>
+  </a>
+  <a class="nav-item center active" href="bottom-tasks.html">
+    <span class="center-circle"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M28 4 12 27h11l-3 17 16-24H25z" fill="currentColor"/></svg></span><small>المنصب</small>
+  </a>
+  <a class="nav-item " href="bottom-records.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="7" width="28" height="34" rx="4" fill="currentColor"/><path d="M17 17h14M17 24h14M17 31h10" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></span><small>السجل</small>
+  </a>
+  <a class="nav-item " href="bottom-profile.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="9" fill="currentColor"/><path d="M8 42c1.5-10 7.2-15 16-15s14.5 5 16 15" fill="currentColor"/></svg></span><small>المركز الشخصي</small>
+  </a>
+</nav>
+
+<div class="modal" id="buyModal" role="dialog" aria-modal="true">
+  <button class="close" id="closeModal" type="button" aria-label="إغلاق">×</button>
+  <div class="modal-box">
+    <h2 id="selectedPlan">شراء</h2>
+    <div class="balance">رصيدك الحالي<strong>00.00</strong></div>
+    <button class="activate" id="activate" type="button">تفعيل</button>
+    <div class="error" id="errorMsg">فشلت عملية المحاولة<br>يرجى عدم تكرار المحاولة</div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('buyModal');
+  const selectedPlan = document.getElementById('selectedPlan');
+  const errorMsg = document.getElementById('errorMsg');
+
+  document.querySelectorAll('.buy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedPlan.textContent = btn.dataset.plan;
+      errorMsg.classList.remove('show');
+      modal.classList.add('show');
+    });
+  });
+
+  document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('show'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('show');
+  });
+  document.getElementById('activate').addEventListener('click', () => {
+    errorMsg.classList.add('show');
+  });
+</script>
+</body>
+</html>
