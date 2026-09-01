@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل المستخدم - ACCE</title>
+    <link rel="stylesheet" href="register-styles.css">
+</head>
+<body class="register-page">
+    <div class="register-container">
+        <!-- Header -->
+        <header class="register-header">
+            <div class="header-top">
+                <span class="back-btn">←</span>
+                <span class="logo">ACCE</span>
+                <div style="width: 30px;"></div>
+            </div>
+            <div class="header-flags">
+                <span>🇦🇪</span>
+                <span>🔍</span>
+            </div>
+        </header>
+
+        <!-- Register Form -->
+        <div class="register-form-wrapper">
+            <h1 class="form-title">تسجيل المستخدم</h1>
+
+            <form class="register-form" id="registerForm">
+                <!-- Phone Number -->
+                <div class="form-group">
+                    <label for="phone">رقم الهاتفين</label>
+                    <div class="phone-input-group">
+                        <select class="country-code">
+                            <option value="+964">+964 ▼</option>
+                            <option value="+966">+966</option>
+                            <option value="+971">+971</option>
+                        </select>
+                        <input type="tel" id="phone" placeholder="ادخل رقم الهاتفين" required>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="password-input-group">
+                        <input type="password" id="password" placeholder="ادخل كلمة المرور" required>
+                        <span class="password-toggle">👁️</span>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword">تأكيد كلمة المرور</label>
+                    <div class="password-input-group">
+                        <input type="password" id="confirmPassword" placeholder="اعادة ادخال كلمة المرور" required>
+                        <span class="password-toggle">👁️</span>
+                    </div>
+                </div>
+
+                <!-- Captcha -->
+                <div class="form-group">
+                    <label for="captcha">الكابتشا الرسومية</label>
+                    <div class="captcha-input-group">
+                        <input type="text" id="captcha" placeholder="ادخل الرمز من الصورة" required>
+                        <div class="captcha-code">FJ | 8</div>
+                    </div>
+                </div>
+
+                <!-- Invitation Code -->
+                <div class="form-group">
+                    <label for="inviteCode">رمز الدعوة</label>
+                    <input type="text" id="inviteCode" placeholder="ارسالة ايميل رمز الدعوة" required>
+                </div>
+
+                <!-- Terms Agreement -->
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">اوافق على شروط و الاحكام</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-register">تسجيل</button>
+
+                <!-- Login Link -->
+                <p class="login-link">
+                    لديك حساب؟ <a href="index.html">تسجيل الدخول</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="register-script.js"></script>
+</body>
+</html>
