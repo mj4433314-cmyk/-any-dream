@@ -244,7 +244,7 @@ const APP_SETTINGS = { balance: 999 };
       let records=[];
       try{records=JSON.parse(localStorage.getItem("acce_demo_withdrawals_v2")||"[]")}catch(e){}
       if(records.length){
-        body.innerHTML='<div class="history-list">'+records.map(r=>'<div class="history-row"><div class="history-left"><b>'+(r.tx||'tx202674515916822')+'</b><span>'+String(r.date||'').replace(/\s+—\s+مكتمل$/,'')+'</span></div><div class="history-right"><strong>'+r.amount+' USDT</strong><span class="history-status">Complete</span></div></div>').join('')+'</div>';
+        body.innerHTML='<div class="history-list">'+records.map(r=>'<div class="history-row"><div class="history-left"><b>'+(r.tx567486322||'tx202674515916822')+'</b><span>'+String(r.date||'').replace(/\s+—\s+مكتمل$/,'')+'</span></div><div class="history-right"><strong>'+r.amount+' USDT</strong><span class="history-status">Complete</span></div></div>').join('')+'</div>';
       }else{
         body.innerHTML="";
       }
