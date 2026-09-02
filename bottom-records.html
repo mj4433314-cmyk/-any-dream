@@ -1,0 +1,71 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>السجلات - ACCE</title><link rel="stylesheet" href="styles.css">
+<style id="records-only-fix">
+.records-custom{padding:0 14px 105px;background:linear-gradient(145deg,#eef6ff 0%,#fff 48%,#edf7ff 100%);min-height:100vh}
+.records-hero{margin:0 -14px;padding:16px 20px 22px;background:linear-gradient(135deg,#4c91ef,#3477dc);border-radius:0 0 28px 28px;box-shadow:0 4px 12px #2d63af26}
+.records-hero h1{margin:0 0 14px;text-align:center;color:#fff;font-size:30px;font-weight:800}
+.records-hero-row{display:flex;align-items:center;gap:12px}
+.records-zero{flex:1;height:58px;border-radius:32px;background:#fff;color:#2461b9;display:flex;align-items:center;justify-content:center;font-size:31px;font-weight:900}
+.records-tutorial{width:42%;height:58px;border:0;border-radius:32px;background:#397be2;color:#fff;font-family:inherit;font-size:19px;font-weight:800}
+.records-tabs{display:grid;grid-template-columns:repeat(4,1fr);margin:26px 0 18px;background:rgba(255,255,255,.94)}
+.records-tab{appearance:none;border:0;border-bottom:4px solid transparent;background:transparent;padding:0 3px 10px;min-height:70px;display:flex;align-items:center;justify-content:center;text-align:center;color:#111;font-family:inherit;font-size:18px;font-weight:700;line-height:1.35;cursor:pointer}
+.records-tab.active{color:#397bdc;border-bottom-color:#397bdc}
+.records-empty{height:540px;border-radius:24px;background:rgba(230,240,254,.88);box-shadow:0 2px 12px #2d63af14;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.records-empty svg{width:min(250px,58vw);height:auto;display:block;transform:translateY(-28px)}
+.records-empty .s{fill:none;stroke:#397bdc;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:380px){.records-hero h1{font-size:28px}.records-tab{font-size:16px}.records-empty{height:520px}}
+</style>
+</head><body><div class="app">
+<main class="records-custom">
+<section class="records-hero">
+<h1>الفرص المتاحة</h1>
+<div class="records-hero-row">
+<div class="records-zero">0/0</div>
+<button class="records-tutorial" type="button">💡 Tutorial</button>
+</div>
+</section>
+
+<section class="records-tabs" aria-label="حالة المهام">
+<button class="records-tab" type="button">رفض</button>
+<button class="records-tab" type="button">كامل</button>
+<button class="records-tab" type="button">المهمة قيد<br>التقدم</button>
+<button class="records-tab active" type="button">تم التراجع عنه</button>
+</section>
+
+<section class="records-empty" aria-label="لا توجد سجلات">
+<svg viewBox="0 0 260 260" aria-hidden="true">
+<path class="s" d="M73 45h103l28 28v133H73z"/>
+<path class="s" d="M176 45v30h28"/>
+<path class="s" d="M96 89h72M96 112h72M96 135h50M96 158h40"/>
+<circle cx="164" cy="156" r="45" fill="#fff" stroke="#397bdc" stroke-width="5"/>
+<path class="s" d="M197 190l28 28"/>
+<path class="s" d="M151 142l26 26M177 142l-26 26"/>
+<path class="s" d="M57 71l10 10M57 211l10-10M213 91l10-10"/>
+</svg>
+</section>
+</main>
+</div>
+<script>
+document.querySelectorAll('.records-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.records-tab').forEach(function(t){t.classList.remove('active');});
+    this.classList.add('active');
+  });
+});
+</script>
+<nav class="bottom-nav" aria-label="التنقل الرئيسي">
+  <a class="nav-item " href="index.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 22.2 24 8l17 14.2v17.3a2.5 2.5 0 0 1-2.5 2.5H29V29H19v13H9.5A2.5 2.5 0 0 1 7 39.5V22.2Z" fill="currentColor"/><path d="M3.8 21.5 24 4.8l20.2 16.7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><small>الرئيسية</small>
+  </a>
+  <a class="nav-item " href="employment.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 16.5h34v24H7z" fill="currentColor" opacity=".95"/><path d="M15 16.5V12c0-2.2 1.8-4 4-4h10c2.2 0 4 1.8 4 4v4.5" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 20v4m-6-1c2.1 1.6 3.9 2.4 6 2.4s3.9-.8 6-2.4" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M18 31c1.7-3.2 4-4.8 6-4.8s4.3 1.6 6 4.8" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></span><small>التوظيف</small>
+  </a>
+  <a class="nav-item center " href="bottom-tasks.html">
+    <span class="center-circle"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M28 4 12 27h11l-3 17 16-24H25z" fill="currentColor"/></svg></span><small>المنصب</small>
+  </a>
+  <a class="nav-item active" href="bottom-records.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="7" width="28" height="34" rx="4" fill="currentColor"/><path d="M17 17h14M17 24h14M17 31h10" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></span><small>السجل</small>
+  </a>
+  <a class="nav-item " href="bottom-profile.html">
+    <span class="nav-svg"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="9" fill="currentColor"/><path d="M8 42c1.5-10 7.2-15 16-15s14.5 5 16 15" fill="currentColor"/></svg></span><small>المركز الشخصي</small>
+  </a>
+</nav></body></html>
