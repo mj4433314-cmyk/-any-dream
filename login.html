@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ACCE - Log in</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:Arial,"Segoe UI",sans-serif;background:#fff;color:#171717}
+body{overflow-x:hidden}
+.page{
+  min-height:100vh;
+  position:relative;
+  padding:28px 7.5vw 55px;
+  background:
+    linear-gradient(55deg,transparent 0 8%,rgba(217,232,249,.28) 8.5% 12%,transparent 12.5% 39%,rgba(219,232,247,.48) 39.5% 45%,transparent 45.5% 100%),
+    linear-gradient(125deg,#fff 0 64%,#f5faff 64.5% 78%,#6db8ea 78.5% 100%);
+}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.logo{font-size:42px;font-weight:800;color:#1261c9;letter-spacing:-2px}
+.tools{display:flex;gap:24px;align-items:center}
+.flag{width:43px;height:43px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 1px 3px #777}
+.refresh{font-size:40px;line-height:1;color:#111;transform:rotate(-35deg);cursor:pointer}
+h1{font-size:44px;margin:72px 0 42px;font-weight:700;letter-spacing:-1px}
+.form-card{
+  background:rgba(220,233,250,.72);
+  border-radius:25px;
+  padding:38px 34px 32px;
+  box-shadow:0 1px 1px rgba(100,130,170,.04);
+}
+label{display:block;font-size:22px;font-weight:600;margin-bottom:13px}
+.field{height:64px;background:#fff;border:0;border-radius:7px;width:100%;padding:0 18px;font-size:20px;outline:none}
+.phone-row{display:flex;align-items:center;gap:12px}
+.code{white-space:nowrap;font-size:20px;color:#222}
+.chev{font-size:18px}
+.phone-input{flex:1;border:0;outline:0;font-size:20px;min-width:0;background:transparent}
+.group{margin-bottom:38px}
+.password-wrap{position:relative}
+.password-wrap .field{padding-right:60px}
+.eye{
+ position:absolute;right:19px;top:50%;transform:translateY(-50%);
+ width:22px;height:15px;border:3px solid #222;border-radius:70% 20%;cursor:pointer;
+}
+.eye:after{content:"";position:absolute;width:7px;height:7px;border:2px solid #222;border-radius:50%;left:4px;top:1px}
+.remember{display:flex;align-items:center;gap:12px;color:#1261c9;font-size:18px;font-weight:600;margin-top:-12px}
+.switch{width:55px;height:30px;background:#999;border-radius:20px;position:relative;display:inline-block;cursor:pointer}
+.switch:after{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.2s}
+.switch.on{background:#78aaf0}
+.switch.on:after{left:28px}
+.login{
+ margin-top:40px;width:100%;height:65px;border:0;border-radius:35px;
+ background:#78aaf0;color:white;font-size:21px;cursor:pointer;display:block;
+}
+.login:active{transform:scale(.99)}
+.register{text-align:center;margin-top:24px;font-size:19px}
+.register a{color:#1766c8;text-decoration:none}
+.version{text-align:center;margin-top:25px;font-size:17px}
+.error{text-align:center;color:#d22;font-size:16px;min-height:20px;margin-top:12px}
+@media(max-width:600px){
+ .page{padding:20px 7vw 45px}
+ .logo{font-size:34px}
+ .flag{width:35px;height:35px}.refresh{font-size:32px}
+ h1{font-size:38px;margin:58px 0 32px}
+ .form-card{padding:28px 22px}
+ label{font-size:18px}.field{height:58px;font-size:17px}
+ .group{margin-bottom:30px}.remember{font-size:16px}
+ .login{height:58px;font-size:19px}
+ .register{font-size:16px}.version{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top">
+    <div class="logo">ACCE</div>
+    <div class="tools">
+      <img class="flag" src="https://flagcdn.com/w80/gb.png" alt="English">
+      <div class="refresh" onclick="location.reload()" aria-label="Refresh">↻</div>
+    </div>
+  </div>
+
+  <h1>Log in</h1>
+
+  <form id="loginForm" novalidate>
+    <div class="form-card">
+      <div class="group">
+        <label for="phone">Phone number</label>
+        <div class="field phone-row">
+          <span class="code">+964</span><span class="chev">⌄</span>
+          <input id="phone" class="phone-input" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Phone number">
+        </div>
+      </div>
+
+      <div class="group">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input class="field" id="password" type="password" autocomplete="current-password" placeholder="password">
+          <span class="eye" onclick="togglePassword()" aria-label="Show password"></span>
+        </div>
+      </div>
+
+      <div class="remember">
+        <span>Remember password</span>
+        <span id="rememberSwitch" class="switch" role="switch" aria-label="Remember password" aria-checked="false"></span>
+      </div>
+    </div>
+
+    <div id="error" class="error"></div>
+    <button class="login" type="submit">Log in</button>
+  </form>
+
+  <div class="register">Not A Member? &nbsp;<a href="register.html">Register Now</a></div>
+  <div class="version">version number: &nbsp; 1.0.3.1</div>
+</div>
+
+<script>
+function togglePassword(){
+  const input=document.getElementById('password');
+  input.type=input.type==='password'?'text':'password';
+}
+
+const rememberSwitch=document.getElementById('rememberSwitch');
+let remember=false;
+try{
+  const saved=localStorage.getItem('acce_login_remember');
+  if(saved){
+    const data=JSON.parse(saved);
+    if(data.phone) document.getElementById('phone').value=data.phone;
+    if(data.password) document.getElementById('password').value=data.password;
+    remember=true;
+    rememberSwitch.classList.add('on');
+    rememberSwitch.setAttribute('aria-checked','true');
+  }
+}catch(e){}
+
+rememberSwitch.addEventListener('click',function(){
+  remember=!remember;
+  this.classList.toggle('on',remember);
+  this.setAttribute('aria-checked',String(remember));
+});
+
+document.getElementById('loginForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const phone=document.getElementById('phone').value.trim();
+  const password=document.getElementById('password').value;
+  const error=document.getElementById('error');
+  error.textContent='';
+
+  if(!phone || !password){
+    error.textContent='Please enter your phone number and password.';
+    return;
+  }
+
+  if(remember){
+    try{localStorage.setItem('acce_login_remember',JSON.stringify({phone:phone,password:password}));}catch(e){}
+  }else{
+    try{localStorage.removeItem('acce_login_remember');}catch(e){}
+  }
+
+  // Direct connection to the original page. index.html is not modified.
+  window.location.href='./index.html';
+});
+</script>
+</body>
+</html>
