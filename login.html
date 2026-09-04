@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#8fc9f0"><title>ACCE - تسجيل المستخدم</title><style>
+<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#8fc9f0"><title>ACCE - Log in</title><style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:Arial,"Segoe UI",sans-serif;color:#111;background:#fff}
 body{overflow-x:hidden}
@@ -74,20 +74,16 @@ label{display:block;font-size:23px;font-weight:700;margin:0 0 14px}
 }
 </style></head>
 <body><div class="page">
-<header class="header"><div class="logo">ACCE</div><div class="tools"><button id="flagButton" class="flag-btn" type="button">🇦🇪</button><div class="refresh" onclick="location.reload()">↻</div></div></header>
+<header class="header"><div class="logo">ACCE</div><div class="tools"><button id="flagButton" class="flag-btn" type="button">🇬🇧</button><div class="refresh" onclick="location.reload()">↻</div></div></header>
 <main class="content">
-<h1>تسجيل المستخدم</h1>
-<form id="registerForm" novalidate><div class="form-card">
-<div class="group"><label>رقم التلفون</label><div class="field phone-row"><button id="codeButton" class="code-select" type="button"><span id="selectedCode">+964</span><span>⌄</span></button><input id="phone" class="phone-input" type="tel" inputmode="numeric" placeholder="رقم الهاتف"></div></div>
-<div class="group"><label>كلمة المرور</label><div class="password-wrap"><input id="password" class="field" type="password" placeholder="ادخل كلمة المرور"><span class="eye" onclick="togglePassword('password')"></span></div></div>
-<div class="group"><label>تأكيد كلمة المرور</label><div class="password-wrap"><input id="confirmPassword" class="field" type="password" placeholder="الرجاء تأكيد كلمة المرور"><span class="eye" onclick="togglePassword('confirmPassword')"></span></div></div>
-<div class="group"><label>الكابتشا الرسومية</label><div class="captcha-row"><input id="captcha" class="field captcha-input" type="text" placeholder="إدخال رمز التحقق من الرسم البياني"><button id="captchaBox" class="captcha-box" type="button">FJ|8</button></div></div>
-<div class="group"><label>رمز الدعوة</label><input id="invite" class="field" type="text" placeholder="الرجاء إدخال رمز الدعوة"></div>
-<label class="terms"><input id="terms" type="checkbox"><span class="agreement"><span class="ar-agreement">أقبل أوافق ولي</span><a href="#">Enrollment Agreement</a></span></label>
+<h1>Log in</h1>
+<form id="loginForm"><div class="form-card">
+<div class="group"><label>Phone number</label><div class="field phone-row"><button id="codeButton" class="code-select" type="button"><span id="selectedCode">+964</span><span>⌄</span></button><input id="phone" class="phone-input" type="tel" inputmode="numeric" placeholder="Phone number"></div></div>
+<div class="group" style="margin-bottom:35px"><label>Password</label><div class="password-wrap"><input id="password" class="field" type="password" placeholder="password"><span class="eye" onclick="togglePassword('password')"></span></div></div>
+<div class="remember-row"><span class="remember-label">Remember password</span><button id="rememberSwitch" class="switch" type="button" aria-checked="false"><span></span></button></div>
 <div id="error" class="error"></div>
-<button class="register-btn" type="submit">تسجيل الآن</button>
-</div></form>
-<div class="bottom-link">لديك حساب بالفعل؟ <a href="login_acce.html">تسجيل الدخول</a></div>
+</div><button class="login-btn" type="submit">Log in</button></form>
+<div class="bottom-link">Not A Member? <a href="register_acce.html">Register Now</a></div>
 <div class="version">version number: 1.0.3.1</div>
 </main></div>
 <div class="dropdown" id="codeDropdown">
@@ -505,31 +501,21 @@ function validateGeneral(phone){
  return /^\d{4,15}$/.test(phone);
 }
 
-let captchaValue='FJ|8';
-document.getElementById('captchaBox').addEventListener('click',()=>{
- const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let s='';
- for(let i=0;i<2;i++)s+=chars[Math.floor(Math.random()*chars.length)];
- s+='|'+chars[Math.floor(Math.random()*chars.length)];
- captchaValue=s; document.getElementById('captchaBox').textContent=s; document.getElementById('captcha').value='';
+document.getElementById('rememberSwitch').addEventListener('click',function(){
+ this.classList.toggle('on'); this.setAttribute('aria-checked',this.classList.contains('on'));
 });
-document.getElementById('registerForm').addEventListener('submit',e=>{
+document.getElementById('loginForm').addEventListener('submit',e=>{
  e.preventDefault();
  const code=document.getElementById('selectedCode').textContent;
  const phone=document.getElementById('phone').value.trim();
  const pass=document.getElementById('password').value;
- const confirm=document.getElementById('confirmPassword').value;
- const cap=document.getElementById('captcha').value.trim().toUpperCase();
- const invite=document.getElementById('invite').value.trim();
  const error=document.getElementById('error'); error.textContent='';
- if(!phone||!pass||!confirm||!cap||!invite){error.textContent='يرجى إكمال جميع الحقول.';return}
- if(code==='+964'&&!validateIraq(phone)){error.textContent='رقم العراق يجب أن يكون 11 رقماً ويبدأ بـ 07، مثال: 07702801263';return}
- if(code!=='+964'&&!validateGeneral(phone)){error.textContent='رقم الهاتف غير صحيح.';return}
- if(pass!==confirm){error.textContent='كلمتا المرور غير متطابقتين.';return}
- if(cap!==captchaValue.toUpperCase()){error.textContent='رمز الكابتشا غير صحيح.';return}
- if(!INVITE_CODES.has(invite)){error.textContent='رمز الدعوة غير صالح.';return}
- if(!document.getElementById('terms').checked){error.textContent='يرجى الموافقة على اتفاقية التسجيل.';return}
- localStorage.setItem('acce_user',JSON.stringify({phone,code,invite}));
- window.location.href='login_acce.html';
+ if(!phone||!pass){error.textContent='Please enter your phone number and password.';return}
+ if(code==='+964'&&!validateIraq(phone)){error.textContent='Iraq phone numbers must contain 11 digits and start with 07, e.g. 07702801263.';return}
+ if(code!=='+964'&&!validateGeneral(phone)){error.textContent='Please enter a valid phone number.';return}
+ localStorage.setItem('acce_login_phone',phone);
+ // Demo navigation only; connect this to your original authentication endpoint.
+ error.style.color='#16883a'; error.textContent='Login information is valid.';
 });
 document.getElementById('phone').addEventListener('input',e=>{
  e.target.value=e.target.value.replace(/\D/g,'').slice(0,15);
